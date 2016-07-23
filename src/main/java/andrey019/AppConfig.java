@@ -8,6 +8,10 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.view.JstlView;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
 //import org.hibernate.cfg.Configuration;
 
 @org.springframework.context.annotation.Configuration
@@ -34,6 +38,12 @@ public class AppConfig {
         resolver.setViewClass(JstlView.class);
         resolver.setOrder(1);
         return resolver;
+    }
+
+    @Bean
+    public EntityManager entityManager() {
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory("JPAController");
+        return factory.createEntityManager();
     }
 
 //    @Bean

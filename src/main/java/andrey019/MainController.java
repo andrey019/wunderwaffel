@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.persistence.EntityManager;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -24,11 +25,16 @@ public class MainController {
 //	@Autowired
 //	private AdvDAO advDAO;
 
+    @Autowired
+    private EntityManager entityManager;
+
 	@RequestMapping("/")
 	public String listAdvs() {
 		System.out.println("!!! olololo !!!");
 		return "test_page";
 	}
+
+
 
 //	@RequestMapping("/favicodn.ico")
 //    public void favicon(HttpServletResponse response) {
