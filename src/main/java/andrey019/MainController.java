@@ -26,7 +26,7 @@ public class MainController {
 
 	@RequestMapping("/")
 	public String listAdvs() {
-
+		System.out.println("!!! olololo !!!");
 		return "test_page";
 	}
 
