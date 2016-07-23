@@ -10,7 +10,8 @@
 
 
 <head>
-    <link rel="shortcut icon" href="/static/favicon.ico" type="image\x-icon" />
+    <link rel="shortcut icon" href="/resources/favicon.ico" type="image\x-icon" />
+    <link rel="icon" href="/resources/favicon.ico" type="image\x-icon" />
     <title>Title</title>
 </head>
 <body>
