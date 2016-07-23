@@ -24,7 +24,7 @@ public class MainController {
 //	@Autowired
 //	private AdvDAO advDAO;
 
-	@RequestMapping("/test")
+	@RequestMapping("/")
 	public String listAdvs() {
 
 		return "test_page";
