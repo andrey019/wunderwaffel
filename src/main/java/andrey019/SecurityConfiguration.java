@@ -24,7 +24,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/", "favicon.ico").permitAll()
                 .antMatchers("/admin/**").access("hasRole('ADMIN')")
-                .antMatchers("/db/**").access("hasRole('ADMIN') and hasRole('DBA')")
+                .antMatchers("/user/**").access("hasRole('ADMIN') and hasRole('USER')")
                 .and().formLogin().loginPage("/login")
                 .and().exceptionHandling().accessDeniedPage("/Access_Denied");
 

@@ -76,6 +76,12 @@ public class MainController {
         return "ololo";
     }
 
+    @RequestMapping("/user/ololo")
+    public String userololo() {
+        System.out.println("!!! userololo !!!");
+        return "ololo";
+    }
+
 //    @RequestMapping("/backet")
 //    public ModelAndView backet() {
 //        AdsModel adsModel = new AdsModel();
