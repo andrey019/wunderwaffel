@@ -24,7 +24,7 @@ public class MainController {
 //	@Autowired
 //	private AdvDAO advDAO;
 
-	@RequestMapping("/")
+	@RequestMapping("")
 	public String listAdvs() {
 		System.out.println("!!! olololo !!!");
 		return "test_page";
