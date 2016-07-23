@@ -32,7 +32,7 @@ public class MainController {
 
 	@RequestMapping("/favicon.ico")
     public String favicon() {
-        return null;
+        return "forward:/favicon.ico";
     }
 
 //    @RequestMapping("/backet")
