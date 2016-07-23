@@ -32,7 +32,7 @@ public class MainController {
 
 	@RequestMapping("/favicon.ico")
     public void favicon(HttpServletResponse response) {
-        response.setContentType("image/ico");
+        response.setContentType("image/x-icon");
         try {
             response.getWriter().write("ololololo");
             response.getWriter().flush();
