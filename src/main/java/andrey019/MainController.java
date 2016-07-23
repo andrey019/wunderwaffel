@@ -30,7 +30,7 @@ public class MainController {
 		return "test_page";
 	}
 
-//	@RequestMapping("/favicon.ico")
+//	@RequestMapping("/favicodn.ico")
 //    public void favicon(HttpServletResponse response) {
 //        response.setContentType("image/x-icon");
 //        try {
