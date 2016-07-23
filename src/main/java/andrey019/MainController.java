@@ -31,9 +31,15 @@ public class MainController {
 	}
 
 	@RequestMapping("/favicon.ico")
-    public String favicon() {
+    public void favicon(HttpServletResponse response) {
+        response.setContentType("image/ico");
+        try {
+            response.getWriter().write("ololololo");
+            response.getWriter().flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         System.out.println("!!! favicon !!!");
-        return "forward:/favicon.ico";
     }
 
 //    @RequestMapping("/backet")
