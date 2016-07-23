@@ -73,7 +73,7 @@ public class MainController {
     @RequestMapping("/ololo")
     public String ololo() {
         System.out.println("!!! ololo !!!");
-        return "forward:/static/favicon.ico";
+        return "ololo";
     }
 
 //    @RequestMapping("/backet")
