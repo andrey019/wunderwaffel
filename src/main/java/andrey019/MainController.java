@@ -44,6 +44,11 @@ public class MainController {
         return "admin";
     }
 
+    @RequestMapping("rest")
+    public String rest() {
+        return "admin";
+    }
+
     @RequestMapping(value="/logout", method = RequestMethod.GET)
     public String logoutPage (HttpServletRequest request, HttpServletResponse response) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
