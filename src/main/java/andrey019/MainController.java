@@ -50,7 +50,7 @@ public class MainController {
         if (auth != null){
             new SecurityContextLogoutHandler().logout(request, response, auth);
         }
-        return "welcome";
+        return "redirect:/";
     }
 
 
