@@ -6,6 +6,7 @@
 	<packaging>war</packaging>
 	<version>1.0</version>
 	<name>wunderwaffel</name>
+
 	<repositories>
 		<repository>
 			<id>eap</id>
@@ -18,6 +19,7 @@
 			</snapshots>
 		</repository>
 	</repositories>
+
 	<pluginRepositories>
 		<pluginRepository>
 			<id>eap</id>
@@ -30,11 +32,15 @@
 			</snapshots>
 		</pluginRepository>
 	</pluginRepositories>
+
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>1.6</maven.compiler.source>
 		<maven.compiler.target>1.6</maven.compiler.target>
 	</properties>
+
+
+
 	<dependencies>
 		<dependency>
 			<groupId>org.postgresql</groupId>
@@ -52,7 +58,26 @@
 			<version>3.0.1</version>
 			<scope>provided</scope>
 		</dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+            <version>4.1.2.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>4.1.2.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>4.1.2.RELEASE</version>
+        </dependency>
 	</dependencies>
+
+
+
 	<profiles>
 		<profile>
 			<!-- When built in OpenShift the 'openshift' profile will be used when 
