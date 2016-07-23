@@ -59,16 +59,10 @@ public class MainController {
     }
 
 
-//	@RequestMapping("/favicodn.ico")
-//    public void favicon(HttpServletResponse response) {
-//        response.setContentType("image/x-icon");
-//        try {
-//            response.getWriter().write("ololololo");
-//            response.getWriter().flush();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
+//	@RequestMapping("/favicon.ico")
+//    public String favicon() {
 //        System.out.println("!!! favicon !!!");
+//        return "static/favicon.ico";
 //    }
 
 //    @RequestMapping("/backet")
