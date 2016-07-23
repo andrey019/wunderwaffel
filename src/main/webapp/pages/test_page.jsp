@@ -7,6 +7,8 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
+
+<link rel="shortcut icon" href="favicon.ico" type="image\ico" />
 <head>
     <title>Title</title>
 </head>
