@@ -59,11 +59,17 @@ public class MainController {
     }
 
 
-//	@RequestMapping("/favicon.ico")
-//    public String favicon() {
-//        System.out.println("!!! favicon !!!");
-//        return "static/favicon.ico";
-//    }
+	@RequestMapping("/favicon.ico")
+    public String favicon() {
+        System.out.println("!!! favicon !!!");
+        return "forward:/static/favicon.ico";
+    }
+
+    @RequestMapping("/ololo")
+    public String ololo() {
+        System.out.println("!!! ololo !!!");
+        return "forward:/static/favicon.ico";
+    }
 
 //    @RequestMapping("/backet")
 //    public ModelAndView backet() {
