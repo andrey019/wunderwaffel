@@ -49,10 +49,10 @@ public class AppConfig extends WebMvcConfigurerAdapter {
         return factory.createEntityManager();
     }
 
-    @Override
-    public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
-        configurer.enable();
-    }
+//    @Override
+//    public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
+//        configurer.enable();
+//    }
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
