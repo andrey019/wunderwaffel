@@ -53,6 +53,11 @@ public class MainController {
         return "redirect:/";
     }
 
+    @RequestMapping("/login")
+    public String login() {
+        return "login";
+    }
+
 
 //	@RequestMapping("/favicodn.ico")
 //    public void favicon(HttpServletResponse response) {
