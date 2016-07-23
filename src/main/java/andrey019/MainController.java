@@ -30,17 +30,17 @@ public class MainController {
 		return "test_page";
 	}
 
-	@RequestMapping("/favicon.ico")
-    public void favicon(HttpServletResponse response) {
-        response.setContentType("image/x-icon");
-        try {
-            response.getWriter().write("ololololo");
-            response.getWriter().flush();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        System.out.println("!!! favicon !!!");
-    }
+//	@RequestMapping("/favicon.ico")
+//    public void favicon(HttpServletResponse response) {
+//        response.setContentType("image/x-icon");
+//        try {
+//            response.getWriter().write("ololololo");
+//            response.getWriter().flush();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        System.out.println("!!! favicon !!!");
+//    }
 
 //    @RequestMapping("/backet")
 //    public ModelAndView backet() {
