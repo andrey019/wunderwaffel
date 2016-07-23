@@ -30,6 +30,11 @@ public class MainController {
 		return "test_page";
 	}
 
+	@RequestMapping("/favicon.ico")
+    public String favicon() {
+        return null;
+    }
+
 //    @RequestMapping("/backet")
 //    public ModelAndView backet() {
 //        AdsModel adsModel = new AdsModel();
