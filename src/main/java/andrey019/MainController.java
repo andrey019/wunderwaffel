@@ -32,6 +32,7 @@ public class MainController {
 
 	@RequestMapping("/favicon.ico")
     public String favicon() {
+        System.out.println("!!! favicon !!!");
         return "forward:/favicon.ico";
     }
 
