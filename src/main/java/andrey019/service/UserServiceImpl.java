@@ -1,7 +1,9 @@
-package andrey019.dao;
+package andrey019.service;
 
+import andrey019.dao.UserDao;
 import andrey019.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,6 +15,15 @@ public class UserServiceImpl implements UserService{
 
     @Autowired
     private UserDao dao;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    @Override
+    public void save(User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        dao.save(user);
+    }
 
     public User findById(int id) {
         return dao.findById(id);

@@ -3,7 +3,6 @@ package andrey019.service;
 import java.util.ArrayList;
 import java.util.List;
 
-import andrey019.dao.UserService;
 import andrey019.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;

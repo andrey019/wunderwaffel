@@ -19,6 +19,18 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
+    public void save(User user) {
+        try {
+            entityManager.getTransaction().begin();
+            entityManager.persist(user);
+            entityManager.getTransaction().commit();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            entityManager.getTransaction().rollback();
+        }
+    }
+
+    @Override
     public User findBySSO(String sso) {
         @SuppressWarnings("unchecked")
         List<User> result = entityManager.createQuery("select c from User c where c.ssoId = :ssoIdParam")
