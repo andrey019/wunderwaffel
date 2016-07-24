@@ -4,7 +4,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 
-//@Service("logService")
+@Service("logService")
 public class LogServiceImpl implements LogService {
 
     private StringBuilder stringBuilder;
