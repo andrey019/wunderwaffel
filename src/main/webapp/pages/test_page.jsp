@@ -18,6 +18,17 @@ asdgasdgadgagfd ывпфывдлфоывфыовжf<br>
 <a href="rest">rest adminka</a><br>
 <a href="access_denied">access dedied</a><br>
 <br>
+<div>
+    <sec:authorize access="isAuthenticated()">
+        <sec:authentication var="username" property="principal.username" />
+        <label>Long time no seeing, ${username}!</label>
+    </sec:authorize>
+</div>
+<div>
+    <sec:authorize access="hasRole('ADMIN')">
+        <label>hello, ADMIN!</label>
+    </sec:authorize>
+</div>
 <sec:authorize var="loggedIn" access="isAuthenticated()" />
 <c:choose>
     <c:when test="${loggedIn}">
