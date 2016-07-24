@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
+import java.util.List;
 
 @Repository("userDao")
 public class UserDaoImpl implements UserDao {
@@ -19,9 +20,15 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public User findBySSO(String sso) {
-        return (User) entityManager.createQuery(
-                "select c from User c where c.ssoId = :ssoIdParam")
+        @SuppressWarnings("unchecked")
+        List<User> result = entityManager.createQuery("select c from User c where c.ssoId = :ssoIdParam")
                 .setParameter("ssoIdParam", sso)
-                .getSingleResult();
+                .setMaxResults(1)
+                .getResultList();
+        if (result.isEmpty()) {
+            return null;
+        } else {
+            return result.get(0);
+        }
     }
 }
