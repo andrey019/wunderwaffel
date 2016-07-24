@@ -15,7 +15,10 @@
     <title>Title</title>
 </head>
 <body>
-asdgasdgadgagfd ывпфывдлфоывфыовжf
-<a href="login">login</a>
+asdgasdgadgagfd ывпфывдлфоывфыовжf<br>
+<a href="login">login</a><br>
+<a href="ololo">ololo</a><br>
+<a href="user/ololo">user/ololo</a><br>
+<a href="admin">adminka</a>
 </body>
 </html>

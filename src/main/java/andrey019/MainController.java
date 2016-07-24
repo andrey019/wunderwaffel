@@ -58,7 +58,7 @@ public class MainController {
         return "redirect:/";
     }
 
-    @RequestMapping("/login")
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login() {
         return "login";
     }
