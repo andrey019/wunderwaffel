@@ -35,18 +35,20 @@ public class MainController {
 
 	@RequestMapping("/")
 	public String listAdvs() {
-		System.out.println("!!! olololo !!");
+		System.out.println("[ACCESS] main page");
 		return "test_page";
 	}
 
     @RequestMapping(value = "/admin", method = RequestMethod.GET)
     public String adminPage(ModelMap model) {
         //model.addAttribute("user", getPrincipal());
+        System.out.println("[ACCESS] admin page");
         return "admin";
     }
 
     @RequestMapping("rest")
     public String rest() {
+        System.out.println("[ACCESS] rest to admin page");
         return "admin";
     }
 
@@ -56,35 +58,38 @@ public class MainController {
         if (auth != null){
             new SecurityContextLogoutHandler().logout(request, response, auth);
         }
+        System.out.println("[ACCESS] logout page");
         return "redirect:/";
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login() {
+        System.out.println("[ACCESS] login page");
         return "login";
     }
 
     @RequestMapping(value = "/access_denied", method = RequestMethod.GET)
     public String accessDeniedPage(ModelMap model) {
         model.addAttribute("user", getPrincipal());
+        System.out.println("[ACCESS] access_denied page");
         return "access_denied";
     }
 
 	@RequestMapping("/favicon.ico")
     public String favicon() {
-        System.out.println("!!! favicon !!!");
+        System.out.println("[ACCESS] favicon.ico page");
         return "forward:/resources/favicon.ico";
     }
 
     @RequestMapping("/ololo")
     public String ololo() {
-        System.out.println("!!! ololo !!!");
+        System.out.println("[ACCESS] ololo page");
         return "ololo";
     }
 
     @RequestMapping("/user/ololo")
     public String userololo() {
-        System.out.println("!!! userololo !!!");
+        System.out.println("[ACCESS] user/ololo page");
         return "ololo";
     }
 
