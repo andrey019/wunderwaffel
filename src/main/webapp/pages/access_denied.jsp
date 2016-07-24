@@ -9,7 +9,7 @@
 </head>
 <body>
 <c:choose>
-    <c:when test="${param.user eq 'anonymousUser'}">
+    <c:when test="${param.user == 'bill'}">
         what are you doing here?.. O_o
     </c:when>
     <c:otherwise>
