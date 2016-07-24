@@ -1,4 +1,4 @@
-package andrey019;
+package andrey019.configuration;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;

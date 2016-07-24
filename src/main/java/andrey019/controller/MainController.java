@@ -1,4 +1,4 @@
-package andrey019;
+package andrey019.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;

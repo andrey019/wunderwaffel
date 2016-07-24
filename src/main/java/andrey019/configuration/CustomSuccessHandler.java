@@ -1,4 +1,4 @@
-package andrey019;
+package andrey019.configuration;
 
 import java.io.IOException;
 import java.util.ArrayList;

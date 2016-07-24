@@ -1,4 +1,4 @@
-package andrey019;
+package andrey019.configuration;
 
 //import org.hibernate.SessionFactory;
 import org.springframework.context.annotation.Bean;

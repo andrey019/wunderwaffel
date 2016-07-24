@@ -1,4 +1,4 @@
-package andrey019;
+package andrey019.configuration;
 
 import org.springframework.security.web.context.AbstractSecurityWebApplicationInitializer;
 
