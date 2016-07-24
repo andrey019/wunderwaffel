@@ -15,7 +15,9 @@ asdgasdgadgagfd ывпфывдлфоывфыовжf<br>
 <a href="ololo">ololo</a><br>
 <a href="user/ololo">user/ololo</a><br>
 <a href="admin">adminka</a><br>
-
+<a href="rest">rest adminka</a><br>
+<a href="access_denied">access dedied</a><br>
+<br>
 <sec:authorize var="loggedIn" access="isAuthenticated()" />
 <c:choose>
     <c:when test="${loggedIn}">
