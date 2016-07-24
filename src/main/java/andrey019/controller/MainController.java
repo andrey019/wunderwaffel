@@ -2,6 +2,7 @@ package andrey019.controller;
 
 import andrey019.service.LogService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -30,6 +31,8 @@ public class MainController {
 
 //	@Autowired
 //	private AdvDAO advDAO;
+    @Autowired
+    private Environment environment;
 
     @Autowired
     private EntityManager entityManager;
@@ -76,6 +79,10 @@ public class MainController {
     public String accessDeniedPage(ModelMap model) {
         model.addAttribute("user", getPrincipal());
         logService.accessToPage("access_denied");
+        System.out.println(environment.getRequiredProperty("jdbc.driverClassName"));
+        System.out.println(environment.getRequiredProperty("jdbc.url"));
+        System.out.println(environment.getRequiredProperty("jdbc.username"));
+        System.out.println(environment.getRequiredProperty("jdbc.password"));
         return "access_denied";
     }
 

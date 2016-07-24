@@ -1,8 +1,11 @@
 package andrey019.configuration;
 
 //import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.core.env.Environment;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -14,6 +17,7 @@ import org.springframework.web.servlet.view.UrlBasedViewResolver;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.sql.DataSource;
 
 //import org.hibernate.cfg.Configuration;
 
@@ -32,6 +36,8 @@ public class AppConfig extends WebMvcConfigurerAdapter {
 //    public AdvDAO advDAO() {
 //        return new AdvDAOImpl();
 //    }
+    @Autowired
+    private Environment environment;
 
     @Bean
     public UrlBasedViewResolver setupViewResolver() {
@@ -47,6 +53,16 @@ public class AppConfig extends WebMvcConfigurerAdapter {
     public EntityManager entityManager() {
         EntityManagerFactory factory = Persistence.createEntityManagerFactory("JPAController");
         return factory.createEntityManager();
+    }
+
+    @Bean
+    public DataSource dataSource() {
+        DriverManagerDataSource dataSource = new DriverManagerDataSource();
+        dataSource.setDriverClassName(environment.getRequiredProperty("jdbc.driverClassName"));
+        dataSource.setUrl(environment.getRequiredProperty("jdbc.url"));
+        dataSource.setUsername(environment.getRequiredProperty("jdbc.username"));
+        dataSource.setPassword(environment.getRequiredProperty("jdbc.password"));
+        return dataSource;
     }
 
 //    @Bean
