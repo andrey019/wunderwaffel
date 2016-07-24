@@ -49,10 +49,10 @@ public class AppConfig extends WebMvcConfigurerAdapter {
         return factory.createEntityManager();
     }
 
-    @Bean
-    public CustomSuccessHandler customSuccessHandler() {
-        return new CustomSuccessHandler();
-    }
+//    @Bean
+//    public CustomSuccessHandler customSuccessHandler() {
+//        return new CustomSuccessHandler();
+//    }
 
 //    @Override
 //    public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
