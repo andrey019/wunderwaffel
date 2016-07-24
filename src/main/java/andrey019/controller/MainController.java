@@ -1,5 +1,6 @@
 package andrey019.controller;
 
+import andrey019.service.LogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -33,22 +34,25 @@ public class MainController {
     @Autowired
     private EntityManager entityManager;
 
+    @Autowired
+    private LogService logService;
+
 	@RequestMapping("/")
 	public String listAdvs() {
-		System.out.println("[ACCESS] main page");
+		logService.accessToPage("main");
 		return "test_page";
 	}
 
     @RequestMapping(value = "/admin", method = RequestMethod.GET)
     public String adminPage(ModelMap model) {
         //model.addAttribute("user", getPrincipal());
-        System.out.println("[ACCESS] admin page");
+        logService.accessToPage("admin");
         return "admin";
     }
 
     @RequestMapping("rest")
     public String rest() {
-        System.out.println("[ACCESS] rest to admin page");
+        logService.accessToPage("rest to admin");
         return "admin";
     }
 
@@ -58,38 +62,38 @@ public class MainController {
         if (auth != null){
             new SecurityContextLogoutHandler().logout(request, response, auth);
         }
-        System.out.println("[ACCESS] logout page");
+        logService.accessToPage("logout");
         return "redirect:/";
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login() {
-        System.out.println("[ACCESS] login page");
+        logService.accessToPage("login");
         return "login";
     }
 
     @RequestMapping(value = "/access_denied", method = RequestMethod.GET)
     public String accessDeniedPage(ModelMap model) {
         model.addAttribute("user", getPrincipal());
-        System.out.println("[ACCESS] access_denied page");
+        logService.accessToPage("access_denied");
         return "access_denied";
     }
 
 	@RequestMapping("/favicon.ico")
     public String favicon() {
-        System.out.println("[ACCESS] favicon.ico page");
+        logService.accessToPage("favicon.ico");
         return "forward:/resources/favicon.ico";
     }
 
     @RequestMapping("/ololo")
     public String ololo() {
-        System.out.println("[ACCESS] ololo page");
+        logService.accessToPage("ololo");
         return "ololo";
     }
 
     @RequestMapping("/user/ololo")
     public String userololo() {
-        System.out.println("[ACCESS] user/ololo page");
+        logService.accessToPage("user/ololo");
         return "ololo";
     }
 
