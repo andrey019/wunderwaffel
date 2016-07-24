@@ -7,6 +7,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -63,6 +64,11 @@ public class MainController {
         return "login";
     }
 
+    @RequestMapping(value = "/access_denied", method = RequestMethod.GET)
+    public String accessDeniedPage(ModelMap model) {
+        model.addAttribute("user", getPrincipal());
+        return "access_denied";
+    }
 
 	@RequestMapping("/favicon.ico")
     public String favicon() {
@@ -80,6 +86,18 @@ public class MainController {
     public String userololo() {
         System.out.println("!!! userololo !!!");
         return "ololo";
+    }
+
+    private String getPrincipal(){
+        String userName = null;
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        if (principal instanceof UserDetails) {
+            userName = ((UserDetails)principal).getUsername();
+        } else {
+            userName = principal.toString();
+        }
+        return userName;
     }
 
 //    @RequestMapping("/backet")

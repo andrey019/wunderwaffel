@@ -5,6 +5,6 @@
     <title>Denied!</title>
 </head>
 <body>
-get a fuck out of here!!!
+${user}, fuck off!
 </body>
 </html>
