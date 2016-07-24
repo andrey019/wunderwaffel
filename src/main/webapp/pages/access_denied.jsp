@@ -7,12 +7,12 @@
 </head>
 <body>
 <c:choose>
-    <c:when test="${param.user != null}">
-        ${user}, fuck off!
-    </c:when>
-    <c:when test="${param.user == anonymousUser}">
+    <c:when test="${param.user == 'anonymousUser'}">
         what are you doing here?.. O_o
     </c:when>
+    <c:otherwise>
+        ${user}, fuck off!
+    </c:otherwise>
 </c:choose>
 
 </body>
