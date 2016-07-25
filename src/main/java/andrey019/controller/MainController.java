@@ -11,6 +11,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
+import org.springframework.security.web.authentication.rememberme.PersistentTokenBasedRememberMeServices;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -40,6 +41,11 @@ public class MainController {
     @Autowired
     private LogService logService;
 
+    @Autowired
+    PersistentTokenBasedRememberMeServices persistentTokenBasedRememberMeServices;
+
+
+
 	@RequestMapping("/")
 	public String listAdvs() {
 		logService.accessToPage("main");
@@ -59,11 +65,13 @@ public class MainController {
         return "admin";
     }
 
-    @RequestMapping(value="/logout", method = RequestMethod.POST)
+    @RequestMapping(value="/logout", method = RequestMethod.GET)
     public String logoutPage (HttpServletRequest request, HttpServletResponse response) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (auth != null){
-            new SecurityContextLogoutHandler().logout(request, response, auth);
+            //new SecurityContextLogoutHandler().logout(request, response, auth);
+            persistentTokenBasedRememberMeServices.logout(request, response, auth);
+            SecurityContextHolder.getContext().setAuthentication(null);
         }
         logService.accessToPage("logout");
         return "redirect:/";
