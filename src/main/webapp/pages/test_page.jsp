@@ -33,6 +33,9 @@ asdgasdgadgagfd ывпфывдлфоывфыовжf<br>
 <c:choose>
     <c:when test="${loggedIn}">
         <a href="logout">logout</a><br>
+        <form method="post" action="/logout">
+            <input type="button"/>
+        </form>
     </c:when>
     <c:otherwise>
         <a href="login">login</a><br>
