@@ -13,10 +13,12 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.JstlView;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
+import org.springframework.orm.jpa.EntityManagerFactoryInfo;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.PersistenceContext;
 import javax.sql.DataSource;
 
 //import org.hibernate.cfg.Configuration;
@@ -38,6 +40,8 @@ public class AppConfig extends WebMvcConfigurerAdapter {
 //    }
 //    @Autowired
 //    private Environment environment;
+    @PersistenceContext
+    EntityManager entityManager;
 
     @Bean
     public UrlBasedViewResolver setupViewResolver() {
@@ -50,20 +54,31 @@ public class AppConfig extends WebMvcConfigurerAdapter {
     }
 
     @Bean
-    public EntityManager entityManager() {
-        EntityManagerFactory factory = Persistence.createEntityManagerFactory("JPAController");
-        return factory.createEntityManager();
+    public DataSource dataSource() {
+        EntityManagerFactoryInfo info = (EntityManagerFactoryInfo) entityManager.getEntityManagerFactory();
+        return info.getDataSource();
     }
 
     @Bean
-    public DataSource dataSource() {
-        DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://127.2.153.130:3306/wunderwaffel");
-        dataSource.setUsername("adminWT8YK3d");
-        dataSource.setPassword("4CwgJKNXD34T");
-        return dataSource;
+    public EntityManager entityManager() {
+        return entityManager;
     }
+
+//    @Bean
+//    public EntityManager entityManager() {
+//        EntityManagerFactory factory = Persistence.createEntityManagerFactory("JPAController");
+//        return factory.createEntityManager();
+//    }
+
+//    @Bean
+//    public DataSource dataSource() {
+//        DriverManagerDataSource dataSource = new DriverManagerDataSource();
+//        dataSource.setDriverClassName("com.mysql.jdbc.Driver");
+//        dataSource.setUrl("jdbc:mysql://127.2.153.130:3306/wunderwaffel");
+//        dataSource.setUsername("adminWT8YK3d");
+//        dataSource.setPassword("4CwgJKNXD34T");
+//        return dataSource;
+//    }
 
 //    @Bean
 //    public CustomSuccessHandler customSuccessHandler() {
