@@ -33,7 +33,7 @@ asdgasdgadgagfd ывпфывдлфоывфыовжf<br>
 <c:choose>
     <c:when test="${loggedIn}">
         <a href="logout">logout</a><br>
-        <form method="post" action="/logout">
+        <form role="form" method="post" action="/logout">
             <input type="submit" value="logout"  />
         </form>
     </c:when>
