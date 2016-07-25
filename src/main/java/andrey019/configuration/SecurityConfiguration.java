@@ -26,14 +26,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Autowired
     @Qualifier("customUserDetailsService")
-    UserDetailsService userDetailsService;
+    public UserDetailsService userDetailsService;
 
     @Autowired
-    DataSource dataSource;
+    public DataSource dataSource;
 
     @Autowired
     public void configureGlobalSecurity(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService);
+        //auth.userDetailsService(userDetailsService);
         auth.authenticationProvider(authenticationProvider());
     }
 
