@@ -54,11 +54,11 @@ public class AppConfig extends WebMvcConfigurerAdapter {
         return resolver;
     }
 
-    @Bean
-    public DataSource dataSource() {
-        EntityManagerFactoryInfo info = (EntityManagerFactoryInfo) entityManager().getEntityManagerFactory();
-        return info.getDataSource();
-    }
+//    @Bean
+//    public DataSource dataSource() {
+//        EntityManagerFactoryInfo info = (EntityManagerFactoryInfo) entityManager().getEntityManagerFactory();
+//        return info.getDataSource();
+//    }
 
 //    @Bean
 //    public EntityManager entityManager() {
@@ -71,15 +71,15 @@ public class AppConfig extends WebMvcConfigurerAdapter {
         return factory.createEntityManager();
     }
 
-//    @Bean
-//    public DataSource dataSource() {
-//        DriverManagerDataSource dataSource = new DriverManagerDataSource();
-//        dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-//        dataSource.setUrl("jdbc:mysql://127.2.153.130:3306/wunderwaffel");
-//        dataSource.setUsername("adminWT8YK3d");
-//        dataSource.setPassword("4CwgJKNXD34T");
-//        return dataSource;
-//    }
+    @Bean
+    public DataSource dataSource() {
+        DriverManagerDataSource dataSource = new DriverManagerDataSource();
+        dataSource.setDriverClassName("com.mysql.jdbc.Driver");
+        dataSource.setUrl("jdbc:mysql://127.2.153.130:3306/wunderwaffel");
+        dataSource.setUsername("adminWT8YK3d");
+        dataSource.setPassword("4CwgJKNXD34T");
+        return dataSource;
+    }
 
 //    @Bean
 //    public CustomSuccessHandler customSuccessHandler() {
