@@ -60,7 +60,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/user/**").access("hasRole('ADMIN') or hasRole('USER')")
                 .and().formLogin().loginPage("/login").successHandler(customSuccessHandler)
                 .usernameParameter("ssoId").passwordParameter("password")
-                .and().rememberMe().tokenRepository(persistentTokenRepository()).tokenValiditySeconds(86400)
+                .and().rememberMe().rememberMeParameter("remember-me").tokenRepository(persistentTokenRepository()).tokenValiditySeconds(86400)
                 .and().csrf()
                 .and().exceptionHandling().accessDeniedPage("/access_denied");
 
