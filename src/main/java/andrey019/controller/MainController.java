@@ -1,7 +1,10 @@
 package andrey019.controller;
 
+import andrey019.model.CustomMessage;
 import andrey019.service.LogService;
+import andrey019.service.MailService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -42,8 +45,11 @@ public class MainController {
     private LogService logService;
 
     @Autowired
-    PersistentTokenBasedRememberMeServices persistentTokenBasedRememberMeServices;
+    private PersistentTokenBasedRememberMeServices persistentTokenBasedRememberMeServices;
 
+    @Autowired
+    @Qualifier("mailService")
+    private MailService mailService;
 
 
 	@RequestMapping("/")
@@ -87,10 +93,6 @@ public class MainController {
     public String accessDeniedPage(ModelMap model) {
         model.addAttribute("user", getPrincipal());
         logService.accessToPage("access_denied");
-//        System.out.println(environment.getRequiredProperty("jdbc.driverClassName"));
-//        System.out.println(environment.getRequiredProperty("jdbc.url"));
-//        System.out.println(environment.getRequiredProperty("jdbc.username"));
-//        System.out.println(environment.getRequiredProperty("jdbc.password"));
         return "access_denied";
     }
 
@@ -103,6 +105,13 @@ public class MainController {
     @RequestMapping("/ololo")
     public String ololo() {
         logService.accessToPage("ololo");
+        CustomMessage message = new CustomMessage();
+        message.setFrom("wuderwaffelapp@gmail.com");
+        message.setTo("quropatka38@online.ua");
+        message.setSubject("testing send");
+        message.setText("ololo, this is text");
+        mailService.sendMail(message);
+        System.out.println("!!!!!!! message send !!!!!!!");
         return "ololo";
     }
 
