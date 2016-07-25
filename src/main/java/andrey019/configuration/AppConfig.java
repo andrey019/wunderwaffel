@@ -40,7 +40,7 @@ public class AppConfig extends WebMvcConfigurerAdapter {
 //    }
 //    @Autowired
 //    private Environment environment;
-    @PersistenceContext
+    @PersistenceContext(name = "JPAController")
     EntityManager entityManager;
 
     @Bean
