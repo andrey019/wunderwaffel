@@ -12,6 +12,10 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
+import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
+
+import javax.sql.DataSource;
 
 @Configuration
 @EnableWebSecurity
@@ -23,6 +27,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired
     @Qualifier("customUserDetailsService")
     UserDetailsService userDetailsService;
+
+    @Autowired
+    DataSource dataSource;
 
     @Autowired
     public void configureGlobalSecurity(AuthenticationManagerBuilder auth) throws Exception {
@@ -53,8 +60,16 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/user/**").access("hasRole('ADMIN') or hasRole('USER')")
                 .and().formLogin().loginPage("/login").successHandler(customSuccessHandler)
                 .usernameParameter("ssoId").passwordParameter("password")
+                .and().rememberMe().tokenRepository(persistentTokenRepository()).tokenValiditySeconds(86400)
                 .and().csrf()
                 .and().exceptionHandling().accessDeniedPage("/access_denied");
 
+    }
+
+    @Bean
+    public PersistentTokenRepository persistentTokenRepository() {
+        JdbcTokenRepositoryImpl tokenRepositoryImpl = new JdbcTokenRepositoryImpl();
+        tokenRepositoryImpl.setDataSource(dataSource);
+        return tokenRepositoryImpl;
     }
 }
