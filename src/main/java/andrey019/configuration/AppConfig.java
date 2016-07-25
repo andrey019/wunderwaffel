@@ -40,8 +40,9 @@ public class AppConfig extends WebMvcConfigurerAdapter {
 //    }
 //    @Autowired
 //    private Environment environment;
-    @PersistenceContext(name = "JPAController")
-    EntityManager entityManager;
+
+//    @PersistenceContext(name = "JPAController")
+//    EntityManager entityManager;
 
     @Bean
     public UrlBasedViewResolver setupViewResolver() {
@@ -55,20 +56,20 @@ public class AppConfig extends WebMvcConfigurerAdapter {
 
     @Bean
     public DataSource dataSource() {
-        EntityManagerFactoryInfo info = (EntityManagerFactoryInfo) entityManager.getEntityManagerFactory();
+        EntityManagerFactoryInfo info = (EntityManagerFactoryInfo) entityManager().getEntityManagerFactory();
         return info.getDataSource();
-    }
-
-    @Bean
-    public EntityManager entityManager() {
-        return entityManager;
     }
 
 //    @Bean
 //    public EntityManager entityManager() {
-//        EntityManagerFactory factory = Persistence.createEntityManagerFactory("JPAController");
-//        return factory.createEntityManager();
+//        return entityManager;
 //    }
+
+    @Bean
+    public EntityManager entityManager() {
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory("JPAController");
+        return factory.createEntityManager();
+    }
 
 //    @Bean
 //    public DataSource dataSource() {
