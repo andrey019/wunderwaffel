@@ -51,7 +51,7 @@ public class AppConfig extends WebMvcConfigurerAdapter {
         JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
         mailSender.setHost("smtp.mail.ru");
         mailSender.setPort(465);
-        mailSender.setUsername("wunderwaffelapp@gmail.com");
+        mailSender.setUsername("wunderwaffelapp@mail.ru");
         mailSender.setPassword("90gdfg70gsds897");
 
         Properties javaMailProperties = new Properties();
