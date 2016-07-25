@@ -13,7 +13,6 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.JstlView;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
-import org.springframework.orm.jpa.EntityManagerFactoryInfo;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
