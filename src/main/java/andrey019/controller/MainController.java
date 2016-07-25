@@ -106,7 +106,7 @@ public class MainController {
     public String ololo() {
         logService.accessToPage("ololo");
         CustomMessage message = new CustomMessage();
-        message.setFrom("wuderwaffelapp@gmail.com");
+        message.setFrom("wuderwaffelapp@mail.ru");
         message.setTo("quropatka38@online.ua");
         message.setSubject("testing send");
         message.setText("ololo, this is text");
