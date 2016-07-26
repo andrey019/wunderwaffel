@@ -19,4 +19,14 @@ public class LogServiceImpl implements LogService {
         stringBuilder.append(message);
         System.out.println(stringBuilder.toString());
     }
+
+    @Override
+    public void mailSent(String message) {
+        stringBuilder = new StringBuilder();
+        stringBuilder.append("[");
+        stringBuilder.append(new Date(System.currentTimeMillis() + TIMEZONE_CORRECTION));
+        stringBuilder.append("] [Mail Sent] ");
+        stringBuilder.append(message);
+        System.out.println(stringBuilder.toString());
+    }
 }

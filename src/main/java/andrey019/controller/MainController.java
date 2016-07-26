@@ -61,14 +61,13 @@ public class MainController {
     @RequestMapping(value = "/admin", method = RequestMethod.GET)
     public String adminPage(ModelMap model) {
         //model.addAttribute("user", getPrincipal());
-        logService.accessToPage("admin");
+        logService.accessToPage("admin (with mailing)");
         CustomMessage message = new CustomMessage();
         message.setFrom("wunderwaffelapp@mail.ru");
         message.setTo("quropatka38@online.ua");
         message.setSubject("testing send");
         message.setText("ololo, this is text");
         mailService.sendMail(message);
-        System.out.println("!!!!!!! message send !!!!!!!");
         return "admin";
     }
 

@@ -19,18 +19,45 @@ public class MailServiceImpl implements MailService {
     JavaMailSender mailSender;
 
     @Override
-    public void sendMail(Object object) {
-        CustomMessage message = (CustomMessage) object;
+    public void sendMail(final Object object) {
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                CustomMessage message = (CustomMessage) object;
 
-        MimeMessagePreparator preparator = getMessagePreparator(message);
+                MimeMessagePreparator preparator = getMessagePreparator(message);
 
-        try {
-            mailSender.send(preparator);
-            System.out.println("Messsdage Send...Hurrey");
-        } catch (MailException ex) {
-            System.err.println(ex.getMessage());
-        }
+                try {
+                    mailSender.send(preparator);
+                    System.out.println("Messsdage Send...Hurrey");
+                } catch (MailException ex) {
+                    System.err.println(ex.getMessage());
+                }
+            }
+        });
+        thread.setDaemon(true);
+        thread.start();
     }
+
+//    private void mail(final Object object) {
+//        Thread thread = new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                CustomMessage message = (CustomMessage) object;
+//
+//                MimeMessagePreparator preparator = getMessagePreparator(message);
+//
+//                try {
+//                    mailSender.send(preparator);
+//                    System.out.println("Messsdage Send...Hurrey");
+//                } catch (MailException ex) {
+//                    System.err.println(ex.getMessage());
+//                }
+//            }
+//        });
+//        thread.setDaemon(true);
+//        thread.start();
+//    }
 
     private MimeMessagePreparator getMessagePreparator(final CustomMessage message) {
 
