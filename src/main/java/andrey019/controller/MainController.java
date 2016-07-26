@@ -39,8 +39,8 @@ public class MainController {
 //    @Autowired
 //    private Environment environment;
 
-    @PersistenceContext
-    private EntityManager entityManager;
+//    @PersistenceContext
+//    private EntityManager entityManager;
 
     @Autowired
     private LogService logService;

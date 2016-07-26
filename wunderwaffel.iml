@@ -30,7 +30,7 @@
           <factory-entry name="JPAController" />
           <factory-entry name="JPATest" />
         </datasource-mapping>
-        <deploymentDescriptor name="persistence.xml" url="file://$MODULE_DIR$/src/main/resources/META-INF/persistence.xml" />
+        <deploymentDescriptor name="persistence.xml" url="file://$MODULE_DIR$/src/main/resources/META-INF/nonopersistence.xml" />
       </configuration>
     </facet>
   </component>
