@@ -90,7 +90,7 @@ public class MainController {
         return "redirect:/";
     }
 
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    @RequestMapping("/login")
     public String login() {
         logService.accessToPage("login");
         return "login";
