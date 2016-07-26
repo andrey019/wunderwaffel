@@ -3,6 +3,7 @@ package andrey019.service;
 
 import andrey019.model.CustomMessage;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.mail.MailException;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessagePreparator;
@@ -16,7 +17,11 @@ import javax.mail.internet.MimeMessage;
 public class MailServiceImpl implements MailService {
 
     @Autowired
-    JavaMailSender mailSender;
+    private JavaMailSender mailSender;
+
+    @Autowired
+    @Qualifier("logService")
+    private LogService logService;
 
     @Override
     public void sendMail(final Object object) {
@@ -29,9 +34,9 @@ public class MailServiceImpl implements MailService {
 
                 try {
                     mailSender.send(preparator);
-                    System.out.println("Messsdage Send...Hurrey");
+                    logService.mailSent(message.getTo());
                 } catch (MailException ex) {
-                    System.err.println(ex.getMessage());
+                    System.out.println(ex.getMessage());
                 }
             }
         });
