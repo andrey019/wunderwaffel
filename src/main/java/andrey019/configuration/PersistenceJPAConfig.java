@@ -48,7 +48,12 @@ public class PersistenceJPAConfig{
             dataSource.setJdbcUrl("jdbc:mysql://127.2.153.130:3306/wunderwaffel");
             dataSource.setUser("adminWT8YK3d");
             dataSource.setPassword("4CwgJKNXD34T");
-
+            dataSource.setMinPoolSize(3);
+            dataSource.setMaxPoolSize(20);
+            dataSource.setAcquireIncrement(3);
+            dataSource.setTestConnectionOnCheckin(true);
+            dataSource.setIdleConnectionTestPeriod(300);
+            dataSource.setMaxIdleTimeExcessConnections(240);
         } catch (PropertyVetoException e) {
             e.printStackTrace();
         }
