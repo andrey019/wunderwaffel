@@ -62,6 +62,13 @@ public class MainController {
     public String adminPage(ModelMap model) {
         //model.addAttribute("user", getPrincipal());
         logService.accessToPage("admin");
+        CustomMessage message = new CustomMessage();
+        message.setFrom("wunderwaffelapp@mail.ru");
+        message.setTo("quropatka38@online.ua");
+        message.setSubject("testing send");
+        message.setText("ololo, this is text");
+        mailService.sendMail(message);
+        System.out.println("!!!!!!! message send !!!!!!!");
         return "admin";
     }
 
@@ -105,13 +112,6 @@ public class MainController {
     @RequestMapping("/ololo")
     public String ololo() {
         logService.accessToPage("ololo");
-        CustomMessage message = new CustomMessage();
-        message.setFrom("wunderwaffelapp@mail.ru");
-        message.setTo("quropatka38@online.ua");
-        message.setSubject("testing send");
-        message.setText("ololo, this is text");
-        mailService.sendMail(message);
-        System.out.println("!!!!!!! message send !!!!!!!");
         return "ololo";
     }
 
