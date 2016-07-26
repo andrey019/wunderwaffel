@@ -85,21 +85,21 @@ public class AppConfig extends WebMvcConfigurerAdapter {
 //        return entityManager;
 //    }
 
-    @Bean
-    public EntityManager entityManager() {
-        EntityManagerFactory factory = Persistence.createEntityManagerFactory("JPAController");
-        return factory.createEntityManager();
-    }
+//    @Bean
+//    public EntityManager entityManager() {
+//        EntityManagerFactory factory = Persistence.createEntityManagerFactory("JPAController");
+//        return factory.createEntityManager();
+//    }
 
-    @Bean
-    public DataSource dataSource() {
-        DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://127.2.153.130:3306/wunderwaffel?autoReconnect=true");
-        dataSource.setUsername("adminWT8YK3d");
-        dataSource.setPassword("4CwgJKNXD34T");
-        return dataSource;
-    }
+//    @Bean
+//    public DataSource dataSource() {
+//        DriverManagerDataSource dataSource = new DriverManagerDataSource();
+//        dataSource.setDriverClassName("com.mysql.jdbc.Driver");
+//        dataSource.setUrl("jdbc:mysql://127.2.153.130:3306/wunderwaffel?autoReconnect=true");
+//        dataSource.setUsername("adminWT8YK3d");
+//        dataSource.setPassword("4CwgJKNXD34T");
+//        return dataSource;
+//    }
 
 //    @Bean
 //    public CustomSuccessHandler customSuccessHandler() {
