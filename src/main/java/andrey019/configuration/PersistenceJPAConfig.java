@@ -34,7 +34,7 @@ public class PersistenceJPAConfig{
     }
 
 //    public EntityManager entityManager() {
-//        return
+//        return entityManagerFactory()
 //    }
 
     @Bean
