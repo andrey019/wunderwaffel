@@ -1,5 +1,6 @@
 package andrey019.configuration;
 
+import com.mchange.v2.c3p0.ComboPooledDataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
@@ -14,6 +15,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
+import java.beans.PropertyVetoException;
 import java.util.Properties;
 
 @Configuration
@@ -35,12 +37,23 @@ public class PersistenceJPAConfig{
 
     @Bean
     public DataSource dataSource(){
-        DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://127.2.153.130:3306/wunderwaffel");
-        dataSource.setUsername( "adminWT8YK3d" );
-        dataSource.setPassword( "4CwgJKNXD34T" );
-        //dataSource.setConnectionProperties(additionalProperties());
+//        DriverManagerDataSource dataSource = new DriverManagerDataSource();
+//        dataSource.setDriverClassName("com.mysql.jdbc.Driver");
+//        dataSource.setUrl("jdbc:mysql://127.2.153.130:3306/wunderwaffel");
+//        dataSource.setUsername( "adminWT8YK3d" );
+//        dataSource.setPassword( "4CwgJKNXD34T" );
+        ComboPooledDataSource dataSource = new ComboPooledDataSource();
+        try {
+            dataSource.setDriverClass("com.mysql.jdbc.Driver");
+            dataSource.setJdbcUrl("jdbc:mysql://127.2.153.130:3306/wunderwaffel");
+            dataSource.setUser("adminWT8YK3d");
+            dataSource.setPassword("4CwgJKNXD34T");
+
+        } catch (PropertyVetoException e) {
+            e.printStackTrace();
+        }
+
+
         return dataSource;
     }
 
@@ -61,13 +74,6 @@ public class PersistenceJPAConfig{
         Properties properties = new Properties();
         properties.setProperty("hibernate.hbm2ddl.auto", "update");
         properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
-        properties.setProperty("show_sql", "true");
-        properties.setProperty("hibernate.use_sql_comments", "true");
-        properties.setProperty("hibernate.c3p0.min_size", "5");
-        properties.setProperty("hibernate.c3p0.max_size", "20");
-        properties.setProperty("hibernate.c3p0.timeout", "300");
-        properties.setProperty("hibernate.c3p0.max_statements", "50");
-        properties.setProperty("hibernate.c3p0.idle_test_period", "3000");
         return properties;
     }
 }
