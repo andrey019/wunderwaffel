@@ -28,14 +28,10 @@ public class PersistenceJPAConfig{
 
         JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         em.setJpaVendorAdapter(vendorAdapter);
-        em.setJpaProperties(additionalProperties());
+        //em.setJpaProperties(additionalProperties());
 
         return em;
     }
-
-//    public EntityManager entityManager() {
-//        return entityManagerFactory()
-//    }
 
     @Bean
     public DataSource dataSource(){
@@ -44,6 +40,7 @@ public class PersistenceJPAConfig{
         dataSource.setUrl("jdbc:mysql://127.2.153.130:3306/wunderwaffel");
         dataSource.setUsername( "adminWT8YK3d" );
         dataSource.setPassword( "4CwgJKNXD34T" );
+        dataSource.setConnectionProperties(additionalProperties());
         return dataSource;
     }
 
