@@ -119,7 +119,13 @@
             <artifactId>hibernate-entitymanager</artifactId>
             <version>4.3.9.Final</version>
         </dependency>
-	</dependencies>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-c3p0</artifactId>
+            <version>4.3.9.Final</version>
+        </dependency>
+
+    </dependencies>
 
 
 
