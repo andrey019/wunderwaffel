@@ -12,6 +12,7 @@ import javax.mail.Message;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class MailSenderService extends Thread {
 
@@ -23,21 +24,44 @@ public class MailSenderService extends Thread {
     private LogService logService;
 
     private static MailSenderService mailSenderService = new MailSenderService();
-    private static ConcurrentHashMap<CustomMessage, CustomMessage> msgMap = new ConcurrentHashMap<>();
+    //private static ConcurrentHashMap<CustomMessage, CustomMessage> msgMap = new ConcurrentHashMap<>();
+    private static ConcurrentLinkedQueue<CustomMessage> queue = new ConcurrentLinkedQueue<>();
     private final static CustomMessage NULL_MESSAGE = new CustomMessage();
 
     private MailSenderService() {};
 
+//    @Override
+//    public void run() {
+//        while (!isInterrupted()) {
+//            if (!msgMap.isEmpty()) {
+//                CustomMessage message = msgMap.keySet().iterator().next();
+//                MimeMessagePreparator preparator = getMessagePreparator(message);
+//                try {
+//                    mailSender.send(preparator);
+//                    msgMap.remove(message);
+//                    logService.mailSent(message.getTo(), msgMap.size());
+//                } catch (MailException ex) {
+//                    System.out.println(ex.getMessage());
+//                }
+//            }
+//            try {
+//                Thread.sleep(70000);
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+//        }
+//    }
+
     @Override
     public void run() {
         while (!isInterrupted()) {
-            if (!msgMap.isEmpty()) {
-                CustomMessage message = msgMap.keySet().iterator().next();
+            if (!queue.isEmpty()) {
+                CustomMessage message = queue.peek();
                 MimeMessagePreparator preparator = getMessagePreparator(message);
                 try {
                     mailSender.send(preparator);
-                    msgMap.remove(message);
-                    logService.mailSent(message.getTo(), msgMap.size());
+                    queue.poll();
+                    logService.mailSent(message.getTo(), queue.size());
                 } catch (MailException ex) {
                     System.out.println(ex.getMessage());
                 }
@@ -49,6 +73,7 @@ public class MailSenderService extends Thread {
             }
         }
     }
+
 
     private MimeMessagePreparator getMessagePreparator(final CustomMessage message) {
 
@@ -68,7 +93,11 @@ public class MailSenderService extends Thread {
         return mailSenderService;
     }
 
+//    public void addMessage(CustomMessage message) {
+//        msgMap.put(message, NULL_MESSAGE);
+//    }
+
     public void addMessage(CustomMessage message) {
-        msgMap.put(message, NULL_MESSAGE);
+        queue.add(message);
     }
 }
