@@ -2,14 +2,15 @@ package andrey019.dao;
 
 import andrey019.model.UserConfirmation;
 
-/**
- * Created by andrey on 27.07.2016.
- */
+import java.util.List;
+
+
 public interface RegistrationDao {
 
-    public boolean isEmailUnique(String email);
-    public boolean isAlreadyWaitingConfirmation(String email);
-    public void saveToConfirmationWaitList(UserConfirmation userConfirmation);
-    public UserConfirmation getFromConfirmationWaitList(String email);
-    public void deleteFromComfirmationWaitList(UserConfirmation userConfirmation);
+    boolean save(UserConfirmation userConfirmation);
+    UserConfirmation getByEmail(String email);
+    UserConfirmation getByCode(String code);
+    List<UserConfirmation> getByDateOlderThen(long date);
+    boolean delete(UserConfirmation userConfirmation);
+    void deleteList(List<UserConfirmation> list);
 }

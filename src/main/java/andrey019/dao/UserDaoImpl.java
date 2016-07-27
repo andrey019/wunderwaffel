@@ -35,13 +35,10 @@ public class UserDaoImpl implements UserDao {
     public User findByEmail(String email) {
         @SuppressWarnings("unchecked")
         List<User> result = entityManager.createQuery("select c from User c where c.email = :emailParam")
-                .setParameter("emailParam", email)
-                .setMaxResults(1)
-                .getResultList();
+                .setParameter("emailParam", email).setMaxResults(1).getResultList();
         if (result.isEmpty()) {
             return null;
-        } else {
-            return result.get(0);
         }
+        return result.get(0);
     }
 }
