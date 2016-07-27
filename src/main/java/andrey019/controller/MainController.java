@@ -96,6 +96,17 @@ public class MainController {
         return "login";
     }
 
+    @RequestMapping(value = "/registration", method = RequestMethod.GET)
+    public String getRegistrationForm() {
+        return "registration";
+    }
+
+    @RequestMapping(value = "/registration", method = RequestMethod.POST)
+    public String registrationResponse(ModelMap modelMap) {
+        System.out.println(modelMap.get("email"));
+        return "/";
+    }
+
     @RequestMapping(value = "/access_denied", method = RequestMethod.GET)
     public String accessDeniedPage(ModelMap model) {
         model.addAttribute("user", getPrincipal());

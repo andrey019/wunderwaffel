@@ -7,8 +7,8 @@
     <title>login</title>
 </head>
 <body>
-<c:url var="loginUrl" value="/login" />
-<form action="${loginUrl}" method="post" class="form-horizontal">
+
+<form action="/login" method="post" class="form-horizontal">
     <c:if test="${param.error != null}">
     <div class="alert alert-danger">
         <p>Invalid username and password.</p>
