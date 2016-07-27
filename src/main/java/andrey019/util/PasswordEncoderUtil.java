@@ -5,7 +5,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.util.Scanner;
 
-public class PasswordEncoder {
+public class PasswordEncoderUtil {
     public static void main(String[] args) {
         System.out.print("Enter password: ");
         String password = new Scanner(System.in).nextLine();

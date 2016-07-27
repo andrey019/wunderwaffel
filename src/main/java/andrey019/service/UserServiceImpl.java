@@ -29,8 +29,8 @@ public class UserServiceImpl implements UserService{
         return dao.findById(id);
     }
 
-    public User findBySso(String sso) {
-        return dao.findBySSO(sso);
+    public User findByEmail(String email) {
+        return dao.findByEmail(email);
     }
 
 }

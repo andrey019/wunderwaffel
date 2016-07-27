@@ -32,10 +32,10 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public User findBySSO(String sso) {
+    public User findByEmail(String email) {
         @SuppressWarnings("unchecked")
-        List<User> result = entityManager.createQuery("select c from User c where c.ssoId = :ssoIdParam")
-                .setParameter("ssoIdParam", sso)
+        List<User> result = entityManager.createQuery("select c from user c where c.email = :emailParam")
+                .setParameter("emailParam", email)
                 .setMaxResults(1)
                 .getResultList();
         if (result.isEmpty()) {

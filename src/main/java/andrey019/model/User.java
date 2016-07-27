@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table
+@Table(name = "user")
 public class User {
 
     @Id
@@ -16,7 +16,7 @@ public class User {
     private int id;
 
     @Column(unique=true, nullable=false)
-    private String ssoId;
+    private String email;
 
     @Column(nullable=false)
     private String password;
@@ -35,12 +35,12 @@ public class User {
         this.id = id;
     }
 
-    public String getSsoId() {
-        return ssoId;
+    public String getEmail() {
+        return email;
     }
 
-    public void setSsoId(String ssoId) {
-        this.ssoId = ssoId;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPassword() {
@@ -72,7 +72,7 @@ public class User {
         final int prime = 31;
         int result = 1;
         result = prime * result + id;
-        result = prime * result + ((ssoId == null) ? 0 : ssoId.hashCode());
+        result = prime * result + ((email == null) ? 0 : email.hashCode());
         return result;
     }
 
@@ -87,17 +87,17 @@ public class User {
         User other = (User) obj;
         if (id != other.id)
             return false;
-        if (ssoId == null) {
-            if (other.ssoId != null)
+        if (email == null) {
+            if (other.email != null)
                 return false;
-        } else if (!ssoId.equals(other.ssoId))
+        } else if (!email.equals(other.email))
             return false;
         return true;
     }
 
     @Override
     public String toString() {
-        return "User [id=" + id + ", ssoId=" + ssoId + ", password=" + password
+        return "User [id=" + id + ", email=" + email + ", password=" + password
                 + ", state=" + state + ", role=" + role +"]";
     }
 
