@@ -102,8 +102,8 @@ public class MainController {
     }
 
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
-    public String registrationResponse(ModelMap modelMap) {
-        System.out.println(modelMap.get("email"));
+    public String registrationResponse(@RequestParam("email") String email) {
+        System.out.println(email);
         return "/";
     }
 
