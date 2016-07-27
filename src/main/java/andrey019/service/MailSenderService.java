@@ -4,7 +4,6 @@ package andrey019.service;
 import andrey019.model.CustomMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.annotation.Bean;
 import org.springframework.mail.MailException;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessagePreparator;
@@ -12,7 +11,6 @@ import org.springframework.mail.javamail.MimeMessagePreparator;
 import javax.mail.Message;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import java.util.HashMap;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class MailSenderService extends Thread {
@@ -26,7 +24,7 @@ public class MailSenderService extends Thread {
 
     private static MailSenderService mailSenderService = new MailSenderService();
     private static ConcurrentHashMap<CustomMessage, CustomMessage> msgMap = new ConcurrentHashMap<>();
-    private final static CustomMessage NULL_MESSAGE = new CustomMessage();
+    private final static CustomMessage NULL_MESSAGE = null;
 
     private MailSenderService() {};
 
