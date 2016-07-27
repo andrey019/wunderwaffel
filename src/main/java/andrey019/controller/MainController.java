@@ -98,13 +98,16 @@ public class MainController {
 
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
     public String getRegistrationForm() {
+        logService.accessToPage("registration get");
         return "registration";
     }
 
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
-    public String registrationResponse(@RequestParam("email") String email) {
+    public String registrationResponse(@RequestParam("email") String email, @RequestParam("password") String password) {
+        logService.accessToPage("registration post");
         System.out.println(email);
-        return "/";
+        System.out.println(password);
+        return "redirect:/";
     }
 
     @RequestMapping(value = "/access_denied", method = RequestMethod.GET)
