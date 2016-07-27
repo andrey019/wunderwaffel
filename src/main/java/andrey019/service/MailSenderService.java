@@ -24,7 +24,7 @@ public class MailSenderService extends Thread {
 
     private static MailSenderService mailSenderService = new MailSenderService();
     private static ConcurrentHashMap<CustomMessage, CustomMessage> msgMap = new ConcurrentHashMap<>();
-    private final static CustomMessage NULL_MESSAGE = null;
+    private final static CustomMessage NULL_MESSAGE = new CustomMessage();
 
     private MailSenderService() {};
 

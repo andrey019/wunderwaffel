@@ -6,5 +6,5 @@ package andrey019.dao;
 public interface RegistrationDao {
 
     public boolean isEmailUnique(String email);
-
+    //public
 }
