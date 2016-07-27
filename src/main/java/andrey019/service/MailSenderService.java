@@ -38,8 +38,8 @@ public class MailSenderService extends Thread {
                 MimeMessagePreparator preparator = getMessagePreparator(message);
                 try {
                     mailSender.send(preparator);
-                    logService.mailSent(message.getTo());
                     msgMap.remove(message);
+                    logService.mailSent(message.getTo(), msgMap.size());
                 } catch (MailException ex) {
                     System.out.println(ex.getMessage());
                 }

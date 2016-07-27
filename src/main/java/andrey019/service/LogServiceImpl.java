@@ -21,11 +21,13 @@ public class LogServiceImpl implements LogService {
     }
 
     @Override
-    public void mailSent(String message) {
+    public void mailSent(String message, int queued) {
         stringBuilder = new StringBuilder();
         stringBuilder.append("[");
         stringBuilder.append(new Date(System.currentTimeMillis() + TIMEZONE_CORRECTION));
-        stringBuilder.append("] [Mail Sent] ");
+        stringBuilder.append("] [Mail Sent, Queued ");
+        stringBuilder.append(queued);
+        stringBuilder.append("] ");
         stringBuilder.append(message);
         System.out.println(stringBuilder.toString());
     }
