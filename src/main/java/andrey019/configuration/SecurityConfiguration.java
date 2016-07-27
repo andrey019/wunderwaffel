@@ -58,7 +58,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
 
         http.authorizeRequests()
-                .antMatchers("/", "favicon.ico").permitAll()
+                .antMatchers("/", "favicon.ico", "login").permitAll()
                 .antMatchers("/admin/**").access("hasRole('ADMIN')")
                 .antMatchers("/user/**").access("hasRole('ADMIN') or hasRole('USER')")
                 .and().formLogin().loginPage("/login").loginProcessingUrl("/login").successHandler(customSuccessHandler)

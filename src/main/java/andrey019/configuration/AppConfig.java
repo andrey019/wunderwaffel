@@ -1,6 +1,7 @@
 package andrey019.configuration;
 
 //import org.hibernate.SessionFactory;
+import andrey019.service.MailSenderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -16,6 +17,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import org.springframework.web.servlet.view.JstlView;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
 
+import javax.annotation.PostConstruct;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -45,6 +47,11 @@ public class AppConfig extends WebMvcConfigurerAdapter {
 
 //    @PersistenceContext(name = "JPAController")
 //    EntityManager entityManager;
+
+    @PostConstruct
+    private void mailSenderServiceInit() {
+        MailSenderService.getInstanceStatic().start();
+    }
 
     @Bean
     public JavaMailSender getMailSender(){
