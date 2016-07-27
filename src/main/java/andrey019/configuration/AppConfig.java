@@ -50,11 +50,16 @@ public class AppConfig extends WebMvcConfigurerAdapter {
 
     @PostConstruct
     private void mailSenderServiceInit() {
-        MailSenderService.getInstanceStatic().start();
+        MailSenderService.getInstance().start();
     }
 
     @Bean
-    public JavaMailSender getMailSender(){
+    public MailSenderService getMailSenderService() {
+        return MailSenderService.getInstance();
+    }
+
+    @Bean
+    public JavaMailSender getMailSender() {
         JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
         mailSender.setHost("smtp.mail.ru");
         mailSender.setPort(465);

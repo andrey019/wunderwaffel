@@ -66,12 +66,7 @@ public class MailSenderService extends Thread {
         return preparator;
     }
 
-    @Bean
-    public MailSenderService getInstance() {
-        return this;
-    }
-
-    public static MailSenderService getInstanceStatic() {
+    public static MailSenderService getInstance() {
         return mailSenderService;
     }
 
