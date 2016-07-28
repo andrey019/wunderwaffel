@@ -36,5 +36,9 @@ public class TestsUtil {
         System.out.println(result2);
         String result3 = String.format(TEXT_TEMPLATE, "3333");
         System.out.println(result3);
+
+        String str = "ololo";
+        String result4 = str + System.currentTimeMillis();
+        System.out.println(result4);
     }
 }

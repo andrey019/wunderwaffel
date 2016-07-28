@@ -49,7 +49,7 @@ public class RegistrationServiceImpl implements RegistrationService {
         UserConfirmation userConfirmation = new UserConfirmation();
         userConfirmation.setEmail(email);
         userConfirmation.setPassword(passwordEncoder.encode(password));
-        userConfirmation.setCode(passwordEncoder.encode(email));
+        userConfirmation.setCode(passwordEncoder.encode(email + System.currentTimeMillis()));
         userConfirmation.setDate(System.currentTimeMillis());
         if (registrationDao.save(userConfirmation)) {
             mailService.sendMail(userConfirmation.getEmail(), SUBJECT_TEMPLATE,
