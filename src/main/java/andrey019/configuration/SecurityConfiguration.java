@@ -58,14 +58,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
 
         http.authorizeRequests()
-                .antMatchers("/", "favicon.ico", "login").permitAll()
+                .antMatchers("/", "favicon.ico").permitAll()
                 .antMatchers("/admin/**").access("hasRole('ADMIN')")
                 .antMatchers("/user/**").access("hasRole('ADMIN') or hasRole('USER')")
                 .and().formLogin().loginPage("/login").loginProcessingUrl("/login").successHandler(customSuccessHandler)
                 .usernameParameter("ssoId").passwordParameter("password")
                 .and().rememberMe().rememberMeParameter("remember-me").tokenRepository(persistentTokenRepository()).tokenValiditySeconds(86400)
                 .and().csrf()
-                .and().exceptionHandling().accessDeniedPage("/access_denied");
+                .and().exceptionHandling().accessDeniedPage("/auth/access_denied");
 
     }
 

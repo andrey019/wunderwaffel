@@ -16,7 +16,7 @@ asdgasdgadgagfd ывпфывдлфоывфыовжf<br>
 <a href="user/ololo">user/ololo</a><br>
 <a href="admin">adminka</a><br>
 <a href="rest">rest adminka</a><br>
-<a href="access_denied">access dedied</a><br>
+<a href="auth/access_denied">access dedied</a><br>
 <br>
 <div>
     <sec:authorize access="isAuthenticated()">
@@ -32,15 +32,15 @@ asdgasdgadgagfd ывпфывдлфоывфыовжf<br>
 <sec:authorize var="loggedIn" access="isAuthenticated()" />
 <c:choose>
     <c:when test="${loggedIn}">
-        <form role="form" method="get" action="/logout">
+        <form role="form" method="get" action="/auth/logout">
             <input type="submit" value="logout"  />
         </form>
     </c:when>
     <c:otherwise>
-        <form role="form" method="get" action="/login">
+        <form role="form" method="get" action="/auth/login">
             <input type="submit" value="Log in"  />
-        </form><br>
-        <form role="form" method="get" action="/registration">
+        </form>
+        <form role="form" method="get" action="/auth/registration">
             <input type="submit" value="Registration"  />
         </form>
     </c:otherwise>

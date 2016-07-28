@@ -14,7 +14,7 @@
     <title>registration</title>
 </head>
 <body>
-<form action="/registration" method="post" class="form-horizontal">
+<form action="/auth/registration" method="post" class="form-horizontal">
     <c:if test="${param.error != null}">
         <div class="alert alert-danger">
             <p>This email is already in use</p>

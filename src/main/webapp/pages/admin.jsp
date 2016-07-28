@@ -8,6 +8,6 @@
 </head>
 <body>
 welcome to adminka <br>
-<a href='<c:url value="/logout" />'>Logout</a>
+<a href="/auth/logout">Logout</a>
 </body>
 </html>

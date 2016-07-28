@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<form action="/login" method="post" class="form-horizontal">
+<form action="/auth/login" method="post" class="form-horizontal">
     <c:if test="${param.error != null}">
     <div class="alert alert-danger">
         <p>Invalid username and password.</p>

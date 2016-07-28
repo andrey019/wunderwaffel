@@ -68,6 +68,20 @@ public class AuthController {
         return "access_denied";
     }
 
+    @RequestMapping(value = "/registration", method = RequestMethod.GET)
+    public String getRegistrationForm() {
+        logService.accessToPage("registration get");
+        return "registration";
+    }
+
+    @RequestMapping(value = "/registration", method = RequestMethod.POST)
+    public String registrationResponse(@RequestParam("email") String email, @RequestParam("password") String password) {
+        logService.accessToPage("registration post");
+        System.out.println(email);
+        System.out.println(password);
+        return "redirect:/";
+    }
+
     private String getPrincipal(){
         String userName = null;
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
