@@ -78,23 +78,23 @@ public class MainController {
         return "admin";
     }
 
-    @RequestMapping(value="/logout", method = RequestMethod.GET)
-    public String logoutPage (HttpServletRequest request, HttpServletResponse response) {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        if (auth != null){
-            //new SecurityContextLogoutHandler().logout(request, response, auth);
-            persistentTokenBasedRememberMeServices.logout(request, response, auth);
-            SecurityContextHolder.getContext().setAuthentication(null);
-        }
-        logService.accessToPage("logout");
-        return "redirect:/";
-    }
-
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String login() {
-        logService.accessToPage("login");
-        return "login";
-    }
+//    @RequestMapping(value="/logout", method = RequestMethod.GET)
+//    public String logoutPage (HttpServletRequest request, HttpServletResponse response) {
+//        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+//        if (auth != null){
+//            //new SecurityContextLogoutHandler().logout(request, response, auth);
+//            persistentTokenBasedRememberMeServices.logout(request, response, auth);
+//            SecurityContextHolder.getContext().setAuthentication(null);
+//        }
+//        logService.accessToPage("logout");
+//        return "redirect:/";
+//    }
+//
+//    @RequestMapping(value = "/login", method = RequestMethod.GET)
+//    public String login() {
+//        logService.accessToPage("login");
+//        return "login";
+//    }
 
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
     public String getRegistrationForm() {
