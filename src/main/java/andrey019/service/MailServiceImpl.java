@@ -19,14 +19,7 @@ import java.util.Set;
 @Service("mailService")
 public class MailServiceImpl implements MailService {
 
-//    @Autowired
-//    private JavaMailSender mailSender;
-//
-//    @Autowired
-//    @Qualifier("logService")
-//    private LogService logService;
-//
-//    private static Set<CustomMessage> msgSet = new HashSet<>();
+    private static final String FROM_EMAIL = "wunderwaffelapp@mail.ru";
 
     @Autowired
     private MailSenderService mailSenderService;
@@ -34,85 +27,16 @@ public class MailServiceImpl implements MailService {
 
     @Override
     public void sendMail(final CustomMessage message) {
-//        Thread thread = new Thread(new Runnable() {
-//            @Override
-//            public void run() {
-//                CustomMessage message = (CustomMessage) object;
-//
-//                MimeMessagePreparator preparator = getMessagePreparator(message);
-//
-//                try {
-//                    mailSender.send(preparator);
-//                    logService.mailSent(message.getTo());
-//                } catch (MailException ex) {
-//                    System.out.println(ex.getMessage());
-//                }
-//            }
-//        });
-//        thread.setDaemon(true);
-//        thread.start();
         mailSenderService.addMessage(message);
     }
 
-    private void sender() {
-        Thread thread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-//                while (!isInterrupted()) {
-//                    if (!msgSet.isEmpty()) {
-//                        CustomMessage message = msgSet.iterator().next();
-//                        MimeMessagePreparator preparator = getMessagePreparator(message);
-//                        try {
-//                            mailSender.send(preparator);
-//                            logService.mailSent(message.getTo());
-//                            msgSet.remove(message);
-//                        } catch (MailException ex) {
-//                            System.out.println(ex.getMessage());
-//                        }
-//                    }
-//                    try {
-//                        Thread.sleep(70000);
-//                    } catch (InterruptedException e) {
-//                        e.printStackTrace();
-//                    }
-//                }
-            }
-        });
-        thread.setDaemon(true);
-        thread.start();
+    @Override
+    public void sendMail(String toEmail, String subject, String text) {
+        final CustomMessage message = new CustomMessage();
+        message.setFrom(FROM_EMAIL);
+        message.setTo(toEmail);
+        message.setSubject(subject);
+        message.setText(text);
+        mailSenderService.addMessage(message);
     }
-
-//    private void mail(final Object object) {
-//        Thread thread = new Thread(new Runnable() {
-//            @Override
-//            public void run() {
-//                CustomMessage message = (CustomMessage) object;
-//
-//                MimeMessagePreparator preparator = getMessagePreparator(message);
-//
-//                try {
-//                    mailSender.send(preparator);
-//                    System.out.println("Messsdage Send...Hurrey");
-//                } catch (MailException ex) {
-//                    System.err.println(ex.getMessage());
-//                }
-//            }
-//        });
-//        thread.setDaemon(true);
-//        thread.start();
-//    }
-
-//    private MimeMessagePreparator getMessagePreparator(final CustomMessage message) {
-//
-//        MimeMessagePreparator preparator = new MimeMessagePreparator() {
-//
-//            public void prepare(MimeMessage mimeMessage) throws Exception {
-//                mimeMessage.setFrom(message.getFrom());
-//                mimeMessage.setRecipient(Message.RecipientType.TO, new InternetAddress(message.getTo()));
-//                mimeMessage.setText(message.getText());
-//                mimeMessage.setSubject(message.getSubject());
-//            }
-//        };
-//        return preparator;
-//    }
 }

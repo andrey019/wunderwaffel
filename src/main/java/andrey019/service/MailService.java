@@ -5,5 +5,6 @@ import andrey019.model.CustomMessage;
 
 public interface MailService {
 
-    public void sendMail(final CustomMessage message);
+    void sendMail(final CustomMessage message);
+    void sendMail(String toEmail, String subject, String text);
 }

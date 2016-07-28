@@ -67,6 +67,11 @@ public class User {
         this.role = role;
     }
 
+    public void setUserFromConfirmation(UserConfirmation userConfirmation) {
+        this.email = userConfirmation.getEmail();
+        this.password = userConfirmation.getPassword();
+    }
+
     @Override
     public int hashCode() {
         final int prime = 31;

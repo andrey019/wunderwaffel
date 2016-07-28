@@ -32,14 +32,17 @@ asdgasdgadgagfd ывпфывдлфоывфыовжf<br>
 <sec:authorize var="loggedIn" access="isAuthenticated()" />
 <c:choose>
     <c:when test="${loggedIn}">
-        <a href="logout">logout</a><br>
         <form role="form" method="get" action="/logout">
             <input type="submit" value="logout"  />
         </form>
     </c:when>
     <c:otherwise>
-        <a href="login">login</a><br>
-        <a href="registration">registration</a><br>
+        <form role="form" method="get" action="/login">
+            <input type="submit" value="Log in"  />
+        </form><br>
+        <form role="form" method="get" action="/registration">
+            <input type="submit" value="Registration"  />
+        </form>
     </c:otherwise>
 </c:choose>
 </body>
