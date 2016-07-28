@@ -23,11 +23,11 @@
 
     <div class="input-group input-sm">
         <label class="input-group-addon" for="email"><i class="fa fa-user"></i></label>
-        <input type="text" class="form-control" id="email" name="email" placeholder="Enter email" required>
+        <input type="text" class="form-control" id="email" name="email" placeholder="Email" required>
     </div>
     <div class="input-group input-sm">
         <label class="input-group-addon" for="password"><i class="fa fa-lock"></i></label>
-        <input type="password" class="form-control" id="password" name="password" placeholder="Enter Password" required>
+        <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
     </div>
     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
     <div class="form-actions">
