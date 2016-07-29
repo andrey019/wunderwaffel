@@ -16,7 +16,7 @@ public class RegistrationDaoImpl implements RegistrationDao {
     @PersistenceContext
     private EntityManager entityManager;
 
-    @Transactional(noRollbackFor = Exception.class, propagation = Propagation.REQUIRES_NEW)
+    @Transactional(propagation = Propagation.REQUIRED)
     @Override
     public boolean save(UserConfirmation userConfirmation) {
         //entityManager.getTransaction().begin();
