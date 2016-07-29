@@ -16,6 +16,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenBasedRememberMeServices;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
+import org.springframework.web.filter.CharacterEncodingFilter;
 
 import javax.sql.DataSource;
 
@@ -57,6 +58,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
+        CharacterEncodingFilter characterEncodingFilter = new CharacterEncodingFilter();
+        characterEncodingFilter.setEncoding("UTF-8");
+        characterEncodingFilter.setForceEncoding(true);
+
         http.authorizeRequests()
                 .antMatchers("/", "favicon.ico").permitAll()
                 .antMatchers("/admin/**").access("hasRole('ADMIN')")
@@ -65,7 +70,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .usernameParameter("ssoId").passwordParameter("password")
                 .and().rememberMe().rememberMeParameter("remember-me").tokenRepository(persistentTokenRepository()).tokenValiditySeconds(86400)
                 .and().csrf()
-                .and().exceptionHandling().accessDeniedPage("/auth/access_denied");
+                .and().exceptionHandling().accessDeniedPage("/auth/access_denied")
+                .and().addFilter(characterEncodingFilter);
 
     }
 
