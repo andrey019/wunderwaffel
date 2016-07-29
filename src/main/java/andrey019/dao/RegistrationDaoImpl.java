@@ -3,6 +3,7 @@ package andrey019.dao;
 
 import andrey019.model.UserConfirmation;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
@@ -15,7 +16,7 @@ public class RegistrationDaoImpl implements RegistrationDao {
     @PersistenceContext
     private EntityManager entityManager;
 
-    @Transactional
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
     @Override
     public boolean save(UserConfirmation userConfirmation) {
         //entityManager.getTransaction().begin();
