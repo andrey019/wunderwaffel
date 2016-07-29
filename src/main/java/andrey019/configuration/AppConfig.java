@@ -4,8 +4,10 @@ package andrey019.configuration;
 import andrey019.service.MailSenderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.embedded.FilterRegistrationBean;
+import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.core.env.Environment;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -86,6 +88,20 @@ public class AppConfig extends WebMvcConfigurerAdapter {
         resolver.setViewClass(JstlView.class);
         resolver.setOrder(1);
         return resolver;
+    }
+
+    @Bean
+    public MessageSource messageSource() {
+
+        ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
+        messageSource.setBasenames("classpath:messages/messages", "classpath:messages/validation");
+        // if true, the key of the message will be displayed if the key is not
+        // found, instead of throwing a NoSuchMessageException
+        messageSource.setUseCodeAsDefaultMessage(true);
+        messageSource.setDefaultEncoding("UTF-8");
+        // # -1 : never reload, 0 always reload
+        messageSource.setCacheSeconds(0);
+        return messageSource;
     }
 
 //    @Bean

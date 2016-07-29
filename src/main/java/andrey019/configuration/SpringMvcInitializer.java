@@ -1,6 +1,6 @@
 package andrey019.configuration;
 
-import com.opensymphony.sitemesh.webapp.SiteMeshFilter;
+
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
@@ -29,7 +29,7 @@ public class SpringMvcInitializer extends AbstractAnnotationConfigDispatcherServ
 		CharacterEncodingFilter characterEncodingFilter = new CharacterEncodingFilter();
 		characterEncodingFilter.setEncoding("UTF-8");
 		characterEncodingFilter.setForceEncoding(true);
-		return new Filter[] { characterEncodingFilter};
+		return new Filter[] {characterEncodingFilter};
 	}
 
 }
