@@ -89,15 +89,16 @@ public class AppConfig extends WebMvcConfigurerAdapter {
     }
 
     @Bean
-    public FilterRegistrationBean filterRegistrationBean() {
+    public CharacterEncodingFilter characterEncodingFilter() {
         CharacterEncodingFilter filter = new CharacterEncodingFilter();
         filter.setEncoding("UTF-8");
         filter.setForceEncoding(true);
 
+
         FilterRegistrationBean registrationBean = new FilterRegistrationBean();
         registrationBean.setFilter(filter);
         registrationBean.addUrlPatterns("/*");
-        return registrationBean;
+        return filter;
     }
 
 //    @Bean
