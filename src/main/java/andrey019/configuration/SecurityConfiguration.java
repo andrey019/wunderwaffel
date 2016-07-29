@@ -71,7 +71,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and().rememberMe().rememberMeParameter("remember-me").tokenRepository(persistentTokenRepository()).tokenValiditySeconds(86400)
                 .and().csrf()
                 .and().exceptionHandling().accessDeniedPage("/auth/access_denied")
-                .and().addFilter(characterEncodingFilter);
+                .and().addFilterBefore(characterEncodingFilter, null);
 
     }
 
