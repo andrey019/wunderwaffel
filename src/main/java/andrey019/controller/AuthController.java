@@ -75,6 +75,7 @@ public class AuthController {
     }
 
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
+    @ResponseBody
     public String registrationResponse(@RequestParam("email") String email, @RequestParam("password") String password,
                                        ModelMap modelMap) {
         logService.accessToPage("registration post");
