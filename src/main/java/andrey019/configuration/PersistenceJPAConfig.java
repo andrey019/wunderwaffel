@@ -54,11 +54,13 @@ public class PersistenceJPAConfig{
             dataSource.setTestConnectionOnCheckin(true);
             dataSource.setIdleConnectionTestPeriod(300);
             dataSource.setMaxIdleTimeExcessConnections(240);
+            Properties properties = new Properties();
+            properties.setProperty("useUnicode", "yes");
+            properties.setProperty("characterEncoding", "UTF-8");
+            dataSource.setProperties(properties);
         } catch (PropertyVetoException e) {
             e.printStackTrace();
         }
-
-
         return dataSource;
     }
 
