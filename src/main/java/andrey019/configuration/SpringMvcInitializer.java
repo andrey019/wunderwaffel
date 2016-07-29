@@ -15,12 +15,14 @@ public class SpringMvcInitializer extends AbstractAnnotationConfigDispatcherServ
 
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
-		return new Class[] { AppConfig.class };
+		//return new Class[] { AppConfig.class };
+		return null;
 	}
  
 	@Override
 	protected Class<?>[] getServletConfigClasses() {
-		return null;
+		//return null;
+		return new Class[] { AppConfig.class };
 	}
  
 	@Override
@@ -36,13 +38,13 @@ public class SpringMvcInitializer extends AbstractAnnotationConfigDispatcherServ
 //		encodingFilter.addMappingForUrlPatterns(null, true, "/*");
 //	}
 
-//	@Override
-//	protected Filter[] getServletFilters() {
-//		CharacterEncodingFilter characterEncodingFilter = new CharacterEncodingFilter();
-//		characterEncodingFilter.setEncoding("UTF-8");
-//		characterEncodingFilter.setForceEncoding(true);
-//
-//		return new Filter[] {characterEncodingFilter, new HiddenHttpMethodFilter()};
-//	}
+	@Override
+	protected Filter[] getServletFilters() {
+		CharacterEncodingFilter characterEncodingFilter = new CharacterEncodingFilter();
+		characterEncodingFilter.setEncoding("UTF-8");
+		characterEncodingFilter.setForceEncoding(true);
+
+		return new Filter[] {characterEncodingFilter};
+	}
 
 }
