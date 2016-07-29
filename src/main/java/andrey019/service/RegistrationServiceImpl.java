@@ -7,10 +7,12 @@ import andrey019.model.User;
 import andrey019.model.UserConfirmation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
 
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 
+@Service("registrationService")
 public class RegistrationServiceImpl implements RegistrationService {
 
     private final static String SUBJECT_TEMPLATE = "WunderWaffel registration confirmation";
@@ -52,8 +54,8 @@ public class RegistrationServiceImpl implements RegistrationService {
         userConfirmation.setCode(passwordEncoder.encode(email + System.currentTimeMillis()));
         userConfirmation.setDate(System.currentTimeMillis());
         if (registrationDao.save(userConfirmation)) {
-            mailService.sendMail(userConfirmation.getEmail(), SUBJECT_TEMPLATE,
-                    String.format(TEXT_TEMPLATE, userConfirmation.getCode()));
+//            mailService.sendMail(userConfirmation.getEmail(), SUBJECT_TEMPLATE,
+//                    String.format(TEXT_TEMPLATE, userConfirmation.getCode()));
             return true;
         }
         return false;

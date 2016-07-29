@@ -3,6 +3,7 @@ package andrey019.controller;
 import andrey019.model.CustomMessage;
 import andrey019.service.LogService;
 import andrey019.service.MailService;
+import andrey019.service.RegistrationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.core.env.Environment;
@@ -42,6 +43,9 @@ public class AuthController {
     @Autowired
     private PersistentTokenBasedRememberMeServices persistentTokenBasedRememberMeServices;
 
+    @Autowired
+    private RegistrationService registrationService;
+
 
     @RequestMapping(value="/logout", method = RequestMethod.GET)
     public String logoutPage (HttpServletRequest request, HttpServletResponse response) {
@@ -78,12 +82,13 @@ public class AuthController {
     public String registrationResponse(@RequestParam("email") String email,
                                              @RequestParam("password") String password) {
         logService.accessToPage("registration post");
+        registrationService.preRegistration(email, password);
         System.out.println(email);
         System.out.println(password);
 //        ModelAndView modelAndView = new ModelAndView("registration", null);
 //        modelAndView.addObject("error", "ololo");
 //        return modelAndView;
-        return "registration?error";
+        return "registration";
     }
 
     private String getPrincipal(){
