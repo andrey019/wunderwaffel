@@ -88,18 +88,18 @@ public class AppConfig extends WebMvcConfigurerAdapter {
         return resolver;
     }
 
-    @Bean
-    public CharacterEncodingFilter characterEncodingFilter() {
-        CharacterEncodingFilter filter = new CharacterEncodingFilter();
-        filter.setEncoding("UTF-8");
-        filter.setForceEncoding(true);
-
-
-        FilterRegistrationBean registrationBean = new FilterRegistrationBean();
-        registrationBean.setFilter(filter);
-        registrationBean.addUrlPatterns("/*");
-        return filter;
-    }
+//    @Bean
+//    public CharacterEncodingFilter characterEncodingFilter() {
+//        CharacterEncodingFilter filter = new CharacterEncodingFilter();
+//        filter.setEncoding("UTF-8");
+//        filter.setForceEncoding(true);
+//
+//
+//        FilterRegistrationBean registrationBean = new FilterRegistrationBean();
+//        registrationBean.setFilter(filter);
+//        registrationBean.addUrlPatterns("/*");
+//        return filter;
+//    }
 
 //    @Bean
 //    public DataSource dataSource() {
