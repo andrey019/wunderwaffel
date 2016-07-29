@@ -33,7 +33,7 @@ public class SpringMvcInitializer extends AbstractAnnotationConfigDispatcherServ
 		FilterRegistration.Dynamic encodingFilter = servletContext.addFilter("encoding-filter", new CharacterEncodingFilter());
 		encodingFilter.setInitParameter("encoding", "UTF-8");
 		encodingFilter.setInitParameter("forceEncoding", "true");
-		encodingFilter.addMappingForUrlPatterns(null, true, "/*");
+		encodingFilter.addMappingForUrlPatterns(null, false, "/*");
 		return encodingFilter;
 	}
 
