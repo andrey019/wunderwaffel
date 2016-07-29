@@ -75,14 +75,15 @@ public class AuthController {
     }
 
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
-    public ModelAndView registrationResponse(@RequestParam("email") String email,
+    public String registrationResponse(@RequestParam("email") String email,
                                              @RequestParam("password") String password) {
         logService.accessToPage("registration post");
         System.out.println(email);
         System.out.println(password);
-        ModelAndView modelAndView = new ModelAndView("registration", null);
-        modelAndView.addObject("error", "ololo");
-        return modelAndView;
+//        ModelAndView modelAndView = new ModelAndView("registration", null);
+//        modelAndView.addObject("error", "ololo");
+//        return modelAndView;
+        return "registration?error";
     }
 
     private String getPrincipal(){
