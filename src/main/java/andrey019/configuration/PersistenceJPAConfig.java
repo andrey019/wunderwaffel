@@ -45,7 +45,7 @@ public class PersistenceJPAConfig{
         ComboPooledDataSource dataSource = new ComboPooledDataSource();
         try {
             dataSource.setDriverClass("com.mysql.jdbc.Driver");
-            dataSource.setJdbcUrl("jdbc:mysql://127.2.153.130:3306/wunderwaffel");
+            dataSource.setJdbcUrl("jdbc:mysql://127.2.153.130:3306/wunderwaffel?useUnicode=true&characterEncoding=UTF-8");
             dataSource.setUser("adminWT8YK3d");
             dataSource.setPassword("4CwgJKNXD34T");
             dataSource.setMinPoolSize(3);
@@ -54,10 +54,6 @@ public class PersistenceJPAConfig{
             dataSource.setTestConnectionOnCheckin(true);
             dataSource.setIdleConnectionTestPeriod(300);
             dataSource.setMaxIdleTimeExcessConnections(240);
-            Properties properties = new Properties();
-            properties.setProperty("useUnicode", "yes");
-            properties.setProperty("characterEncoding", "UTF-8");
-            dataSource.setProperties(properties);
         } catch (PropertyVetoException e) {
             e.printStackTrace();
         }
