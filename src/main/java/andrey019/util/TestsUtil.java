@@ -1,6 +1,8 @@
 package andrey019.util;
 
 
+import java.nio.charset.Charset;
+
 public class TestsUtil {
 //    private final static ST TEXT_TEMPLATE = new ST("You were trying to register an account on WunderWaffel," +
 //            "to confirm please click on the link below...\r\n" +
@@ -40,5 +42,7 @@ public class TestsUtil {
         String str = "ololo";
         String result4 = str + System.currentTimeMillis();
         System.out.println(result4);
+
+        System.out.println(Charset.defaultCharset());
     }
 }
