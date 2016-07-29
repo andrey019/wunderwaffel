@@ -58,14 +58,14 @@ public class AppConfig extends WebMvcConfigurerAdapter {
 //    @PersistenceContext(name = "JPAController")
 //    EntityManager entityManager;
 
-    private static final Charset UTF8 = Charset.forName("UTF-8");
-
-    @Override
-    public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
-        StringHttpMessageConverter stringConverter = new StringHttpMessageConverter();
-        stringConverter.setSupportedMediaTypes(Arrays.asList(new MediaType("text", "plain", UTF8)));
-        converters.add(stringConverter);
-    }
+//    private static final Charset UTF8 = Charset.forName("UTF-8");
+//
+//    @Override
+//    public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
+//        StringHttpMessageConverter stringConverter = new StringHttpMessageConverter();
+//        stringConverter.setSupportedMediaTypes(Arrays.asList(new MediaType("text", "plain", UTF8)));
+//        converters.add(stringConverter);
+//    }
 
     @PostConstruct
     private void mailSenderServiceInit() {
