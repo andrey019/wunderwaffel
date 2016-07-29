@@ -82,7 +82,7 @@ public class AuthController {
     public String registrationResponse(@RequestParam("email") String email,
                                              @RequestParam("password") String password) {
         logService.accessToPage("registration post");
-        registrationService.preRegistration(email, password);
+        registrationService.preRegistration("ололошеньки", password);
         System.out.println(email);
         System.out.println(password);
 //        ModelAndView modelAndView = new ModelAndView("registration", null);
