@@ -79,6 +79,7 @@ public class AuthController {
     }
 
     @RequestMapping(value = "/registration", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
+    @ResponseBody
     public String registrationResponse(@RequestParam("email") String email,
                                              @RequestParam("password") String password) {
         logService.accessToPage("registration post");
