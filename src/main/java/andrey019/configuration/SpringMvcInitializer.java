@@ -51,13 +51,13 @@ public class SpringMvcInitializer extends AbstractAnnotationConfigDispatcherServ
 ////		encodingFilter.addMappingForUrlPatterns(null, false, "/*");
 //	}
 
-	@Override
-	protected Filter[] getServletFilters() {
-		CharacterEncodingFilter characterEncodingFilter = new CharacterEncodingFilter();
-		characterEncodingFilter.setEncoding("UTF-8");
-		characterEncodingFilter.setForceEncoding(true);
-
-		return new Filter[] {characterEncodingFilter};
-	}
+//	@Override
+//	protected Filter[] getServletFilters() {
+//		CharacterEncodingFilter characterEncodingFilter = new CharacterEncodingFilter();
+//		characterEncodingFilter.setEncoding("UTF-8");
+//		characterEncodingFilter.setForceEncoding(true);
+//
+//		return new Filter[] {characterEncodingFilter};
+//	}
 
 }

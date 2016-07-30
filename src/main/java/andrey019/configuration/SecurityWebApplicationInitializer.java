@@ -21,11 +21,11 @@ public class SecurityWebApplicationInitializer extends AbstractSecurityWebApplic
 //        //sdfasdrgt
 //    }
 //
-//    @Override
-//    protected void afterSpringSecurityFilterChain(ServletContext servletContext) {
-//        CharacterEncodingFilter characterEncodingFilter = new CharacterEncodingFilter();
-//        characterEncodingFilter.setEncoding("UTF-8");
-//        characterEncodingFilter.setForceEncoding(true);
-//        servletContext.addFilter("encoding-filter3", characterEncodingFilter);
-//    }
+    @Override
+    protected void afterSpringSecurityFilterChain(ServletContext servletContext) {
+        CharacterEncodingFilter characterEncodingFilter = new CharacterEncodingFilter();
+        characterEncodingFilter.setEncoding("UTF-8");
+        characterEncodingFilter.setForceEncoding(true);
+        servletContext.addFilter("encoding-filter3", characterEncodingFilter);
+    }
 }
