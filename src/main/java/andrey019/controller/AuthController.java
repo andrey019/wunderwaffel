@@ -88,7 +88,7 @@ public class AuthController {
         //registrationService.preRegistration("ололошенькивв", password);
         System.out.println(email);
         try {
-            System.out.println(new String(password.getBytes("UTF-8")));
+            System.out.println(new String(password.getBytes("ISO-8859-1"), "UTF-8"));
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
