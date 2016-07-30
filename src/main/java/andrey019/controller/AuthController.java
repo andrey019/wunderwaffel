@@ -89,7 +89,7 @@ public class AuthController {
     public ModelAndView registrationResponse(@RequestParam("email") String email,
                                              @RequestParam("password") String password) {
         logService.accessToPage("registration post");
-        registrationService.preRegistration(email, password);
+        //registrationService.preRegistration(email, password);
         System.out.println(email);
         try {
             System.out.println(new String(password.getBytes("UTF-16"), "UTF-8"));
