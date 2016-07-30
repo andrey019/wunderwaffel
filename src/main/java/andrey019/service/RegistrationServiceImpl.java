@@ -44,7 +44,7 @@ public class RegistrationServiceImpl implements RegistrationService {
         if (!isEmailCorrect(email)) {
             return "Email is incorrect!";
         }
-        if (!isEmailWaiting(email) || isEmailUsed(email)) {
+        if (isEmailWaiting(email) || isEmailUsed(email)) {
             return "Email is already in use!";
         }
         return null;
@@ -98,8 +98,8 @@ public class RegistrationServiceImpl implements RegistrationService {
 
     private boolean isEmailUsed(String email) {
         if (userDao.findByEmail(email) == null) {
-            return true;
+            return false;
         }
-        return false;
+        return true;
     }
 }
