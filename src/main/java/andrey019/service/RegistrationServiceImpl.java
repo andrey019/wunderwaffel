@@ -16,10 +16,10 @@ import javax.mail.internet.InternetAddress;
 public class RegistrationServiceImpl implements RegistrationService {
 
     private final static String SUBJECT_TEMPLATE = "WunderWaffel registration confirmation";
-    private final static String TEXT_TEMPLATE = "You were trying to register an account on WunderWaffel," +
+    private final static String TEXT_TEMPLATE = "<html><body>You were trying to register an account on WunderWaffel," +
             "to confirm please click on the link below...\r\n" +
             "<a href=\"http://wunderwaffel-andrey019.rhcloud.com/confirm?%s\"/>\r\n\r\n" +
-            "If you don't know what's happening, just ignore this message.";
+            "If you don't know what's happening, just ignore this message.<body></html>";
 
 
     @Autowired
@@ -44,7 +44,7 @@ public class RegistrationServiceImpl implements RegistrationService {
         if (!isEmailCorrect(email)) {
             return "Email is incorrect!";
         }
-        if (!isEmailUnique(email) || isAlreadyWaitingConfirmation(email)) {
+        if (!isEmailWaiting(email) || isEmailUsed(email)) {
             return "Email is already in use!";
         }
         return null;
@@ -89,14 +89,14 @@ public class RegistrationServiceImpl implements RegistrationService {
         }
     }
 
-    private boolean isAlreadyWaitingConfirmation(String email) {
+    private boolean isEmailWaiting(String email) {
         if (registrationDao.getByEmail(email) == null) {
             return false;
         }
         return true;
     }
 
-    private boolean isEmailUnique(String email) {
+    private boolean isEmailUsed(String email) {
         if (userDao.findByEmail(email) == null) {
             return true;
         }
