@@ -31,6 +31,7 @@ public class RegistrationDaoImpl implements RegistrationDao {
         }
     }
 
+    @Transactional(propagation = Propagation.REQUIRED)
     @Override
     public UserConfirmation getByEmail(String email) {
         @SuppressWarnings("unchecked")
@@ -43,6 +44,7 @@ public class RegistrationDaoImpl implements RegistrationDao {
         return resultList.get(0);
     }
 
+    @Transactional(propagation = Propagation.REQUIRED)
     @Override
     public UserConfirmation getByCode(String code) {
         @SuppressWarnings("unchecked")
@@ -55,6 +57,7 @@ public class RegistrationDaoImpl implements RegistrationDao {
         return resultList.get(0);
     }
 
+    @Transactional(propagation = Propagation.REQUIRED)
     @Override
     public List<UserConfirmation> getByDateOlderThen(long date) {
         @SuppressWarnings("unchecked")
@@ -62,6 +65,18 @@ public class RegistrationDaoImpl implements RegistrationDao {
                 .createQuery("select c from UserConfirmation c where c.date < :date")
                 .setParameter("date", date).getResultList();
         return resultList;
+    }
+
+    @Transactional(propagation = Propagation.REQUIRED)
+    @Override
+    public UserConfirmation getById(int id) {
+        try {
+            UserConfirmation userConfirmation = entityManager.find(UserConfirmation.class, id);
+            return userConfirmation;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return null;
+        }
     }
 
     @Transactional(propagation = Propagation.REQUIRED)

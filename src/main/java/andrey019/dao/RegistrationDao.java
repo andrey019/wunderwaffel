@@ -8,6 +8,7 @@ import java.util.List;
 public interface RegistrationDao {
 
     boolean save(UserConfirmation userConfirmation);
+    UserConfirmation getById(int id);
     UserConfirmation getByEmail(String email);
     UserConfirmation getByCode(String code);
     List<UserConfirmation> getByDateOlderThen(long date);
