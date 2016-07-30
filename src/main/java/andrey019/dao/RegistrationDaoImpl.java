@@ -84,7 +84,7 @@ public class RegistrationDaoImpl implements RegistrationDao {
     public boolean delete(UserConfirmation userConfirmation) {
         //entityManager.getTransaction().begin();
         try {
-            entityManager.merge(userConfirmation);
+            userConfirmation = entityManager.merge(userConfirmation);
             entityManager.remove(userConfirmation);
             //entityManager.getTransaction().commit();
             return true;
