@@ -31,12 +31,12 @@ public class SpringMvcInitializer extends AbstractAnnotationConfigDispatcherServ
 	@Override
 	protected FilterRegistration.Dynamic registerServletFilter(ServletContext servletContext, Filter filter) {
 		CharacterEncodingFilter characterEncodingFilter = new CharacterEncodingFilter();
-		characterEncodingFilter.setEncoding("UTF-8");
-		characterEncodingFilter.setForceEncoding(true);
+//		characterEncodingFilter.setEncoding("UTF-8");
+//		characterEncodingFilter.setForceEncoding(true);
 		FilterRegistration.Dynamic encodingFilter = servletContext.addFilter("encoding-filter", characterEncodingFilter);
-//		encodingFilter.setInitParameter("encoding", "UTF-8");
-//		encodingFilter.setInitParameter("forceEncoding", "true");
-		encodingFilter.addMappingForUrlPatterns(null, true, "/*");
+		encodingFilter.setInitParameter("encoding", "UTF-8");
+		encodingFilter.setInitParameter("forceEncoding", "true");
+		encodingFilter.addMappingForUrlPatterns(null, false, "/*");
 		return encodingFilter;
 	}
 
