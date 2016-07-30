@@ -22,10 +22,10 @@ public class User {
     private String password;
 
     @Column
-    private String state = State.ACTIVE.getState();
+    private String state;
 
     @Column
-    private String role = Role.USER.getRole();
+    private String role;
 
     public int getId() {
         return id;
