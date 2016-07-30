@@ -40,24 +40,24 @@ public class SpringMvcInitializer extends AbstractAnnotationConfigDispatcherServ
 //		return encodingFilter;
 //	}
 
-	@Override
-	public void onStartup(ServletContext servletContext) throws ServletException {
-		CharacterEncodingFilter characterEncodingFilter = new CharacterEncodingFilter();
-		characterEncodingFilter.setEncoding("UTF-8");
-		characterEncodingFilter.setForceEncoding(true);
-		servletContext.addFilter("encoding-filter", new CharacterEncodingFilter());
-//		encodingFilter.setInitParameter("encoding", "UTF-8");
-//		encodingFilter.setInitParameter("forceEncoding", "true");
-//		encodingFilter.addMappingForUrlPatterns(null, false, "/*");
-	}
-
 //	@Override
-//	protected Filter[] getServletFilters() {
+//	public void onStartup(ServletContext servletContext) throws ServletException {
 //		CharacterEncodingFilter characterEncodingFilter = new CharacterEncodingFilter();
 //		characterEncodingFilter.setEncoding("UTF-8");
 //		characterEncodingFilter.setForceEncoding(true);
-//
-//		return new Filter[] {characterEncodingFilter};
+//		servletContext.addFilter("encoding-filter", new CharacterEncodingFilter());
+////		encodingFilter.setInitParameter("encoding", "UTF-8");
+////		encodingFilter.setInitParameter("forceEncoding", "true");
+////		encodingFilter.addMappingForUrlPatterns(null, false, "/*");
 //	}
+
+	@Override
+	protected Filter[] getServletFilters() {
+		CharacterEncodingFilter characterEncodingFilter = new CharacterEncodingFilter();
+		characterEncodingFilter.setEncoding("UTF-8");
+		characterEncodingFilter.setForceEncoding(true);
+
+		return new Filter[] {characterEncodingFilter};
+	}
 
 }
