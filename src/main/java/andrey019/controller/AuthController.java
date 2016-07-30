@@ -104,7 +104,7 @@ public class AuthController {
     }
 
     @RequestMapping(value = "/confirm", method = RequestMethod.GET)
-    public ModelAndView confirmation(@PathVariable("code") String code) {
+    public ModelAndView confirmation(@RequestParam("code") String code) {
         if (code == null) {
             return new ModelAndView("registration", "error", "error! talk to support");
         }
