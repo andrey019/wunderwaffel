@@ -37,6 +37,7 @@ public class SpringMvcInitializer extends AbstractAnnotationConfigDispatcherServ
 		ServletRegistration.Dynamic dispatcher = servletContext.addServlet("DispatcherServlet", new DispatcherServlet(context));
 		dispatcher.setLoadOnStartup(1);
 		dispatcher.addMapping("/*");
+
 	}
 
 	private AnnotationConfigWebApplicationContext getContext() {
