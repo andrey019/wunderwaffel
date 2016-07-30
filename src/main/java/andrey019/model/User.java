@@ -21,11 +21,11 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-    @Column
-    private String state;
+    @Column(nullable = false)
+    private String state = State.ACTIVE.getState();
 
-    @Column
-    private String role;
+    @Column(nullable = false)
+    private String role = Role.USER.getRole();
 
     public int getId() {
         return id;
@@ -70,8 +70,6 @@ public class User {
     public void setUserFromConfirmation(UserConfirmation userConfirmation) {
         this.email = userConfirmation.getEmail();
         this.password = userConfirmation.getPassword();
-        this.role = Role.USER.getRole();
-        this.state = State.ACTIVE.getState();
     }
 
     @Override

@@ -16,7 +16,7 @@ public class UserConfirmation {
     @Column(nullable = false)
     private String password;
 
-    @Column(nullable = true)
+    @Column(nullable = false)
     private String code;
 
     @Column(nullable = false)
