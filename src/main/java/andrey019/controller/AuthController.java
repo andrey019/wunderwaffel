@@ -103,6 +103,18 @@ public class AuthController {
         }
     }
 
+    @RequestMapping(value = "/confirm", method = RequestMethod.GET)
+    public ModelAndView confirmation(@PathVariable("code") String code) {
+        if (code == null) {
+            return new ModelAndView("registration", "error", "error! talk to support");
+        }
+        if (registrationService.confirmRegistration(code)) {
+            return new ModelAndView("test_page", "confirm", "Registration complete! Please, sign in.");
+        } else {
+            return new ModelAndView("test_page", "confirm", "Registration error! talk to support");
+        }
+    }
+
     private String getPrincipal(){
         String userName = null;
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();

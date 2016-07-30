@@ -29,16 +29,21 @@ asdgasdgadgagfd ывпфывдлфоывфыовжf<br>
         <label>hello, ADMIN!</label>
     </sec:authorize>
 </div>
+<div>
+    <c:if test="${confirm != null}">
+        <c:out value="${confirm}"/>
+    </c:if>
+</div>
 <sec:authorize var="loggedIn" access="isAuthenticated()" />
 <c:choose>
     <c:when test="${loggedIn}">
         <form role="form" method="get" action="/auth/logout">
-            <input type="submit" value="logout"  />
+            <input type="submit" value="Sign out"  />
         </form>
     </c:when>
     <c:otherwise>
         <form role="form" method="get" action="/auth/login">
-            <input type="submit" value="Log in"  />
+            <input type="submit" value="Sign in"  />
         </form>
         <form role="form" method="get" action="/auth/registration">
             <input type="submit" value="Registration"  />

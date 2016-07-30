@@ -5,6 +5,7 @@ import andrey019.dao.RegistrationDao;
 import andrey019.dao.UserDao;
 import andrey019.model.User;
 import andrey019.model.UserConfirmation;
+import org.apache.commons.validator.routines.EmailValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -18,7 +19,7 @@ public class RegistrationServiceImpl implements RegistrationService {
     private final static String SUBJECT_TEMPLATE = "WunderWaffel registration confirmation";
     private final static String TEXT_TEMPLATE = "<html><body>You were trying to register an account on WunderWaffel," +
             "to confirm please click on the link below...<br>" +
-            "<a href=\"http://wunderwaffel-andrey019.rhcloud.com/confirm?sdfs/asd%s\">" +
+            "<a href=\"http://wunderwaffel-andrey019.rhcloud.com/auth/confirm?code=%s\">" +
             "Click here to confirm registration</a><br><br>" +
             "If you don't know what's happening, just ignore this message.</body></html>";
 
@@ -81,13 +82,7 @@ public class RegistrationServiceImpl implements RegistrationService {
     }
 
     private boolean isEmailCorrect(String email) {
-        try {
-            InternetAddress internetAddress = new InternetAddress(email);
-            internetAddress.validate();
-            return true;
-        } catch (AddressException e) {
-            return false;
-        }
+        return EmailValidator.getInstance().isValid(email);
     }
 
     private boolean isEmailWaiting(String email) {

@@ -1,6 +1,8 @@
 package andrey019.util;
 
 
+import org.apache.commons.validator.routines.EmailValidator;
+
 import java.nio.charset.Charset;
 
 public class TestsUtil {
@@ -32,17 +34,23 @@ public class TestsUtil {
 //        TEXT_TEMPLATE.add("code", "55555");
 //        System.out.println(TEXT_TEMPLATE.render());
 
-        String result = String.format(TEXT_TEMPLATE, "1111");
-        System.out.println(result);
-        String result2 = String.format(TEXT_TEMPLATE, "2222");
-        System.out.println(result2);
-        String result3 = String.format(TEXT_TEMPLATE, "3333");
-        System.out.println(result3);
+//        String result = String.format(TEXT_TEMPLATE, "1111");
+//        System.out.println(result);
+//        String result2 = String.format(TEXT_TEMPLATE, "2222");
+//        System.out.println(result2);
+//        String result3 = String.format(TEXT_TEMPLATE, "3333");
+//        System.out.println(result3);
+//
+//        String str = "ololo";
+//        String result4 = str + System.currentTimeMillis();
+//        System.out.println(result4);
+//
+//        System.out.println(Charset.defaultCharset());
 
-        String str = "ololo";
-        String result4 = str + System.currentTimeMillis();
-        System.out.println(result4);
-
-        System.out.println(Charset.defaultCharset());
+        EmailValidator emailValidator = EmailValidator.getInstance();
+        System.out.println(EmailValidator.getInstance().isValid("sdfs@asdf"));
+        System.out.println(EmailValidator.getInstance().isValid("sdfs@asdf.com"));
+        System.out.println(EmailValidator.getInstance().isValid("sdfsasdf.com"));
+        System.out.println(EmailValidator.getInstance().isValid("sdfs@as.ua"));
     }
 }
