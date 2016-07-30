@@ -86,7 +86,7 @@ public class AuthController {
         logService.accessToPage("registration post");
         //registrationService.preRegistration("ололошенькивв", password);
         System.out.println(email);
-        System.out.println(Charset.forName("UTF-8").encode(password).toString());
+        System.out.println(Charset.forName("UTF-8").encode(password));
 //        ModelAndView modelAndView = new ModelAndView("registration", null);
 //        modelAndView.addObject("error", "ololo");
 //        return modelAndView;
