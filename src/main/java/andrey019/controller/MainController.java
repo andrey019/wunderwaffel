@@ -77,7 +77,7 @@ public class MainController {
     @RequestMapping("/ololo")
     public ModelAndView ololo() {
         logService.accessToPage("ololo");
-        ModelAndView modelAndView = new ModelAndView("ololo");
+        ModelAndView modelAndView = new ModelAndView("/pages/ololo.jsp");
         return modelAndView;
     }
 
