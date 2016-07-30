@@ -5,9 +5,9 @@ public enum Role {
     DBA("DBA"),
     ADMIN("ADMIN");
 
-    String role;
+    private String role;
 
-    private Role(String userProfileType){
+    private Role(final String role){
         this.role = role;
     }
 
