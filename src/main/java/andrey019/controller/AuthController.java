@@ -28,6 +28,7 @@ import javax.persistence.PersistenceContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
@@ -86,7 +87,11 @@ public class AuthController {
         logService.accessToPage("registration post");
         //registrationService.preRegistration("ололошенькивв", password);
         System.out.println(email);
-        System.out.println(Charset.forName("UTF-8").encode(password));
+        try {
+            System.out.println(new String(password.getBytes("UTF-8")));
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
 //        ModelAndView modelAndView = new ModelAndView("registration", null);
 //        modelAndView.addObject("error", "ololo");
 //        return modelAndView;
