@@ -91,16 +91,16 @@ public class AuthController {
         logService.accessToPage("registration post");
         //registrationService.preRegistration(email, password);
         System.out.println(email);
-        try {
-            System.out.println(new String(password.getBytes("UTF-16"), "UTF-8"));
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
+        System.out.println(password);
+        String check = registrationService.preRegistrationCheck(email);
+        if (check != null) {
+            return new ModelAndView("registration", "error", check);
         }
-//        ModelAndView modelAndView = new ModelAndView("registration", null);
-//        modelAndView.addObject("error", "ololo");
-//        return modelAndView;
-        ModelAndView modelAndView = new ModelAndView("registration", "teststr", registrationService.getByEmail(email).getEmail());
-        return modelAndView;
+        if (registrationService.preRegistration(email, password)) {
+            return new ModelAndView("registration", "error", "check your email");
+        } else {
+            return new ModelAndView("registration", "error", "error! talk to support");
+        }
     }
 
     private String getPrincipal(){

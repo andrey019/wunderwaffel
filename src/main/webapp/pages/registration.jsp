@@ -13,13 +13,11 @@
 </head>
 <body>
 <form action="/auth/registration" method="post" class="form-horizontal">
-    <c:if test="${param.error != null}">
+    <c:if test="${error != null}">
         <div class="alert alert-danger">
-            <p>This email is already in use</p>
+            <p><c:out value="${error}"/></p>
         </div>
     </c:if>
-
-    <c:out value="${teststr}"/>
 
     <div class="input-group input-sm">
         <label class="input-group-addon" for="email"><i class="fa fa-user"></i></label>

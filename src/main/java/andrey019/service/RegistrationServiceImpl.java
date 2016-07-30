@@ -58,8 +58,8 @@ public class RegistrationServiceImpl implements RegistrationService {
         userConfirmation.setCode(passwordEncoder.encode(email + System.currentTimeMillis()));
         userConfirmation.setDate(System.currentTimeMillis());
         if (registrationDao.save(userConfirmation)) {
-//            mailService.sendMail(userConfirmation.getEmail(), SUBJECT_TEMPLATE,
-//                    String.format(TEXT_TEMPLATE, userConfirmation.getCode()));
+            mailService.sendMail(userConfirmation.getEmail(), SUBJECT_TEMPLATE,
+                    String.format(TEXT_TEMPLATE, userConfirmation.getCode()));
             return true;
         }
         return false;
