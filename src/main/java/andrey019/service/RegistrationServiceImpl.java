@@ -17,7 +17,7 @@ import javax.mail.internet.InternetAddress;
 public class RegistrationServiceImpl implements RegistrationService {
 
     private final static String SUBJECT_TEMPLATE = "WunderWaffel registration confirmation";
-    private final static String TEXT_TEMPLATE = "<html><body>You were trying to register an account on WunderWaffel," +
+    private final static String TEXT_TEMPLATE = "<html><body>You were trying to register an account on WunderWaffel, " +
             "to confirm please click on the link below...<br>" +
             "<a href=\"http://wunderwaffel-andrey019.rhcloud.com/auth/confirm?code=%s\">" +
             "Click here to confirm registration</a><br><br>" +
