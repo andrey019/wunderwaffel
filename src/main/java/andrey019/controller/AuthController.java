@@ -97,7 +97,7 @@ public class AuthController {
             return new ModelAndView("registration", "error", check);
         }
         if (registrationService.preRegistration(email, password)) {
-            return new ModelAndView("registration", "error", "check your email");
+            return new ModelAndView("registration", "error", "check your email(may take a couple of minutes)");
         } else {
             return new ModelAndView("registration", "error", "error! talk to support");
         }
