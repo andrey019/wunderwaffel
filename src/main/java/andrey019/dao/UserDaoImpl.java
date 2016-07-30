@@ -25,13 +25,13 @@ public class UserDaoImpl implements UserDao {
     @Override
     public boolean save(User user) {
         try {
-            entityManager.getTransaction().begin();
+           // entityManager.getTransaction().begin();
             entityManager.persist(user);
-            entityManager.getTransaction().commit();
+            //entityManager.getTransaction().commit();
             return true;
         } catch (Exception ex) {
             ex.printStackTrace();
-            entityManager.getTransaction().rollback();
+            //entityManager.getTransaction().rollback();
             return false;
         }
     }
