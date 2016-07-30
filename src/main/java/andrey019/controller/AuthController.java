@@ -1,6 +1,7 @@
 package andrey019.controller;
 
 import andrey019.model.CustomMessage;
+import andrey019.model.UserConfirmation;
 import andrey019.service.LogService;
 import andrey019.service.MailService;
 import andrey019.service.RegistrationService;
@@ -17,6 +18,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenBasedRememberMeServices;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
@@ -48,6 +51,9 @@ public class AuthController {
     @Autowired
     private RegistrationService registrationService;
 
+    @Autowired
+    private EntityManager entityManager;
+
 
     @RequestMapping(value="/logout", method = RequestMethod.GET)
     public String logoutPage (HttpServletRequest request, HttpServletResponse response) {
@@ -77,12 +83,25 @@ public class AuthController {
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
     public ModelAndView getRegistrationForm() {
         logService.accessToPage("registration get");
+
         ModelAndView modelAndView = new ModelAndView("registration", "teststr", "ололошка");
         return modelAndView;
     }
 
+    @Transactional(propagation = Propagation.REQUIRED)
+    private UserConfirmation getByEmail(String email) {
+        @SuppressWarnings("unchecked")
+        List<UserConfirmation> resultList = entityManager
+                .createQuery("select c from UserConfirmation c where c.email = :email")
+                .setParameter("email", email).setMaxResults(1).getResultList();
+        if (resultList.isEmpty()) {
+            return null;
+        }
+        return resultList.get(0);
+    }
+
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
-    public String registrationResponse(@RequestParam("email") String email,
+    public ModelAndView registrationResponse(@RequestParam("email") String email,
                                              @RequestParam("password") String password) {
         logService.accessToPage("registration post");
         registrationService.preRegistration(email, password);
@@ -95,7 +114,8 @@ public class AuthController {
 //        ModelAndView modelAndView = new ModelAndView("registration", null);
 //        modelAndView.addObject("error", "ololo");
 //        return modelAndView;
-        return "registration";
+        ModelAndView modelAndView = new ModelAndView("registration", "teststr", getByEmail(email).getEmail());
+        return modelAndView;
     }
 
     private String getPrincipal(){
