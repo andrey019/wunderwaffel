@@ -103,8 +103,8 @@ public class AppConfig extends WebMvcConfigurerAdapter {
     @Bean
     public UrlBasedViewResolver setupViewResolver() {
         UrlBasedViewResolver resolver = new UrlBasedViewResolver();
-        resolver.setPrefix("/pages/");
-        resolver.setSuffix(".jsp");
+        //resolver.setPrefix("/pages/");
+        //resolver.setSuffix(".jsp");
         resolver.setViewClass(JstlView.class);
         resolver.setOrder(1);
         //resolver.setContentType("text/html;charset=UTF-8");
