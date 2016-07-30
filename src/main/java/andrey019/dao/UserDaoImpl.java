@@ -3,6 +3,8 @@ package andrey019.dao;
 import andrey019.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -19,6 +21,7 @@ public class UserDaoImpl implements UserDao {
         return entityManager.find(User.class, id);
     }
 
+    @Transactional(propagation = Propagation.REQUIRED)
     @Override
     public boolean save(User user) {
         try {

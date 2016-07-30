@@ -31,7 +31,6 @@ public class RegistrationDaoImpl implements RegistrationDao {
         }
     }
 
-    @Transactional(propagation = Propagation.REQUIRED)
     @Override
     public UserConfirmation getByEmail(String email) {
         @SuppressWarnings("unchecked")
@@ -65,6 +64,7 @@ public class RegistrationDaoImpl implements RegistrationDao {
         return resultList;
     }
 
+    @Transactional(propagation = Propagation.REQUIRED)
     @Override
     public boolean delete(UserConfirmation userConfirmation) {
         entityManager.getTransaction().begin();
@@ -78,6 +78,7 @@ public class RegistrationDaoImpl implements RegistrationDao {
         }
     }
 
+    @Transactional(propagation = Propagation.REQUIRED)
     @Override
     public void deleteList(List<UserConfirmation> list) {
         entityManager.getTransaction().begin();
