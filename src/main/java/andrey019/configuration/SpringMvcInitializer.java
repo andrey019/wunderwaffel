@@ -1,14 +1,15 @@
 package andrey019.configuration;
 
 
+import org.springframework.web.context.ContextLoaderListener;
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.filter.HiddenHttpMethodFilter;
+import org.springframework.web.servlet.DispatcherServlet;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
-import javax.servlet.Filter;
-import javax.servlet.FilterRegistration;
-import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
+import javax.servlet.*;
 
 
 public class SpringMvcInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
@@ -27,6 +28,23 @@ public class SpringMvcInitializer extends AbstractAnnotationConfigDispatcherServ
 	protected String[] getServletMappings() {
 		return new String[] { "/" };
 	}
+
+
+	@Override
+	public void onStartup(ServletContext servletContext) throws ServletException {
+		WebApplicationContext context = getContext();
+		servletContext.addListener(new ContextLoaderListener(context));
+		ServletRegistration.Dynamic dispatcher = servletContext.addServlet("DispatcherServlet", new DispatcherServlet(context));
+		dispatcher.setLoadOnStartup(1);
+		dispatcher.addMapping("/*");
+	}
+
+	private AnnotationConfigWebApplicationContext getContext() {
+		AnnotationConfigWebApplicationContext context = new AnnotationConfigWebApplicationContext();
+		context.setConfigLocation("andrey019.configuration");
+		return context;
+	}
+
 
 //	@Override
 //	protected FilterRegistration.Dynamic registerServletFilter(ServletContext servletContext, Filter filter) {
