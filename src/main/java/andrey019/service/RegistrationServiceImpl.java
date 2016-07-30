@@ -18,7 +18,7 @@ public class RegistrationServiceImpl implements RegistrationService {
     private final static String SUBJECT_TEMPLATE = "WunderWaffel registration confirmation";
     private final static String TEXT_TEMPLATE = "<html><body>You were trying to register an account on WunderWaffel," +
             "to confirm please click on the link below...<br>" +
-            "<a href=\"http://wunderwaffel-andrey019.rhcloud.com/confirm?%s\">" +
+            "<a href=\"http://wunderwaffel-andrey019.rhcloud.com/confirm?sdfs/asd%s\">" +
             "Click here to confirm registration</a><br><br>" +
             "If you don't know what's happening, just ignore this message.</body></html>";
 
