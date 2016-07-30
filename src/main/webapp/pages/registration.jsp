@@ -19,6 +19,8 @@
         </div>
     </c:if>
 
+    <c:out value="${teststr}"/>
+
     <div class="input-group input-sm">
         <label class="input-group-addon" for="email"><i class="fa fa-user"></i></label>
         <input type="text" class="form-control" id="email" name="email" placeholder="Email" required>

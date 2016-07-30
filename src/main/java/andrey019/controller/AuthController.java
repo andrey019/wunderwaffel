@@ -73,9 +73,10 @@ public class AuthController {
     }
 
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
-    public String getRegistrationForm() {
+    public ModelAndView getRegistrationForm() {
         logService.accessToPage("registration get");
-        return "registration";
+        ModelAndView modelAndView = new ModelAndView("registration", "teststr", "ололошка");
+        return modelAndView;
     }
 
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
