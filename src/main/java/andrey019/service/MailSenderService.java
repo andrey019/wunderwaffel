@@ -54,8 +54,9 @@ public class MailSenderService extends Thread {
             public void prepare(MimeMessage mimeMessage) throws Exception {
                 mimeMessage.setFrom(message.getFrom());
                 mimeMessage.setRecipient(Message.RecipientType.TO, new InternetAddress(message.getTo()));
-                mimeMessage.setText(message.getText());
+                //mimeMessage.setText(message.getText());
                 mimeMessage.setSubject(message.getSubject());
+                mimeMessage.setContent(message.getText(), "text/html");
             }
         };
         return preparator;
