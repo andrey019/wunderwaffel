@@ -69,10 +69,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and().csrf()
                 .and().exceptionHandling().accessDeniedPage("/auth/access_denied");
 
-//        CharacterEncodingFilter filter = new CharacterEncodingFilter();
-//        filter.setEncoding("UTF-8");
-//        filter.setForceEncoding(true);
-//        http.addFilterBefore(filter, CsrfFilter.class);
+        CharacterEncodingFilter filter = new CharacterEncodingFilter();
+        filter.setEncoding("UTF-8");
+        filter.setForceEncoding(true);
+        http.addFilterBefore(filter, CsrfFilter.class);
     }
 
     @Bean
