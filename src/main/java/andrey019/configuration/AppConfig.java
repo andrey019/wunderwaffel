@@ -67,10 +67,10 @@ public class AppConfig extends WebMvcConfigurerAdapter {
 //        converters.add(stringConverter);
 //    }
 
-//    @Bean
-//    public StringHttpMessageConverter stringHttpMessageConverter() {
-//        return new StringHttpMessageConverter(Charset.forName("UTF-8"));
-//    }
+    @Bean
+    public StringHttpMessageConverter stringHttpMessageConverter() {
+        return new StringHttpMessageConverter(Charset.forName("UTF-8"));
+    }
 
     @PostConstruct
     private void mailSenderServiceInit() {
