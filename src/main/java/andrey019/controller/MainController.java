@@ -21,7 +21,6 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.View;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -75,10 +74,9 @@ public class MainController {
     }
 
     @RequestMapping("/ololo")
-    public ModelAndView ololo() {
+    public String ololo() {
         logService.accessToPage("ololo");
-        ModelAndView modelAndView = new ModelAndView("/pages/ololo.jsp");
-        return modelAndView;
+        return "ololo";
     }
 
     @RequestMapping("/user/ololo")

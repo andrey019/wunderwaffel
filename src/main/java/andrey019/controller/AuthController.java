@@ -28,6 +28,7 @@ import javax.persistence.PersistenceContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -85,7 +86,7 @@ public class AuthController {
         logService.accessToPage("registration post");
         //registrationService.preRegistration("ололошенькивв", password);
         System.out.println(email);
-        System.out.println(password);
+        System.out.println(Charset.forName("UTF-8").encode(password).toString());
 //        ModelAndView modelAndView = new ModelAndView("registration", null);
 //        modelAndView.addObject("error", "ololo");
 //        return modelAndView;
