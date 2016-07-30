@@ -60,11 +60,16 @@ public class AppConfig extends WebMvcConfigurerAdapter {
 
 //    private static final Charset UTF8 = Charset.forName("UTF-8");
 //
-    @Override
-    public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
-        StringHttpMessageConverter stringConverter = new StringHttpMessageConverter(Charset.forName("UTF-8"));
-        //stringConverter.setSupportedMediaTypes(Arrays.asList(new MediaType("text", "plain", UTF8)));
-        converters.add(stringConverter);
+//    @Override
+//    public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
+//        StringHttpMessageConverter stringConverter = new StringHttpMessageConverter(Charset.forName("UTF-8"));
+//        //stringConverter.setSupportedMediaTypes(Arrays.asList(new MediaType("text", "plain", UTF8)));
+//        converters.add(stringConverter);
+//    }
+
+    @Bean
+    public StringHttpMessageConverter stringHttpMessageConverter() {
+        return new StringHttpMessageConverter(Charset.forName("UTF-8"));
     }
 
     @PostConstruct
@@ -106,10 +111,7 @@ public class AppConfig extends WebMvcConfigurerAdapter {
         return resolver;
     }
 
-    @Bean
-    public StringHttpMessageConverter stringHttpMessageConverter() {
-        return new StringHttpMessageConverter(Charset.forName("UTF-8"));
-    }
+
 
 
 //    @Bean
