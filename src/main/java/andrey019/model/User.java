@@ -70,6 +70,8 @@ public class User {
     public void setUserFromConfirmation(UserConfirmation userConfirmation) {
         this.email = userConfirmation.getEmail();
         this.password = userConfirmation.getPassword();
+        this.role = Role.USER.getRole();
+        this.state = State.ACTIVE.getState();
     }
 
     @Override

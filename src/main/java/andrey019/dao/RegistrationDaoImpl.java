@@ -67,10 +67,10 @@ public class RegistrationDaoImpl implements RegistrationDao {
     @Transactional(propagation = Propagation.REQUIRED)
     @Override
     public boolean delete(UserConfirmation userConfirmation) {
-        entityManager.getTransaction().begin();
+        //entityManager.getTransaction().begin();
         try {
             entityManager.remove(userConfirmation);
-            entityManager.getTransaction().commit();
+            //entityManager.getTransaction().commit();
             return true;
         } catch (Exception ex) {
             ex.printStackTrace();

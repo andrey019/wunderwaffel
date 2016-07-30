@@ -76,6 +76,7 @@ public class RegistrationServiceImpl implements RegistrationService {
         User user = new User();
         user.setUserFromConfirmation(userConfirmation);
         if (userDao.save(user)) {
+            registrationDao.delete(userConfirmation);
             return true;
         }
         return false;
