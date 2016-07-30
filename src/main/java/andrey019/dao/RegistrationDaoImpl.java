@@ -31,6 +31,7 @@ public class RegistrationDaoImpl implements RegistrationDao {
         }
     }
 
+    @Transactional(propagation = Propagation.REQUIRED)
     @Override
     public UserConfirmation getByEmail(String email) {
         @SuppressWarnings("unchecked")

@@ -34,6 +34,10 @@ public class RegistrationServiceImpl implements RegistrationService {
     @Autowired
     private MailService mailService;
 
+    @Override
+    public UserConfirmation getByEmail(String email) {
+        return registrationDao.getByEmail(email);
+    }
 
     @Override
     public String preRegistrationCheck(String email) {

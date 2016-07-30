@@ -51,9 +51,6 @@ public class AuthController {
     @Autowired
     private RegistrationService registrationService;
 
-    @Autowired
-    private EntityManager entityManager;
-
 
     @RequestMapping(value="/logout", method = RequestMethod.GET)
     public String logoutPage (HttpServletRequest request, HttpServletResponse response) {
@@ -88,18 +85,6 @@ public class AuthController {
         return modelAndView;
     }
 
-    @Transactional(propagation = Propagation.REQUIRED)
-    private UserConfirmation getByEmail(String email) {
-        @SuppressWarnings("unchecked")
-        List<UserConfirmation> resultList = entityManager
-                .createQuery("select c from UserConfirmation c where c.email = :email")
-                .setParameter("email", email).setMaxResults(1).getResultList();
-        if (resultList.isEmpty()) {
-            return null;
-        }
-        return resultList.get(0);
-    }
-
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
     public ModelAndView registrationResponse(@RequestParam("email") String email,
                                              @RequestParam("password") String password) {
@@ -114,7 +99,7 @@ public class AuthController {
 //        ModelAndView modelAndView = new ModelAndView("registration", null);
 //        modelAndView.addObject("error", "ololo");
 //        return modelAndView;
-        ModelAndView modelAndView = new ModelAndView("registration", "teststr", getByEmail(email).getEmail());
+        ModelAndView modelAndView = new ModelAndView("registration", "teststr", registrationService.getByEmail(email).getEmail());
         return modelAndView;
     }
 
