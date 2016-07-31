@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class ConfirmationCleanUpService extends Thread {
 
     private final static ConfirmationCleanUpService CONFIRMATION_CLEAN_UP_SERVICE = new ConfirmationCleanUpService();
-    private final static long INITIAL_DELAY = 60000;
+    private final static long INITIAL_DELAY = 10000;
     private final static long CLEANUP_AFTER = 86400000;
     private final static long CHECK_INTERVAL = 3600000;
 
@@ -25,7 +25,7 @@ public class ConfirmationCleanUpService extends Thread {
         }
         while (!isInterrupted()) {
             try {
-                Thread.sleep(1000);
+                Thread.sleep(1000);//
                 registrationDao.deleteByDateOlderThen(System.currentTimeMillis() - CLEANUP_AFTER);
                 Thread.sleep(CHECK_INTERVAL);
             } catch (Exception ex) {
