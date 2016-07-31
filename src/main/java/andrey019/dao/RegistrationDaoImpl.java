@@ -16,7 +16,7 @@ public class RegistrationDaoImpl implements RegistrationDao {
     @PersistenceContext
     private EntityManager entityManager;
 
-    @Transactional(propagation = Propagation.REQUIRED)
+    @Transactional
     @Override
     public boolean save(UserConfirmation userConfirmation) {
         //entityManager.getTransaction().begin();
@@ -31,7 +31,7 @@ public class RegistrationDaoImpl implements RegistrationDao {
         }
     }
 
-    @Transactional(propagation = Propagation.REQUIRED)
+    @Transactional
     @Override
     public UserConfirmation getByEmail(String email) {
         @SuppressWarnings("unchecked")
@@ -44,7 +44,7 @@ public class RegistrationDaoImpl implements RegistrationDao {
         return resultList.get(0);
     }
 
-    @Transactional(propagation = Propagation.REQUIRED)
+    @Transactional
     @Override
     public UserConfirmation getByCode(String code) {
         @SuppressWarnings("unchecked")
@@ -57,7 +57,7 @@ public class RegistrationDaoImpl implements RegistrationDao {
         return resultList.get(0);
     }
 
-    @Transactional(propagation = Propagation.REQUIRED)
+    @Transactional
     @Override
     public List<UserConfirmation> getByDateOlderThen(long date) {
         @SuppressWarnings("unchecked")
@@ -67,7 +67,7 @@ public class RegistrationDaoImpl implements RegistrationDao {
         return resultList;
     }
 
-    @Transactional(propagation = Propagation.REQUIRED)
+    @Transactional
     @Override
     public UserConfirmation getById(int id) {
         try {
@@ -79,7 +79,7 @@ public class RegistrationDaoImpl implements RegistrationDao {
         }
     }
 
-    @Transactional(propagation = Propagation.REQUIRED)
+    @Transactional
     @Override
     public boolean delete(UserConfirmation userConfirmation) {
         //entityManager.getTransaction().begin();
@@ -94,7 +94,7 @@ public class RegistrationDaoImpl implements RegistrationDao {
         }
     }
 
-    @Transactional(propagation = Propagation.REQUIRED)
+    @Transactional
     @Override
     public void deleteList(List<UserConfirmation> list) {
         entityManager.getTransaction().begin();

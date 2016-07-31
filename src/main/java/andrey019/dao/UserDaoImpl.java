@@ -16,26 +16,25 @@ public class UserDaoImpl implements UserDao {
     @PersistenceContext
     private EntityManager entityManager;
 
+    @Transactional
     @Override
     public User findById(int id) {
         return entityManager.find(User.class, id);
     }
 
-    @Transactional(propagation = Propagation.REQUIRED)
+    @Transactional
     @Override
     public boolean save(User user) {
         try {
-           // entityManager.getTransaction().begin();
             entityManager.persist(user);
-            //entityManager.getTransaction().commit();
             return true;
         } catch (Exception ex) {
             ex.printStackTrace();
-            //entityManager.getTransaction().rollback();
             return false;
         }
     }
 
+    @Transactional
     @Override
     public User findByEmail(String email) {
         @SuppressWarnings("unchecked")
