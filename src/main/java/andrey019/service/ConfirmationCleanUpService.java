@@ -3,7 +3,6 @@ package andrey019.service;
 
 import andrey019.dao.RegistrationDao;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 
 public class ConfirmationCleanUpService extends Thread {
 

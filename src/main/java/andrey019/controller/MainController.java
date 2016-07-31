@@ -79,12 +79,6 @@ public class MainController {
         return "ololo";
     }
 
-    @RequestMapping("/user/ololo")
-    public String userololo() {
-        logService.accessToPage("user/ololo");
-        return "ololo";
-    }
-
     private String getPrincipal(){
         String userName = null;
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();

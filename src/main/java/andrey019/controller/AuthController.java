@@ -40,8 +40,6 @@ import java.util.List;
 @RequestMapping("/auth/")
 public class AuthController {
 
-
-
     @Autowired
     private LogService logService;
 
