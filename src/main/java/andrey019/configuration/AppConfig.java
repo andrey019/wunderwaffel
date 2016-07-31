@@ -85,6 +85,11 @@ public class AppConfig extends WebMvcConfigurerAdapter {
     }
 
     @Bean
+    public ConfirmationCleanUpService getConfirmationCleanUpService() {
+        return ConfirmationCleanUpService.getInstance();
+    }
+
+    @Bean
     public JavaMailSender getMailSender() {
         JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
         mailSender.setHost("smtp.mail.ru");

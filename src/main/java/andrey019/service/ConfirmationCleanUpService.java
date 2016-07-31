@@ -13,7 +13,6 @@ public class ConfirmationCleanUpService extends Thread {
     private final static long CHECK_INTERVAL = 3600000;
 
     @Autowired
-    @Qualifier("registrationDao")
     private RegistrationDao registrationDao;
 
     private ConfirmationCleanUpService() {}
