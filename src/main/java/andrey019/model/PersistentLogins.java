@@ -7,7 +7,7 @@ import java.util.Date;
 public class PersistentLogins {
 
     @Id
-    private String series;
+    private String series;//aad
 
     @Column(nullable = false)
     private String username;
