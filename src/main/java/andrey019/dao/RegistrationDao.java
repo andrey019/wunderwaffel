@@ -11,7 +11,7 @@ public interface RegistrationDao {
     UserConfirmation getById(int id);
     UserConfirmation getByEmail(String email);
     UserConfirmation getByCode(String code);
-    List<UserConfirmation> getByDateOlderThen(long date);
+    boolean deleteByDateOlderThen(long date);
     boolean delete(UserConfirmation userConfirmation);
     void deleteList(List<UserConfirmation> list);
 }

@@ -1,6 +1,7 @@
 package andrey019.configuration;
 
 //import org.hibernate.SessionFactory;
+import andrey019.service.ConfirmationCleanUpService;
 import andrey019.service.MailSenderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.embedded.FilterRegistrationBean;
@@ -75,6 +76,7 @@ public class AppConfig extends WebMvcConfigurerAdapter {
     @PostConstruct
     private void mailSenderServiceInit() {
         MailSenderService.getInstance().start();
+        ConfirmationCleanUpService.getInstance().start();
     }
 
     @Bean

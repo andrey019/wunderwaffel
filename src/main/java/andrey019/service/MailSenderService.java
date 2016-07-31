@@ -19,30 +19,36 @@ public class MailSenderService extends Thread {
     private JavaMailSender mailSender;
 
     @Autowired
-    @Qualifier("logService")
     private LogService logService;
 
-    private static MailSenderService mailSenderService = new MailSenderService();
-    private static ConcurrentLinkedQueue<CustomMessage> queue = new ConcurrentLinkedQueue<>();
+    private final static MailSenderService MAIL_SENDER_SERVICE = new MailSenderService();
+    private final static ConcurrentLinkedQueue<CustomMessage> QUEUE = new ConcurrentLinkedQueue<>();
+    private final static long INITIAL_DELAY = 60000;
+    private final static long SEND_INTERVAL = 70000;
 
     private MailSenderService() {}
 
     @Override
     public void run() {
+        try {
+            Thread.sleep(INITIAL_DELAY);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         while (!isInterrupted()) {
-            if (!queue.isEmpty()) {
-                CustomMessage message = queue.peek();
+            if (!QUEUE.isEmpty()) {
+                CustomMessage message = QUEUE.peek();
                 MimeMessagePreparator preparator = getMessagePreparator(message);
                 try {
                     mailSender.send(preparator);
-                    queue.poll();
-                    logService.mailSent(message.getTo(), queue.size());
+                    QUEUE.poll();
+                    logService.mailSent(message.getTo(), QUEUE.size());
                 } catch (MailException ex) {
                     System.out.println(ex.getMessage());
                 }
             }
             try {
-                Thread.sleep(70000);
+                Thread.sleep(SEND_INTERVAL);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -63,10 +69,10 @@ public class MailSenderService extends Thread {
     }
 
     public static MailSenderService getInstance() {
-        return mailSenderService;
+        return MAIL_SENDER_SERVICE;
     }
 
     public void addMessage(CustomMessage message) {
-        queue.add(message);
+        QUEUE.add(message);
     }
 }

@@ -94,11 +94,14 @@ public class AuthController {
         System.out.println(password);
         String check = registrationService.preRegistrationCheck(email);
         if (check != null) {
+            logService.accessToPage("registration post, " + email + ", " + check);
             return new ModelAndView("registration", "error", check);
         }
         if (registrationService.preRegistration(email, password)) {
+            logService.accessToPage("registration post, " + email + ", ok");
             return new ModelAndView("registration", "error", "check your email(may take a couple of minutes)");
         } else {
+            logService.accessToPage("registration post, " + email + ", error");
             return new ModelAndView("registration", "error", "error! talk to support");
         }
     }
@@ -106,11 +109,14 @@ public class AuthController {
     @RequestMapping(value = "/confirm", method = RequestMethod.GET)
     public ModelAndView confirmation(@RequestParam("code") String code) {
         if (code == null) {
+            logService.accessToPage("confirm, code == null");
             return new ModelAndView("registration", "error", "error! talk to support");
         }
         if (registrationService.confirmRegistration(code)) {
+            logService.accessToPage("confirm, ok");
             return new ModelAndView("test_page", "confirm", "Registration complete! Please, sign in.");
         } else {
+            logService.accessToPage("confirm, error");
             return new ModelAndView("test_page", "confirm", "Registration error! talk to support");
         }
     }

@@ -59,20 +59,27 @@ public class RegistrationDaoImpl implements RegistrationDao {
 
     @Transactional
     @Override
-    public List<UserConfirmation> getByDateOlderThen(long date) {
-        @SuppressWarnings("unchecked")
-        List<UserConfirmation> resultList = entityManager
-                .createQuery("select c from UserConfirmation c where c.date < :date")
-                .setParameter("date", date).getResultList();
-        return resultList;
+    public boolean deleteByDateOlderThen(long date) {
+        try {
+            @SuppressWarnings("unchecked")
+            List<UserConfirmation> resultList = entityManager
+                    .createQuery("select c from UserConfirmation c where c.date < :date")
+                    .setParameter("date", date).getResultList();
+            for (UserConfirmation userConfirmation : resultList) {
+                entityManager.remove(userConfirmation);
+            }
+            return true;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return false;
+        }
     }
 
     @Transactional
     @Override
     public UserConfirmation getById(int id) {
         try {
-            UserConfirmation userConfirmation = entityManager.find(UserConfirmation.class, id);
-            return userConfirmation;
+            return entityManager.find(UserConfirmation.class, id);
         } catch (Exception ex) {
             ex.printStackTrace();
             return null;
@@ -97,15 +104,15 @@ public class RegistrationDaoImpl implements RegistrationDao {
     @Transactional
     @Override
     public void deleteList(List<UserConfirmation> list) {
-        entityManager.getTransaction().begin();
+        //entityManager.getTransaction().begin();
         try {
             for (UserConfirmation user : list) {
                 entityManager.remove(user);
             }
-            entityManager.getTransaction().commit();
+            //entityManager.getTransaction().commit();
         } catch (Exception ex) {
             ex.printStackTrace();
-            entityManager.getTransaction().rollback();
+            //entityManager.getTransaction().rollback();
         }
     }
 }
