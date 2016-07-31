@@ -65,6 +65,7 @@ public class RegistrationDaoImpl implements RegistrationDao {
             List<UserConfirmation> resultList = entityManager
                     .createQuery("select c from UserConfirmation c where c.date < :date")
                     .setParameter("date", date).getResultList();
+            System.out.println(resultList.size());
             for (UserConfirmation userConfirmation : resultList) {
                 entityManager.remove(userConfirmation);
             }
