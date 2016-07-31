@@ -23,7 +23,7 @@ public class MailSenderService extends Thread {
 
     private final static MailSenderService MAIL_SENDER_SERVICE = new MailSenderService();
     private final static ConcurrentLinkedQueue<CustomMessage> QUEUE = new ConcurrentLinkedQueue<>();
-    private final static long INITIAL_DELAY = 60000;
+    private final static long INITIAL_DELAY = 10000;
     private final static long SEND_INTERVAL = 70000;
 
     private MailSenderService() {}
@@ -36,6 +36,11 @@ public class MailSenderService extends Thread {
             e.printStackTrace();
         }
         while (!isInterrupted()) {
+            try {
+                Thread.sleep(SEND_INTERVAL);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             if (!QUEUE.isEmpty()) {
                 CustomMessage message = QUEUE.peek();
                 MimeMessagePreparator preparator = getMessagePreparator(message);
@@ -46,11 +51,6 @@ public class MailSenderService extends Thread {
                 } catch (MailException ex) {
                     System.out.println(ex.getMessage());
                 }
-            }
-            try {
-                Thread.sleep(SEND_INTERVAL);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
             }
         }
     }

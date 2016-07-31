@@ -26,10 +26,8 @@ public class ConfirmationCleanUpService extends Thread {
         }
         while (!isInterrupted()) {
             try {
-                Thread.sleep(1000);//dfg
-                System.out.println(registrationDao);
-                registrationDao.deleteByDateOlderThen(System.currentTimeMillis() - CLEANUP_AFTER);
                 Thread.sleep(CHECK_INTERVAL);
+                registrationDao.deleteByDateOlderThen(System.currentTimeMillis() - CLEANUP_AFTER);
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
