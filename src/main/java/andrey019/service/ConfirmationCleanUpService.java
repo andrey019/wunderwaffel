@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 
 public class ConfirmationCleanUpService extends Thread {
 
-    private static ConfirmationCleanUpService CONFIRMATION_CLEAN_UP_SERVICE = new ConfirmationCleanUpService();
+    private final static ConfirmationCleanUpService CONFIRMATION_CLEAN_UP_SERVICE = new ConfirmationCleanUpService();
     private final static long INITIAL_DELAY = 10000;
     private final static long CLEANUP_AFTER = 86400000;
     private final static long CHECK_INTERVAL = 3600000;
