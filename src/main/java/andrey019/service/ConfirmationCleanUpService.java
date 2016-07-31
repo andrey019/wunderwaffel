@@ -3,6 +3,7 @@ package andrey019.service;
 
 import andrey019.dao.RegistrationDao;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 
 public class ConfirmationCleanUpService extends Thread {
 
@@ -12,6 +13,7 @@ public class ConfirmationCleanUpService extends Thread {
     private final static long CHECK_INTERVAL = 3600000;
 
     @Autowired
+    @Qualifier("registrationDao")
     private RegistrationDao registrationDao;
 
     private ConfirmationCleanUpService() {}
