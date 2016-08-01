@@ -49,6 +49,8 @@
                     data[csrfParameter] = csrfToken;
                     data["name"] = $("#name").val();
 
+                    var headers = {}
+                    headers[csrfHeader] = csrfToken;
 
                     $("#btn-save").prop("disabled", true);
 
@@ -56,6 +58,7 @@
                         type: "POST",
                         contentType: "application/json",
                         url: "/user/test",
+                        headers: headers,
                         data: JSON.stringify(data),
                         dataType: 'json',
                         timeout: 600000,
