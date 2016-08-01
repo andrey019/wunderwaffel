@@ -28,6 +28,6 @@ public class UserController {
         userConfirmation.setCode("codeset");
         userConfirmation.setPassword("passset");
         userConfirmation.setEmail("emailset");
-        return "json_test";
+        return "json_test";//h
     }
 }
