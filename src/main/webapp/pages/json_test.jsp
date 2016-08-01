@@ -57,11 +57,12 @@
 
                     $.ajax({
                         type: "POST",
-//                        contentType: "application/json",
+                        X_CSRF_TOKEN: csrfToken.val(),
+                        contentType: "application/json",
                         url: "/user/test",
-                        headers: headers,
+//                        headers: headers,
                         data: JSON.stringify(data),
-//                        dataType: 'json',
+                        dataType: 'json',
                         timeout: 600000,
                         success: function (data) {
                             $("#result").html(data);
