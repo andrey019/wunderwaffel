@@ -1,7 +1,7 @@
-package andrey019.service;
+package andrey019.service.dao;
 
 
-import andrey019.model.UserConfirmation;
+import andrey019.model.dao.UserConfirmation;
 
 public interface RegistrationService {
 

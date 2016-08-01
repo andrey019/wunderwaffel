@@ -1,9 +1,7 @@
 package andrey019.dao;
 
-import andrey019.model.User;
-import org.springframework.beans.factory.annotation.Autowired;
+import andrey019.model.dao.User;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;

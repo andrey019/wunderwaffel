@@ -1,4 +1,4 @@
-package andrey019.model;
+package andrey019.model.dao;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

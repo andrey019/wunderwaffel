@@ -1,6 +1,6 @@
-package andrey019.service;
+package andrey019.service.dao;
 
-import andrey019.model.User;
+import andrey019.model.dao.User;
 
 public interface UserService {
 

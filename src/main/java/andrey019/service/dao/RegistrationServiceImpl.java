@@ -1,17 +1,15 @@
-package andrey019.service;
+package andrey019.service.dao;
 
 
 import andrey019.dao.RegistrationDao;
 import andrey019.dao.UserDao;
-import andrey019.model.User;
-import andrey019.model.UserConfirmation;
+import andrey019.model.dao.User;
+import andrey019.model.dao.UserConfirmation;
+import andrey019.service.MailService;
 import org.apache.commons.validator.routines.EmailValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import javax.mail.internet.AddressException;
-import javax.mail.internet.InternetAddress;
 
 @Service("registrationService")
 public class RegistrationServiceImpl implements RegistrationService {

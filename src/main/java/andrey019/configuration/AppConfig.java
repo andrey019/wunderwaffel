@@ -1,24 +1,12 @@
 package andrey019.configuration;
 
 //import org.hibernate.SessionFactory;
-import andrey019.service.ConfirmationCleanUpService;
-import andrey019.service.MailSenderService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.embedded.FilterRegistrationBean;
-import org.springframework.context.MessageSource;
+import andrey019.service.maintenance.ConfirmationCleanUpService;
+import andrey019.service.maintenance.MailSenderService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.support.ReloadableResourceBundleMessageSource;
-import org.springframework.core.env.Environment;
-import org.springframework.http.MediaType;
-import org.springframework.http.converter.HttpMessageConverter;
-import org.springframework.http.converter.StringHttpMessageConverter;
-import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
-import org.springframework.web.filter.CharacterEncodingFilter;
-import org.springframework.web.multipart.commons.CommonsMultipartResolver;
-import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
@@ -26,14 +14,6 @@ import org.springframework.web.servlet.view.JstlView;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
 
 import javax.annotation.PostConstruct;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import javax.persistence.PersistenceContext;
-import javax.sql.DataSource;
-import java.nio.charset.Charset;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Properties;
 
 //import org.hibernate.cfg.Configuration;
@@ -74,7 +54,7 @@ public class AppConfig extends WebMvcConfigurerAdapter {
 //    }
 
     @PostConstruct
-    private void mailSenderServiceInit() {
+    private void servicesInit() {
         MailSenderService.getInstance().start();
         ConfirmationCleanUpService.getInstance().start();
     }

@@ -1,4 +1,4 @@
-package andrey019.service;
+package andrey019.service.maintenance;
 
 
 public interface LogService {

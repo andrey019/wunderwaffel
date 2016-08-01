@@ -1,6 +1,6 @@
 package andrey019.dao;
 
-import andrey019.model.UserConfirmation;
+import andrey019.model.dao.UserConfirmation;
 
 import java.util.List;
 

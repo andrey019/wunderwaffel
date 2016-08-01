@@ -1,9 +1,8 @@
 package andrey019.dao;
 
 
-import andrey019.model.UserConfirmation;
+import andrey019.model.dao.UserConfirmation;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;

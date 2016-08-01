@@ -14,6 +14,7 @@ asdgasdgadgagfd ывпфывдлфоывфыовжf<br>
 <br>
 <a href="ololo">ololo</a><br>
 <a href="user/ololo">user/ololo</a><br>
+<a href="user/json">json test</a><br>
 <a href="admin">adminka</a><br>
 <a href="rest">rest adminka</a><br>
 <a href="auth/access_denied">access dedied</a><br>

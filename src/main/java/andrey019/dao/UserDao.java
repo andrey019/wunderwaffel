@@ -1,6 +1,6 @@
 package andrey019.dao;
 
-import andrey019.model.User;
+import andrey019.model.dao.User;
 
 public interface UserDao {
 

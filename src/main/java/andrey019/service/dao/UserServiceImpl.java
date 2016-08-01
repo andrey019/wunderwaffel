@@ -1,7 +1,7 @@
-package andrey019.service;
+package andrey019.service.dao;
 
 import andrey019.dao.UserDao;
-import andrey019.model.User;
+import andrey019.model.dao.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
