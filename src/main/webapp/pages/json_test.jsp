@@ -9,12 +9,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <link rel="shortcut icon" href="/resources/bootstrap/favicon.ico" type="image\x-icon" />
-    <link rel="icon" href="/resources/favicon.ico" type="image\x-icon" />
+    <link rel="shortcut icon" href="/resources/images/favicon.ico" type="image\x-icon" />
+    <link rel="icon" href="/resources/images/favicon.ico" type="image\x-icon" />
     <link href="/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="shortcut icon" href="<c:url value="/resources/favicon.png"/>" type="image\png" />
-    <link rel="icon" href="<c:url value="/resources/favicon.png"/>" type="image\png" />
-    <link href="<c:url value="/resources/bootstrap/css/bootstrap.min.css"/>" rel="stylesheet">
+    <%--<link rel="shortcut icon" href="<c:url value="/resources/favicon.png"/>" type="image\png" />--%>
+    <%--<link rel="icon" href="<c:url value="/resources/favicon.png"/>" type="image\png" />--%>
+    <%--<link href="<c:url value="/resources/bootstrap/css/bootstrap.min.css"/>" rel="stylesheet">--%>
     <title>json test</title>
 </head>
 <body>

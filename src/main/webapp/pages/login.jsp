@@ -2,8 +2,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <link rel="shortcut icon" href="/resources/favicon.ico" type="image\x-icon" />
-    <link rel="icon" href="/resources/favicon.ico" type="image\x-icon" />
+    <link rel="shortcut icon" href="/resources/images/favicon.ico" type="image\x-icon" />
+    <link rel="icon" href="/resources/images/favicon.ico" type="image\x-icon" />
     <title>login</title>
 </head>
 <body>
