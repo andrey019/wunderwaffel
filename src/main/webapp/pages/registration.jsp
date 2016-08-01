@@ -7,6 +7,7 @@
 <head>
     <link rel="shortcut icon" href="/resources/favicon.ico" type="image\x-icon" />
     <link rel="icon" href="/resources/favicon.ico" type="image\x-icon" />
+
     <title>registration</title>
     <meta charset="utf-8">
     <meta http-equiv="content-type" content="application/xhtml+xml; charset=UTF-8" />
