@@ -51,7 +51,7 @@ public class MainController {
 	@RequestMapping("/favicon.ico")
     public String favicon() {
         logService.accessToPage("favicon.ico");
-        return "forward:/resources/favicon.ico";
+        return "forward:/resources/favicon.png";
     }
 
     @RequestMapping("/ololo")
