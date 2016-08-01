@@ -71,7 +71,7 @@
                             request.setRequestHeader(csrfHeader, csrfToken);
                         },
                         url: "/user/test",
-                        data: JSON.stringify(data),
+                        data: "json=" + escape(JSON.stringify(data)),
                         processData: false,
                         success: function (data) {
                             $("#result").html(data);
