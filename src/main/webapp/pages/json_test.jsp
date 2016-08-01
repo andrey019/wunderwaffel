@@ -57,7 +57,7 @@
 
                     $.ajax({
                         type: "POST",
-                        X_CSRF_TOKEN: csrfToken.val(),
+                        X_CSRF_TOKEN: csrfToken,
                         contentType: "application/json",
                         url: "/user/test",
 //                        headers: headers,
