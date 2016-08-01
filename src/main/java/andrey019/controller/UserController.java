@@ -2,9 +2,12 @@ package andrey019.controller;
 
 import andrey019.model.dao.UserConfirmation;
 import andrey019.service.maintenance.LogService;
+import com.mchange.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
@@ -29,5 +32,12 @@ public class UserController {
         userConfirmation.setPassword("passset");
         userConfirmation.setEmail("emailset");
         return "json_test";//h
+    }
+
+    @RequestMapping(value = "/test", method = RequestMethod.POST)
+    @ResponseBody
+    public String test(@RequestParam String name) {
+        System.out.println("!!! " + name + " !!!");
+        return name + "ololo";
     }
 }

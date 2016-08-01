@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%--
   Created by IntelliJ IDEA.
   User: andrey
@@ -12,9 +13,11 @@
     <link rel="shortcut icon" href="/resources/images/favicon.ico" type="image\x-icon" />
     <link rel="icon" href="/resources/images/favicon.ico" type="image\x-icon" />
     <link href="/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <script type="text/javascript" src="/resources/js/jquery-3.1.0.min.js"></script>
     <%--<link rel="shortcut icon" href="<c:url value="/resources/favicon.png"/>" type="image\png" />--%>
     <%--<link rel="icon" href="<c:url value="/resources/favicon.png"/>" type="image\png" />--%>
     <%--<link href="<c:url value="/resources/bootstrap/css/bootstrap.min.css"/>" rel="stylesheet">--%>
+    <sec:csrfMetaTags />
     <title>json test</title>
 </head>
 <body>
@@ -26,7 +29,48 @@
     <button type="button" class="list-group-item">Vestibulum at eros</button>
 </div>
 
+<button type="button" value="ololo" name="btn-save" title="btn-save" id="btn-save">sfdsd</button>
 
-<div id="result" style="alignment: left; background-color: #31708f;"/>
+<div id="result" style="alignment: left; background-color: #31708f;"></div>
+
+
+
+    <script type="text/javascript" language="javascript">
+    jQuery(document).ready(
+            function($) {
+
+                $("#btn-save").click(function(event) {
+
+                    var csrfParameter = $("meta[name='_csrf_parameter']").attr("content");
+                    var csrfHeader = $("meta[name='_csrf_header']").attr("content");
+                    var csrfToken = $("meta[name='_csrf']").attr("content");
+
+                    var data = {}
+                    data[csrfParameter] = csrfToken;
+                    data["name"] = $("#name").val();
+
+
+                    $("#btn-save").prop("disabled", true);
+
+                    $.ajax({
+                        type: "POST",
+                        contentType: "application/json",
+                        url: "/user/test",
+                        data: JSON.stringify(data),
+                        dataType: 'json',
+                        timeout: 600000,
+                        success: function (data) {
+                            $("#result").html(data);
+                        },
+                        error: function (e) {
+                            alert(e);
+                        }
+                    });
+
+
+                });
+
+            });
+</script>
 </body>
 </html>
