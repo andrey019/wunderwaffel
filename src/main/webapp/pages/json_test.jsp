@@ -44,6 +44,7 @@
                     var csrfParameter = $("meta[name='_csrf_parameter']").attr("content");
                     var csrfHeader = $("meta[name='_csrf_header']").attr("content");
                     var csrfToken = $("meta[name='_csrf']").attr("content");
+                    var token = $("input[name='_csrf']").val();
 
                     var data = {}
 //                    data[csrfParameter] = csrfToken;
@@ -57,7 +58,7 @@
 
                     $.ajax({
                         type: "POST",
-                        X_CSRF_TOKEN: csrfToken,
+                        X_CSRF_TOKEN: token,
                         contentType: "application/json",
                         url: "/user/test",
 //                        headers: headers,
