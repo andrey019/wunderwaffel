@@ -12,6 +12,9 @@
     <link rel="shortcut icon" href="/resources/favicon.ico" type="image\x-icon" />
     <link rel="icon" href="/resources/favicon.ico" type="image\x-icon" />
     <link href="/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="shortcut icon" href="<c:url value="/resources/favicon.ico"/>" type="image\x-icon" />
+    <link rel="icon" href="<c:url value="/resources/favicon.ico"/>" type="image\x-icon" />
+    <link href="<c:url value="/resources/bootstrap/css/bootstrap.min.css"/>" rel="stylesheet">
     <title>json test</title>
 </head>
 <body>
