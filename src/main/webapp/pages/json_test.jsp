@@ -57,14 +57,22 @@
                     $("#btn-save").prop("disabled", true);
 
                     $.ajax({
-                        type: "POST",
-                        X_CSRF_TOKEN: token,
-                        contentType: "application/json",
+//                        type: "POST",
+//                        X_CSRF_TOKEN: token,
+//                        contentType: "application/json",
+//                        url: "/user/test",
+////                        headers: headers,
+//                        data: JSON.stringify(data),
+//                        dataType: 'json',
+//                        timeout: 600000,
+                        type:"POST",
+                        beforeSend: function (request)
+                        {
+                            request.setRequestHeader(csrfHeader, csrfToken);
+                        },
                         url: "/user/test",
-//                        headers: headers,
                         data: JSON.stringify(data),
-                        dataType: 'json',
-                        timeout: 600000,
+                        processData: false,
                         success: function (data) {
                             $("#result").html(data);
                         },
