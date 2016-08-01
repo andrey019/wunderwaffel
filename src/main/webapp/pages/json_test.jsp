@@ -46,8 +46,8 @@
                     var csrfToken = $("meta[name='_csrf']").attr("content");
 
                     var data = {}
-                    data[csrfParameter] = csrfToken;
-                    data["name"] = $("#name").val();
+//                    data[csrfParameter] = csrfToken;
+                    data["name"] = "amelolo";
 
                     var headers = {}
                     headers[csrfHeader] = csrfToken;
@@ -61,13 +61,13 @@
                         url: "/user/test",
                         headers: headers,
                         data: JSON.stringify(data),
-                        dataType: 'json',
+//                        dataType: 'json',
                         timeout: 600000,
                         success: function (data) {
                             $("#result").html(data);
                         },
                         error: function (e) {
-                            alert(e.toString());
+                            alert(e);
                         }
                     });
 
