@@ -33,6 +33,7 @@
 
 <div id="result" style="alignment: left; background-color: #31708f;"></div>
 
+<input type="hidden" id="csrftoken_" name="${_csrf.parameterName}" value="${_csrf.token}" />
 
 
     <script type="text/javascript" language="javascript">
@@ -56,7 +57,15 @@
 
                     $("#btn-save").prop("disabled", true);
 
-                    $.ajax({
+                    var csrftoken = $("#csrftoken_").clone();
+
+                    $('<form target="_blank" action="/user/test" method="post"></form>')
+                            .append(data)
+                            .append(csrftoken)
+                            .appendTo('body')
+                            .submit()
+                            .remove();
+//                    $.ajax({
 //                        type: "POST",
 //                        X_CSRF_TOKEN: token,
 //                        contentType: "application/json",
@@ -65,21 +74,21 @@
 //                        data: JSON.stringify(data),
 //                        dataType: 'json',
 //                        timeout: 600000,
-                        type:"POST",
-                        beforeSend: function (request)
-                        {
-                            request.setRequestHeader(csrfHeader, csrfToken);
-                        },
-                        url: "/user/test",
-                        data: "json=" + escape(JSON.stringify(data)),
-                        processData: false,
-                        success: function (data) {
-                            $("#result").html(data);
-                        },
-                        error: function (e) {
-                            alert(e);
-                        }
-                    });
+//                        type:"POST",
+//                        beforeSend: function (request)
+//                        {
+//                            request.setRequestHeader(csrfHeader, csrfToken);
+//                        },
+//                        url: "/user/test",
+//                        data: "json=" + escape(JSON.stringify(data)),
+//                        processData: false,
+//                        success: function (data) {
+//                            $("#result").html(data);
+//                        },
+//                        error: function (e) {
+//                            alert(e);
+//                        }
+//                    });
 
 
                 });
