@@ -25,5 +25,8 @@
     <button type="button" class="list-group-item">Porta ac consectetur ac</button>
     <button type="button" class="list-group-item">Vestibulum at eros</button>
 </div>
+
+
+<div id="result" style="alignment: left; background-color: #31708f;"/>
 </body>
 </html>
