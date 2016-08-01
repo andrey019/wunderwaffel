@@ -22,12 +22,12 @@ public class UserController {
     }
 
     @RequestMapping("/json")
-    public @ResponseBody UserConfirmation tesingJson() {
+    public @ResponseBody String tesingJson() {
         UserConfirmation userConfirmation = new UserConfirmation();
         userConfirmation.setDate(564354);
         userConfirmation.setCode("codeset");
         userConfirmation.setPassword("passset");
         userConfirmation.setEmail("emailset");
-        return userConfirmation;
+        return "<b>sfasfa</b>safsdfasdfa <div/>";
     }
 }
