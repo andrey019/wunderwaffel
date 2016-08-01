@@ -51,12 +51,13 @@
 
                     var headers = {}
                     headers[csrfHeader] = csrfToken;
+                    headers["contentType"] = "application/json";
 
                     $("#btn-save").prop("disabled", true);
 
                     $.ajax({
                         type: "POST",
-                        contentType: "application/json",
+//                        contentType: "application/json",
                         url: "/user/test",
                         headers: headers,
                         data: JSON.stringify(data),
@@ -66,7 +67,7 @@
                             $("#result").html(data);
                         },
                         error: function (e) {
-                            alert(e);
+                            alert(e.toString);
                         }
                     });
 
