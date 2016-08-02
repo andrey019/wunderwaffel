@@ -6,10 +6,7 @@ import andrey019.service.maintenance.LogService;
 import com.mchange.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/user/")
@@ -37,7 +34,7 @@ public class UserController {
 
     @RequestMapping(value = "/test", method = RequestMethod.POST, headers = {"Content-type=application/json"})
     @ResponseBody
-    public String test(@RequestParam JsonModel jsonModel) {
+    public String test(@RequestBody JsonModel jsonModel) {
         System.out.println("!!!  !!!");
         System.out.println(jsonModel);
         return "ololo";//sdf
