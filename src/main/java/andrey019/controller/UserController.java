@@ -32,7 +32,7 @@ public class UserController {
         return "json_test";//h
     }
 
-    @RequestMapping(value = "/test", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")//, headers = {"Content-type=application/json"})
+    @RequestMapping(value = "/test", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
     @ResponseBody
     public String test(@RequestBody JsonModel jsonModel) {
         System.out.println("!!!  !!!");
