@@ -36,8 +36,8 @@ public class UserController {
 
     @RequestMapping(value = "/test", method = RequestMethod.POST, headers = {"Content-type=application/json"})
     @ResponseBody
-    public String test(@RequestParam String name) {
-        System.out.println("!!! "+ name +" !!!");
+    public String test() {
+        System.out.println("!!!  !!!");
         return "ololo";//sdf
     }
 }
