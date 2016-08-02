@@ -59,41 +59,63 @@
 
                     var csrftoken = $("#csrftoken_").clone();
 
-                    $('<form target="_blank" action="/user/test" method="post"></form>')
-                            .append(data)
-                            .append(csrftoken)
-                            .appendTo('body')
-                            .submit()
-                            .remove();
-//                    $.ajax({
-//                        type: "POST",
-//                        X_CSRF_TOKEN: token,
-//                        contentType: "application/json",
-//                        url: "/user/test",
-////                        headers: headers,
-//                        data: JSON.stringify(data),
-//                        dataType: 'json',
-//                        timeout: 600000,
-//                        type:"POST",
-//                        beforeSend: function (request)
-//                        {
-//                            request.setRequestHeader(csrfHeader, csrfToken);
-//                        },
-//                        url: "/user/test",
-//                        data: "json=" + escape(JSON.stringify(data)),
-//                        processData: false,
-//                        success: function (data) {
-//                            $("#result").html(data);
-//                        },
-//                        error: function (e) {
-//                            alert(e);
-//                        }
-//                    });
+
+                    $(function () {
+                        var token = $("input[name='_csrf']").val();
+                        var header = "X-CSRF-TOKEN";
+                        $(document).ajaxSend(function(e, xhr, options) {
+                            xhr.setRequestHeader(header, token);
+                        });
+                    });
+
+                    $.ajax({
+                        url: "/user/test",
+                        type: "POST",
+                        success:function(response) {
+                            alert(response);
+                        },
+                        error: function (e) {
+                            alert(e);
+                        }
+                    });
 
 
+//                    $('<form target="_blank" action="/user/test" method="post"></form>')
+//                            .append(data)
+//                            .append(csrftoken)
+//                            .appendTo('body')
+//                            .submit()
+//                            .remove();
+//
                 });
 
             });
 </script>
 </body>
 </html>
+
+
+<%--//                    $.ajax({--%>
+<%--//                        type: "POST",--%>
+<%--//                        X_CSRF_TOKEN: token,--%>
+<%--//                        contentType: "application/json",--%>
+<%--//                        url: "/user/test",--%>
+<%--////                        headers: headers,--%>
+<%--//                        data: JSON.stringify(data),--%>
+<%--//                        dataType: 'json',--%>
+<%--//                        timeout: 600000,--%>
+<%--//                        type:"POST",--%>
+<%--//                        beforeSend: function (request)--%>
+<%--//                        {--%>
+<%--//                            request.setRequestHeader(csrfHeader, csrfToken);--%>
+<%--//                        },--%>
+<%--//                        url: "/user/test",--%>
+<%--//                        data: "json=" + escape(JSON.stringify(data)),--%>
+<%--//                        processData: false,--%>
+<%--//                        success: function (data) {--%>
+<%--//                            $("#result").html(data);--%>
+<%--//                        },--%>
+<%--//                        error: function (e) {--%>
+<%--//                            alert(e);--%>
+<%--//                        }--%>
+<%--//                    });--%>
