@@ -67,7 +67,7 @@
 
                     $.ajax({
                         data: {},
-                        headers: {"contentType": "application/json"},
+                        headers: {},
                         timeout: 10000,
                         type: "POST",
                         url: "/user/test",
