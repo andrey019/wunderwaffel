@@ -39,7 +39,7 @@ public class UserController {
     public String test(@RequestBody JsonModel jsonModel) {
         System.out.println("!!!  !!!");
         System.out.println(jsonModel);
-        return jsonModel.getName() + " = " + getPrincipal();//sdf
+        return jsonModel.getName() + " = " + getPrincipal() + "<button type=\"button\" onclick=\"oneMore()\">json button</button>";//sdf
     }
 
     private String getPrincipal(){

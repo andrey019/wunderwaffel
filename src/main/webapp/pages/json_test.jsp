@@ -32,111 +32,111 @@
 
 <div id="result" style="alignment: left; background-color: #31708f;"></div>
 
-<input type="hidden" id="csrftoken_" name="${_csrf.parameterName}" value="${_csrf.token}" />
+<%--<input type="hidden" id="csrftoken_" name="${_csrf.parameterName}" value="${_csrf.token}" />--%>
 
 
-    <script type="text/javascript" language="javascript">
-    jQuery(document).ready(
-            function($) {
+    <%--<script type="text/javascript" language="javascript">--%>
+    <%--jQuery(document).ready(--%>
+            <%--function($) {--%>
 
-                $("#btn-save").click(function(event) {
+                <%--$("#btn-save").click(function(event) {--%>
 
-                    var csrfParameter = $("meta[name='_csrf_parameter']").attr("content");
-                    var csrfHeader = $("meta[name='_csrf_header']").attr("content");
-                    var csrfToken = $("meta[name='_csrf']").attr("content");
-                    //var token = $("input[name='_csrf']").val();
+                    <%--var csrfParameter = $("meta[name='_csrf_parameter']").attr("content");--%>
+                    <%--var csrfHeader = $("meta[name='_csrf_header']").attr("content");--%>
+                    <%--var csrfToken = $("meta[name='_csrf']").attr("content");--%>
+                    <%--//var token = $("input[name='_csrf']").val();--%>
 
-                    //var data = {}
-//                    data[csrfParameter] = csrfToken;
-                    //data["name"] = "amelolo";
+                    <%--//var data = {}--%>
+<%--//                    data[csrfParameter] = csrfToken;--%>
+                    <%--//data["name"] = "amelolo";--%>
 
-                    var headers = {};
-                    headers[csrfHeader] = csrfToken;
-                    headers["contentType"] = "application/json";
+                    <%--var headers = {};--%>
+                    <%--headers[csrfHeader] = csrfToken;--%>
+                    <%--headers["contentType"] = "application/json";--%>
 
-                    $("#btn-save").prop("disabled", true);
+                    <%--$("#btn-save").prop("disabled", true);--%>
 
-                    var csrftoken = $("#csrftoken_").clone();
+                    <%--var csrftoken = $("#csrftoken_").clone();--%>
 
-//                    $.ajaxPrefilter(function(options, originalOptions, jqXHR) {
-//                        var token = $("meta[name='_csrf']").attr("content");
-//                        var header = $("meta[name='_csrf_header']").attr("content");
-//                        jqXHR.setRequestHeader(header, token);
-//                    });
+<%--//                    $.ajaxPrefilter(function(options, originalOptions, jqXHR) {--%>
+<%--//                        var token = $("meta[name='_csrf']").attr("content");--%>
+<%--//                        var header = $("meta[name='_csrf_header']").attr("content");--%>
+<%--//                        jqXHR.setRequestHeader(header, token);--%>
+<%--//                    });--%>
 
-                    $.ajax({
-                        data: {},
-                        headers: {},
-                        timeout: 10000,
-                        type: "POST",
-                        url: "/user/test",
-                        success: function (data) {
-                            $("#result").html(data);
-                        },
-                        error: function (e) {
-                            alert(e);
-                        }
-                    });
+                    <%--$.ajax({--%>
+                        <%--data: {},--%>
+                        <%--headers: {},--%>
+                        <%--timeout: 10000,--%>
+                        <%--type: "POST",--%>
+                        <%--url: "/user/test",--%>
+                        <%--success: function (data) {--%>
+                            <%--$("#result").html(data);--%>
+                        <%--},--%>
+                        <%--error: function (e) {--%>
+                            <%--alert(e);--%>
+                        <%--}--%>
+                    <%--});--%>
 
 
 
-//                    $('<form target="_blank" action="/user/test" method="post"></form>')
-//                            .append(data)
-//                            .append(csrftoken)
-//                            .appendTo('body')
-//                            .submit()
-//                            .remove();
-//
-                });
+<%--//                    $('<form target="_blank" action="/user/test" method="post"></form>')--%>
+<%--//                            .append(data)--%>
+<%--//                            .append(csrftoken)--%>
+<%--//                            .appendTo('body')--%>
+<%--//                            .submit()--%>
+<%--//                            .remove();--%>
+<%--//--%>
+                <%--});--%>
 
-            });
-</script>
+            <%--});--%>
+<%--</script>--%>
 
-<script type="text/javascript" language="javascript">
-    function loadDoc() {
-//        var csrfHeader = $("meta[name='_csrf_header']").attr("content");
-//        var csrfToken = $("meta[name='_csrf']").attr("content");
-        var search = {
-            "name" : "bhanu",
-            "lName" :"prasad"
-        };
-        var data = {}
-        data["name"] = "amelolo";
-        data["lara"] = "lolo";
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function() {
-            if (xhttp.readyState == 4 && xhttp.status == 200) {
-                document.getElementById("result").innerHTML = xhttp.responseText;
-            }
-        };
-        xhttp.open("POST", "/user/test", true);
-//        xhttp.setRequestHeader(csrfHeader, csrfToken);
-        xhttp.setRequestHeader("Content-type", "application/json");
-        xhttp.dataType("json");
-        xhttp.data(JSON.stringify(data));
-        xhttp.setData();
-        xhttp.send();
-    }
-</script>
+<%--<script type="text/javascript" language="javascript">--%>
+    <%--function loadDoc() {--%>
+<%--//        var csrfHeader = $("meta[name='_csrf_header']").attr("content");--%>
+<%--//        var csrfToken = $("meta[name='_csrf']").attr("content");--%>
+        <%--var search = {--%>
+            <%--"name" : "bhanu",--%>
+            <%--"lName" :"prasad"--%>
+        <%--};--%>
+        <%--var data = {}--%>
+        <%--data["name"] = "amelolo";--%>
+        <%--data["lara"] = "lolo";--%>
+        <%--var xhttp = new XMLHttpRequest();--%>
+        <%--xhttp.onreadystatechange = function() {--%>
+            <%--if (xhttp.readyState == 4 && xhttp.status == 200) {--%>
+                <%--document.getElementById("result").innerHTML = xhttp.responseText;--%>
+            <%--}--%>
+        <%--};--%>
+        <%--xhttp.open("POST", "/user/test", true);--%>
+<%--//        xhttp.setRequestHeader(csrfHeader, csrfToken);--%>
+        <%--xhttp.setRequestHeader("Content-type", "application/json");--%>
+        <%--xhttp.dataType("json");--%>
+        <%--xhttp.data(JSON.stringify(data));--%>
+        <%--xhttp.setData();--%>
+        <%--xhttp.send();--%>
+    <%--}--%>
+<%--</script>--%>
 
-<script type="text/javascript" language="javascript">
-    function searchText() {
-        var search = {
-            "pName": "bhanu",
-            "lName": "prasad"
-        }
-        $.ajax({
-            type: "POST",
-            contentType: 'application/json; charset=utf-8',
-            dataType: 'json',
-            url: "/user/test",
-            data: JSON.stringify(search), // Note it is important
-            success: function (result) {
-                document.getElementById("result").innerHTML = result;
-            }
-        });
-    }
-</script>
+<%--<script type="text/javascript" language="javascript">--%>
+    <%--function searchText() {--%>
+        <%--var search = {--%>
+            <%--"pName": "bhanu",--%>
+            <%--"lName": "prasad"--%>
+        <%--}--%>
+        <%--$.ajax({--%>
+            <%--type: "POST",--%>
+            <%--contentType: 'application/json; charset=utf-8',--%>
+            <%--dataType: 'json',--%>
+            <%--url: "/user/test",--%>
+            <%--data: JSON.stringify(search), // Note it is important--%>
+            <%--success: function (result) {--%>
+                <%--document.getElementById("result").innerHTML = result;--%>
+            <%--}--%>
+        <%--});--%>
+    <%--}--%>
+<%--</script>--%>
 
 
 <script type="text/javascript" language="javascript">
@@ -147,10 +147,10 @@
         var headers = {};
         headers[csrfHeader] = csrfToken;
 
-        var search = {
-            "id": 125,
-            "name": "prasadio"
-        };
+//        var search = {
+//            "id": 125,
+//            "name": "prasadio"
+//        };
 
         $.ajax({
             type: "POST",
