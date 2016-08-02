@@ -37,6 +37,6 @@ public class UserController {
     public String test(@RequestBody JsonModel jsonModel) {
         System.out.println("!!!  !!!");
         System.out.println(jsonModel);
-        return "ololo";//sdf
+        return jsonModel.getName();//sdf
     }
 }

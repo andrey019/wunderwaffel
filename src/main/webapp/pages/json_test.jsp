@@ -158,11 +158,11 @@
         $.ajax({
             type: "POST",
             url: "/user/test",
-            data: JSON.stringify({id: 20, name: "Sydney"}),
+            data: JSON.stringify({id: 20, name: "фыва ололошка"}),
             //dataType: 'json',
             //data: JSON.stringify(search),
             contentType: 'application/json',
-            //headers: headers,
+            headers: headers,
             success: function (data) {
 //                $("#result").html(data);
                 document.getElementById("result").innerHTML = data;
