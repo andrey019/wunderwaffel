@@ -51,9 +51,9 @@
 //                    data[csrfParameter] = csrfToken;
                     //data["name"] = "amelolo";
 
-//                    var headers = {}
-//                    headers[csrfHeader] = csrfToken;
-//                    headers["contentType"] = "application/json";
+                    var headers = {};
+                    headers[csrfHeader] = csrfToken;
+                    headers["contentType"] = "application/json";
 
                     $("#btn-save").prop("disabled", true);
 
@@ -61,8 +61,9 @@
 
 
                     $.ajax({
+                        cache: false,
                         data: {},
-                        headers: {csrfHeader: csrfToken},
+                        headers: headers,
                         timeout: 10000,
                         type: "POST",
                         url: "/user/test",
