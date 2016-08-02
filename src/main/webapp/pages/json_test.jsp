@@ -59,11 +59,11 @@
 
                     var csrftoken = $("#csrftoken_").clone();
 
-                    $.ajaxPrefilter(function(options, originalOptions, jqXHR) {
-                        var token = $("meta[name='_csrf']").attr("content");
-                        var header = $("meta[name='_csrf_header']").attr("content");
-                        jqXHR.setRequestHeader(header, token);
-                    });
+//                    $.ajaxPrefilter(function(options, originalOptions, jqXHR) {
+//                        var token = $("meta[name='_csrf']").attr("content");
+//                        var header = $("meta[name='_csrf_header']").attr("content");
+//                        jqXHR.setRequestHeader(header, token);
+//                    });
 
                     $.ajax({
                         data: {},
