@@ -62,10 +62,10 @@
 
                     $.ajax({
                         data: {},
-                        headers: {'X-CSRF-TOKEN': csrfToken},
+                        headers: {csrfHeader: csrfToken},
                         timeout: 10000,
-                        type: 'POST',
-                        url: '/user/test',
+                        type: "POST",
+                        url: "/user/test",
                         success: function (data) {
                             $("#result").html(data);
                         },
