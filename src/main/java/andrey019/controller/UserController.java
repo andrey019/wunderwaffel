@@ -5,6 +5,8 @@ import andrey019.model.dao.UserConfirmation;
 import andrey019.service.maintenance.LogService;
 import com.mchange.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -37,6 +39,17 @@ public class UserController {
     public String test(@RequestBody JsonModel jsonModel) {
         System.out.println("!!!  !!!");
         System.out.println(jsonModel);
-        return jsonModel.getName();//sdf
+        return jsonModel.getName() + " = " + getPrincipal();//sdf
+    }
+
+    private String getPrincipal(){
+        String userName = null;
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (principal instanceof UserDetails) {
+            userName = ((UserDetails)principal).getUsername();
+        } else {
+            userName = principal.toString();
+        }
+        return userName;
     }
 }
