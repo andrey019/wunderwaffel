@@ -111,7 +111,7 @@
         };
         xhttp.open("POST", "/user/test", true);
 //        xhttp.setRequestHeader(csrfHeader, csrfToken);
-        xhttp.setRequestHeader("Content-type", "application/json; charset=utf-8");
+        xhttp.setRequestHeader("Content-type", "application/json");
         xhttp.send(JSON.stringify(search));
     }
 </script>
