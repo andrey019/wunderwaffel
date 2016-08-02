@@ -31,6 +31,8 @@
 
 <button type="button" value="ololo" name="btn-save" title="btn-save" id="btn-save">sfdsd</button>
 
+<button type="button" onclick="loadDoc()">Request data</button>
+
 <div id="result" style="alignment: left; background-color: #31708f;"></div>
 
 <input type="hidden" id="csrftoken_" name="${_csrf.parameterName}" value="${_csrf.token}" />
