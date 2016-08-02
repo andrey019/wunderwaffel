@@ -67,8 +67,9 @@
                     });
 
                     $.ajax({
-                        url: "/user/test",
                         type: "POST",
+                        url: "/user/test",
+                        contentType: "application/json",
                         success:function(response) {
                             alert(response);
                         },
