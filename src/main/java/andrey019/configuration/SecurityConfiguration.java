@@ -66,7 +66,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and().formLogin().loginPage("/auth/login").loginProcessingUrl("/auth/login").successHandler(customSuccessHandler)
                 .usernameParameter("ssoId").passwordParameter("password")
                 .and().rememberMe().rememberMeParameter("remember-me").tokenRepository(persistentTokenRepository()).tokenValiditySeconds(86400)
-                .and().csrf()
+                //.and().csrf()
                 .and().exceptionHandling().accessDeniedPage("/auth/access_denied");
 
         CharacterEncodingFilter filter = new CharacterEncodingFilter();
