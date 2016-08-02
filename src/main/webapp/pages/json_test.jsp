@@ -31,7 +31,7 @@
 
 <button type="button" value="ololo" name="btn-save" title="btn-save" id="btn-save">sfdsd</button>
 
-<button type="button" onclick="loadDoc()">Request data</button>
+<button type="button" onclick="searchText()">Request data</button>
 
 <div id="result" style="alignment: left; background-color: #31708f;"></div>
 
