@@ -60,23 +60,18 @@
                     var csrftoken = $("#csrftoken_").clone();
 
 
-                    $.ajaxSetup({
-                        beforeSend: function(xhr, settings) {
-                            xhr.setRequestHeader(csrfHeader, csrfToken);
-                        }
-                    });
-
                     $.ajax({
-                        type: "POST",
-                        url: "/user/test",
-                        contentType: "application/json",
-                        success:function(response) {
-                            alert(response);
-                        },
-                        error: function (e) {
-                            alert(csrfHeader);
-                            alert(csrfToken);
-                        }
+                        data: {},
+                        headers: {'X-CSRF-TOKEN': csrfToken},
+                        timeout: 10000,
+                        type: 'POST',
+                        url: '/user/test'
+
+                    }).done(function(data, textStatus, jqXHR) {
+                        console.info("POST succeeded!!!");
+
+                    }).fail(function(jqXHR, textStatus, errorThrown) {
+                        console.error('Problems when posting...');
                     });
 
 
