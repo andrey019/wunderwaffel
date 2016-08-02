@@ -47,13 +47,13 @@
                     var csrfToken = $("meta[name='_csrf']").attr("content");
                     var token = $("input[name='_csrf']").val();
 
-                    var data = {}
+                    //var data = {}
 //                    data[csrfParameter] = csrfToken;
-                    data["name"] = "amelolo";
+                    //data["name"] = "amelolo";
 
-                    var headers = {}
-                    headers[csrfHeader] = csrfToken;
-                    headers["contentType"] = "application/json";
+//                    var headers = {}
+//                    headers[csrfHeader] = csrfToken;
+//                    headers["contentType"] = "application/json";
 
                     $("#btn-save").prop("disabled", true);
 
