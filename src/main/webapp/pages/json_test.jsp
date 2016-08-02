@@ -31,7 +31,7 @@
 
 <button type="button" value="ololo" name="btn-save" title="btn-save" id="btn-save">sfdsd</button>
 
-<button type="button" onclick="searchText()">Request data</button>
+<button type="button" onclick="oneMore()">Request data</button>
 
 <div id="result" style="alignment: left; background-color: #31708f;"></div>
 
@@ -140,6 +140,23 @@
         });
     }
 </script>
+
+
+<script type="text/javascript" language="javascript">
+    function oneMore() {
+        $.ajax({
+            type: "POST",
+            url: "/user/test",
+            data: JSON.stringify({name: "Gerry", age: 20, city: "Sydney"}),
+            contentType: 'application/json',
+            success: function (data) {
+                if (data.status == 'OK') alert('Person has been added');
+                else alert('Failed adding person: ' + data.status + ', ' + data.errorMessage);
+            }
+        });
+    }
+</script>
+
 </body>
 </html>
 

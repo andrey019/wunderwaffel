@@ -34,10 +34,10 @@ public class UserController {
         return "json_test";//h
     }
 
-    @RequestMapping(value = "/test", method = RequestMethod.POST)
+    @RequestMapping(value = "/test", method = RequestMethod.POST, headers = {"Content-type=application/json"})
     @ResponseBody
-    public String test(@RequestParam String name) {
-        System.out.println("!!! " + name + " !!!");
-        return name + "ololo";
+    public String test() {
+        System.out.println("!!!  !!!");
+        return "ololo";
     }
 }
