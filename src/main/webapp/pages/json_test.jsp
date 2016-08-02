@@ -150,7 +150,8 @@
             data: JSON.stringify({name: "Gerry", age: 20, city: "Sydney"}),
             contentType: 'application/json',
             success: function (data) {
-                $("#result").html(data);
+//                $("#result").html(data);
+                document.getElementById("result").innerHTML = data;
             },
             error: function (e) {
                 alert("fail");
