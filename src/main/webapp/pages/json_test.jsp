@@ -92,6 +92,20 @@
 
             });
 </script>
+
+<script type="text/javascript" language="javascript">
+    function loadDoc() {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (xhttp.readyState == 4 && xhttp.status == 200) {
+                document.getElementById("result").innerHTML = xhttp.responseText;
+            }
+        };
+        xhttp.open("POST", "user/test", true);
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhttp.send("name=Henry&lname=gfhdfd");
+    }
+</script>
 </body>
 </html>
 
