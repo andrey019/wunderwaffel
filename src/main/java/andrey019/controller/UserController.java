@@ -1,5 +1,6 @@
 package andrey019.controller;
 
+import andrey019.model.JsonModel;
 import andrey019.model.dao.UserConfirmation;
 import andrey019.service.maintenance.LogService;
 import com.mchange.lang.StringUtils;
@@ -36,8 +37,9 @@ public class UserController {
 
     @RequestMapping(value = "/test", method = RequestMethod.POST)//, headers = {"Content-type=application/json"})
     @ResponseBody
-    public String test() {
+    public String test(@RequestParam JsonModel jsonModel) {
         System.out.println("!!!  !!!");
+        System.out.println(jsonModel);
         return "ololo";//sdf
     }
 }
