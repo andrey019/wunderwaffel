@@ -153,7 +153,7 @@
             type: "POST",
             url: "/user/test",
             data: JSON.stringify({id: 20, name: "Sydney"}),
-            dataType: 'json',
+            //dataType: 'json',
             //data: JSON.stringify(search),
             contentType: 'application/json',
             success: function (data) {
