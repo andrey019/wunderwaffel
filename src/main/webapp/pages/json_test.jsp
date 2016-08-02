@@ -65,14 +65,15 @@
                         headers: {'X-CSRF-TOKEN': csrfToken},
                         timeout: 10000,
                         type: 'POST',
-                        url: '/user/test'
-
-                    }).done(function(data, textStatus, jqXHR) {
-                        console.info("POST succeeded!!!");
-
-                    }).fail(function(jqXHR, textStatus, errorThrown) {
-                        console.error('Problems when posting...');
+                        url: '/user/test',
+                        success: function (data) {
+                            $("#result").html(data);
+                        },
+                        error: function (e) {
+                            alert(e);
+                        }
                     });
+
 
 
 //                    $('<form target="_blank" action="/user/test" method="post"></form>')
