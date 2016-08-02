@@ -35,7 +35,7 @@ public class UserController {
         return "json_test";//h
     }
 
-    @RequestMapping(value = "/test", method = RequestMethod.POST)//, headers = {"Content-type=application/json"})
+    @RequestMapping(value = "/test", method = RequestMethod.POST, headers = {"Content-type=application/json"})
     @ResponseBody
     public String test(@RequestParam JsonModel jsonModel) {
         System.out.println("!!!  !!!");
