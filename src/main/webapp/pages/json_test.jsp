@@ -103,6 +103,9 @@
             "name" : "bhanu",
             "lName" :"prasad"
         };
+        var data = {}
+        data["name"] = "amelolo";
+        data["lara"] = "lolo";
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
             if (xhttp.readyState == 4 && xhttp.status == 200) {
@@ -112,7 +115,10 @@
         xhttp.open("POST", "/user/test", true);
 //        xhttp.setRequestHeader(csrfHeader, csrfToken);
         xhttp.setRequestHeader("Content-type", "application/json");
-        xhttp.send(JSON.stringify(search));
+        xhttp.dataType("json");
+        xhttp.data(JSON.stringify(data));
+        xhttp.setData();
+        xhttp.send();
     }
 </script>
 </body>
