@@ -62,7 +62,7 @@
 
                     $.ajax({
                         data: {},
-                        headers: {csrfHeader: csrfToken, "contentType": "application/json"},
+                        headers: {"X_CSRF_TOKEN": csrfToken.val(), "contentType": "application/json"},
                         timeout: 10000,
                         type: "POST",
                         url: "/user/test",
