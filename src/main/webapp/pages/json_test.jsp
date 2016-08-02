@@ -97,6 +97,12 @@
 
 <script type="text/javascript" language="javascript">
     function loadDoc() {
+//        var csrfHeader = $("meta[name='_csrf_header']").attr("content");
+//        var csrfToken = $("meta[name='_csrf']").attr("content");
+        var search = {
+            "name" : "bhanu",
+            "lName" :"prasad"
+        };
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
             if (xhttp.readyState == 4 && xhttp.status == 200) {
@@ -104,8 +110,9 @@
             }
         };
         xhttp.open("POST", "/user/test", true);
-        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        xhttp.send("name=Henry&lname=gfhdfd");
+//        xhttp.setRequestHeader(csrfHeader, csrfToken);
+        xhttp.setRequestHeader("Content-type", "application/json; charset=utf-8");
+        xhttp.send(JSON.stringify(search));
     }
 </script>
 </body>
