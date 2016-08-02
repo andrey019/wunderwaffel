@@ -144,15 +144,16 @@
 
 <script type="text/javascript" language="javascript">
     function oneMore() {
-        var dataSend = {}
-        data["id"] = 15354;
-        data["name"] = "amelolo";
+        var search = {
+            "id": 125,
+            "name": "prasadio"
+        }
 
         $.ajax({
             type: "POST",
             url: "/user/test",
             //data: JSON.stringify({name: "Gerry", age: 20, city: "Sydney"}),
-            data: JSON.stringify(dataSend),
+            data: JSON.stringify(search),
             contentType: 'application/json',
             success: function (data) {
 //                $("#result").html(data);
