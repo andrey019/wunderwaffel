@@ -103,7 +103,7 @@
                 document.getElementById("result").innerHTML = xhttp.responseText;
             }
         };
-        xhttp.open("POST", "user/test", true);
+        xhttp.open("POST", "/user/test", true);
         xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         xhttp.send("name=Henry&lname=gfhdfd");
     }
