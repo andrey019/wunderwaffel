@@ -121,6 +121,25 @@
         xhttp.send();
     }
 </script>
+
+<script type="text/javascript" language="javascript">
+    function searchText() {
+        var search = {
+            "pName": "bhanu",
+            "lName": "prasad"
+        }
+        $.ajax({
+            type: "POST",
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json',
+            url: "/user/test",
+            data: JSON.stringify(search), // Note it is important
+            success: function (result) {
+                document.getElementById("result").innerHTML = result;
+            }
+        });
+    }
+</script>
 </body>
 </html>
 
