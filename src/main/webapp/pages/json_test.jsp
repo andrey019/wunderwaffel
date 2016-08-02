@@ -14,10 +14,8 @@
     <link rel="icon" href="/resources/images/favicon.ico" type="image\x-icon" />
     <link href="/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <script type="text/javascript" src="/resources/js/jquery-3.1.0.min.js"></script>
-    <%--<link rel="shortcut icon" href="<c:url value="/resources/favicon.png"/>" type="image\png" />--%>
-    <%--<link rel="icon" href="<c:url value="/resources/favicon.png"/>" type="image\png" />--%>
-    <%--<link href="<c:url value="/resources/bootstrap/css/bootstrap.min.css"/>" rel="stylesheet">--%>
     <sec:csrfMetaTags />
+    <meta charset="utf-8">
     <title>json test</title>
 </head>
 <body>
