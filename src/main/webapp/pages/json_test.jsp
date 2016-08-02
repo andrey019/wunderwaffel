@@ -150,8 +150,10 @@
             data: JSON.stringify({name: "Gerry", age: 20, city: "Sydney"}),
             contentType: 'application/json',
             success: function (data) {
-                if (data.status == 'OK') alert('Person has been added');
-                else alert('Failed adding person: ' + data.status + ', ' + data.errorMessage);
+                $("#result").html(data);
+            },
+            error: function (e) {
+                alert("fail");
             }
         });
     }
