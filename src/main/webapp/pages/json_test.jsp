@@ -162,7 +162,7 @@
             //dataType: 'json',
             //data: JSON.stringify(search),
             contentType: 'application/json',
-            headers: headers,
+            //headers: headers,
             success: function (data) {
 //                $("#result").html(data);
                 document.getElementById("result").innerHTML = data;
