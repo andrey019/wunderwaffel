@@ -60,12 +60,10 @@
                     var csrftoken = $("#csrftoken_").clone();
 
 
-                    $(function () {
-                        var token = $("input[name='_csrf']").val();
-                        var header = "X-CSRF-TOKEN";
-                        $(document).ajaxSend(function(e, xhr, options) {
+                    $.ajaxSetup({
+                        beforeSend: function(xhr, settings) {
                             xhr.setRequestHeader(csrfHeader, csrfToken);
-                        });
+                        }
                     });
 
                     $.ajax({
@@ -75,7 +73,8 @@
                             alert(response);
                         },
                         error: function (e) {
-                            alert(e);
+                            alert(csrfHeader);
+                            alert(csrfToken);
                         }
                     });
 
