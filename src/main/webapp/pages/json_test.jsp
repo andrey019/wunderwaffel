@@ -147,13 +147,13 @@
         var search = {
             "id": 125,
             "name": "prasadio"
-        }
+        };
 
         $.ajax({
             type: "POST",
             url: "/user/test",
-            //data: JSON.stringify({name: "Gerry", age: 20, city: "Sydney"}),
-            data: JSON.stringify(search),
+            data: JSON.stringify({id: 20, name: "Sydney"}),
+            //data: JSON.stringify(search),
             contentType: 'application/json',
             success: function (data) {
 //                $("#result").html(data);
