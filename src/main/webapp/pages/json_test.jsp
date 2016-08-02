@@ -45,7 +45,7 @@
                     var csrfParameter = $("meta[name='_csrf_parameter']").attr("content");
                     var csrfHeader = $("meta[name='_csrf_header']").attr("content");
                     var csrfToken = $("meta[name='_csrf']").attr("content");
-                    var token = $("input[name='_csrf']").val();
+                    //var token = $("input[name='_csrf']").val();
 
                     //var data = {}
 //                    data[csrfParameter] = csrfToken;
@@ -59,10 +59,15 @@
 
                     var csrftoken = $("#csrftoken_").clone();
 
+                    $.ajaxPrefilter(function(options, originalOptions, jqXHR) {
+                        var token = $("meta[name='_csrf']").attr("content");
+                        var header = $("meta[name='_csrf_header']").attr("content");
+                        jqXHR.setRequestHeader(header, token);
+                    });
 
                     $.ajax({
                         data: {},
-                        headers: {X_CSRF_TOKEN: csrfToken, contentType: "application/json"},
+                        headers: {contentType: "application/json"},
                         timeout: 10000,
                         type: "POST",
                         url: "/user/test",
