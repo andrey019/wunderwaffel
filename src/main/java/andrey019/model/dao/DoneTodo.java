@@ -3,6 +3,8 @@ package andrey019.model.dao;
 
 import javax.persistence.*;
 
+@Entity
+@Table(name = "done_todo")
 public class DoneTodo {
 
     @Id

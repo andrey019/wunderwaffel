@@ -3,13 +3,13 @@ package andrey019.model.dao;
 import javax.persistence.*;
 import java.io.Serializable;
 
-//@Entity
-//@Table(name = "user_confirmation")
+@Entity
+@Table(name = "user_confirmation")
 public class UserConfirmation implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private long id;
 
     @Column(unique = true, nullable = false)
     private String email;
@@ -29,11 +29,11 @@ public class UserConfirmation implements Serializable {
     @Column(nullable = false)
     private long date;
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

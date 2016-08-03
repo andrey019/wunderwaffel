@@ -4,8 +4,8 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Set;
 
-//@Entity
-//@Table(name = "user")
+@Entity
+@Table(name = "user")
 public class User {
 
     @Id
@@ -24,8 +24,11 @@ public class User {
     @Column(nullable = false)
     private String lName;
 
-    @OneToMany(mappedBy = "user_id")
+    @OneToMany(mappedBy = "user_id", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<TodoList> todoLists;
+
+    @ManyToMany(mappedBy = "users", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    private Set<TodoList> sharedTodoLists;
 
     @Column(nullable = false)
     private String state = State.ACTIVE.getState();
@@ -81,6 +84,14 @@ public class User {
         this.todoLists = todoLists;
     }
 
+    public Set<TodoList> getSharedTodoLists() {
+        return sharedTodoLists;
+    }
+
+    public void setSharedTodoLists(Set<TodoList> sharedTodoLists) {
+        this.sharedTodoLists = sharedTodoLists;
+    }
+
     public String getState() {
         return state;
     }
@@ -100,6 +111,28 @@ public class User {
     public void setUserFromConfirmation(UserConfirmation userConfirmation) {
         this.email = userConfirmation.getEmail();
         this.password = userConfirmation.getPassword();
+        this.fName = userConfirmation.getfName();
+        this.lName = userConfirmation.getlName();
+    }
+
+    public void addTodoList(TodoList todoList) {
+        todoList.setUser(this);
+        todoLists.add(todoList);
+    }
+
+    public void removeTodoList(TodoList todoList) {
+        todoLists.remove(todoList);
+        todoList.setUser(null);
+    }
+
+    public void addSharedTodoList(TodoList todoList) {
+        sharedTodoLists.add(todoList);
+        todoList.getUsers().add(this);
+    }
+
+    public void removeSharedTodoList(TodoList todoList) {
+        sharedTodoLists.remove(todoList);
+        todoList.getUsers().remove(this);
     }
 
     @Override
