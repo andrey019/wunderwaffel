@@ -14,6 +14,8 @@
     <link rel="icon" href="/resources/images/favicon.ico" type="image\x-icon" />
     <link href="/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <script type="text/javascript" src="/resources/js/jquery-3.1.0.min.js"></script>
+    <script type="text/javascript" src="/resources/js/oneMore.js"></script>
+    <script type="text/javascript" src="/resources/js/innerTest.js"></script>
     <sec:csrfMetaTags />
     <title>json test</title>
 </head>
@@ -140,44 +142,44 @@
 </script>
 
 
-<script type="text/javascript" language="javascript">
-    function oneMore(event) {
-        var csrfHeader = $("meta[name='_csrf_header']").attr("content");
-        var csrfToken = $("meta[name='_csrf']").attr("content");
+<%--<script type="text/javascript" language="javascript">--%>
+    <%--function oneMore(event) {--%>
+        <%--var csrfHeader = $("meta[name='_csrf_header']").attr("content");--%>
+        <%--var csrfToken = $("meta[name='_csrf']").attr("content");--%>
 
-        var headers = {};
-        headers[csrfHeader] = csrfToken;
+        <%--var headers = {};--%>
+        <%--headers[csrfHeader] = csrfToken;--%>
 
-        var search = {
-            "id": 125,
-            "name": event.target.id
-        };
+        <%--var search = {--%>
+            <%--"id": 125,--%>
+            <%--"name": event.target.id--%>
+        <%--};--%>
 
-        $.ajax({
-            type: "POST",
-            url: "/user/test",
-            //data: JSON.stringify({id: 20, name: "фыва ололошка"}),
-            //dataType: 'json',
-            data: JSON.stringify(search),
-            contentType: 'application/json',
-            headers: headers,
-            success: function (data) {
-//                $("#result").html(data);
-                document.getElementById("result").innerHTML = data;
-                innerTest();
-            },
-            error: function (e) {
-                alert("fail");
-            }
-        });
-    }
-</script>
+        <%--$.ajax({--%>
+            <%--type: "POST",--%>
+            <%--url: "/user/test",--%>
+            <%--//data: JSON.stringify({id: 20, name: "фыва ололошка"}),--%>
+            <%--//dataType: 'json',--%>
+            <%--data: JSON.stringify(search),--%>
+            <%--contentType: 'application/json',--%>
+            <%--headers: headers,--%>
+            <%--success: function (data) {--%>
+<%--//                $("#result").html(data);--%>
+                <%--document.getElementById("result").innerHTML = data;--%>
+                <%--innerTest();--%>
+            <%--},--%>
+            <%--error: function (e) {--%>
+                <%--alert("fail");--%>
+            <%--}--%>
+        <%--});--%>
+    <%--}--%>
+<%--</script>--%>
 
-<script type="text/javascript" language="javascript">
-    function innerTest() {
-        alert("innerTest = ok")
-    }
-</script>
+<%--<script type="text/javascript" language="javascript">--%>
+    <%--function innerTest() {--%>
+        <%--alert("innerTest = ok")--%>
+    <%--}--%>
+<%--</script>--%>
 
 </body>
 </html>
