@@ -25,7 +25,7 @@ public class TodoList {
     @OneToMany(mappedBy = "todo_list_id", cascade = CascadeType.ALL)
     private Set<Todo> todos;
 
-    @OneToMany(mappedBy = "todo_list_id", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "todoList", cascade = CascadeType.ALL)
     private Set<DoneTodo> doneTodos;
 
     public long getId() {
