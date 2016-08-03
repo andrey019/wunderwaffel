@@ -22,7 +22,7 @@ public class TodoList {
     inverseJoinColumns = {@JoinColumn(name = "todo_list_id", referencedColumnName = "id")})
     private Set<User> users;
 
-    @OneToMany(mappedBy = "todo_list_id", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "todoList", cascade = CascadeType.ALL)
     private Set<Todo> todos;
 
     @OneToMany(mappedBy = "todoList", cascade = CascadeType.ALL)
