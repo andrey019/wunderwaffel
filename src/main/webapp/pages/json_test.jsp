@@ -28,7 +28,8 @@
 
 <button type="button" value="ololo" name="btn-save" title="btn-save" id="btn-save">sfdsd</button>
 
-<button type="button" onclick="oneMore()">Request data</button>
+<button type="button" onclick="oneMore()" id="but111">Request data 111</button>
+<button type="button" onclick="oneMore()" id="but222">Request data 222</button>
 
 <div id="result" style="alignment: left; background-color: #31708f;"></div>
 
@@ -140,7 +141,7 @@
 
 
 <script type="text/javascript" language="javascript">
-    function oneMore() {
+    function oneMore(event) {
         var csrfHeader = $("meta[name='_csrf_header']").attr("content");
         var csrfToken = $("meta[name='_csrf']").attr("content");
 
@@ -149,15 +150,15 @@
 
         var search = {
             "id": 125,
-            "name": "prasadio"
+            "name": event.target.id
         };
 
         $.ajax({
             type: "POST",
             url: "/user/test",
-            data: JSON.stringify({id: 20, name: "фыва ололошка"}),
+            //data: JSON.stringify({id: 20, name: "фыва ололошка"}),
             //dataType: 'json',
-            //data: JSON.stringify(search),
+            data: JSON.stringify(search),
             contentType: 'application/json',
             headers: headers,
             success: function (data) {

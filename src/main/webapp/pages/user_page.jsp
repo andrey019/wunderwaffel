@@ -1,9 +1,13 @@
-<!DOCTYPE html>
-<html lang="en" style="height:100%">
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <link href="/wunderwaffel/src/main/webapp/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <title>Title</title>
+    <link rel="shortcut icon" href="/resources/images/favicon.ico" type="image\x-icon" />
+    <link rel="icon" href="/resources/images/favicon.ico" type="image\x-icon" />
+    <link href="/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <script type="text/javascript" src="/resources/js/jquery-3.1.0.min.js"></script>
+    <sec:csrfMetaTags />
+    <title>WunderWaffel</title>
 </head>
 <body style="height:100%">
 
