@@ -3,8 +3,8 @@ package andrey019.model.dao;
 import javax.persistence.*;
 import java.io.Serializable;
 
-@Entity
-@Table(name = "user_confirmation")
+//@Entity
+//@Table(name = "user_confirmation")
 public class UserConfirmation implements Serializable {
 
     @Id
@@ -16,6 +16,12 @@ public class UserConfirmation implements Serializable {
 
     @Column(nullable = false)
     private String password;
+
+    @Column(nullable = false)
+    private String fName;
+
+    @Column(nullable = false)
+    private String lName;
 
     @Column(nullable = false)
     private String code;
@@ -45,6 +51,22 @@ public class UserConfirmation implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getfName() {
+        return fName;
+    }
+
+    public void setfName(String fName) {
+        this.fName = fName;
+    }
+
+    public String getlName() {
+        return lName;
+    }
+
+    public void setlName(String lName) {
+        this.lName = lName;
     }
 
     public String getCode() {

@@ -1,19 +1,16 @@
 package andrey019.model.dao;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Set;
 
-@Entity
-@Table(name = "user")
+//@Entity
+//@Table(name = "user")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private long id;
 
     @Column(unique = true, nullable = false)
     private String email;
@@ -22,16 +19,25 @@ public class User {
     private String password;
 
     @Column(nullable = false)
+    private String fName;
+
+    @Column(nullable = false)
+    private String lName;
+
+    @OneToMany(mappedBy = "user_id")
+    private Set<TodoList> todoLists;
+
+    @Column(nullable = false)
     private String state = State.ACTIVE.getState();
 
     @Column(nullable = false)
     private String role = Role.USER.getRole();
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -49,6 +55,30 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getfName() {
+        return fName;
+    }
+
+    public void setfName(String fName) {
+        this.fName = fName;
+    }
+
+    public String getlName() {
+        return lName;
+    }
+
+    public void setlName(String lName) {
+        this.lName = lName;
+    }
+
+    public Set<TodoList> getTodoLists() {
+        return todoLists;
+    }
+
+    public void setTodoLists(Set<TodoList> todoLists) {
+        this.todoLists = todoLists;
     }
 
     public String getState() {
@@ -76,7 +106,7 @@ public class User {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + id;
+        result = prime * result + (int) id;
         result = prime * result + ((email == null) ? 0 : email.hashCode());
         return result;
     }
