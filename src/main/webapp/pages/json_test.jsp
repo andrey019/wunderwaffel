@@ -30,8 +30,8 @@
 
 <button type="button" value="ololo" name="btn-save" title="btn-save" id="btn-save">sfdsd</button>
 
-<button type="button" onclick="oneMore(event)" id="but111">Request data 111</button>
-<button type="button" onclick="oneMore(event)" id="but222">Request data 222</button>
+<button type="button" onclick="oneMore(event)" id="111">Request data 111</button>
+<button type="button" onclick="oneMore(event)" id="222">Request data 222</button>
 
 <div id="result" style="alignment: left; background-color: #31708f;"></div>
 
