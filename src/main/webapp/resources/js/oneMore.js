@@ -9,8 +9,8 @@ function oneMore(event) {
     headers[csrfHeader] = csrfToken;
 
     var search = {
-        "id": 125,
-        "name": event.target.id
+        "listId": 125,
+        "todoId": event.target.id
     };
 
     $.ajax({

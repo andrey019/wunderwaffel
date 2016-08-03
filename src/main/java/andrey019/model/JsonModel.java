@@ -3,27 +3,27 @@ package andrey019.model;
 
 public class JsonModel {
 
-    private int id;
-    private String name;
+    private int listId;
+    private int todoId;
 
-    public int getId() {
-        return id;
+    public int getListId() {
+        return listId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setListId(int listId) {
+        this.listId = listId;
     }
 
-    public String getName() {
-        return name;
+    public int getTodoId() {
+        return todoId;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTodoId(int todoId) {
+        this.todoId = todoId;
     }
 
     @Override
     public String toString() {
-        return "id: " + id + ", name: " + name;
+        return "listId: " + listId + ", todoId: " + todoId;
     }
 }
