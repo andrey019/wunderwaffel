@@ -19,6 +19,12 @@ public class Todo {
     @Column(name = "todo_text", nullable = false)
     private String todoText;
 
+    @Column(name = "created_by_name", nullable = false)
+    private String createdByName;
+
+    @Column(name = "created_by_email", nullable = false)
+    private String createdByEmail;
+
     public long getId() {
         return id;
     }
@@ -41,5 +47,21 @@ public class Todo {
 
     public void setTodoText(String todoText) {
         this.todoText = todoText;
+    }
+
+    public String getCreatedByName() {
+        return createdByName;
+    }
+
+    public void setCreatedByName(String createdByName) {
+        this.createdByName = createdByName;
+    }
+
+    public String getCreatedByEmail() {
+        return createdByEmail;
+    }
+
+    public void setCreatedByEmail(String createdByEmail) {
+        this.createdByEmail = createdByEmail;
     }
 }

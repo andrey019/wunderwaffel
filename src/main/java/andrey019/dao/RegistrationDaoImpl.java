@@ -35,7 +35,7 @@ public class RegistrationDaoImpl implements RegistrationDao {
     public UserConfirmation getByEmail(String email) {
         @SuppressWarnings("unchecked")
         List<UserConfirmation> resultList = entityManager
-                .createQuery("select c from UserConfirmation c where c.email = :email")
+                .createQuery("select confirm from UserConfirmation confirm where confirm.email = :email")
                 .setParameter("email", email).setMaxResults(1).getResultList();
         if (resultList.isEmpty()) {
             return null;
@@ -48,7 +48,7 @@ public class RegistrationDaoImpl implements RegistrationDao {
     public UserConfirmation getByCode(String code) {
         @SuppressWarnings("unchecked")
         List<UserConfirmation> resultList = entityManager
-                .createQuery("select c from UserConfirmation c where c.code = :code")
+                .createQuery("select confirm from UserConfirmation confirm where confirm.code = :code")
                 .setParameter("code", code).setMaxResults(1).getResultList();
         if (resultList.isEmpty()) {
             return null;
@@ -62,7 +62,7 @@ public class RegistrationDaoImpl implements RegistrationDao {
         try {
             @SuppressWarnings("unchecked")
             List<UserConfirmation> resultList = entityManager
-                    .createQuery("select c from UserConfirmation c where c.date < :date")
+                    .createQuery("select confirm from UserConfirmation confirm where confirm.date < :date")
                     .setParameter("date", date).getResultList();
             for (UserConfirmation userConfirmation : resultList) {
                 entityManager.remove(userConfirmation);

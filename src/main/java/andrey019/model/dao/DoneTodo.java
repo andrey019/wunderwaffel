@@ -25,6 +25,12 @@ public class DoneTodo {
     @Column(name = "done_by_email", nullable = false)
     private String doneByEmail;
 
+    @Column(name = "created_by_name", nullable = false)
+    private String createdByName;
+
+    @Column(name = "created_by_email", nullable = false)
+    private String createdByEmail;
+
     public long getId() {
         return id;
     }
@@ -63,5 +69,21 @@ public class DoneTodo {
 
     public void setDoneByEmail(String doneByEmail) {
         this.doneByEmail = doneByEmail;
+    }
+
+    public String getCreatedByName() {
+        return createdByName;
+    }
+
+    public void setCreatedByName(String createdByName) {
+        this.createdByName = createdByName;
+    }
+
+    public String getCreatedByEmail() {
+        return createdByEmail;
+    }
+
+    public void setCreatedByEmail(String createdByEmail) {
+        this.createdByEmail = createdByEmail;
     }
 }

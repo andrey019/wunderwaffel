@@ -87,12 +87,10 @@ public class User {
         this.todoLists = todoLists;
     }
 
-    //@Transactional
     public List<TodoList> getSharedTodoLists() {
         return sharedTodoLists;
     }
 
-    //@Transactional
     public void setSharedTodoLists(List<TodoList> sharedTodoLists) {
         this.sharedTodoLists = sharedTodoLists;
     }
@@ -111,6 +109,10 @@ public class User {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public String getFullName() {
+        return fName + " " + lName;
     }
 
     public void setUserFromConfirmation(UserConfirmation userConfirmation) {
