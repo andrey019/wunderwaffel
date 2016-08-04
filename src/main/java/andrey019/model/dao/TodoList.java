@@ -57,7 +57,7 @@ public class TodoList {
         this.users = users;
     }
 
-    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    //@Transactional(propagation = Propagation.REQUIRES_NEW)
     public void addUsers(User user) {
         users.add(user);
         user.getSharedTodoLists().add(this);

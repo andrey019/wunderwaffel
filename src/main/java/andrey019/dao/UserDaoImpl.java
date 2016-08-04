@@ -25,7 +25,7 @@ public class UserDaoImpl implements UserDao {
     @Override
     public boolean save(User user) {
         try {
-            entityManager.persist(user);
+            entityManager.merge(user);
             return true;
         } catch (Exception ex) {
             ex.printStackTrace();

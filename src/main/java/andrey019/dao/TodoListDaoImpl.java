@@ -24,7 +24,7 @@ public class TodoListDaoImpl implements TodoListDao {
     @Override
     public boolean save(TodoList todoList) {
         try {
-            entityManager.persist(todoList);
+            entityManager.merge(todoList);
             return true;
         } catch (Exception ex) {
             ex.printStackTrace();

@@ -87,12 +87,12 @@ public class User {
         this.todoLists = todoLists;
     }
 
-    @Transactional
+    //@Transactional
     public List<TodoList> getSharedTodoLists() {
         return sharedTodoLists;
     }
 
-    @Transactional
+    //@Transactional
     public void setSharedTodoLists(List<TodoList> sharedTodoLists) {
         this.sharedTodoLists = sharedTodoLists;
     }
