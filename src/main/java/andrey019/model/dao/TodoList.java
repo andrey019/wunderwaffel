@@ -2,6 +2,7 @@ package andrey019.model.dao;
 
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -20,10 +21,10 @@ public class TodoList {
     @JoinTable(name = "user_todo_list",
     joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
     inverseJoinColumns = {@JoinColumn(name = "todo_list_id", referencedColumnName = "id")})
-    private Set<User> users;
+    private List<User> users;
 
     @OneToMany(mappedBy = "todoList", cascade = CascadeType.ALL)
-    private Set<Todo> todos;
+    private List<Todo> todos;
 
     @OneToMany(mappedBy = "todoList", cascade = CascadeType.ALL)
     private Set<DoneTodo> doneTodos;
@@ -44,19 +45,29 @@ public class TodoList {
         this.user = user;
     }
 
-    public Set<User> getUsers() {
+    public List<User> getUsers() {
         return users;
     }
 
-    public void setUsers(Set<User> users) {
+    public void setUsers(List<User> users) {
         this.users = users;
     }
 
-    public Set<Todo> getTodos() {
+    public void addUsers(User user) {
+        users.add(user);
+        user.getSharedTodoLists().add(this);
+    }
+
+    public void removeUsers(User user) {
+        users.remove(user);
+        user.getSharedTodoLists().remove(this);
+    }
+
+    public List<Todo> getTodos() {
         return todos;
     }
 
-    public void setTodos(Set<Todo> todos) {
+    public void setTodos(List<Todo> todos) {
         this.todos = todos;
     }
 

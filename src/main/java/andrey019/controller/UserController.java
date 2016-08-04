@@ -1,6 +1,10 @@
 package andrey019.controller;
 
+import andrey019.dao.TodoListDao;
+import andrey019.dao.UserDao;
 import andrey019.model.JsonModel;
+import andrey019.model.dao.TodoList;
+import andrey019.model.dao.User;
 import andrey019.model.dao.UserConfirmation;
 import andrey019.service.maintenance.LogService;
 import com.mchange.lang.StringUtils;
@@ -16,6 +20,12 @@ public class UserController {
 
     @Autowired
     private LogService logService;
+
+    @Autowired
+    private TodoListDao todoListDao;
+
+    @Autowired
+    private UserDao userDao;
 
 
     @RequestMapping("/ololo")
@@ -40,6 +50,18 @@ public class UserController {
         System.out.println("!!!  !!!");
         System.out.println(jsonModel);
         return jsonModel.getListId() + " = " + getPrincipal() + "<button id=\"99999\" class=\"btn btn-default\" type=\"button\" onclick=\"oneMore(event)\">json button</button>";//sdf
+    }
+
+    @RequestMapping("testdao")
+    @ResponseBody
+    public String testDao() {
+        User user = userDao.findById(1);
+        TodoList todoList = new TodoList();
+        todoList.setUser(user);
+        todoList.addUsers(user);
+        todoListDao.save(todoList);
+        System.out.println(todoListDao.getByUsers(1).size());
+        return "done";
     }
 
     private String getPrincipal(){
