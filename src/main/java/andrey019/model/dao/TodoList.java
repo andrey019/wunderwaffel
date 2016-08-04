@@ -21,7 +21,7 @@ public class TodoList {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToMany(cascade = {CascadeType.MERGE})
     @JoinTable(name = "user_todo_list",
     joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
     inverseJoinColumns = {@JoinColumn(name = "todo_list_id", referencedColumnName = "id")})

@@ -30,7 +30,7 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<TodoList> todoLists = new ArrayList<>();
 
-    @ManyToMany(mappedBy = "users", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToMany(mappedBy = "users", cascade = {CascadeType.MERGE})
     private List<TodoList> sharedTodoLists = new ArrayList<>();
 
     @Column(nullable = false)
