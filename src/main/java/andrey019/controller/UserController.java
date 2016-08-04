@@ -73,11 +73,11 @@ public class UserController {
 
     @Transactional
     private void innerDao() {
-        User user = userDao.findById(1);
-        TodoList todoList = new TodoList();
-        todoList.setUser(user);
-        todoList.addUsers(user);
-        todoListDao.save(todoList);
+//        User user = userDao.findById(1);
+//        TodoList todoList = new TodoList();
+//        todoList.setUser(user);
+//        todoList.addUsers(user);
+//        todoListDao.save(todoList);
         System.out.println(todoListDao.getByUsers(1).size());
     }
 }

@@ -9,6 +9,8 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceContextType;
+import java.lang.reflect.Array;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
@@ -63,10 +65,10 @@ public class TodoListDaoImpl implements TodoListDao {
 
     @Transactional
     @Override
-    public List<TodoList> getByUsers(long... ids) {
+    public List<TodoList> getByUsers(long...ids) {
         @SuppressWarnings("unchecked")
         List<TodoList> result = entityManager.createQuery("select list from TodoList list inner join list.users user where user.id in :userIds")
-                .setParameter("userIds", ids).getResultList();
+                .setParameter("userIds", Arrays.asList(ids)).getResultList();
         if (result.isEmpty()) {
             return null;
         }
