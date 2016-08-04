@@ -1,6 +1,4 @@
-/**
- * Created by andrey on 03.08.16.
- */
+
 function oneMore(event) {
     var csrfHeader = $("meta[name='_csrf_header']").attr("content");
     var csrfToken = $("meta[name='_csrf']").attr("content");
@@ -12,6 +10,8 @@ function oneMore(event) {
         "listId": 125,
         "todoId": event.target.id
     };
+
+    window.testVar = "ololololo test";
 
     $.ajax({
         type: "POST",
