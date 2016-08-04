@@ -76,6 +76,7 @@ public class UserController {
         TodoList todoList = new TodoList();
         todoList.setUser(user);
         todoList.addUsers(user);
+        todoList.setName("spring name ололо");
         todoListDao.save(todoList);
         System.out.println(todoListDao.getByUsers(1).size());
         System.out.println(todoListDao.getUsersByTodoListId(1));

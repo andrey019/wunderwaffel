@@ -75,6 +75,7 @@ public class TodoListDaoImpl implements TodoListDao {
         return result;
     }
 
+    @Transactional
     @Override
     public List<User> getUsersByTodoListId(long id) {
         @SuppressWarnings("unchecked")
