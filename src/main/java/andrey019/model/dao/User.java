@@ -1,5 +1,7 @@
 package andrey019.model.dao;
 
+import org.springframework.transaction.annotation.Transactional;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -85,10 +87,12 @@ public class User {
         this.todoLists = todoLists;
     }
 
+    @Transactional
     public List<TodoList> getSharedTodoLists() {
         return sharedTodoLists;
     }
 
+    @Transactional
     public void setSharedTodoLists(List<TodoList> sharedTodoLists) {
         this.sharedTodoLists = sharedTodoLists;
     }
