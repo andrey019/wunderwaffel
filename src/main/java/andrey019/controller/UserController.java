@@ -78,5 +78,6 @@ public class UserController {
         todoList.addUsers(user);
         todoListDao.save(todoList);
         System.out.println(todoListDao.getByUsers(1).size());
+        System.out.println(todoListDao.getUsersByTodoListId(1));
     }
 }

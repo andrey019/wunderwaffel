@@ -74,4 +74,15 @@ public class TodoListDaoImpl implements TodoListDao {
         }
         return result;
     }
+
+    @Override
+    public List<User> getUsersByTodoListId(long id) {
+        @SuppressWarnings("unchecked")
+        List<User> result = entityManager.createQuery("select users from User users inner join users.sharedTodoLists list where list.id = :listId")
+                .setParameter("listId", id).getResultList();
+        if (result.isEmpty()) {
+            return null;
+        }
+        return result;
+    }
 }
