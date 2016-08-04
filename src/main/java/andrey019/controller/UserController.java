@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
@@ -55,12 +56,7 @@ public class UserController {
     @RequestMapping("testdao")
     @ResponseBody
     public String testDao() {
-        User user = userDao.findById(1);
-        TodoList todoList = new TodoList();
-        todoList.setUser(user);
-        todoList.addUsers(user);
-        todoListDao.save(todoList);
-        System.out.println(todoListDao.getByUsers(1).size());
+        innerDao();
         return "done";
     }
 
@@ -73,5 +69,15 @@ public class UserController {
             userName = principal.toString();
         }
         return userName;
+    }
+
+    @Transactional
+    private void innerDao() {
+        User user = userDao.findById(1);
+        TodoList todoList = new TodoList();
+        todoList.setUser(user);
+        todoList.addUsers(user);
+        todoListDao.save(todoList);
+        System.out.println(todoListDao.getByUsers(1).size());
     }
 }
