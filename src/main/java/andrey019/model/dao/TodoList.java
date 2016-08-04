@@ -2,6 +2,7 @@ package andrey019.model.dao;
 
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -21,13 +22,13 @@ public class TodoList {
     @JoinTable(name = "user_todo_list",
     joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
     inverseJoinColumns = {@JoinColumn(name = "todo_list_id", referencedColumnName = "id")})
-    private List<User> users;
+    private List<User> users = new ArrayList<>();
 
     @OneToMany(mappedBy = "todoList", cascade = CascadeType.ALL)
-    private List<Todo> todos;
+    private List<Todo> todos = new ArrayList<>();
 
     @OneToMany(mappedBy = "todoList", cascade = CascadeType.ALL)
-    private Set<DoneTodo> doneTodos;
+    private List<DoneTodo> doneTodos = new ArrayList<>();
 
     public long getId() {
         return id;
@@ -71,11 +72,11 @@ public class TodoList {
         this.todos = todos;
     }
 
-    public Set<DoneTodo> getDoneTodos() {
+    public List<DoneTodo> getDoneTodos() {
         return doneTodos;
     }
 
-    public void setDoneTodos(Set<DoneTodo> doneTodos) {
+    public void setDoneTodos(List<DoneTodo> doneTodos) {
         this.doneTodos = doneTodos;
     }
 

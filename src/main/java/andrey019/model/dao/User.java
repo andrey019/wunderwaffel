@@ -2,6 +2,7 @@ package andrey019.model.dao;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -25,10 +26,10 @@ public class User {
     private String lName;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<TodoList> todoLists;
+    private List<TodoList> todoLists = new ArrayList<>();
 
     @ManyToMany(mappedBy = "users", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    private Set<TodoList> sharedTodoLists;
+    private List<TodoList> sharedTodoLists = new ArrayList<>();
 
     @Column(nullable = false)
     private String state = State.ACTIVE.getState();
@@ -76,19 +77,19 @@ public class User {
         this.lName = lName;
     }
 
-    public Set<TodoList> getTodoLists() {
+    public List<TodoList> getTodoLists() {
         return todoLists;
     }
 
-    public void setTodoLists(Set<TodoList> todoLists) {
+    public void setTodoLists(List<TodoList> todoLists) {
         this.todoLists = todoLists;
     }
 
-    public Set<TodoList> getSharedTodoLists() {
+    public List<TodoList> getSharedTodoLists() {
         return sharedTodoLists;
     }
 
-    public void setSharedTodoLists(Set<TodoList> sharedTodoLists) {
+    public void setSharedTodoLists(List<TodoList> sharedTodoLists) {
         this.sharedTodoLists = sharedTodoLists;
     }
 
