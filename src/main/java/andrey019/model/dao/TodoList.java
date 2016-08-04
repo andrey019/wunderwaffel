@@ -26,8 +26,8 @@ public class TodoList {
 
     @ManyToMany(cascade = {CascadeType.MERGE})
     @JoinTable(name = "user_todo_list",
-    joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
-    inverseJoinColumns = {@JoinColumn(name = "todo_list_id", referencedColumnName = "id")})
+    joinColumns = {@JoinColumn(name = "todo_list_id", referencedColumnName = "id")},
+    inverseJoinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")})
     private List<User> users = new ArrayList<>();
 
     @OneToMany(mappedBy = "todoList", cascade = CascadeType.ALL)
