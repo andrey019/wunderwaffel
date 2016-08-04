@@ -25,7 +25,7 @@ public class UserServiceImpl implements UserService{
         dao.save(user);
     }
 
-    public User findById(int id) {
+    public User findById(long id) {
         return dao.findById(id);
     }
 

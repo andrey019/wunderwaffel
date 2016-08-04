@@ -29,6 +29,7 @@ public class TodoListDaoImpl implements TodoListDao {
         }
     }
 
+    @Transactional
     @Override
     public boolean delete(TodoList todoList) {
         try {
@@ -41,11 +42,13 @@ public class TodoListDaoImpl implements TodoListDao {
         }
     }
 
+    @Transactional
     @Override
     public TodoList getById(long id) {
         return entityManager.find(TodoList.class, id);
     }
 
+    @Transactional
     @Override
     public List<TodoList> getByUserId(long id) {
         @SuppressWarnings("unchecked")
@@ -57,6 +60,7 @@ public class TodoListDaoImpl implements TodoListDao {
         return result;
     }
 
+    @Transactional
     @Override
     public List<TodoList> getByUsers(long... ids) {
         @SuppressWarnings("unchecked")
