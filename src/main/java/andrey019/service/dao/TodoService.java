@@ -5,8 +5,8 @@ import andrey019.model.dao.TodoList;
 
 public interface TodoService {
 
-    boolean createTodoList(String email, String todoListName);
-    boolean createTodo(String email, long todoListId, String todoText);
+    boolean addTodoList(String email, String todoListName);
+    boolean addTodo(String email, long todoListId, String todoText);
     boolean doneTodo(String email, long todoId);
     boolean unDoneTodo(String email, long doneTodoId);
     boolean shareTodoList(String email, long todoListId, String emailToShareWith);
