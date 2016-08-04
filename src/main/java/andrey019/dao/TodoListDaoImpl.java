@@ -65,10 +65,10 @@ public class TodoListDaoImpl implements TodoListDao {
 
     @Transactional
     @Override
-    public List<TodoList> getByUsers(long...ids) {
+    public List<TodoList> getByUsers(long id) {
         @SuppressWarnings("unchecked")
-        List<TodoList> result = entityManager.createQuery("select list from TodoList list inner join list.users user where user.id in :userIds")
-                .setParameter("userIds", Arrays.asList(ids)).getResultList();
+        List<TodoList> result = entityManager.createQuery("select list from TodoList list inner join list.users user where user.id = :userId")
+                .setParameter("userId", id).getResultList();
         if (result.isEmpty()) {
             return null;
         }
