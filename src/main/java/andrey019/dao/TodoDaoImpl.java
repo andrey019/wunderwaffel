@@ -7,13 +7,20 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceContextType;
 import java.util.List;
 
 @Repository("todoDaoImpl")
 public class TodoDaoImpl implements TodoDao {
 
-    @PersistenceContext
+    @PersistenceContext(type = PersistenceContextType.EXTENDED)
     private EntityManager entityManager;
+
+    @Transactional
+    @Override
+    public Todo getById(long id) {
+        return entityManager.find(Todo.class, id);
+    }
 
     @Transactional
     @Override

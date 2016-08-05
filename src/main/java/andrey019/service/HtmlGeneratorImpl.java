@@ -10,13 +10,13 @@ import java.util.List;
 @Service("htmlGenerator")
 public class HtmlGeneratorImpl implements HtmlGenerator {
 
-    private final static String LIST_BUTTON = "<button id=\"list=%s\" type=\"button\" class=\"list-group-item\" " +
-            "style=\"word-wrap: break-word\">%s</button>";
-    private final static String DELETE_BUTTON = "<button id=\"del=%s\" type=\"button\" class=\"list-group-item\">" +
-            "<span class=\"glyphicon glyphicon-trash\" aria-hidden=\"true\"></span></button>";
-    private final static String TODO_BUTTON = "<button id=\"todo=%s\" type=\"button\" class=\"list-group-item\" " +
+    private final static String LIST_BUTTON = "<button id=\"list=%d\" type=\"button\" class=\"list-group-item\" " +
+            "style=\"word-wrap: break-word\"><span id=\"badge=%d\" class=\"badge\">%d</span>%s</button>";
+//    private final static String DELETE_BUTTON = "<button id=\"del=%d\" type=\"button\" class=\"list-group-item\">" +
+//            "<span class=\"glyphicon glyphicon-trash\" aria-hidden=\"true\"></span></button>";
+    private final static String TODO_BUTTON = "<button id=\"todo=%d\" type=\"button\" class=\"list-group-item\" " +
             "style=\"word-wrap: break-word\">%s<br>Created by: %s</button>";
-    private final static String DONE_TODO_BUTTON = "<button id=\"done=%s\" type=\"button\" class=\"list-group-item\" " +
+    private final static String DONE_TODO_BUTTON = "<button id=\"done=%d\" type=\"button\" class=\"list-group-item\" " +
             "style=\"word-wrap: break-word\">%s<br>Created by: %s. Done by: %s</button>";
     private final static String NEW_LINE = "<br>";
     private final static int MAX_SYMBOLS_IN_LINE = 14;
@@ -26,22 +26,23 @@ public class HtmlGeneratorImpl implements HtmlGenerator {
     public String generateTodoListsHtml(List<TodoList> todoLists) {
         StringBuilder stringBuilder = new StringBuilder();
         for (TodoList todoList : todoLists) {
-            stringBuilder.append(String.format(LIST_BUTTON, todoList.getId(), todoList.getName()));
+            stringBuilder.append(String.format(LIST_BUTTON, todoList.getId(), todoList.getId(),
+                    todoList.getTodos().size(), todoList.getName()));
         }
         return stringBuilder.toString();
     }
 
-    @Override
-    public String generateTodoListsDeleteHtml(List<TodoList> todoLists) {
-        StringBuilder stringBuilder = new StringBuilder();
-        for (TodoList todoList : todoLists) {
-            stringBuilder.append(String.format(DELETE_BUTTON, todoList.getId()));
-            for (int i = 1; i <= (todoList.getName().length() / MAX_SYMBOLS_IN_LINE); i++) {
-                stringBuilder.append(NEW_LINE);
-            }
-        }
-        return stringBuilder.toString();
-    }
+//    @Override
+//    public String generateTodoListsDeleteHtml(List<TodoList> todoLists) {
+//        StringBuilder stringBuilder = new StringBuilder();
+//        for (TodoList todoList : todoLists) {
+//            stringBuilder.append(String.format(DELETE_BUTTON, todoList.getId()));
+//            for (int i = 1; i <= (todoList.getName().length() / MAX_SYMBOLS_IN_LINE); i++) {
+//                stringBuilder.append(NEW_LINE);
+//            }
+//        }
+//        return stringBuilder.toString();
+//    }
 
     @Override
     public String generateTodosHtml(List<Todo> todos) {

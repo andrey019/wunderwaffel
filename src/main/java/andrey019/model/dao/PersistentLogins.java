@@ -7,17 +7,18 @@ import java.util.Date;
 public class PersistentLogins {
 
     @Id
+    @Column(length = 64)
     private String series;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false, length = 64)
     private String username;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 64)
     private String token;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "last_used", updatable = false, nullable = false,
-            columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
+    @Column(name = "last_used", nullable = false)//, updatable = false,
+            //columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
     private Date lastUsed;
 
     public String getSeries() {

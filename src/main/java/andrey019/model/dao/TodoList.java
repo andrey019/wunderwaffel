@@ -30,10 +30,10 @@ public class TodoList {
     inverseJoinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")})
     private List<User> users = new ArrayList<>();
 
-    @OneToMany(mappedBy = "todoList", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "todoList", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Todo> todos = new ArrayList<>();
 
-    @OneToMany(mappedBy = "todoList", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "todoList", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<DoneTodo> doneTodos = new ArrayList<>();
 
     public long getId() {
@@ -100,8 +100,18 @@ public class TodoList {
         todos.add(todo);
     }
 
+    public void removeTodo(Todo todo) {
+        todos.remove(todo);
+        todo.setTodoList(null);
+    }
+
     public void addDoneTodo(DoneTodo doneTodo) {
         doneTodo.setTodoList(this);
         doneTodos.add(doneTodo);
+    }
+
+    public void removeDoneTodo(DoneTodo doneTodo) {
+        doneTodos.remove(doneTodo);
+        doneTodo.setTodoList(null);
     }
 }

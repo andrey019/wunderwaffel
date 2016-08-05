@@ -7,12 +7,10 @@ import andrey019.model.dao.TodoList;
 import andrey019.model.dao.User;
 import andrey019.model.dao.UserConfirmation;
 import andrey019.service.maintenance.LogService;
-import com.mchange.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
@@ -72,7 +70,7 @@ public class UserController {
     }
 
     private void innerDao() {
-        User user = userDao.findById(1);
+        User user = userDao.getById(1);
         TodoList todoList = new TodoList();
         todoList.setUser(user);
         todoList.addUsers(user);

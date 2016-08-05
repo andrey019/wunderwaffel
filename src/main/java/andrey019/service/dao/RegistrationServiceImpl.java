@@ -93,7 +93,7 @@ public class RegistrationServiceImpl implements RegistrationService {
     }
 
     private boolean isEmailUsed(String email) {
-        if (userDao.findByEmail(email) == null) {
+        if (userDao.getByEmail(email) == null) {
             return false;
         }
         return true;

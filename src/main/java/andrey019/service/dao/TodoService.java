@@ -2,6 +2,9 @@ package andrey019.service.dao;
 
 
 import andrey019.model.dao.TodoList;
+import andrey019.model.dao.User;
+
+import java.util.List;
 
 public interface TodoService {
 
@@ -13,4 +16,7 @@ public interface TodoService {
     boolean unShareWith(String email, long todoListId, String emailToUnShareWith);
     boolean deleteTodoList(String email, long todoListId);
     TodoList getTodoListById(String email, long todoListId);
+    List<TodoList> getAllTodoLists(String email);
+    User isUserOwner(String email, long todoListId);
+    User isUserAllowed(String email, long todoListId);
 }

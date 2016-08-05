@@ -10,4 +10,5 @@ public interface TodoDao {
     boolean save(Todo todo);
     boolean delete(Todo todo);
     List<Todo> getByCreatedEmail(String email);
+    Todo getById(long id);
 }

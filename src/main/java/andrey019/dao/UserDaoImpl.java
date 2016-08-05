@@ -17,7 +17,7 @@ public class UserDaoImpl implements UserDao {
 
     @Transactional
     @Override
-    public User findById(long id) {
+    public User getById(long id) {
         return entityManager.find(User.class, id);
     }
 
@@ -35,7 +35,7 @@ public class UserDaoImpl implements UserDao {
 
     @Transactional
     @Override
-    public User findByEmail(String email) {
+    public User getByEmail(String email) {
         @SuppressWarnings("unchecked")
         List<User> result = entityManager.createQuery("select user from User user where user.email = :emailParam")
                 .setParameter("emailParam", email).setMaxResults(1).getResultList();

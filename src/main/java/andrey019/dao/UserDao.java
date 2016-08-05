@@ -5,6 +5,6 @@ import andrey019.model.dao.User;
 public interface UserDao {
 
     boolean save(User user);
-    User findById(long id);
-    User findByEmail(String email);
+    User getById(long id);
+    User getByEmail(String email);
 }

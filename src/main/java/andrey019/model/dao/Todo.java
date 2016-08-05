@@ -64,4 +64,10 @@ public class Todo {
     public void setCreatedByEmail(String createdByEmail) {
         this.createdByEmail = createdByEmail;
     }
+
+    public void setFromDoneTodo(DoneTodo doneTodo) {
+        todoText = doneTodo.getTodoText();
+        createdByEmail = doneTodo.getCreatedByEmail();
+        createdByName = doneTodo.getCreatedByName();
+    }
 }

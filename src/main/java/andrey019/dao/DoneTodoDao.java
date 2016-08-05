@@ -10,4 +10,5 @@ public interface DoneTodoDao {
     boolean save(DoneTodo todo);
     boolean delete(DoneTodo todo);
     List<DoneTodo> getByCreatedEmail(String email);
+    DoneTodo getById(long id);
 }

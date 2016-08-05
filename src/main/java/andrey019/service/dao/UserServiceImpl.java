@@ -21,16 +21,15 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public void save(User user) {
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
         dao.save(user);
     }
 
-    public User findById(long id) {
-        return dao.findById(id);
+    public User getById(long id) {
+        return dao.getById(id);
     }
 
-    public User findByEmail(String email) {
-        return dao.findByEmail(email);
+    public User getByEmail(String email) {
+        return dao.getByEmail(email);
     }
 
 }
