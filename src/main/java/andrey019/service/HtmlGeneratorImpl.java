@@ -47,6 +47,9 @@ public class HtmlGeneratorImpl implements HtmlGenerator {
 
     @Override
     public String generateTodosHtml(List<Todo> todos) {
+        if (todos.isEmpty()) {
+            return " ";
+        }
         StringBuilder stringBuilder = new StringBuilder();
         for (Todo todo : todos) {
             stringBuilder.append(String.format(TODO_BUTTON, todo.getId(), todo.getTodoText(),
