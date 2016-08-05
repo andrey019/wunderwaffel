@@ -2,10 +2,12 @@ package andrey019.controller;
 
 import andrey019.dao.TodoListDao;
 import andrey019.dao.UserDao;
-import andrey019.model.JsonModel;
+import andrey019.model.JsonMessage;
 import andrey019.model.dao.TodoList;
 import andrey019.model.dao.User;
 import andrey019.model.dao.UserConfirmation;
+import andrey019.service.HtmlGenerator;
+import andrey019.service.dao.TodoService;
 import andrey019.service.maintenance.LogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -26,6 +28,22 @@ public class UserController {
     @Autowired
     private UserDao userDao;
 
+    @Autowired
+    private TodoService todoService;
+
+    @Autowired
+    private HtmlGenerator htmlGenerator;
+
+    @RequestMapping("/")
+    public String userPage() {
+        return "user_page";
+    }
+
+    @RequestMapping("/loadLists")
+    @ResponseBody
+    public String loadLists(@RequestBody JsonMessage jsonMessage) {
+        return htmlGenerator.generateTodoListsHtml(todoService.getAllTodoLists(getUserEmail()));
+    }
 
     @RequestMapping("/ololo")
     public String userololo() {
@@ -45,10 +63,10 @@ public class UserController {
 
     @RequestMapping(value = "/test", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
     @ResponseBody
-    public String test(@RequestBody JsonModel jsonModel) {
+    public String test(@RequestBody JsonMessage jsonMessage) {
         System.out.println("!!!  !!!");
-        System.out.println(jsonModel);
-        return jsonModel.getListId() + " = " + getPrincipal() + "<button id=\"99999\" class=\"btn btn-default\" type=\"button\" onclick=\"oneMore(event)\">json button</button>";//sdf
+        System.out.println(jsonMessage);
+        return jsonMessage.getListId() + " = " + getUserEmail() + "<button id=\"99999\" class=\"btn btn-default\" type=\"button\" onclick=\"oneMore(event)\">json button</button>";//sdf
     }
 
     @RequestMapping("testdao")
@@ -58,7 +76,7 @@ public class UserController {
         return "done";
     }
 
-    private String getPrincipal(){
+    private String getUserEmail(){
         String userName = null;
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if (principal instanceof UserDetails) {
