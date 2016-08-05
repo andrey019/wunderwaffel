@@ -48,9 +48,12 @@ public class TestsUtil {
 //        System.out.println(Charset.defaultCharset());
 
         EmailValidator emailValidator = EmailValidator.getInstance();
-        System.out.println(EmailValidator.getInstance().isValid("sdfs@asdf"));
-        System.out.println(EmailValidator.getInstance().isValid("sdfs@asdf.com"));
-        System.out.println(EmailValidator.getInstance().isValid("sdfsasdf.com"));
-        System.out.println(EmailValidator.getInstance().isValid("sdfs@as.ua"));
+        System.out.println(emailValidator.isValid("sdfs@asdf"));
+        System.out.println(emailValidator.isValid("sdfs@asdf.com"));
+        System.out.println(emailValidator.isValid("sdfsasdf.com"));
+        System.out.println(emailValidator.isValid("sdfs@as.ua"));
+
+        StringBuilder stringBuilder = new StringBuilder();
+        System.out.println(stringBuilder.toString());
     }
 }

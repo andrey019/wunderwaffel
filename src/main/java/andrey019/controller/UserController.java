@@ -34,15 +34,25 @@ public class UserController {
     @Autowired
     private HtmlGenerator htmlGenerator;
 
-    @RequestMapping({"/", ""})
+    @RequestMapping(value = {"/", ""}, method = RequestMethod.GET)
     public String userPage() {
+        logService.accessToPage("user (user_page)");
         return "user_page";
     }
 
     @RequestMapping(value = "/loadLists", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
     @ResponseBody
     public String loadLists(@RequestBody JsonMessage jsonMessage) {
+        logService.ajaxJson("loadLists " + getUserEmail());
         return htmlGenerator.generateTodoListsHtml(todoService.getAllTodoLists(getUserEmail()));
+    }
+
+    @RequestMapping(value = "/loadTodos", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
+    @ResponseBody
+    public String loadTodos(@RequestBody JsonMessage jsonMessage) {
+        logService.ajaxJson("loadTodos " + getUserEmail());
+        return htmlGenerator.generateTodosHtml(todoService.getTodoListById(getUserEmail(), jsonMessage.getListId())
+                .getTodos());
     }
 
     @RequestMapping("/ololo")

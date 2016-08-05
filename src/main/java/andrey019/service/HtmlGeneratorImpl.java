@@ -11,15 +11,16 @@ import java.util.List;
 public class HtmlGeneratorImpl implements HtmlGenerator {
 
     private final static String LIST_BUTTON = "<button id=\"list=%d\" type=\"button\" class=\"list-group-item\" " +
-            "style=\"word-wrap: break-word\"><span id=\"badge=%d\" class=\"badge\">%d</span>%s</button>";
+            "onclick=\"loadTodos(event)\" style=\"word-wrap: break-word\">" +
+            "<span id=\"badge=%d\" class=\"badge\">%d</span>%s</button>";
 //    private final static String DELETE_BUTTON = "<button id=\"del=%d\" type=\"button\" class=\"list-group-item\">" +
 //            "<span class=\"glyphicon glyphicon-trash\" aria-hidden=\"true\"></span></button>";
     private final static String TODO_BUTTON = "<button id=\"todo=%d\" type=\"button\" class=\"list-group-item\" " +
             "style=\"word-wrap: break-word\">%s<br>Created by: %s</button>";
     private final static String DONE_TODO_BUTTON = "<button id=\"done=%d\" type=\"button\" class=\"list-group-item\" " +
             "style=\"word-wrap: break-word\">%s<br>Created by: %s. Done by: %s</button>";
-    private final static String NEW_LINE = "<br>";
-    private final static int MAX_SYMBOLS_IN_LINE = 14;
+//    private final static String NEW_LINE = "<br>";
+//    private final static int MAX_SYMBOLS_IN_LINE = 14;
 
 
     @Override

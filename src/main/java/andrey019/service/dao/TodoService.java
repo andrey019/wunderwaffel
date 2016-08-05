@@ -1,6 +1,8 @@
 package andrey019.service.dao;
 
 
+import andrey019.model.dao.DoneTodo;
+import andrey019.model.dao.Todo;
 import andrey019.model.dao.TodoList;
 import andrey019.model.dao.User;
 
@@ -17,6 +19,8 @@ public interface TodoService {
     boolean deleteTodoList(String email, long todoListId);
     TodoList getTodoListById(String email, long todoListId);
     List<TodoList> getAllTodoLists(String email);
+    List<Todo> getAllTodos(String email, long todoListId);
+    List<DoneTodo> getAllDoneTodos(String email, long todoListId);
     User isUserOwner(String email, long todoListId);
     User isUserAllowed(String email, long todoListId);
 }

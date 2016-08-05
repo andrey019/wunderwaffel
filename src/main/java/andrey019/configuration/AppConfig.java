@@ -3,6 +3,7 @@ package andrey019.configuration;
 //import org.hibernate.SessionFactory;
 import andrey019.service.maintenance.ConfirmationCleanUpService;
 import andrey019.service.maintenance.MailSenderService;
+import org.apache.commons.validator.routines.EmailValidator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -67,6 +68,11 @@ public class AppConfig extends WebMvcConfigurerAdapter {
     @Bean
     public ConfirmationCleanUpService getConfirmationCleanUpService() {
         return ConfirmationCleanUpService.getInstance();
+    }
+
+    @Bean
+    public EmailValidator getEmailValidator() {
+        return EmailValidator.getInstance();
     }
 
     @Bean

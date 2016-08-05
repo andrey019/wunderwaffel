@@ -48,11 +48,11 @@ public class MainController {
         return "admin";
     }
 
-//	@RequestMapping("/favicon.ico")
-//    public String favicon() {
-//        logService.accessToPage("favicon.ico");
-//        return "forward:/resources/favicon.png";
-//    }
+	@RequestMapping("/favicon.ico")
+    public String favicon() {
+        logService.accessToPage("favicon.ico");
+        return "forward:/resources/images/favicon.ico";
+    }
 
     @RequestMapping("/ololo")
     public String ololo() {

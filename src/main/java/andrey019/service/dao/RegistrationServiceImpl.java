@@ -34,6 +34,10 @@ public class RegistrationServiceImpl implements RegistrationService {
     @Autowired
     private MailService mailService;
 
+    @Autowired
+    private EmailValidator emailValidator;
+
+
     @Override
     public UserConfirmation getByEmail(String email) {
         return registrationDao.getByEmail(email);
@@ -82,7 +86,7 @@ public class RegistrationServiceImpl implements RegistrationService {
     }
 
     private boolean isEmailCorrect(String email) {
-        return EmailValidator.getInstance().isValid(email);
+        return emailValidator.isValid(email);
     }
 
     private boolean isEmailWaiting(String email) {

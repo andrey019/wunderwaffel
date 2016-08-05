@@ -55,6 +55,71 @@ function loadLists() {
         headers: headers,
         success: function (data) {
             document.getElementById("listResult").innerHTML = data;
+            if (typeof window.currentList !== 'undefined' && window.currentList != null) {
+                loadTodosCurrent();
+            }
+        },
+        error: function (e) {
+            alert("fail");
+        }
+    });
+}
+
+function loadTodosCurrent() {
+    var csrfHeader = $("meta[name='_csrf_header']").attr("content");
+    var csrfToken = $("meta[name='_csrf']").attr("content");
+
+    var headers = {};
+    headers[csrfHeader] = csrfToken;
+
+    var search = {
+        "listId": String(window.currentList).split("=")[1],
+        "todoId": 0,
+        "doneTodoId": 0,
+        "shareWith": null,
+        "unShareWith": null
+    };
+
+    $.ajax({
+        type: "POST",
+        url: "/user/loadTodos",
+        data: JSON.stringify(search),
+        contentType: 'application/json',
+        headers: headers,
+        success: function (data) {
+            document.getElementById("todoResult").innerHTML = data;
+        },
+        error: function (e) {
+            alert("fail");
+        }
+    });
+}
+
+function loadTodos(event) {
+    var csrfHeader = $("meta[name='_csrf_header']").attr("content");
+    var csrfToken = $("meta[name='_csrf']").attr("content");
+
+    var headers = {};
+    headers[csrfHeader] = csrfToken;
+
+    window.currentList = event.target.id;
+
+    var search = {
+        "listId": String(event.target.id).split("=")[1],
+        "todoId": 0,
+        "doneTodoId": 0,
+        "shareWith": null,
+        "unShareWith": null
+    };
+
+    $.ajax({
+        type: "POST",
+        url: "/user/loadTodos",
+        data: JSON.stringify(search),
+        contentType: 'application/json',
+        headers: headers,
+        success: function (data) {
+            document.getElementById("todoResult").innerHTML = data;
         },
         error: function (e) {
             alert("fail");

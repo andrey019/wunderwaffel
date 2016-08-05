@@ -31,4 +31,14 @@ public class LogServiceImpl implements LogService {
         stringBuilder.append(message);
         System.out.println(stringBuilder.toString());
     }
+
+    @Override
+    public void ajaxJson(String message) {
+        stringBuilder = new StringBuilder();
+        stringBuilder.append("[");
+        stringBuilder.append(new Date(System.currentTimeMillis() + TIMEZONE_CORRECTION));
+        stringBuilder.append("] [AJAX/JSON] ");
+        stringBuilder.append(message);
+        System.out.println(stringBuilder.toString());
+    }
 }

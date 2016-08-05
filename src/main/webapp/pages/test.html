@@ -8,7 +8,33 @@
 <body >
 
 
+<script>
+    function loadTodos(event) {
+//        var csrfHeader = $("meta[name='_csrf_header']").attr("content");
+//        var csrfToken = $("meta[name='_csrf']").attr("content");
 
+//        var headers = {};
+//        headers[csrfHeader] = csrfToken;
+        //alert("ololo");
+        //window.ver = 999;
+        window.currentList = 222;
+
+        if (typeof window.currentList !== 'undefined' && window.currentList != null) {
+            alert(window.currentList);
+        }
+
+
+        var search = {
+            "listId": listId[1],
+            "todoId": 0,
+            "doneTodoId": 0,
+            "shareWith": null,
+            "unShareWith": null
+        };
+
+        //alert(listId[1]);
+    }
+</script>
 
 
 <!--<div id="result" style="alignment: left; width: 60%; background-color: #31708f;">asdfasdfasf</div>-->
@@ -18,7 +44,7 @@
         <div style="width: 290px; float: left; margin-left: 5px">
             <div class="list-group">
                 <button id="list=111" type="button" class="list-group-item" style="word-wrap: break-word">WWWWWWWWWWWWWWWWWWWWWW</button>
-                <button type="button" class="list-group-item">Dapibus ac facilisis in</button>
+                <button id="list=12345" type="button" class="list-group-item" onclick="loadTodos(event)">Dapibus ac facilisis in</button>
                 <button type="button" class="list-group-item"><span class="badge">14</span>Dapibus ac facilisis in</button>
                 <button type="button" class="list-group-item"><span id="badge=111" class="badge">14</span>Dapibus ac facilisis in</button>
                 <button type="button" class="list-group-item">Dapibus ac facilisis in</button>
