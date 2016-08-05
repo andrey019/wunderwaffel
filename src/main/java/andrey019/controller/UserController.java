@@ -16,7 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping("/user/")
+@RequestMapping("/user")
 public class UserController {
 
     @Autowired
@@ -34,12 +34,12 @@ public class UserController {
     @Autowired
     private HtmlGenerator htmlGenerator;
 
-    @RequestMapping("/")
+    @RequestMapping({"/", ""})
     public String userPage() {
         return "user_page";
     }
 
-    @RequestMapping("/loadLists")
+    @RequestMapping(value = "/loadLists", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
     @ResponseBody
     public String loadLists(@RequestBody JsonMessage jsonMessage) {
         return htmlGenerator.generateTodoListsHtml(todoService.getAllTodoLists(getUserEmail()));
