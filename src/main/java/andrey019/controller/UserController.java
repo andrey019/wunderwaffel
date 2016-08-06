@@ -51,7 +51,7 @@ public class UserController {
     @ResponseBody
     public String loadTodos(@RequestBody JsonMessage jsonMessage) {
         logService.ajaxJson("loadTodos " + getUserEmail());
-        System.out.println(jsonMessage.getListId());
+        System.out.println(jsonMessage.getListId());//
         System.out.println(todoService.getTodoListById(getUserEmail(), jsonMessage.getListId()).getTodos());
         System.out.println(todoService.getTodoListById(getUserEmail(), jsonMessage.getListId()).getTodos().size());
 
