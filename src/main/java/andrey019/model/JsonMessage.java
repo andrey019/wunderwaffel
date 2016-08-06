@@ -11,6 +11,7 @@ public class JsonMessage {
     private String shareWith;
     private String unShareWith;
     private Date date;
+    private String strDate;
 
     public long getListId() {
         return listId;
@@ -60,9 +61,18 @@ public class JsonMessage {
         this.date = date;
     }
 
+    public String getStrDate() {
+        return strDate;
+    }
+
+    public void setStrDate(String strDate) {
+        this.strDate = strDate;
+    }
+
     @Override
     public String toString() {
         return "listId: " + listId + ", todoId: " + todoId + ", doneTodoId: " + doneTodoId +
-                ", shareWith: " + shareWith + ", unShareWith: " + unShareWith + ", date: " + date;
+                ", shareWith: " + shareWith + ", unShareWith: " + unShareWith + ", date: " + date +
+                ", strDate: " + strDate;
     }
 }
