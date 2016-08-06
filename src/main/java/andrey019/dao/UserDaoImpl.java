@@ -36,6 +36,7 @@ public class UserDaoImpl implements UserDao {
     @Transactional
     @Override
     public User getByEmail(String email) {
+        entityManager.clear();
         @SuppressWarnings("unchecked")
         List<User> result = entityManager.createQuery("select user from User user where user.email = :emailParam")
                 .setParameter("emailParam", email).setMaxResults(1).getResultList();
