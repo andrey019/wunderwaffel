@@ -114,4 +114,23 @@ public class TodoList {
         doneTodos.remove(doneTodo);
         doneTodo.setTodoList(null);
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (!(obj instanceof User))
+            return false;
+        TodoList other = (TodoList) obj;
+        if (id != other.getId())
+            return false;
+        if (user == null) {
+            if (other.getUser() != null)
+                return false;
+        } else if (!user.equals(other.getUser()))
+            return false;
+        return true;
+    }
 }

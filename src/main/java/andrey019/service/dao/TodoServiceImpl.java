@@ -46,11 +46,11 @@ public class TodoServiceImpl implements TodoService {
 
     @Override
     public boolean addTodo(String email, long todoListId, String todoText) {
-        User user = isUserAllowed(email, todoListId);
+        User user = userDao.getByEmail(email);
         if (user == null) {
             return false;
         }
-        TodoList todoList = todoListDao.getById(todoListId);
+        TodoList todoList = getListIfAllowed(user, todoListId);
         if (todoList == null) {
             return false;
         }
@@ -68,9 +68,12 @@ public class TodoServiceImpl implements TodoService {
         if (todo == null) {
             return false;
         }
-        TodoList todoList = todo.getTodoList();
-        User user = isUserAllowed(email, todoList.getId());
+        User user = userDao.getByEmail(email);
         if (user == null) {
+            return false;
+        }
+        TodoList todoList = todo.getTodoList();
+        if (!todoList.getUsers().contains(user)) {
             return false;
         }
         DoneTodo doneTodo = new DoneTodo();
@@ -88,13 +91,18 @@ public class TodoServiceImpl implements TodoService {
         if (doneTodo == null) {
             return false;
         }
-        TodoList todoList = doneTodo.getTodoList();
-        User user = isUserAllowed(email, todoList.getId());
+        User user = userDao.getByEmail(email);
         if (user == null) {
             return false;
         }
-        if (!user.getEmail().equalsIgnoreCase(doneTodo.getDoneByEmail())) {
+        TodoList todoList = doneTodo.getTodoList();
+        if (!user.getSharedTodoLists().contains(todoList)) {
             return false;
+        }
+        if (!todoList.getUser().equals(user)) {
+            if (!user.getEmail().equals(doneTodo.getDoneByEmail())) {
+                return false;
+            }
         }
         Todo todo = new Todo();
         todo.setFromDoneTodo(doneTodo);
@@ -105,37 +113,34 @@ public class TodoServiceImpl implements TodoService {
 
     @Override
     public boolean shareTodoList(String email, long todoListId, String emailToShareWith) {
-        User user = isUserAllowed(email, todoListId);
+        User user = userDao.getByEmail(email);
         if (user == null) {
             return false;
         }
-        User sharedUser = userDao.getByEmail(emailToShareWith);
-        if (sharedUser == null) {
-            return false;
-        }
-        TodoList todoList = todoListDao.getById(todoListId);
+        TodoList todoList = getListIfAllowed(user, todoListId);
         if (todoList == null) {
             return false;
         }
-        todoList.addUsers(sharedUser);
+        User userToShare = userDao.getByEmail(emailToShareWith);
+        if (userToShare == null) {
+            return false;
+        }
+        todoList.addUsers(userToShare);
         return todoListDao.save(todoList);
     }
 
     @Override
     public boolean unShareWith(String email, long todoListId, String emailToUnShareWith) {
-        User user = isUserAllowed(email, todoListId);
+        User userToUnShare = userDao.getByEmail(emailToUnShareWith);
+        TodoList todoList = getListIfOwner(userToUnShare, todoListId);
+        if (todoList != null) {
+            return false;
+        }
+        User user = userDao.getByEmail(email);
         if (user == null) {
             return false;
         }
-        User userToUnShare = isUserOwner(emailToUnShareWith, todoListId);
-        if (userToUnShare != null) {
-            return false;
-        }
-        userToUnShare = userDao.getByEmail(emailToUnShareWith);
-        if (userToUnShare == null) {
-            return false;
-        }
-        TodoList todoList = todoListDao.getById(todoListId);
+        todoList = getListIfAllowed(user, todoListId);
         if (todoList == null) {
             return false;
         }
@@ -145,11 +150,8 @@ public class TodoServiceImpl implements TodoService {
 
     @Override
     public boolean deleteTodoList(String email, long todoListId) {
-        User user = isUserOwner(email, todoListId);
-        if (user == null) {
-            return false;
-        }
-        TodoList todoList = todoListDao.getById(todoListId);
+        User user = userDao.getByEmail(email);
+        TodoList todoList = getListIfOwner(user, todoListId);
         if (todoList == null) {
             return false;
         }
@@ -159,11 +161,12 @@ public class TodoServiceImpl implements TodoService {
 
     @Override
     public TodoList getTodoListById(String email, long todoListId) {
-        User user = isUserAllowed(email, todoListId);
-        if (user == null) {
+        User user = userDao.getByEmail(email);
+        TodoList todoList = getListIfAllowed(user, todoListId);
+        if (todoList == null) {
             return null;
         }
-        return todoListDao.getById(todoListId);
+        return todoList;
     }
 
     @Override
@@ -177,11 +180,8 @@ public class TodoServiceImpl implements TodoService {
 
     @Override
     public List<DoneTodo> getAllDoneTodos(String email, long todoListId) {
-        User user = isUserAllowed(email, todoListId);
-        if (user == null) {
-            return null;
-        }
-        TodoList todoList = todoListDao.getById(todoListId);
+        User user = userDao.getByEmail(email);
+        TodoList todoList = getListIfAllowed(user, todoListId);
         if (todoList == null) {
             return null;
         }
@@ -190,11 +190,8 @@ public class TodoServiceImpl implements TodoService {
 
     @Override
     public List<Todo> getAllTodos(String email, long todoListId) {
-        User user = isUserAllowed(email, todoListId);
-        if (user == null) {
-            return null;
-        }
-        TodoList todoList = todoListDao.getById(todoListId);
+        User user = userDao.getByEmail(email);
+        TodoList todoList = getListIfAllowed(user, todoListId);
         if (todoList == null) {
             return null;
         }
@@ -202,8 +199,7 @@ public class TodoServiceImpl implements TodoService {
     }
 
     @Override
-    public User isUserOwner(String email, long todoListId) {
-        User user = userDao.getByEmail(email);
+    public TodoList getListIfOwner(User user, long todoListId) {
         if (user == null) {
             return null;
         }
@@ -211,15 +207,14 @@ public class TodoServiceImpl implements TodoService {
         if (todoList == null) {
             return null;
         }
-        if (user.getEmail().equalsIgnoreCase(todoList.getUser().getEmail())) {
-            return user;
+        if (user.equals(todoList.getUser())) {
+            return todoList;
         }
         return null;
     }
 
     @Override
-    public User isUserAllowed(String email, long todoListId) {
-        User user = userDao.getByEmail(email);
+    public TodoList getListIfAllowed(User user, long todoListId) {
         if (user == null) {
             return null;
         }
@@ -228,10 +223,8 @@ public class TodoServiceImpl implements TodoService {
             return null;
         }
         if (todoList.getUsers().contains(user)) {
-            return user;
+            return todoList;
         }
-        System.out.println(todoList.getUsers().get(0));
-        System.out.println(user);
-        return null;    // sfasfsfad
+        return null;
     }
 }
