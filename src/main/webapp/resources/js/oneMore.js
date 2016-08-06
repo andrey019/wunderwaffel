@@ -214,7 +214,7 @@ function addTodo() {
         headers: headers,
         success: function (data) {
             document.getElementById("addTodoInput").value = "";
-            loadCurrentListTodos();
+            loadLists();
         },
         error: function (jqXHR, exception) {
             var msg = '';
