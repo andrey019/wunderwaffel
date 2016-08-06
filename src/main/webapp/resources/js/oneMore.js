@@ -44,7 +44,8 @@ function loadLists() {
         "todoId": 0,
         "doneTodoId": 0,
         "shareWith": null,
-        "unShareWith": null
+        "unShareWith": null,
+        "date": new Date().toJSON()
     };
 
     $.ajax({
@@ -109,7 +110,8 @@ function loadTodos(event) {
         "todoId": 0,
         "doneTodoId": 0,
         "shareWith": null,
-        "unShareWith": null
+        "unShareWith": null,
+        "date": new Date().toJSON()
     };
 
     $.ajax({

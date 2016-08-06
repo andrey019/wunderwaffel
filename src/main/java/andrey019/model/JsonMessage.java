@@ -1,6 +1,8 @@
 package andrey019.model;
 
 
+import java.util.Date;
+
 public class JsonMessage {
 
     private long listId;
@@ -8,6 +10,7 @@ public class JsonMessage {
     private long doneTodoId;
     private String shareWith;
     private String unShareWith;
+    private Date date;
 
     public long getListId() {
         return listId;
@@ -49,8 +52,17 @@ public class JsonMessage {
         this.unShareWith = unShareWith;
     }
 
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
     @Override
     public String toString() {
-        return "listId: " + listId + ", todoId: " + todoId;
+        return "listId: " + listId + ", todoId: " + todoId + ", doneTodoId: " + doneTodoId +
+                ", shareWith: " + shareWith + ", unShareWith: " + unShareWith + ", date: " + date;
     }
 }

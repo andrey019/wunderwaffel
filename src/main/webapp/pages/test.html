@@ -36,6 +36,15 @@
     }
 </script>
 
+<script>
+    function loadDate() {
+        var date = new Date().toJSON();
+        document.getElementById("dates").innerHTML = date;
+    }
+</script>
+
+<div id="dates"></div>
+
 
 <!--<div id="result" style="alignment: left; width: 60%; background-color: #31708f;">asdfasdfasf</div>-->
 
@@ -48,7 +57,7 @@
                 <button type="button" class="list-group-item" style="word-wrap: break-word"><span class="badge">14</span><s>WWWWWWWWWWWWWWWWW<br>WWWWWWWWWWWWWWWWWWWWWWWW</s>WWWWWWWWWWWWWWWWWWWWWWWWWWWWW</button>
                 <button type="button" class="list-group-item"><span id="badge=111" class="badge">14</span>Dapibus ac facilisis in</button>
                 <button type="button" class="list-group-item">Dapibus ac facilisis in</button>
-                <button type="button" class="list-group-item">Dapibus ac facilisis in</button>
+                <button type="button" class="list-group-item" onclick="loadDate()">Date test</button>
                 <button type="button" class="list-group-item">Dapibus ac facilisis in</button>
                 <button type="button" class="list-group-item">Dapibus ac facilisis in</button>
                 <button type="button" class="list-group-item">Dapibus ac facilisis in</button>

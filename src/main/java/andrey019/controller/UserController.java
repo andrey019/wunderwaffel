@@ -44,6 +44,7 @@ public class UserController {
     @ResponseBody
     public String loadLists(@RequestBody JsonMessage jsonMessage) {
         logService.ajaxJson("loadLists " + getUserEmail());
+        System.out.println(jsonMessage);
         return htmlGenerator.generateTodoListsHtml(todoService.getAllTodoLists(getUserEmail()));
     }
 
