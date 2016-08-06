@@ -8,8 +8,7 @@
     <link rel="shortcut icon" href="/resources/images/favicon.ico" type="image\x-icon" />
     <link rel="icon" href="/resources/images/favicon.ico" type="image\x-icon" />
     <title>registration</title>
-    <meta charset="utf-8">
-    <meta http-equiv="content-type" content="application/xhtml+xml; charset=UTF-8" />
+    <meta http-equiv="refresh" content="${pageContext.session.maxInactiveInterval}">
 </head>
 <body>
 <form action="/auth/registration" method="post" class="form-horizontal">

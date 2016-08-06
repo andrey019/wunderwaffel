@@ -8,6 +8,7 @@
     <script type="text/javascript" src="/resources/js/jquery-3.1.0.min.js"></script>
     <script type="text/javascript" src="/resources/js/oneMore.js"></script>
     <sec:csrfMetaTags />
+    <meta http-equiv="refresh" content="${pageContext.session.maxInactiveInterval}">
     <title>WunderWaffel</title>
 </head>
 <body>

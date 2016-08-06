@@ -4,6 +4,7 @@
 <head>
     <link rel="shortcut icon" href="/resources/images/favicon.ico" type="image\x-icon" />
     <link rel="icon" href="/resources/images/favicon.ico" type="image\x-icon" />
+    <meta http-equiv="refresh" content="${pageContext.session.maxInactiveInterval}">
     <title>login</title>
 </head>
 <body>

@@ -230,6 +230,6 @@ public class TodoServiceImpl implements TodoService {
         if (todoList.getUsers().contains(user)) {
             return user;
         }
-        return user;    // sfasfsfad
+        return null;    // sfasfsfad
     }
 }

@@ -165,7 +165,7 @@ public class User {
         if (email == null) {
             if (other.email != null)
                 return false;
-        } else if (!email.equals(other.email))
+        } else if (!email.equalsIgnoreCase(other.email))
             return false;
         return true;
     }
