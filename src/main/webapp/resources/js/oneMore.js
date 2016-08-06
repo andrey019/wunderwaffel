@@ -129,7 +129,7 @@ function loadTodos(event) {
                 '500' : "Internal server error.",
                 '503' : "Service unavailable."
             };
-            alert(statusErrorMap[xhr.status]);
+            alert(statusErrorMap[xhr.status] + " / " + xhr.status);
         }
     });
 }
