@@ -121,15 +121,24 @@ function loadTodos(event) {
         success: function (data) {
             document.getElementById("todoResult").innerHTML = data;
         },
-        error: function (e, xhr) {
-            var statusErrorMap = {
-                '400' : "Server understood the request, but request content was invalid.",
-                '401' : "Unauthorized access.",
-                '403' : "Forbidden resource can't be accessed.",
-                '500' : "Internal server error.",
-                '503' : "Service unavailable."
-            };
-            alert(statusErrorMap[xhr.status] + " / " + xhr.status);
+        error: function (jqXHR, exception) {
+            var msg = '';
+            if (jqXHR.status === 0) {
+                msg = 'Not connect.\n Verify Network.';
+            } else if (jqXHR.status == 404) {
+                msg = 'Requested page not found. [404]';
+            } else if (jqXHR.status == 500) {
+                msg = 'Internal Server Error [500].';
+            } else if (exception === 'parsererror') {
+                msg = 'Requested JSON parse failed.';
+            } else if (exception === 'timeout') {
+                msg = 'Time out error.';
+            } else if (exception === 'abort') {
+                msg = 'Ajax request aborted.';
+            } else {
+                msg = 'Uncaught Error.\n' + jqXHR.responseText;
+            }
+            alert(msg + "/ status: " + jqXHR.status + "/ exception: " + exception);
         }
     });
 }
