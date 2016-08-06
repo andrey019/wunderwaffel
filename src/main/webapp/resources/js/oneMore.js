@@ -90,7 +90,7 @@ function loadCurrentListTodos() {
     headers[csrfHeader] = csrfToken;
 
     var search = {
-        "listId": String(window.currentList).split("=")[1],
+        "listId": window.currentList,
         "todoId": 0,
         "doneTodoId": 0,
         "shareWith": null,
@@ -214,7 +214,7 @@ function addTodo() {
         headers: headers,
         success: function (data) {
             document.getElementById("addTodoInput").value = "";
-            loadLists();
+            loadCurrentListTodos();
         },
         error: function (jqXHR, exception) {
             var msg = '';
