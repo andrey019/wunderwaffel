@@ -60,6 +60,15 @@ public class UserController {
                 .getTodos());
     }
 
+    @RequestMapping(value = "/addTodo", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
+    @ResponseBody
+    public String addTodo(@RequestBody JsonMessage jsonMessage) {
+        logService.ajaxJson("addTodo " + getUserEmail());
+        System.out.println(jsonMessage);
+        todoService.addTodo(getUserEmail(), jsonMessage.getListId(), jsonMessage.getTodoText());
+        return "";
+    }
+
     @RequestMapping("/ololo")
     public String userololo() {
         logService.accessToPage("user/ololo");

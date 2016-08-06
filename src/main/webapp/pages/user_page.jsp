@@ -26,9 +26,9 @@
         <div class="row" style="width: 99%">
             <div class="col-lg-6" style="width: 99%">
                 <div class="input-group" style="width: 99%">
-                    <input type="text" class="form-control" placeholder="Add new TODO...">
+                    <input id="addTodoInput" type="text" onkeyup="todoInputEnter(event)" class="form-control" placeholder="Add new TODO...">
                     <span class="input-group-btn">
-                        <button class="btn btn-default" type="button">+</button>
+                        <button id="addTodoButton" onclick="addTodo()" class="btn btn-default" type="button">+</button>
                     </span>
                 </div>
             </div>
