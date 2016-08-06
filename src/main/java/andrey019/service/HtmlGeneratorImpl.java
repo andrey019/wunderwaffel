@@ -16,11 +16,13 @@ public class HtmlGeneratorImpl implements HtmlGenerator {
 //    private final static String DELETE_BUTTON = "<button id=\"del=%d\" type=\"button\" class=\"list-group-item\">" +
 //            "<span class=\"glyphicon glyphicon-trash\" aria-hidden=\"true\"></span></button>";
     private final static String TODO_BUTTON = "<button id=\"todo=%d\" type=\"button\" class=\"list-group-item\" " +
-            "style=\"word-wrap: break-word\">%s<br>Created by: %s</button>";
-    private final static String DONE_TODO_BUTTON = "<button id=\"done=%d\" type=\"button\" class=\"list-group-item\" " +
-            "style=\"word-wrap: break-word\">%s<br>Created by: %s. Done by: %s</button>";
-//    private final static String NEW_LINE = "<br>";
-//    private final static int MAX_SYMBOLS_IN_LINE = 14;
+            "style=\"word-wrap: break-word\">%s" +
+            "<div style=\"font-size:11px; text-align: right\">Created by: %s.</div></button>";
+    private final static String DONE_TODO_BUTTON = "<button id=\"done=%d\" type=\"button\" " +
+            "class=\"list-group-item\" style=\"word-wrap: break-word\"><s>%s</s>" +
+            "<div style=\"font-size:11px; text-align: right\">Created by: %s. Done by: %s.</div></button>";
+    private final static String NEW_LINE = "<br>";
+    private final static int MAX_SYMBOLS_IN_LINE = 17;
 
 
     @Override
@@ -28,7 +30,7 @@ public class HtmlGeneratorImpl implements HtmlGenerator {
         StringBuilder stringBuilder = new StringBuilder();
         for (TodoList todoList : todoLists) {
             stringBuilder.append(String.format(LIST_BUTTON, todoList.getId(), todoList.getId(),
-                    todoList.getTodos().size(), todoList.getName()));
+                    todoList.getTodos().size(), addBreaks(todoList.getName())));
         }
         return stringBuilder.toString();
     }
@@ -65,6 +67,15 @@ public class HtmlGeneratorImpl implements HtmlGenerator {
             stringBuilder.append(String.format(DONE_TODO_BUTTON, doneTodo.getId(), doneTodo.getTodoText(),
                     doneTodo.getCreatedByName(), doneTodo.getDoneByName()));
         }
+        return stringBuilder.toString();
+    }
+
+    private String addBreaks(String text) {
+        if (text.length() <= MAX_SYMBOLS_IN_LINE) {
+            return text;
+        }
+        StringBuilder stringBuilder = new StringBuilder(text);
+        stringBuilder.insert(MAX_SYMBOLS_IN_LINE, NEW_LINE);
         return stringBuilder.toString();
     }
 }
