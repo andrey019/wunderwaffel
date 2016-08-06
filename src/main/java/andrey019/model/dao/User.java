@@ -160,12 +160,12 @@ public class User {
         if (!(obj instanceof User))
             return false;
         User other = (User) obj;
-        if (id != other.id)
+        if (id != other.getId())
             return false;
         if (email == null) {
-            if (other.email != null)
+            if (other.getEmail() != null)
                 return false;
-        } else if (!email.equalsIgnoreCase(other.email))
+        } else if (!email.equals(other.getEmail()))
             return false;
         return true;
     }
