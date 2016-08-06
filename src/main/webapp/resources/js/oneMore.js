@@ -121,8 +121,15 @@ function loadTodos(event) {
         success: function (data) {
             document.getElementById("todoResult").innerHTML = data;
         },
-        error: function (e) {
-            alert("fail");
+        error: function (e, xhr) {
+            var statusErrorMap = {
+                '400' : "Server understood the request, but request content was invalid.",
+                '401' : "Unauthorized access.",
+                '403' : "Forbidden resource can't be accessed.",
+                '500' : "Internal server error.",
+                '503' : "Service unavailable."
+            };
+            alert(statusErrorMap[xhr.status]);
         }
     });
 }
