@@ -149,7 +149,7 @@ public class TodoList {
             return true;
         if (obj == null)
             return false;
-        if (!(obj instanceof User))
+        if (!(obj instanceof TodoList))
             return false;
         TodoList other = (TodoList) obj;
         if (id != other.getId())
