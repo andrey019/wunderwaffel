@@ -20,7 +20,7 @@ public class HtmlGeneratorImpl implements HtmlGenerator {
             "style=\"word-wrap: break-word\">%s" +
             "<div style=\"font-size:11px; text-align: right\">Created by: %s.</div></button>";
     private final static String DONE_TODO_BUTTON = "<button id=\"done=%d\" type=\"button\" " +
-            "class=\"list-group-item\" style=\"word-wrap: break-word\"><s>%s</s>" +
+            "class=\"list-group-item\" style=\"word-wrap: break-word; background-color: lightgrey\"><s>%s</s>" +
             "<div style=\"font-size:11px; text-align: right\">Created by: %s. Done by: %s.</div></button>";
     private final static String NEW_LINE = "<br>";
     private final static int MAX_SYMBOLS_IN_LINE = 17;
