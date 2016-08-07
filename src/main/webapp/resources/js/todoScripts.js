@@ -164,7 +164,6 @@ function doneTodo(event) {
         contentType: 'application/json',
         headers: getCSRFHeader(),
         success: function (data) {
-            alert(data);
             if (data == "ok") {
                 loadLists();
             }
