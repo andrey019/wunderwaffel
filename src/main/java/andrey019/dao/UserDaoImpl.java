@@ -50,7 +50,7 @@ public class UserDaoImpl implements UserDao {
         @SuppressWarnings("unchecked")
         List<User> result = entityManager.createQuery("select user from User user join fetch user.sharedTodoLists " +
                 "where user.email = :emailParam")
-                .setParameter("emailParam", email).setMaxResults(1).getResultList();
+                .setParameter("emailParam", email).getResultList();
         if (result.isEmpty()) {
             return null;
         }
