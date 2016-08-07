@@ -59,7 +59,7 @@ function loadLists() {
 }
 
 function loadCurrentListTodos() {
-    if (typeof window.currentList !== 'undefined' && window.currentList != null) {
+    if (typeof window.currentList === 'undefined' || window.currentList == null) {
         return;
     }
 
