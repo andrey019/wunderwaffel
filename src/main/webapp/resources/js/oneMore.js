@@ -1,39 +1,6 @@
 
-function oneMore(event) {
-    var csrfHeader = $("meta[name='_csrf_header']").attr("content");
-    var csrfToken = $("meta[name='_csrf']").attr("content");
-
-    var headers = {};
-    headers[csrfHeader] = csrfToken;
-
-    var search = {
-        "listId": 125,
-        "todoId": event.target.id
-    };
-
-    window.testVar = "ololololo test";
-
-    $.ajax({
-        type: "POST",
-        url: "/user/test",
-        //data: JSON.stringify({id: 20, name: "фыва ололошка"}),
-        //dataType: 'json',
-        data: JSON.stringify(search),
-        contentType: 'application/json',
-        headers: headers,
-        success: function (data) {
-//                $("#result").html(data);
-            document.getElementById("result").innerHTML = data;
-            innerTest();
-        },
-        error: function (e) {
-            alert("fail");
-        }
-    });
-}
-
 function loadLists() {
-    var search = {
+    var jsonMessage = {
         "listId": 0,
         "todoId": 0,
         "doneTodoId": 0,
@@ -45,7 +12,7 @@ function loadLists() {
     $.ajax({
         type: "POST",
         url: "/user/loadLists",
-        data: JSON.stringify(search),
+        data: JSON.stringify(jsonMessage),
         contentType: 'application/json',
         headers: getCSRFHeader(),
         success: function (data) {
@@ -63,7 +30,7 @@ function loadCurrentListTodos() {
         return;
     }
 
-    var search = {
+    var jsonMessage = {
         "listId": window.currentList,
         "todoId": 0,
         "doneTodoId": 0,
@@ -75,7 +42,7 @@ function loadCurrentListTodos() {
     $.ajax({
         type: "POST",
         url: "/user/loadTodos",
-        data: JSON.stringify(search),
+        data: JSON.stringify(jsonMessage),
         contentType: 'application/json',
         headers: getCSRFHeader(),
         success: function (data) {
@@ -91,7 +58,7 @@ function loadCurrentListTodos() {
 function loadTodos(event) {
     window.currentList = String(event.target.id).split("=")[1];
 
-    var search = {
+    var jsonMessage = {
         "listId": window.currentList,
         "todoId": 0,
         "doneTodoId": 0,
@@ -103,7 +70,7 @@ function loadTodos(event) {
     $.ajax({
         type: "POST",
         url: "/user/loadTodos",
-        data: JSON.stringify(search),
+        data: JSON.stringify(jsonMessage),
         contentType: 'application/json',
         headers: getCSRFHeader(),
         success: function (data) {
@@ -122,7 +89,7 @@ function addTodo() {
         return;
     }
 
-    var search = {
+    var jsonMessage = {
         "listId": window.currentList,
         "todoId": 0,
         "doneTodoId": 0,
@@ -134,7 +101,7 @@ function addTodo() {
     $.ajax({
         type: "POST",
         url: "/user/addTodo",
-        data: JSON.stringify(search),
+        data: JSON.stringify(jsonMessage),
         contentType: 'application/json',
         headers: getCSRFHeader(),
         success: function (data) {
@@ -152,7 +119,7 @@ function loadDoneTodos() {
         return;
     }
 
-    var search = {
+    var jsonMessage = {
         "listId": window.currentList,
         "todoId": 0,
         "doneTodoId": 0,
@@ -164,11 +131,42 @@ function loadDoneTodos() {
     $.ajax({
         type: "POST",
         url: "/user/loadDoneTodos",
-        data: JSON.stringify(search),
+        data: JSON.stringify(jsonMessage),
         contentType: 'application/json',
         headers: getCSRFHeader(),
         success: function (data) {
             document.getElementById("doneTodoResult").innerHTML = data;
+        },
+        error: function (jqXHR, exception) {
+            jsonErrorHandler(jqXHR, exception);
+        }
+    });
+}
+
+function doneTodo(event) {
+    if (typeof window.currentList === 'undefined' || window.currentList == null) {
+        return;
+    }
+
+    var jsonMessage = {
+        "listId": window.currentList,
+        "todoId": String(event.target.id).split("=")[1],
+        "doneTodoId": 0,
+        "shareWith": null,
+        "unShareWith": null,
+        "todoText": null
+    };
+
+    $.ajax({
+        type: "POST",
+        url: "/user/doneTodo",
+        data: JSON.stringify(jsonMessage),
+        contentType: 'application/json',
+        headers: getCSRFHeader(),
+        success: function (data) {
+            if (data == "ok") {
+                loadLists();
+            }
         },
         error: function (jqXHR, exception) {
             jsonErrorHandler(jqXHR, exception);

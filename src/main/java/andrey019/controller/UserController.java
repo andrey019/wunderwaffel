@@ -19,6 +19,9 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/user")
 public class UserController {
 
+    private final static String RESPONSE_OK = "ok";
+    private final static String RESPONSE_ERROR = "error";
+
     @Autowired
     private LogService logService;
 
@@ -83,9 +86,12 @@ public class UserController {
 
     @RequestMapping(value = "/doneTodo", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
     @ResponseBody
-    public String doneTodo() {
-        //System.out.println(todoService.doneTodo(getUserEmail(), 4, 2));
-        return "";
+    public String doneTodo(@RequestBody JsonMessage jsonMessage) {
+        logService.ajaxJson("doneTodo " + getUserEmail());
+        if (todoService.doneTodo(getUserEmail(), jsonMessage.getListId(), jsonMessage.getTodoId())) {
+            return RESPONSE_OK;
+        }
+        return RESPONSE_ERROR;
     }
 
     @RequestMapping("/ololo")

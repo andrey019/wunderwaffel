@@ -17,7 +17,7 @@ public class HtmlGeneratorImpl implements HtmlGenerator {
 //    private final static String DELETE_BUTTON = "<button id=\"del=%d\" type=\"button\" class=\"list-group-item\">" +
 //            "<span class=\"glyphicon glyphicon-trash\" aria-hidden=\"true\"></span></button>";
     private final static String TODO_BUTTON = "<button id=\"todo=%d\" type=\"button\" class=\"list-group-item\" " +
-            "style=\"word-wrap: break-word\">%s" +
+            "onclick=\"doneTodo(event)\" style=\"word-wrap: break-word\">%s" +
             "<div style=\"font-size:11px; text-align: right\">Created by: %s.</div></button>";
     private final static String DONE_TODO_BUTTON = "<button id=\"done=%d\" type=\"button\" " +
             "class=\"list-group-item\" style=\"word-wrap: break-word; background-color: lightgrey\"><s>%s</s>" +
