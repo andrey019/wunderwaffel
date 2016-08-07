@@ -154,11 +154,9 @@ public class TodoList {
         TodoList other = (TodoList) obj;
         if (id != other.getId())
             return false;
-        if (user == null) {
-            if (other.getUser() != null)
-                return false;
-        } else if (!user.getEmail().equals(other.getUser().getEmail()))
+        if (hashCode() != other.hashCode()) {
             return false;
+        }
         return true;
     }
 
