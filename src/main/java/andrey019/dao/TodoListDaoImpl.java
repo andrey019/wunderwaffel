@@ -4,6 +4,7 @@ package andrey019.dao;
 import andrey019.model.dao.TodoList;
 import andrey019.model.dao.User;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
@@ -20,7 +21,7 @@ public class TodoListDaoImpl implements TodoListDao {
     @PersistenceContext
     private EntityManager entityManager;
 
-    @Transactional
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
     @Override
     public boolean save(TodoList todoList) {
         try {
@@ -77,7 +78,7 @@ public class TodoListDaoImpl implements TodoListDao {
         return result.get(0);
     }
 
-    @Transactional
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
     @Override
     public TodoList getByIdWithTodosAndDoneTodos(long id) {
         @SuppressWarnings("unchecked")

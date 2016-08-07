@@ -3,6 +3,7 @@ package andrey019.dao;
 
 import andrey019.model.dao.Todo;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
@@ -16,7 +17,7 @@ public class TodoDaoImpl implements TodoDao {
     @PersistenceContext
     private EntityManager entityManager;
 
-    @Transactional
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
     @Override
     public Todo getById(long id) {
         return entityManager.find(Todo.class, id);

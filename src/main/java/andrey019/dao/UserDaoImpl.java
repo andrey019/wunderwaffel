@@ -2,6 +2,7 @@ package andrey019.dao;
 
 import andrey019.model.dao.User;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
@@ -45,7 +46,7 @@ public class UserDaoImpl implements UserDao {
         return result.get(0);
     }
 
-    @Transactional
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
     @Override
     public User getByEmailWithSharedLists(String email) {
         @SuppressWarnings("unchecked")
