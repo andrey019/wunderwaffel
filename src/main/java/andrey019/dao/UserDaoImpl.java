@@ -48,7 +48,7 @@ public class UserDaoImpl implements UserDao {
     @Override
     public User getByEmailWithLists(String email) {
         @SuppressWarnings("unchecked")
-        List<User> result = entityManager.createQuery("select user from User user join fetch user.sharedTodoLists" +
+        List<User> result = entityManager.createQuery("select user from User user join fetch user.sharedTodoLists " +
                 "where user.email = :emailParam")
                 .setParameter("emailParam", email).setMaxResults(1).getResultList();
         if (result.isEmpty()) {
