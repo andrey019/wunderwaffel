@@ -10,7 +10,7 @@ import java.util.Set;
 
 public interface HtmlGenerator {
 
-    String generateTodoListsHtml(List<TodoList> todoLists);
+    String generateTodoListsHtml(Set<TodoList> todoLists);
 //    String generateTodoListsDeleteHtml(List<TodoList> todoLists);
     String generateTodosHtml(Set<Todo> todos);
     String generateDoneTodosHtml(Set<DoneTodo> doneTodos);

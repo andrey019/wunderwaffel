@@ -27,7 +27,7 @@ public class HtmlGeneratorImpl implements HtmlGenerator {
 
 
     @Override
-    public String generateTodoListsHtml(List<TodoList> todoLists) {
+    public String generateTodoListsHtml(Set<TodoList> todoLists) {
         StringBuilder stringBuilder = new StringBuilder();
         for (TodoList todoList : todoLists) {
             stringBuilder.append(String.format(LIST_BUTTON, todoList.getId(), todoList.getId(),

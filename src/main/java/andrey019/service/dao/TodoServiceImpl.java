@@ -204,7 +204,7 @@ public class TodoServiceImpl implements TodoService {
     }
 
     @Override
-    public List<TodoList> getAllTodoLists(String email) {
+    public Set<TodoList> getAllTodoLists(String email) {
         User user = userDao.getByEmailWithSharedLists(email);
         if (user == null) {
             return null;
