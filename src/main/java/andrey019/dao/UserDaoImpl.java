@@ -45,6 +45,7 @@ public class UserDaoImpl implements UserDao {
         return result.get(0);
     }
 
+    @Transactional
     @Override
     public User getByEmailWithSharedLists(String email) {
         @SuppressWarnings("unchecked")
