@@ -4,6 +4,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -27,11 +28,13 @@ public class User {
     @Column(nullable = false)
     private String lName;
 
+    @OrderBy("id DESC")
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<TodoList> todoLists = new ArrayList<>();
+    private Set<TodoList> todoLists = new HashSet<>();
 
+    @OrderBy("id DESC")
     @ManyToMany(mappedBy = "users", cascade = {CascadeType.MERGE})
-    private List<TodoList> sharedTodoLists = new ArrayList<>();
+    private Set<TodoList> sharedTodoLists = new HashSet<>();
 
     @Column(nullable = false)
     private String state = State.ACTIVE.getState();
@@ -79,19 +82,19 @@ public class User {
         this.lName = lName;
     }
 
-    public List<TodoList> getTodoLists() {
+    public Set<TodoList> getTodoLists() {
         return todoLists;
     }
 
-    public void setTodoLists(List<TodoList> todoLists) {
+    public void setTodoLists(Set<TodoList> todoLists) {
         this.todoLists = todoLists;
     }
 
-    public List<TodoList> getSharedTodoLists() {
+    public Set<TodoList> getSharedTodoLists() {
         return sharedTodoLists;
     }
 
-    public void setSharedTodoLists(List<TodoList> sharedTodoLists) {
+    public void setSharedTodoLists(Set<TodoList> sharedTodoLists) {
         this.sharedTodoLists = sharedTodoLists;
     }
 

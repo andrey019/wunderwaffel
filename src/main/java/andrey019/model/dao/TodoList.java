@@ -28,16 +28,18 @@ public class TodoList {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
+    @OrderBy("id DESC")
     @ManyToMany(cascade = {CascadeType.MERGE})
     @JoinTable(name = "user_todo_list",
     joinColumns = {@JoinColumn(name = "todo_list_id", referencedColumnName = "id")},
     inverseJoinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")})
-    private List<User> users = new ArrayList<>();
+    private Set<User> users = new HashSet<>();
 
     @OrderBy("id DESC")
     @OneToMany(mappedBy = "todoList", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Todo> todos = new HashSet<>();
 
+    @OrderBy("id DESC")
     @OneToMany(mappedBy = "todoList", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<DoneTodo> doneTodos = new HashSet<>();
 
@@ -73,11 +75,11 @@ public class TodoList {
         this.user = user;
     }
 
-    public List<User> getUsers() {
+    public Set<User> getUsers() {
         return users;
     }
 
-    public void setUsers(List<User> users) {
+    public void setUsers(Set<User> users) {
         this.users = users;
     }
 
