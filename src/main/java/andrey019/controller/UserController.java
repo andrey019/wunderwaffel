@@ -45,6 +45,8 @@ public class UserController {
     public String loadLists(@RequestBody JsonMessage jsonMessage) {
         logService.ajaxJson("loadLists " + getUserEmail());
         System.out.println(jsonMessage);
+        System.out.println(todoService.getAllTodoLists(getUserEmail()));
+        System.out.println(todoService.getAllTodoLists(getUserEmail()).size());
         return htmlGenerator.generateTodoListsHtml(todoService.getAllTodoLists(getUserEmail()));
     }
 
