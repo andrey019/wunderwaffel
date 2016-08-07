@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -34,10 +35,10 @@ public class TodoList {
     private List<User> users = new ArrayList<>();
 
     @OneToMany(mappedBy = "todoList", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Todo> todos = new ArrayList<>();
+    private Set<Todo> todos = new HashSet<>();
 
     @OneToMany(mappedBy = "todoList", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<DoneTodo> doneTodos = new ArrayList<>();
+    private Set<DoneTodo> doneTodos = new HashSet<>();
 
     public long getId() {
         return id;
@@ -90,19 +91,19 @@ public class TodoList {
         user.getSharedTodoLists().remove(this);
     }
 
-    public List<Todo> getTodos() {
+    public Set<Todo> getTodos() {
         return todos;
     }
 
-    public void setTodos(List<Todo> todos) {
+    public void setTodos(Set<Todo> todos) {
         this.todos = todos;
     }
 
-    public List<DoneTodo> getDoneTodos() {
+    public Set<DoneTodo> getDoneTodos() {
         return doneTodos;
     }
 
-    public void setDoneTodos(List<DoneTodo> doneTodos) {
+    public void setDoneTodos(Set<DoneTodo> doneTodos) {
         this.doneTodos = doneTodos;
     }
 
