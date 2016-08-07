@@ -33,12 +33,6 @@ function oneMore(event) {
 }
 
 function loadLists() {
-    //var csrfHeader = $("meta[name='_csrf_header']").attr("content");
-    //var csrfToken = $("meta[name='_csrf']").attr("content");
-    //
-    //var headers = {};
-    //headers[csrfHeader] = csrfToken;
-
     var search = {
         "listId": 0,
         "todoId": 0,
@@ -56,9 +50,7 @@ function loadLists() {
         headers: getCSRFHeader(),
         success: function (data) {
             document.getElementById("listResult").innerHTML = data;
-            if (typeof window.currentList !== 'undefined' && window.currentList != null) {
-                loadCurrentListTodos();
-            }
+            loadCurrentListTodos();
         },
         error: function (jqXHR, exception) {
             jsonErrorHandler(jqXHR, exception);
@@ -67,11 +59,9 @@ function loadLists() {
 }
 
 function loadCurrentListTodos() {
-    //var csrfHeader = $("meta[name='_csrf_header']").attr("content");
-    //var csrfToken = $("meta[name='_csrf']").attr("content");
-    //
-    //var headers = {};
-    //headers[csrfHeader] = csrfToken;
+    if (typeof window.currentList !== 'undefined' && window.currentList != null) {
+        return;
+    }
 
     var search = {
         "listId": window.currentList,
@@ -130,20 +120,7 @@ function loadTodos(event) {
     });
 }
 
-function todoInputEnter(event) {
-    event.preventDefault();
-    if (event.keyCode == 13) {
-        document.getElementById("addTodoButton").click();
-    }
-}
-
 function addTodo() {
-    //var csrfHeader = $("meta[name='_csrf_header']").attr("content");
-    //var csrfToken = $("meta[name='_csrf']").attr("content");
-    //
-    //var headers = {};
-    //headers[csrfHeader] = csrfToken;
-
     if (typeof window.currentList === 'undefined' || window.currentList == null
         || document.getElementById("addTodoInput").value == "") {
         return;
@@ -175,14 +152,7 @@ function addTodo() {
 }
 
 function loadDoneTodos() {
-    //var csrfHeader = $("meta[name='_csrf_header']").attr("content");
-    //var csrfToken = $("meta[name='_csrf']").attr("content");
-    //
-    //var headers = {};
-    //headers[csrfHeader] = csrfToken;
-
-    if (typeof window.currentList === 'undefined' || window.currentList == null
-        || document.getElementById("addTodoInput").value == "") {
+    if (typeof window.currentList === 'undefined' || window.currentList == null) {
         return;
     }
 
@@ -236,4 +206,11 @@ function jsonErrorHandler(jqXHR, exception) {
         msg = 'Uncaught Error.\n' + jqXHR.responseText;
     }
     alert(msg + "/ status: " + jqXHR.status + "/ exception: " + exception);
+}
+
+function todoInputEnter(event) {
+    event.preventDefault();
+    if (event.keyCode == 13) {
+        document.getElementById("addTodoButton").click();
+    }
 }
