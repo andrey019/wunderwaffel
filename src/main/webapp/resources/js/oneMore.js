@@ -80,6 +80,7 @@ function loadCurrentListTodos() {
         headers: getCSRFHeader(),
         success: function (data) {
             document.getElementById("todoResult").innerHTML = data;
+            document.getElementById("doneTodoResult").innerHTML = "";
         },
         error: function (jqXHR, exception) {
             jsonErrorHandler(jqXHR, exception);
@@ -88,12 +89,6 @@ function loadCurrentListTodos() {
 }
 
 function loadTodos(event) {
-    //var csrfHeader = $("meta[name='_csrf_header']").attr("content");
-    //var csrfToken = $("meta[name='_csrf']").attr("content");
-    //
-    //var headers = {};
-    //headers[csrfHeader] = csrfToken;
-
     window.currentList = String(event.target.id).split("=")[1];
 
     var search = {
@@ -113,6 +108,7 @@ function loadTodos(event) {
         headers: getCSRFHeader(),
         success: function (data) {
             document.getElementById("todoResult").innerHTML = data;
+            document.getElementById("doneTodoResult").innerHTML = "";
         },
         error: function (jqXHR, exception) {
             jsonErrorHandler(jqXHR, exception);
