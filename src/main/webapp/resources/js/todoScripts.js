@@ -56,6 +56,7 @@ function loadCurrentListTodos() {
 }
 
 function loadTodos(event) {
+    event.preventDefault();
     window.currentList = String(event.target.id).split("=")[1];
 
     var jsonMessage = {
@@ -144,6 +145,7 @@ function loadDoneTodos() {
 }
 
 function doneTodo(event) {
+    event.preventDefault();
     if (typeof window.currentList === 'undefined' || window.currentList == null) {
         return;
     }
@@ -175,6 +177,7 @@ function doneTodo(event) {
 }
 
 function unDoneTodo(event) {
+    event.preventDefault();
     if (typeof window.currentList === 'undefined' || window.currentList == null) {
         return;
     }
@@ -197,7 +200,7 @@ function unDoneTodo(event) {
         success: function (data) {
             if (data == "ok") {
                 loadLists();
-                document.getElementById("showDoneTodosButton").click();
+                loadDoneTodos();
             }
         },
         error: function (jqXHR, exception) {
@@ -237,6 +240,6 @@ function jsonErrorHandler(jqXHR, exception) {
 function todoInputEnter(event) {
     event.preventDefault();
     if (event.keyCode == 13) {
-        document.getElementById("addTodoButton").click();
+        addTodo();
     }
 }

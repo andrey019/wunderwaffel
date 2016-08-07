@@ -89,6 +89,7 @@ public class UserController {
     public String doneTodo(@RequestBody JsonMessage jsonMessage) {
         logService.ajaxJson("doneTodo " + getUserEmail());
         if (todoService.doneTodo(getUserEmail(), jsonMessage.getListId(), jsonMessage.getTodoId())) {
+            System.out.println("doneTodo OK!!!");
             return RESPONSE_OK;
         }
         return RESPONSE_ERROR;
@@ -99,6 +100,7 @@ public class UserController {
     public String unDoneTodo(@RequestBody JsonMessage jsonMessage) {
         logService.ajaxJson("doneTodo " + getUserEmail());
         if (todoService.unDoneTodo(getUserEmail(), jsonMessage.getListId(), jsonMessage.getDoneTodoId())) {
+            System.out.println("unDoneTodo OK!!!");
             return RESPONSE_OK;
         }
         return RESPONSE_ERROR;
