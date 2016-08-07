@@ -84,7 +84,7 @@ public class UserController {
         return "";
     }
 
-    @RequestMapping(value = "/doneTodo", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
+    @RequestMapping(value = "/doneTodo", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
     @ResponseBody
     public String doneTodo(@RequestBody JsonMessage jsonMessage) {
         logService.ajaxJson("doneTodo " + getUserEmail());
