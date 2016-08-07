@@ -14,7 +14,7 @@
 <body style="background-image: url('/resources/images/background.jpg'); background-attachment: fixed">
 
 <div style="width: 99%; overflow: hidden;">
-    <div style="width: 315px; float: left; background-color: #87608f; position: fixed; max-height: 80%; overflow-y: auto;">
+    <div style="width: 315px; float: left; position: fixed; max-height: 80%; overflow-y: auto;">
         <div style="width: 290px; float: left; margin-left: 5px">
             <div id="listResult" class="list-group">
 
@@ -22,7 +22,7 @@
         </div>
     </div>
 
-    <div style="margin-left: 320px; background-color: #54808f">
+    <div style="margin-left: 320px">
         <div class="row" style="width: 99%">
             <div class="col-lg-6" style="width: 99%">
                 <div class="input-group" style="width: 99%">
