@@ -148,7 +148,7 @@ public class TodoList {
         if (user == null) {
             if (other.getUser() != null)
                 return false;
-        } else if (!user.equals(other.getUser()))
+        } else if (!user.getEmail().equals(other.getUser().getEmail()))
             return false;
         return true;
     }
