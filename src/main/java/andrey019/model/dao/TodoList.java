@@ -133,4 +133,9 @@ public class TodoList {
             return false;
         return true;
     }
+
+    @Override
+    public String toString() {
+        return "id: " + id + ", name: " + name + ", user: [" + user + "]";
+    }
 }

@@ -47,6 +47,9 @@ public class UserController {
         System.out.println(jsonMessage);
         System.out.println(todoService.getAllTodoLists(getUserEmail()));
         System.out.println(todoService.getAllTodoLists(getUserEmail()).size());
+        for (TodoList todoList : todoService.getAllTodoLists(getUserEmail())) {
+            System.out.println(todoList.toString());
+        }
         return htmlGenerator.generateTodoListsHtml(todoService.getAllTodoLists(getUserEmail()));
     }
 
