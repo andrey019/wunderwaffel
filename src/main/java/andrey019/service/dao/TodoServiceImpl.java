@@ -46,12 +46,15 @@ public class TodoServiceImpl implements TodoService {
 
     @Override
     public boolean addTodo(String email, long todoListId, String todoText) {
-        User user = userDao.getByEmail(email);
+        User user = userDao.getByEmailWithSharedLists(email);
         if (user == null) {
             return false;
         }
-        TodoList todoList = getListIfAllowed(user, todoListId);
+        TodoList todoList = todoListDao.getByIdWithTodos(todoListId);
         if (todoList == null) {
+            return false;
+        }
+        if (!user.getSharedTodoLists().contains(todoList)) {
             return false;
         }
         Todo todo = new Todo();

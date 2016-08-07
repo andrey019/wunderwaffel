@@ -44,12 +44,12 @@ public class UserController {
     @ResponseBody
     public String loadLists(@RequestBody JsonMessage jsonMessage) {
         logService.ajaxJson("loadLists " + getUserEmail());
-        System.out.println(jsonMessage);
-        System.out.println(todoService.getAllTodoLists(getUserEmail()));
-        System.out.println(todoService.getAllTodoLists(getUserEmail()).size());
-        for (TodoList todoList : todoService.getAllTodoLists(getUserEmail())) {
-            System.out.println(todoList.toString());
-        }
+//        System.out.println(jsonMessage);
+//        System.out.println(todoService.getAllTodoLists(getUserEmail()));
+//        System.out.println(todoService.getAllTodoLists(getUserEmail()).size());
+//        for (TodoList todoList : todoService.getAllTodoLists(getUserEmail())) {
+//            System.out.println(todoList.toString());
+//        }
         return htmlGenerator.generateTodoListsHtml(todoService.getAllTodoLists(getUserEmail()));
     }
 
@@ -57,9 +57,9 @@ public class UserController {
     @ResponseBody
     public String loadTodos(@RequestBody JsonMessage jsonMessage) {
         logService.ajaxJson("loadTodos " + getUserEmail());
-        System.out.println(jsonMessage.getListId());
-        System.out.println(todoService.getTodoListById(getUserEmail(), jsonMessage.getListId()).getTodos());
-        System.out.println(todoService.getTodoListById(getUserEmail(), jsonMessage.getListId()).getTodos().size());
+//        System.out.println(jsonMessage.getListId());
+//        System.out.println(todoService.getTodoListById(getUserEmail(), jsonMessage.getListId()).getTodos());
+//        System.out.println(todoService.getTodoListById(getUserEmail(), jsonMessage.getListId()).getTodos().size());
 
         return htmlGenerator.generateTodosHtml(todoService.getTodoListById(getUserEmail(), jsonMessage.getListId())
                 .getTodos());
