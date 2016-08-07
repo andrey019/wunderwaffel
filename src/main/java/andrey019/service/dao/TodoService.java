@@ -18,7 +18,8 @@ public interface TodoService {
     boolean shareTodoList(String email, long todoListId, String emailToShareWith);
     boolean unShareWith(String email, long todoListId, String emailToUnShareWith);
     boolean deleteTodoList(String email, long todoListId);
-    TodoList getTodoListById(String email, long todoListId);
+    Set<Todo> getTodosByListId(String email, long todoListId);
+    Set<DoneTodo> getDoneTodosByListId(String email, long todoListId);
     Set<TodoList> getAllTodoLists(String email);
     Set<Todo> getAllTodos(String email, long todoListId);
     Set<DoneTodo> getAllDoneTodos(String email, long todoListId);

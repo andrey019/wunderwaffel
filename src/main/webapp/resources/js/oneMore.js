@@ -33,11 +33,11 @@ function oneMore(event) {
 }
 
 function loadLists() {
-    var csrfHeader = $("meta[name='_csrf_header']").attr("content");
-    var csrfToken = $("meta[name='_csrf']").attr("content");
-
-    var headers = {};
-    headers[csrfHeader] = csrfToken;
+    //var csrfHeader = $("meta[name='_csrf_header']").attr("content");
+    //var csrfToken = $("meta[name='_csrf']").attr("content");
+    //
+    //var headers = {};
+    //headers[csrfHeader] = csrfToken;
 
     var search = {
         "listId": 0,
@@ -53,7 +53,7 @@ function loadLists() {
         url: "/user/loadLists",
         data: JSON.stringify(search),
         contentType: 'application/json',
-        headers: headers,
+        headers: getCSRFHeader(),
         success: function (data) {
             document.getElementById("listResult").innerHTML = data;
             if (typeof window.currentList !== 'undefined' && window.currentList != null) {
@@ -61,33 +61,17 @@ function loadLists() {
             }
         },
         error: function (jqXHR, exception) {
-            var msg = '';
-            if (jqXHR.status === 0) {
-                msg = 'Not connect.\n Verify Network.';
-            } else if (jqXHR.status == 404) {
-                msg = 'Requested page not found. [404]';
-            } else if (jqXHR.status == 500) {
-                msg = 'Internal Server Error [500].';
-            } else if (exception === 'parsererror') {
-                msg = 'Requested JSON parse failed.';
-            } else if (exception === 'timeout') {
-                msg = 'Time out error.';
-            } else if (exception === 'abort') {
-                msg = 'Ajax request aborted.';
-            } else {
-                msg = 'Uncaught Error.\n' + jqXHR.responseText;
-            }
-            alert(msg + "/ status: " + jqXHR.status + "/ exception: " + exception);
+            jsonErrorHandler(jqXHR, exception);
         }
     });
 }
 
 function loadCurrentListTodos() {
-    var csrfHeader = $("meta[name='_csrf_header']").attr("content");
-    var csrfToken = $("meta[name='_csrf']").attr("content");
-
-    var headers = {};
-    headers[csrfHeader] = csrfToken;
+    //var csrfHeader = $("meta[name='_csrf_header']").attr("content");
+    //var csrfToken = $("meta[name='_csrf']").attr("content");
+    //
+    //var headers = {};
+    //headers[csrfHeader] = csrfToken;
 
     var search = {
         "listId": window.currentList,
@@ -103,38 +87,22 @@ function loadCurrentListTodos() {
         url: "/user/loadTodos",
         data: JSON.stringify(search),
         contentType: 'application/json',
-        headers: headers,
+        headers: getCSRFHeader(),
         success: function (data) {
             document.getElementById("todoResult").innerHTML = data;
         },
         error: function (jqXHR, exception) {
-            var msg = '';
-            if (jqXHR.status === 0) {
-                msg = 'Not connect.\n Verify Network.';
-            } else if (jqXHR.status == 404) {
-                msg = 'Requested page not found. [404]';
-            } else if (jqXHR.status == 500) {
-                msg = 'Internal Server Error [500].';
-            } else if (exception === 'parsererror') {
-                msg = 'Requested JSON parse failed.';
-            } else if (exception === 'timeout') {
-                msg = 'Time out error.';
-            } else if (exception === 'abort') {
-                msg = 'Ajax request aborted.';
-            } else {
-                msg = 'Uncaught Error.\n' + jqXHR.responseText;
-            }
-            alert(msg + "/ status: " + jqXHR.status + "/ exception: " + exception);
+            jsonErrorHandler(jqXHR, exception);
         }
     });
 }
 
 function loadTodos(event) {
-    var csrfHeader = $("meta[name='_csrf_header']").attr("content");
-    var csrfToken = $("meta[name='_csrf']").attr("content");
-
-    var headers = {};
-    headers[csrfHeader] = csrfToken;
+    //var csrfHeader = $("meta[name='_csrf_header']").attr("content");
+    //var csrfToken = $("meta[name='_csrf']").attr("content");
+    //
+    //var headers = {};
+    //headers[csrfHeader] = csrfToken;
 
     window.currentList = String(event.target.id).split("=")[1];
 
@@ -152,28 +120,12 @@ function loadTodos(event) {
         url: "/user/loadTodos",
         data: JSON.stringify(search),
         contentType: 'application/json',
-        headers: headers,
+        headers: getCSRFHeader(),
         success: function (data) {
             document.getElementById("todoResult").innerHTML = data;
         },
         error: function (jqXHR, exception) {
-            var msg = '';
-            if (jqXHR.status === 0) {
-                msg = 'Not connect.\n Verify Network.';
-            } else if (jqXHR.status == 404) {
-                msg = 'Requested page not found. [404]';
-            } else if (jqXHR.status == 500) {
-                msg = 'Internal Server Error [500].';
-            } else if (exception === 'parsererror') {
-                msg = 'Requested JSON parse failed.';
-            } else if (exception === 'timeout') {
-                msg = 'Time out error.';
-            } else if (exception === 'abort') {
-                msg = 'Ajax request aborted.';
-            } else {
-                msg = 'Uncaught Error.\n' + jqXHR.responseText;
-            }
-            alert(msg + "/ status: " + jqXHR.status + "/ exception: " + exception);
+            jsonErrorHandler(jqXHR, exception);
         }
     });
 }
@@ -186,11 +138,11 @@ function todoInputEnter(event) {
 }
 
 function addTodo() {
-    var csrfHeader = $("meta[name='_csrf_header']").attr("content");
-    var csrfToken = $("meta[name='_csrf']").attr("content");
-
-    var headers = {};
-    headers[csrfHeader] = csrfToken;
+    //var csrfHeader = $("meta[name='_csrf_header']").attr("content");
+    //var csrfToken = $("meta[name='_csrf']").attr("content");
+    //
+    //var headers = {};
+    //headers[csrfHeader] = csrfToken;
 
     if (typeof window.currentList === 'undefined' || window.currentList == null
         || document.getElementById("addTodoInput").value == "") {
@@ -211,29 +163,77 @@ function addTodo() {
         url: "/user/addTodo",
         data: JSON.stringify(search),
         contentType: 'application/json',
-        headers: headers,
+        headers: getCSRFHeader(),
         success: function (data) {
             document.getElementById("addTodoInput").value = "";
             loadLists();
         },
         error: function (jqXHR, exception) {
-            var msg = '';
-            if (jqXHR.status === 0) {
-                msg = 'Not connect.\n Verify Network.';
-            } else if (jqXHR.status == 404) {
-                msg = 'Requested page not found. [404]';
-            } else if (jqXHR.status == 500) {
-                msg = 'Internal Server Error [500].';
-            } else if (exception === 'parsererror') {
-                msg = 'Requested JSON parse failed.';
-            } else if (exception === 'timeout') {
-                msg = 'Time out error.';
-            } else if (exception === 'abort') {
-                msg = 'Ajax request aborted.';
-            } else {
-                msg = 'Uncaught Error.\n' + jqXHR.responseText;
-            }
-            alert(msg + "/ status: " + jqXHR.status + "/ exception: " + exception);
+            jsonErrorHandler(jqXHR, exception);
         }
     });
+}
+
+function loadDoneTodos() {
+    //var csrfHeader = $("meta[name='_csrf_header']").attr("content");
+    //var csrfToken = $("meta[name='_csrf']").attr("content");
+    //
+    //var headers = {};
+    //headers[csrfHeader] = csrfToken;
+
+    if (typeof window.currentList === 'undefined' || window.currentList == null
+        || document.getElementById("addTodoInput").value == "") {
+        return;
+    }
+
+    var search = {
+        "listId": window.currentList,
+        "todoId": 0,
+        "doneTodoId": 0,
+        "shareWith": null,
+        "unShareWith": null,
+        "todoText": null
+    };
+
+    $.ajax({
+        type: "POST",
+        url: "/user/loadDoneTodos",
+        data: JSON.stringify(search),
+        contentType: 'application/json',
+        headers: getCSRFHeader(),
+        success: function (data) {
+            document.getElementById("doneTodoResult").innerHTML = data;
+        },
+        error: function (jqXHR, exception) {
+            jsonErrorHandler(jqXHR, exception);
+        }
+    });
+}
+
+function getCSRFHeader() {
+    var csrfHeader = $("meta[name='_csrf_header']").attr("content");
+    var csrfToken = $("meta[name='_csrf']").attr("content");
+    var headers = {};
+    headers[csrfHeader] = csrfToken;
+    return headers;
+}
+
+function jsonErrorHandler(jqXHR, exception) {
+    var msg = '';
+    if (jqXHR.status === 0) {
+        msg = 'Not connect.\n Verify Network.';
+    } else if (jqXHR.status == 404) {
+        msg = 'Requested page not found. [404]';
+    } else if (jqXHR.status == 500) {
+        msg = 'Internal Server Error [500].';
+    } else if (exception === 'parsererror') {
+        msg = 'Requested JSON parse failed.';
+    } else if (exception === 'timeout') {
+        msg = 'Time out error.';
+    } else if (exception === 'abort') {
+        msg = 'Ajax request aborted.';
+    } else {
+        msg = 'Uncaught Error.\n' + jqXHR.responseText;
+    }
+    alert(msg + "/ status: " + jqXHR.status + "/ exception: " + exception);
 }

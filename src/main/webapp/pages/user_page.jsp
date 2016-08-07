@@ -34,8 +34,14 @@
             </div>
         </div>
         <br><br>
-        <div id="todos" style="width: 95%">
+        <div style="width: 95%">
             <div id="todoResult" class="list-group">
+
+            </div>
+        </div>
+        <button id="showDoneTodosButton" onclick="loadDoneTodos()" class="btn btn-default" type="button">Show done todos...</button>
+        <div style="width: 95%">
+            <div id="doneTodoResult" class="list-group">
 
             </div>
         </div>
