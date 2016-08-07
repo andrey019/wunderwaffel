@@ -34,6 +34,7 @@ public class TodoList {
     inverseJoinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")})
     private List<User> users = new ArrayList<>();
 
+    @OrderBy("id DESC")
     @OneToMany(mappedBy = "todoList", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Todo> todos = new HashSet<>();
 
