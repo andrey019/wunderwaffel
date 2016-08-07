@@ -20,6 +20,9 @@ public class TodoList {
     @Column(nullable = false)
     private String name;
 
+    @Column(name = "todo_amount", nullable = false)
+    private int todoAmount;
+
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
@@ -50,6 +53,22 @@ public class TodoList {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getTodoAmount() {
+        return todoAmount;
+    }
+
+    public void setTodoAmount(int todoAmount) {
+        this.todoAmount = todoAmount;
+    }
+
+    public void addTodoAmount() {
+        todoAmount++;
+    }
+
+    public void subTodoAmount() {
+        todoAmount--;
     }
 
     public User getUser() {

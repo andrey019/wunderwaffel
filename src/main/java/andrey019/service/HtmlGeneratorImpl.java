@@ -30,7 +30,7 @@ public class HtmlGeneratorImpl implements HtmlGenerator {
         StringBuilder stringBuilder = new StringBuilder();
         for (TodoList todoList : todoLists) {
             stringBuilder.append(String.format(LIST_BUTTON, todoList.getId(), todoList.getId(),
-                    todoList.getTodos().size(), addBreaks(todoList.getName())));
+                    todoList.getTodoAmount(), addBreaks(todoList.getName())));
         }
         return stringBuilder.toString();
     }
