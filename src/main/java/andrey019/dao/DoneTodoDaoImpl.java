@@ -4,6 +4,7 @@ package andrey019.dao;
 import andrey019.model.dao.DoneTodo;
 import andrey019.model.dao.Todo;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,7 +19,7 @@ public class DoneTodoDaoImpl implements DoneTodoDao {
     @PersistenceContext
     private EntityManager entityManager;
 
-    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    @Transactional(isolation = Isolation.SERIALIZABLE)
     @Override
     public DoneTodo getById(long id) {
         return entityManager.find(DoneTodo.class, id);
@@ -49,6 +50,7 @@ public class DoneTodoDaoImpl implements DoneTodoDao {
         }
     }
 
+    @Transactional
     @Override
     public List<DoneTodo> getByCreatedEmail(String email) {
         @SuppressWarnings("unchecked")

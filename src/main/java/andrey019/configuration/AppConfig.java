@@ -8,6 +8,7 @@ import org.dellroad.stuff.spring.RetryTransactionAspect;
 import org.dellroad.stuff.spring.RetryTransactionProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.dao.support.PersistenceExceptionTranslator;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -62,11 +63,11 @@ public class AppConfig extends WebMvcConfigurerAdapter {
         ConfirmationCleanUpService.getInstance().start();
     }
 
-    @Bean
-    public RetryTransactionProvider getRetryTransactionProvider() {
-        //RetryTransactionAspect retryTransactionAspect = new RetryTransactionAspect();
-        return new RetryTransactionAspect();
-    }
+//    @Bean
+//    public RetryTransactionProvider getRetryTransactionProvider() {
+//        //RetryTransactionAspect retryTransactionAspect = new RetryTransactionAspect();
+//        return new RetryTransactionAspect();
+//    }
 
     @Bean
     public MailSenderService getMailSenderService() {
