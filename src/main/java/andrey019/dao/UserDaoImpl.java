@@ -49,6 +49,7 @@ public class UserDaoImpl implements UserDao {
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     @Override
     public User getByEmailWithSharedLists(String email) {
+        entityManager.clear();
         @SuppressWarnings("unchecked")
         List<User> result = entityManager.createQuery("select user from User user left join fetch user.sharedTodoLists " +
                 "where user.email = :emailParam")

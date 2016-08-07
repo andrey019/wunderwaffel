@@ -20,7 +20,7 @@ public class RegistrationDaoImpl implements RegistrationDao {
     public boolean save(UserConfirmation userConfirmation) {
         //entityManager.getTransaction().begin();
         try {
-            entityManager.persist(userConfirmation);
+            entityManager.merge(userConfirmation);
             //entityManager.getTransaction().commit();
             return true;
         } catch (Exception ex) {
