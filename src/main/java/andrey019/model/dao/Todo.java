@@ -11,7 +11,7 @@ public class Todo {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "todo_list_id", nullable = false)
     private TodoList todoList;
 

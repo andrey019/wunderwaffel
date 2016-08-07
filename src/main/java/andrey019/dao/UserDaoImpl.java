@@ -12,7 +12,7 @@ import java.util.List;
 @Repository("userDao")
 public class UserDaoImpl implements UserDao {
 
-    @PersistenceContext(type = PersistenceContextType.EXTENDED)
+    @PersistenceContext
     private EntityManager entityManager;
 
     @Transactional
@@ -36,9 +36,20 @@ public class UserDaoImpl implements UserDao {
     @Transactional
     @Override
     public User getByEmail(String email) {
-        entityManager.clear();
         @SuppressWarnings("unchecked")
         List<User> result = entityManager.createQuery("select user from User user where user.email = :emailParam")
+                .setParameter("emailParam", email).setMaxResults(1).getResultList();
+        if (result.isEmpty()) {
+            return null;
+        }
+        return result.get(0);
+    }
+
+    @Override
+    public User getByEmailWithLists(String email) {
+        @SuppressWarnings("unchecked")
+        List<User> result = entityManager.createQuery("select user from User user join fetch user.sharedTodoLists" +
+                "where user.email = :emailParam")
                 .setParameter("emailParam", email).setMaxResults(1).getResultList();
         if (result.isEmpty()) {
             return null;
