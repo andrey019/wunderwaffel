@@ -7,5 +7,5 @@ public interface UserDao {
     boolean save(User user);
     User getById(long id);
     User getByEmail(String email);
-    User getByEmailWithLists(String email);
+    User getByEmailWithSharedLists(String email);
 }

@@ -161,14 +161,15 @@ public class TodoServiceImpl implements TodoService {
 
     @Override
     public TodoList getTodoListById(String email, long todoListId) {
-        User user = userDao.getByEmail(email);
-
-
-
-
-
-        TodoList todoList = getListIfAllowed(user, todoListId);
+        User user = userDao.getByEmailWithSharedLists(email);
+        if (user == null) {
+            return null;
+        }
+        TodoList todoList = todoListDao.getByIdWithTodos(todoListId);
         if (todoList == null) {
+            return null;
+        }
+        if (!user.getSharedTodoLists().contains(todoList)) {
             return null;
         }
         return todoList;
@@ -176,7 +177,7 @@ public class TodoServiceImpl implements TodoService {
 
     @Override
     public List<TodoList> getAllTodoLists(String email) {
-        User user = userDao.getByEmailWithLists(email);
+        User user = userDao.getByEmailWithSharedLists(email);
         if (user == null) {
             return null;
         }
