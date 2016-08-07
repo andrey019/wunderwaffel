@@ -64,6 +64,18 @@ public class TodoListDaoImpl implements TodoListDao {
         return result.get(0);
     }
 
+    @Override
+    public TodoList getByIdWithTodosAndDoneTodos(long id) {
+        @SuppressWarnings("unchecked")
+        List<TodoList> result = entityManager.createQuery("select list from TodoList list left join fetch list.todos " +
+                "left join fetch list.doneTodos where list.id = :idParam")
+                .setParameter("idParam", id).getResultList();
+        if (result.isEmpty()) {
+            return null;
+        }
+        return result.get(0);
+    }
+
     @Transactional
     @Override
     public List<TodoList> getByUserId(long id) {

@@ -14,9 +14,4 @@ public class ExceptionController {
     public String handleAllException(Exception ex) {
         return "forward:/auth/login";
     }
-
-    @ExceptionHandler(Exception.class)
-    public String notFound(Exception ex) {
-        return "forward:/";
-    }
 }

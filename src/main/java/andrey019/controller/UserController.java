@@ -74,6 +74,12 @@ public class UserController {
         return "";
     }
 
+    @RequestMapping(value = "/doneTodo", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
+    public String doneTodo() {
+        System.out.println(todoService.doneTodo(getUserEmail(), 4, 2));
+        return "";
+    }
+
     @RequestMapping("/ololo")
     public String userololo() {
         logService.accessToPage("user/ololo");

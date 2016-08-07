@@ -66,17 +66,17 @@ public class TodoServiceImpl implements TodoService {
     }
 
     @Override
-    public boolean doneTodo(String email, long todoId) {
+    public boolean doneTodo(String email, long todoListId, long todoId) {
         Todo todo = todoDao.getById(todoId);
-        if (todo == null) {
+        if ( (todo == null) || (todo.getTodoList().getId() != todoListId) ) {
             return false;
         }
-        User user = userDao.getByEmail(email);
-        if (user == null) {
+        User user = userDao.getByEmailWithSharedLists(email);
+        if ( (user == null) || (!user.getSharedTodoLists().contains(todo.getTodoList())) ) {
             return false;
         }
-        TodoList todoList = todo.getTodoList();
-        if (!todoList.getUsers().contains(user)) {
+        TodoList todoList = todoListDao.getByIdWithTodosAndDoneTodos(todoListId);
+        if (todoList == null) {
             return false;
         }
         DoneTodo doneTodo = new DoneTodo();
@@ -86,6 +86,30 @@ public class TodoServiceImpl implements TodoService {
         todoList.addDoneTodo(doneTodo);
         todoList.removeTodo(todo);
         return todoListDao.save(todoList);
+
+
+
+
+
+//        Todo todo = todoDao.getById(todoId);
+//        if (todo == null) {
+//            return false;
+//        }
+//        User user = userDao.getByEmail(email);
+//        if (user == null) {
+//            return false;
+//        }
+//        TodoList todoList = todo.getTodoList();
+//        if (!todoList.getUsers().contains(user)) {
+//            return false;
+//        }
+//        DoneTodo doneTodo = new DoneTodo();
+//        doneTodo.setFromTodo(todo);
+//        doneTodo.setDoneByEmail(user.getEmail());
+//        doneTodo.setDoneByName(user.getFullName());
+//        todoList.addDoneTodo(doneTodo);
+//        todoList.removeTodo(todo);
+//        return todoListDao.save(todoList);
     }
 
     @Override

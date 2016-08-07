@@ -12,6 +12,7 @@ public interface TodoListDao {
     boolean delete(TodoList todoList);
     TodoList getById(long id);
     TodoList getByIdWithTodos(long id);
+    TodoList getByIdWithTodosAndDoneTodos(long id);
     List<TodoList> getByUserId(long id);
     List<TodoList> getByUsers(long id);
     List<User> getUsersByTodoListId(long id);
