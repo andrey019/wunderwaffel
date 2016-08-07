@@ -39,7 +39,7 @@
 
             </div>
         </div>
-        <button id="showDoneTodosButton" onclick="loadDoneTodos()" class="btn btn-default" type="button">Show done todos...</button>
+        <button id="showDoneTodosButton" onclick="loadDoneTodos()" class="btn btn-default" type="button">Show done todos... ololo</button>
         <div style="width: 95%">
             <div id="doneTodoResult" class="list-group">
 
