@@ -51,7 +51,7 @@ public class PersistenceJPAConfig{
             dataSource.setMinPoolSize(3);
             dataSource.setMaxPoolSize(20);
             dataSource.setAcquireIncrement(3);
-            dataSource.setTestConnectionOnCheckin(true);
+            dataSource.setTestConnectionOnCheckout(true);
             dataSource.setIdleConnectionTestPeriod(300);
             dataSource.setMaxIdleTimeExcessConnections(240);
         } catch (PropertyVetoException e) {
