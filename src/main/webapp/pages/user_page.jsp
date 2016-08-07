@@ -11,7 +11,7 @@
     <meta http-equiv="refresh" content="${pageContext.session.maxInactiveInterval}">
     <title>WunderWaffel</title>
 </head>
-<body style="background-image: url('/resources/images/background.jpg'); background-attachment: fixed">
+<body style="background-image: url('/resources/images/background2.jpg'); background-attachment: fixed">
 
 <div style="width: 99%; overflow: hidden;">
     <div style="width: 315px; float: left; position: fixed; max-height: 80%; overflow-y: auto;">
