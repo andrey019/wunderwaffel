@@ -6,7 +6,7 @@
     <link rel="icon" href="/resources/images/favicon.ico" type="image\x-icon" />
     <link href="/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <script type="text/javascript" src="/resources/js/jquery-3.1.0.min.js"></script>
-    <script type="text/javascript" src="/resources/js/oneMore.js"></script>
+    <script type="text/javascript" src="/resources/js/todoScripts.js"></script>
     <sec:csrfMetaTags />
     <meta http-equiv="refresh" content="${pageContext.session.maxInactiveInterval}">
     <title>WunderWaffel</title>
