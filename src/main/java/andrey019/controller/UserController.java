@@ -75,6 +75,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/doneTodo", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
+    @ResponseBody
     public String doneTodo() {
         System.out.println(todoService.doneTodo(getUserEmail(), 4, 2));
         return "";

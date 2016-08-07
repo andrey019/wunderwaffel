@@ -115,7 +115,7 @@ public class TodoList {
 
     public void removeTodo(Todo todo) {
         todos.remove(todo);
-        todo.setTodoList(null);
+        //todo.setTodoList(null);
         todoAmount = todos.size();
     }
 
@@ -126,7 +126,7 @@ public class TodoList {
 
     public void removeDoneTodo(DoneTodo doneTodo) {
         doneTodos.remove(doneTodo);
-        doneTodo.setTodoList(null);
+        //doneTodo.setTodoList(null);
     }
 
     @Override
