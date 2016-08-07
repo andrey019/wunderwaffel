@@ -87,50 +87,21 @@ public class TodoServiceImpl implements TodoService {
         todoList.addDoneTodo(doneTodo);
         todoList.removeTodo(todo);
         return todoListDao.save(todoList);
-
-
-
-
-
-//        Todo todo = todoDao.getById(todoId);
-//        if (todo == null) {
-//            return false;
-//        }
-//        User user = userDao.getByEmail(email);
-//        if (user == null) {
-//            return false;
-//        }
-//        TodoList todoList = todo.getTodoList();
-//        if (!todoList.getUsers().contains(user)) {
-//            return false;
-//        }
-//        DoneTodo doneTodo = new DoneTodo();
-//        doneTodo.setFromTodo(todo);
-//        doneTodo.setDoneByEmail(user.getEmail());
-//        doneTodo.setDoneByName(user.getFullName());
-//        todoList.addDoneTodo(doneTodo);
-//        todoList.removeTodo(todo);
-//        return todoListDao.save(todoList);
     }
 
     @Override
-    public boolean unDoneTodo(String email, long doneTodoId) {
+    public boolean unDoneTodo(String email, long todoListId, long doneTodoId) {
         DoneTodo doneTodo = doneTodoDao.getById(doneTodoId);
-        if (doneTodo == null) {
+        if ( (doneTodo == null) || (doneTodo.getTodoList().getId() != todoListId) ) {
             return false;
         }
-        User user = userDao.getByEmail(email);
-        if (user == null) {
+        User user = userDao.getByEmailWithSharedLists(email);
+        if ( (user == null) || (!user.getSharedTodoLists().contains(doneTodo.getTodoList())) ) {
             return false;
         }
-        TodoList todoList = doneTodo.getTodoList();
-        if (!user.getSharedTodoLists().contains(todoList)) {
+        TodoList todoList = todoListDao.getByIdWithTodosAndDoneTodos(todoListId);
+        if (todoList == null) {
             return false;
-        }
-        if (!todoList.getUser().equals(user)) {
-            if (!user.getEmail().equals(doneTodo.getDoneByEmail())) {
-                return false;
-            }
         }
         Todo todo = new Todo();
         todo.setFromDoneTodo(doneTodo);

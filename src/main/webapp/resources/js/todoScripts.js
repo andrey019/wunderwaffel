@@ -174,6 +174,38 @@ function doneTodo(event) {
     });
 }
 
+function unDoneTodo(event) {
+    if (typeof window.currentList === 'undefined' || window.currentList == null) {
+        return;
+    }
+
+    var jsonMessage = {
+        "listId": window.currentList,
+        "todoId": 0,
+        "doneTodoId": String(event.target.id).split("=")[1],
+        "shareWith": null,
+        "unShareWith": null,
+        "todoText": null
+    };
+
+    $.ajax({
+        type: "POST",
+        url: "/user/unDoneTodo",
+        data: JSON.stringify(jsonMessage),
+        contentType: 'application/json',
+        headers: getCSRFHeader(),
+        success: function (data) {
+            if (data == "ok") {
+                loadLists();
+                document.getElementById("showDoneTodosButton").click();
+            }
+        },
+        error: function (jqXHR, exception) {
+            jsonErrorHandler(jqXHR, exception);
+        }
+    });
+}
+
 function getCSRFHeader() {
     var csrfHeader = $("meta[name='_csrf_header']").attr("content");
     var csrfToken = $("meta[name='_csrf']").attr("content");

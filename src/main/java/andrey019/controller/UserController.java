@@ -88,8 +88,17 @@ public class UserController {
     @ResponseBody
     public String doneTodo(@RequestBody JsonMessage jsonMessage) {
         logService.ajaxJson("doneTodo " + getUserEmail());
-        System.out.println(jsonMessage);
         if (todoService.doneTodo(getUserEmail(), jsonMessage.getListId(), jsonMessage.getTodoId())) {
+            return RESPONSE_OK;
+        }
+        return RESPONSE_ERROR;
+    }
+
+    @RequestMapping(value = "/unDoneTodo", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
+    @ResponseBody
+    public String unDoneTodo(@RequestBody JsonMessage jsonMessage) {
+        logService.ajaxJson("doneTodo " + getUserEmail());
+        if (todoService.unDoneTodo(getUserEmail(), jsonMessage.getListId(), jsonMessage.getDoneTodoId())) {
             return RESPONSE_OK;
         }
         return RESPONSE_ERROR;
