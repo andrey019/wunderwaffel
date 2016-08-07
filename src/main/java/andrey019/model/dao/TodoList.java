@@ -63,14 +63,6 @@ public class TodoList {
         this.todoAmount = todoAmount;
     }
 
-    public void addTodoAmount() {
-        todoAmount++;
-    }
-
-    public void subTodoAmount() {
-        todoAmount--;
-    }
-
     public User getUser() {
         return user;
     }
@@ -117,11 +109,13 @@ public class TodoList {
     public void addTodo(Todo todo) {
         todo.setTodoList(this);
         todos.add(todo);
+        todoAmount = todos.size();
     }
 
     public void removeTodo(Todo todo) {
         todos.remove(todo);
         todo.setTodoList(null);
+        todoAmount = todos.size();
     }
 
     public void addDoneTodo(DoneTodo doneTodo) {

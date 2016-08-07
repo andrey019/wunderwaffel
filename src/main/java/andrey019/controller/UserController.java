@@ -69,7 +69,7 @@ public class UserController {
     @ResponseBody
     public String addTodo(@RequestBody JsonMessage jsonMessage) {
         logService.ajaxJson("addTodo " + getUserEmail());
-        System.out.println(jsonMessage);
+//        System.out.println(jsonMessage);
         todoService.addTodo(getUserEmail(), jsonMessage.getListId(), jsonMessage.getTodoText());
         return "";
     }

@@ -175,7 +175,6 @@ public class TodoServiceImpl implements TodoService {
         if (!user.getSharedTodoLists().contains(todoList)) {
             return null;
         }
-        System.out.println("equals");
         return todoList;
     }
 
