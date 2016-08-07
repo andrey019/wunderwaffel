@@ -7,6 +7,7 @@ import andrey019.model.dao.TodoList;
 import andrey019.model.dao.User;
 
 import java.util.List;
+import java.util.Set;
 
 public interface TodoService {
 
@@ -19,8 +20,8 @@ public interface TodoService {
     boolean deleteTodoList(String email, long todoListId);
     TodoList getTodoListById(String email, long todoListId);
     List<TodoList> getAllTodoLists(String email);
-    List<Todo> getAllTodos(String email, long todoListId);
-    List<DoneTodo> getAllDoneTodos(String email, long todoListId);
+    Set<Todo> getAllTodos(String email, long todoListId);
+    Set<DoneTodo> getAllDoneTodos(String email, long todoListId);
     TodoList getListIfOwner(User user, long todoListId);
     TodoList getListIfAllowed(User user, long todoListId);
 }

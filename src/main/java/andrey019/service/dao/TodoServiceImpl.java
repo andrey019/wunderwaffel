@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Set;
 
 @Service("todoService")
 public class TodoServiceImpl implements TodoService {
@@ -212,7 +213,7 @@ public class TodoServiceImpl implements TodoService {
     }
 
     @Override
-    public List<DoneTodo> getAllDoneTodos(String email, long todoListId) {
+    public Set<DoneTodo> getAllDoneTodos(String email, long todoListId) {
         User user = userDao.getByEmail(email);
         TodoList todoList = getListIfAllowed(user, todoListId);
         if (todoList == null) {
@@ -222,7 +223,7 @@ public class TodoServiceImpl implements TodoService {
     }
 
     @Override
-    public List<Todo> getAllTodos(String email, long todoListId) {
+    public Set<Todo> getAllTodos(String email, long todoListId) {
         User user = userDao.getByEmail(email);
         TodoList todoList = getListIfAllowed(user, todoListId);
         if (todoList == null) {

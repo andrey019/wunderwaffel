@@ -6,6 +6,7 @@ import andrey019.model.dao.TodoList;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Set;
 
 @Service("htmlGenerator")
 public class HtmlGeneratorImpl implements HtmlGenerator {
@@ -48,9 +49,9 @@ public class HtmlGeneratorImpl implements HtmlGenerator {
 //    }
 
     @Override
-    public String generateTodosHtml(List<Todo> todos) {
+    public String generateTodosHtml(Set<Todo> todos) {
         if (todos.isEmpty()) {
-            return " ";
+            return "";
         }
         StringBuilder stringBuilder = new StringBuilder();
         for (Todo todo : todos) {
@@ -61,7 +62,10 @@ public class HtmlGeneratorImpl implements HtmlGenerator {
     }
 
     @Override
-    public String generateDoneTodosHtml(List<DoneTodo> doneTodos) {
+    public String generateDoneTodosHtml(Set<DoneTodo> doneTodos) {
+        if (doneTodos.isEmpty()) {
+            return "";
+        }
         StringBuilder stringBuilder = new StringBuilder();
         for (DoneTodo doneTodo : doneTodos) {
             stringBuilder.append(String.format(DONE_TODO_BUTTON, doneTodo.getId(), doneTodo.getTodoText(),
