@@ -14,7 +14,7 @@ import java.util.List;
 @Repository("doneTodoDao")
 public class DoneTodoDaoImpl implements DoneTodoDao {
 
-    @PersistenceContext(type = PersistenceContextType.EXTENDED)
+    @PersistenceContext
     private EntityManager entityManager;
 
     @Transactional

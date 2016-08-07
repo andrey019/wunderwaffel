@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 @ControllerAdvice
 public class ExceptionController {
 
-    @ExceptionHandler(Exception.class)
-    public String handleAllException(Exception ex) {
-        return "login";
-    }
+//    @ExceptionHandler(Exception.class)
+//    public String handleAllException(Exception ex) {
+//        return "login";
+//    }
 }

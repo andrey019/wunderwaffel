@@ -17,7 +17,7 @@ import java.util.Set;
 @Repository("todoListDao")
 public class TodoListDaoImpl implements TodoListDao {
 
-    @PersistenceContext(type = PersistenceContextType.EXTENDED)
+    @PersistenceContext
     private EntityManager entityManager;
 
     @Transactional

@@ -13,7 +13,7 @@ import java.util.List;
 @Repository("todoDaoImpl")
 public class TodoDaoImpl implements TodoDao {
 
-    @PersistenceContext(type = PersistenceContextType.EXTENDED)
+    @PersistenceContext
     private EntityManager entityManager;
 
     @Transactional
