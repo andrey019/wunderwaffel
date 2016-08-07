@@ -47,7 +47,7 @@ function loadCurrentListTodos() {
         headers: getCSRFHeader(),
         success: function (data) {
             document.getElementById("todoResult").innerHTML = data;
-            document.getElementById("doneTodoResult").innerHTML = "";
+            //document.getElementById("doneTodoResult").innerHTML = "";
         },
         error: function (jqXHR, exception) {
             jsonErrorHandler(jqXHR, exception);
