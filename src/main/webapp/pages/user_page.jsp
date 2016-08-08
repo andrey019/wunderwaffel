@@ -19,10 +19,10 @@
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
 
             </button>
-            <a class="navbar-brand" href="#">WunderWaffel</a>
+            <a class="navbar-brand" href="#" style="font-size: 160%; padding-left: 30px">WunderWaffel</a>
         </div>
 
-        <p id="navbarText" class="navbar-text" style="padding-left: 180px; width: 60%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">Signed in as Mark Otto Signed in as Mark Otto Signed in as Mark Otto Signed in as Mark Otto Signed in as Mark Otto Signed in as Mark Otto Signed in as Mark Otto Signed in as Mark Otto</p>
+        <p id="navbarText" class="navbar-text" style="font-size: 115%; padding-left: 180px; width: 60%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">Signed in as Mark Otto Signed in as Mark Otto Signed in as Mark Otto Signed in as Mark Otto Signed in as Mark Otto Signed in as Mark Otto Signed in as Mark Otto Signed in as Mark Otto</p>
         <form class="navbar-form navbar-right">
             <button type="submit" class="btn btn-default">Profile</button>
             <button type="submit" class="btn btn-default">Sign Out</button>
