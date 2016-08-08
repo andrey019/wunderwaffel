@@ -1,6 +1,6 @@
 
 function loadLists() {
-    var jsonMessage = {
+    var jsonLoadLists = {
         "listId": 0,
         "todoId": 0,
         "doneTodoId": 0,
@@ -12,7 +12,7 @@ function loadLists() {
     $.ajax({
         type: "POST",
         url: "/user/loadLists",
-        data: JSON.stringify(jsonMessage),
+        data: JSON.stringify(jsonLoadLists),
         contentType: 'application/json',
         headers: getCSRFHeader(),
         success: function (data) {
@@ -30,7 +30,7 @@ function loadCurrentListTodos() {
         return;
     }
 
-    var jsonMessage = {
+    var jsonCurrentListTodos = {
         "listId": window.currentList,
         "todoId": 0,
         "doneTodoId": 0,
@@ -42,7 +42,7 @@ function loadCurrentListTodos() {
     $.ajax({
         type: "POST",
         url: "/user/loadTodos",
-        data: JSON.stringify(jsonMessage),
+        data: JSON.stringify(jsonCurrentListTodos),
         contentType: 'application/json',
         headers: getCSRFHeader(),
         success: function (data) {
@@ -59,7 +59,7 @@ function loadTodos(event) {
     event.preventDefault();
     window.currentList = String(event.target.id).split("=")[1];
 
-    var jsonMessage = {
+    var jsonTodos = {
         "listId": window.currentList,
         "todoId": 0,
         "doneTodoId": 0,
@@ -71,7 +71,7 @@ function loadTodos(event) {
     $.ajax({
         type: "POST",
         url: "/user/loadTodos",
-        data: JSON.stringify(jsonMessage),
+        data: JSON.stringify(jsonTodos),
         contentType: 'application/json',
         headers: getCSRFHeader(),
         success: function (data) {
@@ -90,7 +90,7 @@ function addTodo() {
         return;
     }
 
-    var jsonMessage = {
+    var jsonAddTodo = {
         "listId": window.currentList,
         "todoId": 0,
         "doneTodoId": 0,
@@ -102,7 +102,7 @@ function addTodo() {
     $.ajax({
         type: "POST",
         url: "/user/addTodo",
-        data: JSON.stringify(jsonMessage),
+        data: JSON.stringify(jsonAddTodo),
         contentType: 'application/json',
         headers: getCSRFHeader(),
         success: function (data) {
@@ -120,7 +120,7 @@ function loadDoneTodos() {
         return;
     }
 
-    var jsonMessage = {
+    var jsonDoneTodos = {
         "listId": window.currentList,
         "todoId": 0,
         "doneTodoId": 0,
@@ -132,7 +132,7 @@ function loadDoneTodos() {
     $.ajax({
         type: "POST",
         url: "/user/loadDoneTodos",
-        data: JSON.stringify(jsonMessage),
+        data: JSON.stringify(jsonDoneTodos),
         contentType: 'application/json',
         headers: getCSRFHeader(),
         success: function (data) {
@@ -150,7 +150,7 @@ function doneTodo(event) {
         return;
     }
 
-    var jsonMessage = {
+    var jsonDoneTodo = {
         "listId": window.currentList,
         "todoId": String(event.target.id).split("=")[1],
         "doneTodoId": 0,
@@ -162,7 +162,7 @@ function doneTodo(event) {
     $.ajax({
         type: "POST",
         url: "/user/doneTodo",
-        data: JSON.stringify(jsonMessage),
+        data: JSON.stringify(jsonDoneTodo),
         contentType: 'application/json',
         headers: getCSRFHeader(),
         success: function (data) {
@@ -182,7 +182,7 @@ function unDoneTodo(event) {
         return;
     }
 
-    var jsonMessage = {
+    var jsonUnDoneTodo = {
         "listId": window.currentList,
         "todoId": 0,
         "doneTodoId": String(event.target.id).split("=")[1],
@@ -194,7 +194,7 @@ function unDoneTodo(event) {
     $.ajax({
         type: "POST",
         url: "/user/unDoneTodo",
-        data: JSON.stringify(jsonMessage),
+        data: JSON.stringify(jsonUnDoneTodo),
         contentType: 'application/json',
         headers: getCSRFHeader(),
         success: function (data) {
