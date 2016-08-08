@@ -88,6 +88,7 @@ public class UserController {
     @ResponseBody
     public String doneTodo(@RequestBody JsonMessage jsonMessage) {
         logService.ajaxJson("doneTodo " + getUserEmail());
+        System.out.println(jsonMessage);
         if (todoService.doneTodo(getUserEmail(), jsonMessage.getListId(), jsonMessage.getTodoId())) {
             System.out.println("doneTodo OK!!!");
             return RESPONSE_OK;
