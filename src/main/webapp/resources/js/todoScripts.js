@@ -124,12 +124,11 @@ function loadDoneTodos() {
         return;
     }
 
-    if (typeof window.showDoneTodos !== 'undefined' && window.showDoneTodos != null) {
-        window.showDoneTodos = null;
-        document.getElementById("doneTodoResult").innerHTML = "";
+    if (typeof window.showDoneTodos === 'undefined' || window.showDoneTodos == null) {
+        //window.showDoneTodos = null;
+        //document.getElementById("doneTodoResult").innerHTML = "";
         return;
     }
-    window.showDoneTodos = "ok";
 
     var jsonDoneTodos = {
         "listId": window.currentList,
@@ -253,4 +252,14 @@ function todoInputEnter(event) {
     if (event.keyCode == 13) {
         addTodo();
     }
+}
+
+function showDoneTodosClick() {
+    if (typeof window.showDoneTodos !== 'undefined' && window.showDoneTodos != null) {
+        window.showDoneTodos = null;
+        document.getElementById("doneTodoResult").innerHTML = "";
+        return;
+    }
+    window.showDoneTodos = "ok";
+    loadDoneTodos();
 }
