@@ -79,7 +79,7 @@ function loadTodos(event) {
         contentType: 'application/json',
         headers: getCSRFHeader(),
         success: function (data) {
-            document.getElementById("navbarText").innerHTML = event.currentTarget.value;
+            document.getElementById("navbarText").innerHTML = event.currentTarget.textContent;
             document.getElementById("todoResult").innerHTML = data;
             document.getElementById("doneTodoResult").innerHTML = "";
         },

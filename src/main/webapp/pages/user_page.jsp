@@ -32,8 +32,8 @@
 </nav>
 
 <div style="width: 100%; overflow: hidden; padding-top: 70px">
-    <div style="width: 315px; float: left; position: fixed; bottom: 150px; height: auto; top: 70px; overflow-y: auto;">
-        <div style="width: 290px; float: left; margin-left: 5px">
+    <div style="width: 325px; float: left; position: fixed; bottom: 150px; height: auto; top: 70px; overflow-y: auto;">
+        <div style="width: 290px; float: left; margin-left: 15px">
             <div id="listResult" class="list-group">
 
             </div>
@@ -68,7 +68,7 @@
     </div>
 
 
-    <div style="position: fixed; bottom: 20px; width: 320px; margin-left: 5px">
+    <div style="position: fixed; bottom: 20px; width: 320px; margin-left: 15px">
         <div class="row" style="width: 100%">
             <div class="col-lg-6" style="width: 100%">
                 <div class="input-group" style="width: 100%">
