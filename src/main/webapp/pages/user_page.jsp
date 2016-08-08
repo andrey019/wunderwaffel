@@ -23,8 +23,8 @@
         </div>
 
         <p id="navbarText" class="navbar-text" style="font-size: 115%; padding-left: 145px; width: 60%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis"></p>
-        <form class="navbar-form navbar-right" style="padding-right: 30px" action="/j_spring_security_logout">
-            <button type="submit" class="btn btn-default">Profile</button>
+        <form class="navbar-form navbar-right" style="padding-right: 30px" action="/auth/logout">
+            <button id="profileButton" onclick="showProfile(event)" type="submit" class="btn btn-default">Profile</button>
             <button type="submit" class="btn btn-default">Sign Out</button>
         </form>
     </div>

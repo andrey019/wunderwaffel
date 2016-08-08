@@ -309,3 +309,7 @@ function showDoneTodosClick() {
     window.showDoneTodos = "ok";
     loadDoneTodos();
 }
+
+function showProfile(event) {
+    event.preventDefault();
+}
