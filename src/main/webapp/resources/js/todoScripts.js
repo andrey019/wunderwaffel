@@ -150,7 +150,7 @@ function doneTodo(event) {
         return;
     }
 
-    var todoId = String(event.target.id).split("=");
+    var todoId = event.target.id.split("=");
     alert(todoId + " / " + todoId[1]);
 
     var jsonDoneTodo = {
@@ -185,7 +185,7 @@ function unDoneTodo(event) {
         return;
     }
 
-    var doneTodoId = String(event.target.id).split("=");
+    var doneTodoId = event.target.id.split("=");
     alert(doneTodoId + " / " + doneTodoId[1]);
 
     var jsonUnDoneTodo = {
