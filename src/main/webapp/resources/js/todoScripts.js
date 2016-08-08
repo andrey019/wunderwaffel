@@ -210,7 +210,6 @@ function unDoneTodo(event) {
         success: function (data) {
             if (data == "ok") {
                 loadLists();
-                loadDoneTodos();
             }
         },
         error: function (jqXHR, exception) {
