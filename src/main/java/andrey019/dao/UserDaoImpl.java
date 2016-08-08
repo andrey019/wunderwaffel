@@ -66,4 +66,17 @@ public class UserDaoImpl implements UserDao {
             return null;
         }
     }
+
+    @Transactional
+    @Override
+    public User getByEmailWitnListsAndSharedLists(String email) {
+        @SuppressWarnings("unchecked")
+        List<User> result = entityManager.createQuery("select user from User user " +
+                "left join fetch user.todoLists left join fetch user.sharedTodoLists where user.email = :emailParam")
+                .setParameter("emailParam", email).getResultList();
+        if (result.isEmpty()) {
+            return null;
+        }
+        return result.get(0);
+    }
 }

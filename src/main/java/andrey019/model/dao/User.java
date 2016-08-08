@@ -132,7 +132,6 @@ public class User {
 
     public void removeTodoList(TodoList todoList) {
         todoLists.remove(todoList);
-        //todoList.setUser(null);
     }
 
     public void addSharedTodoList(TodoList todoList) {

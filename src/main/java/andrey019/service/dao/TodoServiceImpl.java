@@ -32,7 +32,7 @@ public class TodoServiceImpl implements TodoService {
     public boolean addTodoList(String email, String todoListName) {
         TodoList todoList = new TodoList();
         todoList.setName(todoListName);
-        User user = userDao.getByEmail(email);
+        User user = userDao.getByEmailWitnListsAndSharedLists(email);
         if (user == null) {
             return false;
         }

@@ -8,4 +8,5 @@ public interface UserDao {
     User getById(long id);
     User getByEmail(String email);
     User getByEmailWithSharedLists(String email);
+    User getByEmailWitnListsAndSharedLists(String email);
 }
