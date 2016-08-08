@@ -21,7 +21,12 @@ public class TodoDaoImpl implements TodoDao {
     @Transactional(isolation = Isolation.SERIALIZABLE)
     @Override
     public Todo getById(long id) {
-        return entityManager.find(Todo.class, id);
+        try {
+            return entityManager.find(Todo.class, id);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return null;
     }
 
     @Transactional

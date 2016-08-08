@@ -70,6 +70,7 @@ public class TodoServiceImpl implements TodoService {
     public boolean doneTodo(String email, long todoListId, long todoId) {
         Todo todo = todoDao.getById(todoId);
         System.out.println("doneTodo todoDao.getbyid");
+        System.out.println(todo);
         if ( (todo == null) || (todo.getTodoList().getId() != todoListId) ) {
             return false;
         }
