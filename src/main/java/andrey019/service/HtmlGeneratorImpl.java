@@ -63,6 +63,7 @@ public class HtmlGeneratorImpl implements HtmlGenerator {
             testBuilder.append(" / ");
         }
         System.out.println(testBuilder.toString());
+        System.out.println(stringBuilder.toString());
         return stringBuilder.toString();
     }
 
