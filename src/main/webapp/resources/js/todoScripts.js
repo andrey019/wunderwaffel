@@ -47,7 +47,7 @@ function loadCurrentListTodos() {
         headers: getCSRFHeader(),
         success: function (data) {
             document.getElementById("todoResult").innerHTML = data;
-            if (typeof window.showDoneTodos === 'undefined' || window.showDoneTodos == null) {
+            if (typeof window.showDoneTodos !== 'undefined' && window.showDoneTodos != null) {
                 loadDoneTodos();
             }
             //document.getElementById("doneTodoResult").innerHTML = "";

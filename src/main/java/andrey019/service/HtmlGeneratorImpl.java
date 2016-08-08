@@ -55,15 +55,15 @@ public class HtmlGeneratorImpl implements HtmlGenerator {
             return "";
         }
         StringBuilder stringBuilder = new StringBuilder();
-        StringBuilder testBuilder = new StringBuilder();
+//        StringBuilder testBuilder = new StringBuilder();
         for (Todo todo : todos) {
             stringBuilder.append(String.format(TODO_BUTTON, todo.getId(), todo.getTodoText(),
                     todo.getCreatedByName()));
-            testBuilder.append(todo.getId());
-            testBuilder.append(" / ");
+//            testBuilder.append(todo.getId());
+//            testBuilder.append(" / ");
         }
-        System.out.println(testBuilder.toString());
-        System.out.println(stringBuilder.toString());
+//        System.out.println(testBuilder.toString());
+//        System.out.println(stringBuilder.toString());
         return stringBuilder.toString();
     }
 
