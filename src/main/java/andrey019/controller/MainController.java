@@ -19,7 +19,6 @@ public class MainController {
     private LogService logService;
 
     @Autowired
-    @Qualifier("mailService")
     private MailService mailService;
 
 

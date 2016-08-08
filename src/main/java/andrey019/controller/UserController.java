@@ -25,11 +25,11 @@ public class UserController {
     @Autowired
     private LogService logService;
 
-    @Autowired
-    private TodoListDao todoListDao;
-
-    @Autowired
-    private UserDao userDao;
+//    @Autowired
+//    private TodoListDao todoListDao;
+//
+//    @Autowired
+//    private UserDao userDao;
 
     @Autowired
     private TodoService todoService;
@@ -47,12 +47,6 @@ public class UserController {
     @ResponseBody
     public String loadLists(@RequestBody JsonMessage jsonMessage) {
         logService.ajaxJson("loadLists      " + getUserEmail());
-//        System.out.println(jsonMessage);
-//        System.out.println(todoService.getAllTodoLists(getUserEmail()));
-//        System.out.println(todoService.getAllTodoLists(getUserEmail()).size());
-//        for (TodoList todoList : todoService.getAllTodoLists(getUserEmail())) {
-//            System.out.println(todoList.toString());
-//        }
         return htmlGenerator.generateTodoListsHtml(todoService.getAllTodoLists(getUserEmail()));
     }
 
@@ -60,10 +54,6 @@ public class UserController {
     @ResponseBody
     public String loadTodos(@RequestBody JsonMessage jsonMessage) {
         logService.ajaxJson("loadTodos      " + getUserEmail());
-//        System.out.println(jsonMessage.getListId());
-//        System.out.println(todoService.getTodoListById(getUserEmail(), jsonMessage.getListId()).getTodos());
-//        System.out.println(todoService.getTodoListById(getUserEmail(), jsonMessage.getListId()).getTodos().size());
-
         return htmlGenerator.generateTodosHtml(todoService.getTodosByListId(getUserEmail(), jsonMessage.getListId()));
     }
 
@@ -79,18 +69,17 @@ public class UserController {
     @ResponseBody
     public String addTodo(@RequestBody JsonMessage jsonMessage) {
         logService.ajaxJson("addTodo        " + getUserEmail());
-//        System.out.println(jsonMessage);
-        todoService.addTodo(getUserEmail(), jsonMessage.getListId(), jsonMessage.getTodoText());
-        return "";
+        if (todoService.addTodo(getUserEmail(), jsonMessage.getListId(), jsonMessage.getTodoText())) {
+            return RESPONSE_OK;
+        }
+        return RESPONSE_ERROR;
     }
 
     @RequestMapping(value = "/doneTodo", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
     @ResponseBody
     public String doneTodo(@RequestBody JsonMessage jsonMessage) {
         logService.ajaxJson("doneTodo       " + getUserEmail());
-        //System.out.println(jsonMessage);
         if (todoService.doneTodo(getUserEmail(), jsonMessage.getListId(), jsonMessage.getTodoId())) {
-            //System.out.println("doneTodo OK!!!");
             return RESPONSE_OK;
         }
         return RESPONSE_ERROR;
@@ -101,7 +90,16 @@ public class UserController {
     public String unDoneTodo(@RequestBody JsonMessage jsonMessage) {
         logService.ajaxJson("unDoneTodo     " + getUserEmail());
         if (todoService.unDoneTodo(getUserEmail(), jsonMessage.getListId(), jsonMessage.getDoneTodoId())) {
-            //System.out.println("unDoneTodo OK!!!");
+            return RESPONSE_OK;
+        }
+        return RESPONSE_ERROR;
+    }
+
+    @RequestMapping(value = "/addTodoList", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
+    @ResponseBody
+    public String addTodoList(@RequestBody JsonMessage jsonMessage) {
+        logService.ajaxJson("addTodoList    " + getUserEmail());
+        if (todoService.addTodoList(getUserEmail(), jsonMessage.getListName())) {
             return RESPONSE_OK;
         }
         return RESPONSE_ERROR;
@@ -111,31 +109,6 @@ public class UserController {
     public String userololo() {
         logService.accessToPage("user/ololo");
         return "ololo";
-    }
-
-    @RequestMapping("/json")
-    public String tesingJson() {
-        UserConfirmation userConfirmation = new UserConfirmation();
-        userConfirmation.setDate(564354);
-        userConfirmation.setCode("codeset");
-        userConfirmation.setPassword("passset");
-        userConfirmation.setEmail("emailset");
-        return "json_test";//h
-    }
-
-    @RequestMapping(value = "/test", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
-    @ResponseBody
-    public String test(@RequestBody JsonMessage jsonMessage) {
-        System.out.println("!!!  !!!");
-        System.out.println(jsonMessage);
-        return jsonMessage.getListId() + " = " + getUserEmail() + "<button id=\"99999\" class=\"btn btn-default\" type=\"button\" onclick=\"oneMore(event)\">json button</button>";//sdf
-    }
-
-    @RequestMapping("testdao")
-    @ResponseBody
-    public String testDao() {
-        innerDao();
-        return "done";
     }
 
     private String getUserEmail(){
@@ -149,14 +122,39 @@ public class UserController {
         return userName;
     }
 
-    private void innerDao() {
-        User user = userDao.getById(1);
-        TodoList todoList = new TodoList();
-        todoList.setUser(user);
-        todoList.addUsers(user);
-        todoList.setName("spring name ололо");
-        todoListDao.save(todoList);
-        System.out.println(todoListDao.getByUsers(1).size());
-        System.out.println(todoListDao.getUsersByTodoListId(1).size());
-    }
+//    @RequestMapping("/json")
+//    public String tesingJson() {
+//        UserConfirmation userConfirmation = new UserConfirmation();
+//        userConfirmation.setDate(564354);
+//        userConfirmation.setCode("codeset");
+//        userConfirmation.setPassword("passset");
+//        userConfirmation.setEmail("emailset");
+//        return "json_test";//h
+//    }
+
+//    @RequestMapping(value = "/test", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
+//    @ResponseBody
+//    public String test(@RequestBody JsonMessage jsonMessage) {
+//        System.out.println("!!!  !!!");
+//        System.out.println(jsonMessage);
+//        return jsonMessage.getListId() + " = " + getUserEmail() + "<button id=\"99999\" class=\"btn btn-default\" type=\"button\" onclick=\"oneMore(event)\">json button</button>";//sdf
+//    }
+
+//    @RequestMapping("testdao")
+//    @ResponseBody
+//    public String testDao() {
+//        innerDao();
+//        return "done";
+//    }
+
+//    private void innerDao() {
+//        User user = userDao.getById(1);
+//        TodoList todoList = new TodoList();
+//        todoList.setUser(user);
+//        todoList.addUsers(user);
+//        todoList.setName("spring name ололо");
+//        todoListDao.save(todoList);
+//        System.out.println(todoListDao.getByUsers(1).size());
+//        System.out.println(todoListDao.getUsersByTodoListId(1).size());
+//    }
 }

@@ -44,9 +44,9 @@
         <div class="row" style="width: 100%">
             <div class="col-lg-6" style="width: 100%">
                 <div class="input-group" style="width: 100%">
-                    <input id="addTodoInput" type="text" onkeyup="todoInputEnter(event)" class="form-control" placeholder="Add new TODO...">
+                    <input id="addTodoInput" type="text" onkeyup="addTodoInputEnter(event)" class="form-control" placeholder="Add new TODO...">
                     <span class="input-group-btn">
-                        <button id="addTodoButton" onclick="addTodo()" class="btn btn-default" type="button">+</button>
+                        <button onclick="addTodo()" class="btn btn-default" type="button">+</button>
                     </span>
                 </div>
             </div>
@@ -72,9 +72,9 @@
         <div class="row" style="width: 100%">
             <div class="col-lg-6" style="width: 100%">
                 <div class="input-group" style="width: 100%">
-                    <input type="text" class="form-control" placeholder="Add new LIST...">
+                    <input id="addTodoListInput" type="text" onkeyup="addTodoListInputEnter(event)" class="form-control" placeholder="Add new LIST...">
                     <span class="input-group-btn">
-                        <button class="btn btn-default" type="button">+</button>
+                        <button onclick="addTodoList()" class="btn btn-default" type="button">+</button>
                     </span>
                 </div>
             </div>

@@ -33,7 +33,6 @@ public class AuthController {
     public String logoutPage (HttpServletRequest request, HttpServletResponse response) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (auth != null){
-            //new SecurityContextLogoutHandler().logout(request, response, auth);
             persistentTokenBasedRememberMeServices.logout(request, response, auth);
             SecurityContextHolder.getContext().setAuthentication(null);
         }
@@ -64,10 +63,6 @@ public class AuthController {
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
     public ModelAndView registrationResponse(@RequestParam("email") String email,
                                              @RequestParam("password") String password) {
-        logService.accessToPage("registration post");
-        //registrationService.preRegistration(email, password);
-        System.out.println(email);
-        System.out.println(password);
         String check = registrationService.preRegistrationCheck(email);
         if (check != null) {
             logService.accessToPage("registration post, " + email + ", " + check);

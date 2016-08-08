@@ -6,7 +6,8 @@ function loadLists() {
         "doneTodoId": 0,
         "shareWith": null,
         "unShareWith": null,
-        "todoText": null
+        "todoText": null,
+        "listName": null
     };
 
     $.ajax({
@@ -36,7 +37,8 @@ function loadCurrentListTodos() {
         "doneTodoId": 0,
         "shareWith": null,
         "unShareWith": null,
-        "todoText": null
+        "todoText": null,
+        "listName": null
     };
 
     $.ajax({
@@ -70,7 +72,8 @@ function loadTodos(event) {
         "doneTodoId": 0,
         "shareWith": null,
         "unShareWith": null,
-        "todoText": null
+        "todoText": null,
+        "listName": null
     };
 
     $.ajax({
@@ -83,37 +86,6 @@ function loadTodos(event) {
             document.getElementById("navbarText").innerHTML = navbarText;
             document.getElementById("todoResult").innerHTML = data;
             document.getElementById("doneTodoResult").innerHTML = "";
-        },
-        error: function (jqXHR, exception) {
-            jsonErrorHandler(jqXHR, exception);
-        }
-    });
-}
-
-function addTodo() {
-    if (typeof window.currentList === 'undefined' || window.currentList == null
-        || document.getElementById("addTodoInput").value == "") {
-        return;
-    }
-
-    var jsonAddTodo = {
-        "listId": window.currentList,
-        "todoId": 0,
-        "doneTodoId": 0,
-        "shareWith": null,
-        "unShareWith": null,
-        "todoText": document.getElementById("addTodoInput").value
-    };
-
-    $.ajax({
-        type: "POST",
-        url: "/user/addTodo",
-        data: JSON.stringify(jsonAddTodo),
-        contentType: 'application/json',
-        headers: getCSRFHeader(),
-        success: function (data) {
-            document.getElementById("addTodoInput").value = "";
-            loadLists();
         },
         error: function (jqXHR, exception) {
             jsonErrorHandler(jqXHR, exception);
@@ -138,7 +110,8 @@ function loadDoneTodos() {
         "doneTodoId": 0,
         "shareWith": null,
         "unShareWith": null,
-        "todoText": null
+        "todoText": null,
+        "listName": null
     };
 
     $.ajax({
@@ -149,6 +122,38 @@ function loadDoneTodos() {
         headers: getCSRFHeader(),
         success: function (data) {
             document.getElementById("doneTodoResult").innerHTML = data;
+        },
+        error: function (jqXHR, exception) {
+            jsonErrorHandler(jqXHR, exception);
+        }
+    });
+}
+
+function addTodo() {
+    if (typeof window.currentList === 'undefined' || window.currentList == null
+        || document.getElementById("addTodoInput").value == "") {
+        return;
+    }
+
+    var jsonAddTodo = {
+        "listId": window.currentList,
+        "todoId": 0,
+        "doneTodoId": 0,
+        "shareWith": null,
+        "unShareWith": null,
+        "todoText": document.getElementById("addTodoInput").value,
+        "listName": null
+    };
+
+    $.ajax({
+        type: "POST",
+        url: "/user/addTodo",
+        data: JSON.stringify(jsonAddTodo),
+        contentType: 'application/json',
+        headers: getCSRFHeader(),
+        success: function (data) {
+            document.getElementById("addTodoInput").value = "";
+            loadLists();
         },
         error: function (jqXHR, exception) {
             jsonErrorHandler(jqXHR, exception);
@@ -168,7 +173,8 @@ function doneTodo(event) {
         "doneTodoId": 0,
         "shareWith": null,
         "unShareWith": null,
-        "todoText": null
+        "todoText": null,
+        "listName": null
     };
 
     $.ajax({
@@ -200,7 +206,8 @@ function unDoneTodo(event) {
         "doneTodoId": event.currentTarget.id.split("=")[1],
         "shareWith": null,
         "unShareWith": null,
-        "todoText": null
+        "todoText": null,
+        "listName": null
     };
 
     $.ajax({
@@ -213,6 +220,37 @@ function unDoneTodo(event) {
             if (data == "ok") {
                 loadLists();
             }
+        },
+        error: function (jqXHR, exception) {
+            jsonErrorHandler(jqXHR, exception);
+        }
+    });
+}
+
+function addTodoList() {
+    if (document.getElementById("addTodoListInput").value == "") {
+        return;
+    }
+
+    var jsonAddTodoList = {
+        "listId": 0,
+        "todoId": 0,
+        "doneTodoId": 0,
+        "shareWith": null,
+        "unShareWith": null,
+        "todoText": null,
+        "listName": document.getElementById("addTodoListInput").value
+    };
+
+    $.ajax({
+        type: "POST",
+        url: "/user/addTodoList",
+        data: JSON.stringify(jsonAddTodoList),
+        contentType: 'application/json',
+        headers: getCSRFHeader(),
+        success: function (data) {
+            document.getElementById("addTodoListInput").value = "";
+            loadLists();
         },
         error: function (jqXHR, exception) {
             jsonErrorHandler(jqXHR, exception);
@@ -248,10 +286,17 @@ function jsonErrorHandler(jqXHR, exception) {
     alert(msg + "/ status: " + jqXHR.status + "/ exception: " + exception);
 }
 
-function todoInputEnter(event) {
+function addTodoInputEnter(event) {
     event.preventDefault();
     if (event.keyCode == 13) {
         addTodo();
+    }
+}
+
+function addTodoListInputEnter(event) {
+    event.preventDefault();
+    if (event.keyCode == 13) {
+        addTodoList();
     }
 }
 

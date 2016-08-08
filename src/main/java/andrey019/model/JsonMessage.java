@@ -9,6 +9,7 @@ public class JsonMessage {
     private String shareWith;
     private String unShareWith;
     private String todoText;
+    private String listName;
 
     public long getListId() {
         return listId;
@@ -58,9 +59,18 @@ public class JsonMessage {
         this.todoText = todoText;
     }
 
+    public String getListName() {
+        return listName;
+    }
+
+    public void setListName(String listName) {
+        this.listName = listName;
+    }
+
     @Override
     public String toString() {
         return "listId: " + listId + ", todoId: " + todoId + ", doneTodoId: " + doneTodoId +
-                ", shareWith: " + shareWith + ", unShareWith: " + unShareWith + ", todoText: " + todoText;
+                ", shareWith: " + shareWith + ", unShareWith: " + unShareWith + ", todoText: " + todoText +
+                ", listName: " + listName;
     }
 }
