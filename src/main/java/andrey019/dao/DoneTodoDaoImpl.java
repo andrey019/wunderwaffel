@@ -19,7 +19,7 @@ public class DoneTodoDaoImpl implements DoneTodoDao {
     @PersistenceContext
     private EntityManager entityManager;
 
-    @Transactional(isolation = Isolation.SERIALIZABLE)
+    @Transactional
     @Override
     public DoneTodo getById(long id) {
         return entityManager.find(DoneTodo.class, id);

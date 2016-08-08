@@ -4,8 +4,6 @@ package andrey019.configuration;
 import andrey019.service.maintenance.ConfirmationCleanUpService;
 import andrey019.service.maintenance.MailSenderService;
 import org.apache.commons.validator.routines.EmailValidator;
-import org.dellroad.stuff.spring.RetryTransactionAspect;
-import org.dellroad.stuff.spring.RetryTransactionProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.dao.support.PersistenceExceptionTranslator;

@@ -51,10 +51,6 @@
           <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-core:2.8.1" />
           <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.8.1" />
           <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.8.1" />
-          <element id="library" level="project" name="Maven: org.dellroad:dellroad-stuff:1.1.4" />
-          <element id="library" level="project" name="Maven: org.slf4j:slf4j-api:1.7.2" />
-          <element id="library" level="project" name="Maven: org.springframework:spring-aspects:4.1.4.RELEASE" />
-          <element id="library" level="project" name="Maven: org.aspectj:aspectjweaver:1.8.4" />
         </element>
       </element>
       <element id="directory" name="META-INF">

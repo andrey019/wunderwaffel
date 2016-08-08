@@ -79,7 +79,7 @@ public class TodoListDaoImpl implements TodoListDao {
         return result.get(0);
     }
 
-    @Transactional(isolation = Isolation.SERIALIZABLE)
+    @Transactional
     @Override
     public TodoList getByIdWithTodosAndDoneTodos(long id) {
         @SuppressWarnings("unchecked")

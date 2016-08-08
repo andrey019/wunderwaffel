@@ -1,8 +1,6 @@
 package andrey019.dao;
 
 import andrey019.model.dao.User;
-import org.dellroad.stuff.spring.RetryTransaction;
-import org.dellroad.stuff.spring.RetryTransactionProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Isolation;
@@ -56,7 +54,7 @@ public class UserDaoImpl implements UserDao {
 
 //    @RetryTransaction
 
-    @Transactional(isolation = Isolation.SERIALIZABLE)
+    @Transactional
     @Override
     public User getByEmailWithSharedLists(String email) {
         try {
