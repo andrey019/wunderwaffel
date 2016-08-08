@@ -69,18 +69,18 @@ public class TodoServiceImpl implements TodoService {
     @Override
     public boolean doneTodo(String email, long todoListId, long todoId) {
         Todo todo = todoDao.getById(todoId);
-        System.out.println("doneTodo todoDao.getbyid");
-        System.out.println(todo + " / " + todoId);
+        //System.out.println("doneTodo todoDao.getbyid");
+        //System.out.println(todo + " / " + todoId);
         if ( (todo == null) || (todo.getTodoList().getId() != todoListId) ) {
             return false;
         }
         User user = userDao.getByEmailWithSharedLists(email);
-        System.out.println("doneTodo userDao.getbyemailwith...");
+        //System.out.println("doneTodo userDao.getbyemailwith...");
         if ( (user == null) || (!user.getSharedTodoLists().contains(todo.getTodoList())) ) {
             return false;
         }
         TodoList todoList = todoListDao.getByIdWithTodosAndDoneTodos(todoListId);
-        System.out.println("doneTodo todoListDao.getbyidwith...");
+        //System.out.println("doneTodo todoListDao.getbyidwith...");
         if (todoList == null) {
             return false;
         }
@@ -96,17 +96,17 @@ public class TodoServiceImpl implements TodoService {
     @Override
     public boolean unDoneTodo(String email, long todoListId, long doneTodoId) {
         DoneTodo doneTodo = doneTodoDao.getById(doneTodoId);
-        System.out.println("unDoneTodo doneTodoDao.getbyid");
+        //System.out.println("unDoneTodo doneTodoDao.getbyid");
         if ( (doneTodo == null) || (doneTodo.getTodoList().getId() != todoListId) ) {
             return false;
         }
         User user = userDao.getByEmailWithSharedLists(email);
-        System.out.println("unDoneTodo userDao.getbyemailwith...");
+        //System.out.println("unDoneTodo userDao.getbyemailwith...");
         if ( (user == null) || (!user.getSharedTodoLists().contains(doneTodo.getTodoList())) ) {
             return false;
         }
         TodoList todoList = todoListDao.getByIdWithTodosAndDoneTodos(todoListId);
-        System.out.println("unDoneTodo todoListDao.getbyidwith...");
+        //System.out.println("unDoneTodo todoListDao.getbyidwith...");
         if (todoList == null) {
             return false;
         }

@@ -22,7 +22,7 @@ public class TodoListDaoImpl implements TodoListDao {
     @PersistenceContext
     private EntityManager entityManager;
 
-    @Transactional(isolation = Isolation.SERIALIZABLE)
+    @Transactional
     @Override
     public boolean save(TodoList todoList) {
         try {

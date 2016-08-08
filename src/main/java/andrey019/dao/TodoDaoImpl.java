@@ -18,34 +18,10 @@ public class TodoDaoImpl implements TodoDao {
     @PersistenceContext
     private EntityManager entityManager;
 
-    @Transactional(isolation = Isolation.SERIALIZABLE)
+    @Transactional
     @Override
     public Todo getById(long id) {
-//        Todo todo = entityManager.find(Todo.class, id);
-//        int retry = 1;
-//        while (todo == null) {
-//            try {
-//                Thread.sleep(100);
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//            }
-//            System.out.println(retry++);
-//            todo = entityManager.find(Todo.class, id);
-//        }
-//        try {
-//
-//            return entityManager.find(Todo.class, id);
-//        } catch (Exception ex) {
-//            ex.printStackTrace();
-//        }
-
-        @SuppressWarnings("unchecked")
-        List<Todo> result = entityManager.createQuery("select todo from Todo todo where todo.id = :idParam")
-                .setParameter("idParam", id).setMaxResults(1).getResultList();
-        if (result.isEmpty()) {
-            return null;
-        }
-        return result.get(0);
+        return entityManager.find(Todo.class, id);
     }
 
     @Transactional

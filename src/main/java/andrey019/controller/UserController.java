@@ -46,7 +46,7 @@ public class UserController {
     @RequestMapping(value = "/loadLists", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
     @ResponseBody
     public String loadLists(@RequestBody JsonMessage jsonMessage) {
-        logService.ajaxJson("loadLists " + getUserEmail());
+        logService.ajaxJson("loadLists      " + getUserEmail());
 //        System.out.println(jsonMessage);
 //        System.out.println(todoService.getAllTodoLists(getUserEmail()));
 //        System.out.println(todoService.getAllTodoLists(getUserEmail()).size());
@@ -59,7 +59,7 @@ public class UserController {
     @RequestMapping(value = "/loadTodos", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
     @ResponseBody
     public String loadTodos(@RequestBody JsonMessage jsonMessage) {
-        logService.ajaxJson("loadTodos " + getUserEmail());
+        logService.ajaxJson("loadTodos      " + getUserEmail());
 //        System.out.println(jsonMessage.getListId());
 //        System.out.println(todoService.getTodoListById(getUserEmail(), jsonMessage.getListId()).getTodos());
 //        System.out.println(todoService.getTodoListById(getUserEmail(), jsonMessage.getListId()).getTodos().size());
@@ -70,7 +70,7 @@ public class UserController {
     @RequestMapping(value = "/loadDoneTodos", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
     @ResponseBody
     public String loadDoneTodos(@RequestBody JsonMessage jsonMessage) {
-        logService.ajaxJson("loadDoneTodos " + getUserEmail());
+        logService.ajaxJson("loadDoneTodos  " + getUserEmail());
         return htmlGenerator.generateDoneTodosHtml
                 (todoService.getDoneTodosByListId(getUserEmail(), jsonMessage.getListId()));
     }
@@ -78,7 +78,7 @@ public class UserController {
     @RequestMapping(value = "/addTodo", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
     @ResponseBody
     public String addTodo(@RequestBody JsonMessage jsonMessage) {
-        logService.ajaxJson("addTodo " + getUserEmail());
+        logService.ajaxJson("addTodo        " + getUserEmail());
 //        System.out.println(jsonMessage);
         todoService.addTodo(getUserEmail(), jsonMessage.getListId(), jsonMessage.getTodoText());
         return "";
@@ -87,10 +87,10 @@ public class UserController {
     @RequestMapping(value = "/doneTodo", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
     @ResponseBody
     public String doneTodo(@RequestBody JsonMessage jsonMessage) {
-        logService.ajaxJson("doneTodo " + getUserEmail());
-        System.out.println(jsonMessage);
+        logService.ajaxJson("doneTodo       " + getUserEmail());
+        //System.out.println(jsonMessage);
         if (todoService.doneTodo(getUserEmail(), jsonMessage.getListId(), jsonMessage.getTodoId())) {
-            System.out.println("doneTodo OK!!!");
+            //System.out.println("doneTodo OK!!!");
             return RESPONSE_OK;
         }
         return RESPONSE_ERROR;
@@ -99,9 +99,9 @@ public class UserController {
     @RequestMapping(value = "/unDoneTodo", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
     @ResponseBody
     public String unDoneTodo(@RequestBody JsonMessage jsonMessage) {
-        logService.ajaxJson("doneTodo " + getUserEmail());
+        logService.ajaxJson("unDoneTodo     " + getUserEmail());
         if (todoService.unDoneTodo(getUserEmail(), jsonMessage.getListId(), jsonMessage.getDoneTodoId())) {
-            System.out.println("unDoneTodo OK!!!");
+            //System.out.println("unDoneTodo OK!!!");
             return RESPONSE_OK;
         }
         return RESPONSE_ERROR;

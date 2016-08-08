@@ -15,9 +15,6 @@ import java.util.List;
 @Repository("userDao")
 public class UserDaoImpl implements UserDao {
 
-//    @Autowired
-//    private RetryTransactionProvider retryTransactionProvider;
-
     @PersistenceContext
     private EntityManager entityManager;
 
@@ -51,8 +48,6 @@ public class UserDaoImpl implements UserDao {
         }
         return result.get(0);
     }
-
-//    @RetryTransaction
 
     @Transactional
     @Override
