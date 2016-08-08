@@ -12,7 +12,7 @@ import java.util.Set;
 public class HtmlGeneratorImpl implements HtmlGenerator {
 
     private final static String LIST_BUTTON = "<button id=\"list=%d\" type=\"button\" class=\"list-group-item\" " +
-            "onclick=\"loadTodos(event)\" style=\"word-wrap: break-word\">" +
+            "onclick=\"loadTodos(event)\" name=\"%s\" style=\"word-wrap: break-word\">" +
             "<span id=\"badge=%d\" class=\"badge\">%d</span>%s</button>";
 //    private final static String DELETE_BUTTON = "<button id=\"del=%d\" type=\"button\" class=\"list-group-item\">" +
 //            "<span class=\"glyphicon glyphicon-trash\" aria-hidden=\"true\"></span></button>";
@@ -31,7 +31,7 @@ public class HtmlGeneratorImpl implements HtmlGenerator {
     public String generateTodoListsHtml(Set<TodoList> todoLists) {
         StringBuilder stringBuilder = new StringBuilder();
         for (TodoList todoList : todoLists) {
-            stringBuilder.append(String.format(LIST_BUTTON, todoList.getId(), todoList.getId(),
+            stringBuilder.append(String.format(LIST_BUTTON, todoList.getId(), todoList.getName(), todoList.getId(),
                     todoList.getTodoAmount(), addBreaks(todoList.getName())));
         }
         return stringBuilder.toString();

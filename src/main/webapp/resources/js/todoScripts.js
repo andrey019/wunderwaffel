@@ -62,7 +62,7 @@ function loadTodos(event) {
     event.preventDefault();
     window.currentList = event.currentTarget.id.split("=")[1];
     window.showDoneTodos = null;
-    var innerText = event.currentTarget.textContent;
+    var navbarText = event.currentTarget.getAttribute("name");
 
     var jsonTodos = {
         "listId": window.currentList,
@@ -80,7 +80,7 @@ function loadTodos(event) {
         contentType: 'application/json',
         headers: getCSRFHeader(),
         success: function (data) {
-            document.getElementById("navbarText").innerHTML = innerText;
+            document.getElementById("navbarText").innerHTML = navbarText;
             document.getElementById("todoResult").innerHTML = data;
             document.getElementById("doneTodoResult").innerHTML = "";
         },
