@@ -3,34 +3,34 @@ package andrey019.model;
 
 public class JsonMessage {
 
-    private String listId;
-    private String todoId;
-    private String doneTodoId;
+    private long listId;
+    private long todoId;
+    private long doneTodoId;
     private String shareWith;
     private String unShareWith;
     private String todoText;
 
-    public String getListId() {
+    public long getListId() {
         return listId;
     }
 
-    public void setListId(String listId) {
+    public void setListId(long listId) {
         this.listId = listId;
     }
 
-    public String getTodoId() {
+    public long getTodoId() {
         return todoId;
     }
 
-    public void setTodoId(String todoId) {
+    public void setTodoId(long todoId) {
         this.todoId = todoId;
     }
 
-    public String getDoneTodoId() {
+    public long getDoneTodoId() {
         return doneTodoId;
     }
 
-    public void setDoneTodoId(String doneTodoId) {
+    public void setDoneTodoId(long doneTodoId) {
         this.doneTodoId = doneTodoId;
     }
 

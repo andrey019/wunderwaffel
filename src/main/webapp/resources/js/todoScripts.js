@@ -32,8 +32,8 @@ function loadCurrentListTodos() {
 
     var jsonCurrentListTodos = {
         "listId": window.currentList,
-        "todoId": null,
-        "doneTodoId": null,
+        "todoId": 0,
+        "doneTodoId": 0,
         "shareWith": null,
         "unShareWith": null,
         "todoText": null
@@ -47,6 +47,9 @@ function loadCurrentListTodos() {
         headers: getCSRFHeader(),
         success: function (data) {
             document.getElementById("todoResult").innerHTML = data;
+            if (typeof window.showDoneTodos === 'undefined' || window.showDoneTodos == null) {
+                loadDoneTodos();
+            }
             //document.getElementById("doneTodoResult").innerHTML = "";
         },
         error: function (jqXHR, exception) {
@@ -57,12 +60,13 @@ function loadCurrentListTodos() {
 
 function loadTodos(event) {
     event.preventDefault();
-    window.currentList = event.target.id;
+    window.currentList = event.currentTarget.id.split("=")[1];
+    window.showDoneTodos = null;
 
     var jsonTodos = {
         "listId": window.currentList,
-        "todoId": null,
-        "doneTodoId": null,
+        "todoId": 0,
+        "doneTodoId": 0,
         "shareWith": null,
         "unShareWith": null,
         "todoText": null
@@ -92,8 +96,8 @@ function addTodo() {
 
     var jsonAddTodo = {
         "listId": window.currentList,
-        "todoId": null,
-        "doneTodoId": null,
+        "todoId": 0,
+        "doneTodoId": 0,
         "shareWith": null,
         "unShareWith": null,
         "todoText": document.getElementById("addTodoInput").value
@@ -120,10 +124,17 @@ function loadDoneTodos() {
         return;
     }
 
+    if (typeof window.showDoneTodos !== 'undefined' && window.showDoneTodos != null) {
+        window.showDoneTodos = null;
+        document.getElementById("doneTodoResult").innerHTML = "";
+        return;
+    }
+    window.showDoneTodos = "ok";
+
     var jsonDoneTodos = {
         "listId": window.currentList,
-        "todoId": null,
-        "doneTodoId": null,
+        "todoId": 0,
+        "doneTodoId": 0,
         "shareWith": null,
         "unShareWith": null,
         "todoText": null
@@ -150,13 +161,10 @@ function doneTodo(event) {
         return;
     }
 
-    //var todoId = event.target.id.split("=");
-    //alert(todoId + " / " + todoId[1]);
-
     var jsonDoneTodo = {
         "listId": window.currentList,
-        "todoId": event.currentTarget.id,
-        "doneTodoId": null,
+        "todoId": event.currentTarget.id.split("=")[1],
+        "doneTodoId": 0,
         "shareWith": null,
         "unShareWith": null,
         "todoText": null
@@ -185,13 +193,10 @@ function unDoneTodo(event) {
         return;
     }
 
-    //var doneTodoId = event.target.id.split("=");
-    //alert(doneTodoId + " / " + doneTodoId[1]);
-
     var jsonUnDoneTodo = {
         "listId": window.currentList,
-        "todoId": null,
-        "doneTodoId": event.currentTarget.id,
+        "todoId": 0,
+        "doneTodoId": event.currentTarget.id.split("=")[1],
         "shareWith": null,
         "unShareWith": null,
         "todoText": null
