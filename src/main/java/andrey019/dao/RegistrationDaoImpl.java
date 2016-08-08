@@ -18,14 +18,11 @@ public class RegistrationDaoImpl implements RegistrationDao {
     @Transactional
     @Override
     public boolean save(UserConfirmation userConfirmation) {
-        //entityManager.getTransaction().begin();
         try {
             entityManager.merge(userConfirmation);
-            //entityManager.getTransaction().commit();
             return true;
         } catch (Exception ex) {
             ex.printStackTrace();
-            //entityManager.getTransaction().rollback();
             return false;
         }
     }
@@ -88,11 +85,9 @@ public class RegistrationDaoImpl implements RegistrationDao {
     @Transactional
     @Override
     public boolean delete(UserConfirmation userConfirmation) {
-        //entityManager.getTransaction().begin();
         try {
             userConfirmation = entityManager.merge(userConfirmation);
             entityManager.remove(userConfirmation);
-            //entityManager.getTransaction().commit();
             return true;
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -103,15 +98,12 @@ public class RegistrationDaoImpl implements RegistrationDao {
     @Transactional
     @Override
     public void deleteList(List<UserConfirmation> list) {
-        //entityManager.getTransaction().begin();
         try {
             for (UserConfirmation user : list) {
                 entityManager.remove(user);
             }
-            //entityManager.getTransaction().commit();
         } catch (Exception ex) {
             ex.printStackTrace();
-            //entityManager.getTransaction().rollback();
         }
     }
 }

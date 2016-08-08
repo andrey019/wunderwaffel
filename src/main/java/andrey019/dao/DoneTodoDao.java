@@ -1,9 +1,9 @@
 package andrey019.dao;
 
-
 import andrey019.model.dao.DoneTodo;
 
 import java.util.List;
+
 
 public interface DoneTodoDao {
 

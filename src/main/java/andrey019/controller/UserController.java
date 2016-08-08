@@ -25,12 +25,6 @@ public class UserController {
     @Autowired
     private LogService logService;
 
-//    @Autowired
-//    private TodoListDao todoListDao;
-//
-//    @Autowired
-//    private UserDao userDao;
-
     @Autowired
     private TodoService todoService;
 

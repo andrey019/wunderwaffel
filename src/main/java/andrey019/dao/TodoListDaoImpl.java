@@ -1,20 +1,14 @@
 package andrey019.dao;
 
-
 import andrey019.model.dao.TodoList;
 import andrey019.model.dao.User;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Isolation;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.PersistenceContextType;
-import java.lang.reflect.Array;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Set;
+
 
 @Repository("todoListDao")
 public class TodoListDaoImpl implements TodoListDao {

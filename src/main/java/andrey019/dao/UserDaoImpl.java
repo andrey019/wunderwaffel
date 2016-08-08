@@ -1,15 +1,11 @@
 package andrey019.dao;
 
 import andrey019.model.dao.User;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Isolation;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.PersistenceContextType;
 import java.util.List;
 
 @Repository("userDao")
@@ -54,8 +50,8 @@ public class UserDaoImpl implements UserDao {
     public User getByEmailWithSharedLists(String email) {
         try {
             @SuppressWarnings("unchecked")
-            List<User> result = entityManager.createQuery("select user from User user left join fetch user.sharedTodoLists " +
-                    "where user.email = :emailParam")
+            List<User> result = entityManager.createQuery("select user from User user " +
+                    "left join fetch user.sharedTodoLists where user.email = :emailParam")
                     .setParameter("emailParam", email).getResultList();
             if (result.isEmpty()) {
                 return null;

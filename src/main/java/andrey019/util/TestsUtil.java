@@ -3,7 +3,6 @@ package andrey019.util;
 
 import org.apache.commons.validator.routines.EmailValidator;
 
-import java.nio.charset.Charset;
 
 public class TestsUtil {
 //    private final static ST TEXT_TEMPLATE = new ST("You were trying to register an account on WunderWaffel," +
