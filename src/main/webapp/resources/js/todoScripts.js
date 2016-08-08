@@ -155,7 +155,7 @@ function doneTodo(event) {
 
     var jsonDoneTodo = {
         "listId": window.currentList,
-        "todoId": event.target.id,
+        "todoId": event.currentTarget.id,
         "doneTodoId": null,
         "shareWith": null,
         "unShareWith": null,
@@ -191,7 +191,7 @@ function unDoneTodo(event) {
     var jsonUnDoneTodo = {
         "listId": window.currentList,
         "todoId": null,
-        "doneTodoId": event.target.id,
+        "doneTodoId": event.currentTarget.id,
         "shareWith": null,
         "unShareWith": null,
         "todoText": null
