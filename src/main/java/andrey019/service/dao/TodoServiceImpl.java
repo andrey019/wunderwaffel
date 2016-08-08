@@ -46,12 +46,12 @@ public class TodoServiceImpl implements TodoService {
     }
 
     @Override
-    public boolean addTodo(String email, long todoListId, String todoText) {
+    public boolean addTodo(String email, String todoListId, String todoText) {
         User user = userDao.getByEmailWithSharedLists(email);
         if (user == null) {
             return false;
         }
-        TodoList todoList = todoListDao.getByIdWithTodos(todoListId);
+        TodoList todoList = todoListDao.getByIdWithTodos(getLongId(todoListId));
         if (todoList == null) {
             return false;
         }
@@ -67,10 +67,11 @@ public class TodoServiceImpl implements TodoService {
     }
 
     @Override
-    public boolean doneTodo(String email, long todoListId, long todoId) {
-        Todo todo = todoDao.getById(todoId);
+    public boolean doneTodo(String email, String todoListIdStr, String todoId) {
+        Todo todo = todoDao.getById(getLongId(todoId));
         System.out.println("doneTodo todoDao.getbyid");
         System.out.println(todo + " / " + todoId);
+        long todoListId = getLongId(todoListIdStr);
         if ( (todo == null) || (todo.getTodoList().getId() != todoListId) ) {
             return false;
         }
@@ -94,9 +95,10 @@ public class TodoServiceImpl implements TodoService {
     }
 
     @Override
-    public boolean unDoneTodo(String email, long todoListId, long doneTodoId) {
-        DoneTodo doneTodo = doneTodoDao.getById(doneTodoId);
+    public boolean unDoneTodo(String email, String todoListIdStr, String doneTodoId) {
+        DoneTodo doneTodo = doneTodoDao.getById(getLongId(doneTodoId));
         System.out.println("unDoneTodo doneTodoDao.getbyid");
+        long todoListId = getLongId(todoListIdStr);
         if ( (doneTodo == null) || (doneTodo.getTodoList().getId() != todoListId) ) {
             return false;
         }
@@ -118,12 +120,12 @@ public class TodoServiceImpl implements TodoService {
     }
 
     @Override
-    public boolean shareTodoList(String email, long todoListId, String emailToShareWith) {
+    public boolean shareTodoList(String email, String todoListId, String emailToShareWith) {    // TODO: 08.08.16 string to long id
         User user = userDao.getByEmail(email);
         if (user == null) {
             return false;
         }
-        TodoList todoList = getListIfAllowed(user, todoListId);
+        TodoList todoList = getListIfAllowed(user, getLongId(todoListId));
         if (todoList == null) {
             return false;
         }
@@ -136,8 +138,9 @@ public class TodoServiceImpl implements TodoService {
     }
 
     @Override
-    public boolean unShareWith(String email, long todoListId, String emailToUnShareWith) {
+    public boolean unShareWith(String email, String todoListIdStr, String emailToUnShareWith) {    // TODO: 08.08.16 string to long id
         User userToUnShare = userDao.getByEmail(emailToUnShareWith);
+        long todoListId = getLongId(todoListIdStr);
         TodoList todoList = getListIfOwner(userToUnShare, todoListId);
         if (todoList != null) {
             return false;
@@ -155,9 +158,9 @@ public class TodoServiceImpl implements TodoService {
     }
 
     @Override
-    public boolean deleteTodoList(String email, long todoListId) {
+    public boolean deleteTodoList(String email, String todoListId) {    // TODO: 08.08.16 string to long id
         User user = userDao.getByEmail(email);
-        TodoList todoList = getListIfOwner(user, todoListId);
+        TodoList todoList = getListIfOwner(user, getLongId(todoListId));
         if (todoList == null) {
             return false;
         }
@@ -166,12 +169,12 @@ public class TodoServiceImpl implements TodoService {
     }
 
     @Override
-    public Set<Todo> getTodosByListId(String email, long todoListId) {
+    public Set<Todo> getTodosByListId(String email, String todoListId) {
         User user = userDao.getByEmailWithSharedLists(email);
         if (user == null) {
             return null;
         }
-        TodoList todoList = todoListDao.getByIdWithTodos(todoListId);
+        TodoList todoList = todoListDao.getByIdWithTodos(getLongId(todoListId));
         if (todoList == null) {
             return null;
         }
@@ -182,12 +185,12 @@ public class TodoServiceImpl implements TodoService {
     }
 
     @Override
-    public Set<DoneTodo> getDoneTodosByListId(String email, long todoListId) {
+    public Set<DoneTodo> getDoneTodosByListId(String email, String todoListId) {
         User user = userDao.getByEmailWithSharedLists(email);
         if (user == null) {
             return null;
         }
-        TodoList todoList = todoListDao.getByIdWithDoneTodos(todoListId);
+        TodoList todoList = todoListDao.getByIdWithDoneTodos(getLongId(todoListId));
         if (todoList == null) {
             return null;
         }
@@ -207,9 +210,9 @@ public class TodoServiceImpl implements TodoService {
     }
 
     @Override
-    public Set<DoneTodo> getAllDoneTodos(String email, long todoListId) {
+    public Set<DoneTodo> getAllDoneTodos(String email, String todoListId) {
         User user = userDao.getByEmail(email);
-        TodoList todoList = getListIfAllowed(user, todoListId);
+        TodoList todoList = getListIfAllowed(user, getLongId(todoListId));
         if (todoList == null) {
             return null;
         }
@@ -217,9 +220,9 @@ public class TodoServiceImpl implements TodoService {
     }
 
     @Override
-    public Set<Todo> getAllTodos(String email, long todoListId) {
+    public Set<Todo> getAllTodos(String email, String todoListId) {
         User user = userDao.getByEmail(email);
-        TodoList todoList = getListIfAllowed(user, todoListId);
+        TodoList todoList = getListIfAllowed(user, getLongId(todoListId));
         if (todoList == null) {
             return null;
         }
@@ -254,5 +257,14 @@ public class TodoServiceImpl implements TodoService {
             return todoList;
         }
         return null;
+    }
+
+    private long getLongId(String id) {
+        try {
+            long longId = Long.valueOf(id.split("=")[1]);
+            return longId;
+        } catch (Exception ex) {
+            return 0;
+        }
     }
 }

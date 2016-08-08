@@ -32,8 +32,8 @@ function loadCurrentListTodos() {
 
     var jsonCurrentListTodos = {
         "listId": window.currentList,
-        "todoId": 0,
-        "doneTodoId": 0,
+        "todoId": null,
+        "doneTodoId": null,
         "shareWith": null,
         "unShareWith": null,
         "todoText": null
@@ -57,12 +57,12 @@ function loadCurrentListTodos() {
 
 function loadTodos(event) {
     event.preventDefault();
-    window.currentList = String(event.target.id).split("=")[1];
+    window.currentList = event.target.id;
 
     var jsonTodos = {
         "listId": window.currentList,
-        "todoId": 0,
-        "doneTodoId": 0,
+        "todoId": null,
+        "doneTodoId": null,
         "shareWith": null,
         "unShareWith": null,
         "todoText": null
@@ -92,8 +92,8 @@ function addTodo() {
 
     var jsonAddTodo = {
         "listId": window.currentList,
-        "todoId": 0,
-        "doneTodoId": 0,
+        "todoId": null,
+        "doneTodoId": null,
         "shareWith": null,
         "unShareWith": null,
         "todoText": document.getElementById("addTodoInput").value
@@ -122,8 +122,8 @@ function loadDoneTodos() {
 
     var jsonDoneTodos = {
         "listId": window.currentList,
-        "todoId": 0,
-        "doneTodoId": 0,
+        "todoId": null,
+        "doneTodoId": null,
         "shareWith": null,
         "unShareWith": null,
         "todoText": null
@@ -150,13 +150,13 @@ function doneTodo(event) {
         return;
     }
 
-    var todoId = event.target.id.split("=");
-    alert(todoId + " / " + todoId[1]);
+    //var todoId = event.target.id.split("=");
+    //alert(todoId + " / " + todoId[1]);
 
     var jsonDoneTodo = {
         "listId": window.currentList,
-        "todoId": todoId[1],
-        "doneTodoId": 0,
+        "todoId": event.target.id,
+        "doneTodoId": null,
         "shareWith": null,
         "unShareWith": null,
         "todoText": null
@@ -185,13 +185,13 @@ function unDoneTodo(event) {
         return;
     }
 
-    var doneTodoId = event.target.id.split("=");
-    alert(doneTodoId + " / " + doneTodoId[1]);
+    //var doneTodoId = event.target.id.split("=");
+    //alert(doneTodoId + " / " + doneTodoId[1]);
 
     var jsonUnDoneTodo = {
         "listId": window.currentList,
-        "todoId": 0,
-        "doneTodoId": doneTodoId[1],
+        "todoId": null,
+        "doneTodoId": event.target.id,
         "shareWith": null,
         "unShareWith": null,
         "todoText": null
