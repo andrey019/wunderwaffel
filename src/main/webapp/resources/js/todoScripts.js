@@ -150,9 +150,11 @@ function doneTodo(event) {
         return;
     }
 
+    var todoId = String(event.target.id).split("=");
+
     var jsonDoneTodo = {
         "listId": window.currentList,
-        "todoId": String(event.target.id).split("=")[1],
+        "todoId": todoId[1],
         "doneTodoId": 0,
         "shareWith": null,
         "unShareWith": null,
@@ -182,10 +184,12 @@ function unDoneTodo(event) {
         return;
     }
 
+    var doneTodoId = String(event.target.id).split("=");
+
     var jsonUnDoneTodo = {
         "listId": window.currentList,
         "todoId": 0,
-        "doneTodoId": String(event.target.id).split("=")[1],
+        "doneTodoId": doneTodoId[1],
         "shareWith": null,
         "unShareWith": null,
         "todoText": null
