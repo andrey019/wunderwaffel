@@ -84,7 +84,7 @@
         <br>
         <div class="input-group">
             <span class="input-group-addon">F</span>
-            <input id="regFNameInput" type="text" class="form-control" placeholder="First name" aria-describedby="basic-addon1 required">
+            <input id="regFNameInput" onblur="fNameCheck()" type="text" class="form-control" placeholder="First name" aria-describedby="basic-addon1 required">
         </div>
         <div hidden id="regFNameError" class="alert alert-danger" role="alert">
             <p>You must enter your first name!</p>
@@ -92,7 +92,7 @@
         <br>
         <div class="input-group" style="border-color: red">
             <span class="input-group-addon">L</span>
-            <input id="regLNameInput" type="text" class="form-control" placeholder="Last name" aria-describedby="basic-addon1 required">
+            <input id="regLNameInput" onblur="lNameCheck()" type="text" class="form-control" placeholder="Last name" aria-describedby="basic-addon1 required">
         </div>
         <div hidden id="regLNameError" class="alert alert-danger" role="alert">
             <p>You must enter your last name!</p>
@@ -100,7 +100,7 @@
         <br>
         <div class="input-group">
             <span class="input-group-addon">P</span>
-            <input id="regPassInput" type="password" class="form-control" placeholder="Password" aria-describedby="basic-addon1 required">
+            <input id="regPassInput" onblur="passCheck()" type="password" class="form-control" placeholder="Password" aria-describedby="basic-addon1 required">
         </div>
         <div hidden id="regPassError" class="alert alert-danger" role="alert">
             <p>Your password must be 6-20 characters!</p>
@@ -108,19 +108,22 @@
         <br>
         <div class="input-group">
             <span class="input-group-addon">P</span>
-            <input id="regRepeatPassInput" type="password" class="form-control" placeholder="Repeat password" aria-describedby="basic-addon1" required>
+            <input id="regRepeatPassInput" onblur="repeatPassCheck()" type="password" class="form-control" placeholder="Repeat password" aria-describedby="basic-addon1" required>
         </div>
         <div hidden id="regRepeatPassError" class="alert alert-danger" role="alert">
             <p>Your passwords doesn't match!</p>
         </div>
         <br>
         <br><br>
-        <button type="button" onclick="showP()" class="btn btn-primary" style="width: 100%">Sign up!</button>
+        <button type="button" onclick="registration()" class="btn btn-primary" style="width: 100%">Sign up!</button>
         <br><br>
         <div hidden id="regSuccess" class="alert alert-success" role="alert">
             <p>Your form is accepted!<br>
                 Please, check your email to complete registration.<br>
                 Note that the letter may be sent in a couple of minutes</p>
+        </div>
+        <div hidden id="regError" class="alert alert-success" role="alert">
+            <p id="regErrorText"></p>
         </div>
     </div>
 </div>
