@@ -35,9 +35,12 @@ function emailCheck() {
         contentType: 'application/json',
         headers: getCSRFHeader(),
         success: function (data) {
+            alert(data);
             if (data != "ok") {
-                $("#regEmailErrorText").innerHTML = data;
+                alert("in err");
+                document.getElementById("regEmailErrorText").innerHTML = data;
                 $("#regEmailError").show();
+                alert("out err")
             } else {
                 $("#regEmailError").hide();
             }

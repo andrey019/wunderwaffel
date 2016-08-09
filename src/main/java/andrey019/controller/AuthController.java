@@ -66,6 +66,7 @@ public class AuthController {
     @RequestMapping(value = "/emailCheck", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
     @ResponseBody
     public String emailCheck(@RequestBody JsonRegistration jsonRegistration) {
+        logService.ajaxJson("emailCheck " + jsonRegistration.getEmail());
         String check = registrationService.preRegistrationCheck(jsonRegistration.getEmail());
         if (check != null) {
             return check;

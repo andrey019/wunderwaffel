@@ -35,7 +35,7 @@
 </nav>
 
 
-<div style="width: 400px; height: 300px; position: absolute; top: 0; bottom: 0; left: 0; right: 0; margin: auto;">
+<div id="signInDiv" style="width: 400px; height: 300px; position: absolute; top: 0; bottom: 0; left: 0; right: 0; margin: auto;">
     <c:if test="${param.error != null}">
         <div class="alert alert-danger" role="alert">
             <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
