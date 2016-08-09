@@ -144,7 +144,7 @@ public class UserController {
 //    private void innerDao() {
 //        User user = userDao.getById(1);
 //        TodoList todoList = new TodoList();
-//        todoList.setUser(user);
+//        todoList.setOwner(user);
 //        todoList.addUsers(user);
 //        todoList.setName("spring name ололо");
 //        todoListDao.save(todoList);

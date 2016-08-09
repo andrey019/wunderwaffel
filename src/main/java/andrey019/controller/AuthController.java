@@ -21,6 +21,7 @@ import javax.servlet.http.HttpServletResponse;
 public class AuthController {
 
     private final static String RESPONSE_OK = "ok";
+    private final static String RESPONSE_ERROR = "error";
 
     @Autowired
     private LogService logService;
@@ -43,25 +44,25 @@ public class AuthController {
         return "redirect:/";
     }
 
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String login() {
-        logService.accessToPage("login");
-        return "redirect:/";
-    }
+//    @RequestMapping(value = "/login", method = RequestMethod.GET)
+//    public String login() {
+//        logService.accessToPage("login");
+//        return "redirect:/";
+//    }
 
-    @RequestMapping(value = "/access_denied", method = RequestMethod.GET)
+    @RequestMapping(value = "/accessDenied", method = RequestMethod.GET)
     public String accessDeniedPage(ModelMap model) {
         model.addAttribute("user", getPrincipal());
         logService.accessToPage("access_denied");
         return "access_denied";
     }
 
-    @RequestMapping(value = "/registration", method = RequestMethod.GET)
-    public ModelAndView getRegistrationForm() {
-        logService.accessToPage("registration get");
-        ModelAndView modelAndView = new ModelAndView("registration", "teststr", "ололошка");
-        return modelAndView;
-    }
+//    @RequestMapping(value = "/registration", method = RequestMethod.GET)
+//    public ModelAndView getRegistrationForm() {
+//        logService.accessToPage("registration get");
+//        ModelAndView modelAndView = new ModelAndView("registration", "teststr", "ололошка");
+//        return modelAndView;
+//    }
 
     @RequestMapping(value = "/emailCheck", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
     @ResponseBody
@@ -74,37 +75,63 @@ public class AuthController {
         return RESPONSE_OK;
     }
 
-    @RequestMapping(value = "/registration", method = RequestMethod.POST)
-    public ModelAndView registrationResponse(@RequestParam("email") String email,
-                                             @RequestParam("password") String password) {
-        String check = registrationService.preRegistrationCheck(email);
-        if (check != null) {
-            logService.accessToPage("registration post, " + email + ", " + check);
-            return new ModelAndView("registration", "error", check);
-        }
-        if (registrationService.preRegistration(email, password)) {
-            logService.accessToPage("registration post, " + email + ", ok");
-            return new ModelAndView("registration", "error", "check your email(may take a couple of minutes)");
-        } else {
-            logService.accessToPage("registration post, " + email + ", error");
-            return new ModelAndView("registration", "error", "error! talk to support");
-        }
+    @RequestMapping(value = "/registration", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
+    @ResponseBody
+    public String registration(@RequestBody JsonRegistration jsonRegistration) {
+        logService.ajaxJson("registration " + jsonRegistration.getEmail());
+        return registrationService.registration(jsonRegistration.getEmail(), jsonRegistration.getPassword(),
+                jsonRegistration.getfName(), jsonRegistration.getlName());
     }
 
     @RequestMapping(value = "/confirm", method = RequestMethod.GET)
-    public ModelAndView confirmation(@RequestParam("code") String code) {
+    public String confirmation(@RequestParam("code") String code, HttpServletRequest request) {
         if (code == null) {
             logService.accessToPage("confirm, code == null");
-            return new ModelAndView("registration", "error", "error! talk to support");
+            request.setAttribute("confirm", RESPONSE_ERROR);
+            return "main_page";
         }
         if (registrationService.confirmRegistration(code)) {
             logService.accessToPage("confirm, ok");
-            return new ModelAndView("test_page", "confirm", "Registration complete! Please, sign in.");
+            request.setAttribute("confirm", RESPONSE_OK);
+            return "main_page";
         } else {
             logService.accessToPage("confirm, error");
-            return new ModelAndView("test_page", "confirm", "Registration error! talk to support");
+            request.setAttribute("confirm", RESPONSE_ERROR);
+            return "main_page";
         }
     }
+
+//    @RequestMapping(value = "/registration", method = RequestMethod.POST)
+//    public ModelAndView registrationResponse(@RequestParam("email") String email,
+//                                             @RequestParam("password") String password) {
+//        String check = registrationService.preRegistrationCheck(email);
+//        if (check != null) {
+//            logService.accessToPage("registration post, " + email + ", " + check);
+//            return new ModelAndView("registration", "error", check);
+//        }
+//        if (registrationService.registration(email, password)) {
+//            logService.accessToPage("registration post, " + email + ", ok");
+//            return new ModelAndView("registration", "error", "check your email(may take a couple of minutes)");
+//        } else {
+//            logService.accessToPage("registration post, " + email + ", error");
+//            return new ModelAndView("registration", "error", "error! talk to support");
+//        }
+//    }
+
+//    @RequestMapping(value = "/confirm", method = RequestMethod.GET)
+//    public ModelAndView confirmation(@RequestParam("code") String code) {
+//        if (code == null) {
+//            logService.accessToPage("confirm, code == null");
+//            return new ModelAndView("registration", "error", "error! talk to support");
+//        }
+//        if (registrationService.confirmRegistration(code)) {
+//            logService.accessToPage("confirm, ok");
+//            return new ModelAndView("test_page", "confirm", "Registration complete! Please, sign in.");
+//        } else {
+//            logService.accessToPage("confirm, error");
+//            return new ModelAndView("test_page", "confirm", "Registration error! talk to support");
+//        }
+//    }
 
     private String getPrincipal(){
         String userName = null;

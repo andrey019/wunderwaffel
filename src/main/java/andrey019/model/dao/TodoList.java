@@ -1,13 +1,8 @@
 package andrey019.model.dao;
 
 
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
-
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -26,7 +21,7 @@ public class TodoList {
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+    private User owner;
 
     @OrderBy("id DESC")
     @ManyToMany(cascade = {CascadeType.MERGE})
@@ -67,12 +62,12 @@ public class TodoList {
         this.todoAmount = todoAmount;
     }
 
-    public User getUser() {
-        return user;
+    public User getOwner() {
+        return owner;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setOwner(User owner) {
+        this.owner = owner;
     }
 
     public Set<User> getUsers() {
@@ -83,7 +78,6 @@ public class TodoList {
         this.users = users;
     }
 
-    //@Transactional(propagation = Propagation.REQUIRES_NEW)
     public void addUsers(User user) {
         users.add(user);
         user.getSharedTodoLists().add(this);
@@ -118,7 +112,6 @@ public class TodoList {
 
     public void removeTodo(Todo todo) {
         todos.remove(todo);
-        //todo.setTodoList(null);
         todoAmount = todos.size();
     }
 
@@ -129,7 +122,6 @@ public class TodoList {
 
     public void removeDoneTodo(DoneTodo doneTodo) {
         doneTodos.remove(doneTodo);
-        //doneTodo.setTodoList(null);
     }
 
     @Override
@@ -160,6 +152,6 @@ public class TodoList {
 
     @Override
     public String toString() {
-        return "id: " + id + ", name: " + name + ", user: [" + user + "]";
+        return "id: " + id + ", name: " + name + ", owner: [" + owner + "]";
     }
 }

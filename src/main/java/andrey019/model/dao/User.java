@@ -1,11 +1,7 @@
 package andrey019.model.dao;
 
-import org.springframework.transaction.annotation.Transactional;
-
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -29,7 +25,7 @@ public class User {
     private String lName;
 
     @OrderBy("id DESC")
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<TodoList> todoLists = new HashSet<>();
 
     @OrderBy("id DESC")
@@ -126,8 +122,9 @@ public class User {
     }
 
     public void addTodoList(TodoList todoList) {
-        todoList.setUser(this);
+        todoList.setOwner(this);
         todoLists.add(todoList);
+        sharedTodoLists.add(todoList);
     }
 
     public void removeTodoList(TodoList todoList) {

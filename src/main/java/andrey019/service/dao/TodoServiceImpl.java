@@ -224,7 +224,7 @@ public class TodoServiceImpl implements TodoService {
         if (todoList == null) {
             return null;
         }
-        if (user.equals(todoList.getUser())) {
+        if (user.equals(todoList.getOwner())) {
             return todoList;
         }
         return null;

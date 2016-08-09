@@ -38,9 +38,17 @@
 <div id="signInDiv" style="width: 400px; height: 300px; position: absolute; top: 0; bottom: 0; left: 0; right: 0; margin: auto;">
     <c:if test="${param.error != null}">
         <div class="alert alert-danger" role="alert">
-            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-            <span class="sr-only">Error:</span>
             Email or password is incorrect!
+        </div>
+    </c:if>
+    <c:if test="${param.confirm == 'ok'}">
+        <div class="alert alert-success" role="alert">
+            <p>Registration is complete, you can sign in now!</p>
+        </div>
+    </c:if>
+    <c:if test="${param.confirm != 'ok'}">
+        <div class="alert alert-danger" role="alert">
+            <p>Registration error!</p>
         </div>
     </c:if>
     <form method="post" action="/">

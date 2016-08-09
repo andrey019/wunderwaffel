@@ -3,6 +3,7 @@ package andrey019.service.dao;
 
 import andrey019.dao.RegistrationDao;
 import andrey019.dao.UserDao;
+import andrey019.model.dao.TodoList;
 import andrey019.model.dao.User;
 import andrey019.model.dao.UserConfirmation;
 import andrey019.service.MailService;
@@ -20,7 +21,11 @@ public class RegistrationServiceImpl implements RegistrationService {
             "<a href=\"http://wunderwaffel-andrey019.rhcloud.com/auth/confirm?code=%s\">" +
             "Click here to confirm registration</a><br><br>" +
             "If you don't know what's happening, just ignore this message.</body></html>";
-
+    private final static String EMAIL_INCORRECT = "Email is incorrect!";
+    private final static String EMAIL_IN_USE = "Email is already in use!";
+    private final static String REG_OK = "ok";
+    private final static String REG_ERROR = "Registration error!";
+    private final static String FIRST_LIST = "my first todo list";
 
     @Autowired
     private RegistrationDao registrationDao;
@@ -46,27 +51,33 @@ public class RegistrationServiceImpl implements RegistrationService {
     @Override
     public String preRegistrationCheck(String email) {
         if (!isEmailCorrect(email)) {
-            return "Email is incorrect!";
+            return EMAIL_INCORRECT;
         }
         if (isEmailWaiting(email) || isEmailUsed(email)) {
-            return "Email is already in use!";
+            return EMAIL_IN_USE;
         }
         return null;
     }
 
     @Override
-    public boolean preRegistration(String email, String password) {
+    public String registration(String email, String password, String fName, String lName) {
+        String check = preRegistrationCheck(email);
+        if (check != null) {
+            return check;
+        }
         UserConfirmation userConfirmation = new UserConfirmation();
         userConfirmation.setEmail(email);
+        userConfirmation.setfName(fName);
+        userConfirmation.setlName(lName);
         userConfirmation.setPassword(passwordEncoder.encode(password));
         userConfirmation.setCode(passwordEncoder.encode(email + System.currentTimeMillis()));
         userConfirmation.setDate(System.currentTimeMillis());
         if (registrationDao.save(userConfirmation)) {
             mailService.sendMail(userConfirmation.getEmail(), SUBJECT_TEMPLATE,
                     String.format(TEXT_TEMPLATE, userConfirmation.getCode()));
-            return true;
+            return REG_OK;
         }
-        return false;
+        return REG_ERROR;
     }
 
     @Override
@@ -77,6 +88,9 @@ public class RegistrationServiceImpl implements RegistrationService {
         }
         User user = new User();
         user.setUserFromConfirmation(userConfirmation);
+        TodoList todoList = new TodoList();
+        todoList.setName(FIRST_LIST);
+        user.addTodoList(todoList);
         if (userDao.save(user)) {
             registrationDao.delete(userConfirmation);
             return true;
