@@ -106,7 +106,12 @@ function repeatPassCheck() {
 function registration() {
     if ($("#regEmailError").is(':visible') || $("#regFNameError").is(':visible') ||
         $("#regLNameError").is(':visible') || $("#regPassError").is(':visible') ||
-        $("#regRepeatPassError").is(':visible')) {
+        $("#regRepeatPassError").is(':visible') ||
+        (document.getElementById("regEmailInput").value == "") ||
+        (document.getElementById("regFNameInput").value == "") ||
+        (document.getElementById("regLNameInput").value == "") ||
+        (document.getElementById("regPassInput").value == "") ||
+        (document.getElementById("regRepeatPassInput").value == "") ) {
         alert("fuck you!");
         return;
     } else {
