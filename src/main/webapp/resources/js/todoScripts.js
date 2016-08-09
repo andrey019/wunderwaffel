@@ -98,12 +98,6 @@ function loadDoneTodos() {
         return;
     }
 
-    if (typeof window.showDoneTodos === 'undefined' || window.showDoneTodos == null) {
-        //window.showDoneTodos = null;
-        //document.getElementById("doneTodoResult").innerHTML = "";
-        return;
-    }
-
     var jsonDoneTodos = {
         "listId": window.currentList,
         "todoId": 0,

@@ -8,8 +8,9 @@
     <link rel="shortcut icon" href="/resources/images/favicon.ico" type="image\x-icon" />
     <link rel="icon" href="/resources/images/favicon.ico" type="image\x-icon" />
     <link href="/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/resources/css/registration.css" rel="stylesheet">
     <script type="text/javascript" src="/resources/js/jquery-3.1.0.min.js"></script>
-    <script type="text/javascript" src="/resources/js/todoScripts.js"></script>
+    <script type="text/javascript" src="/resources/js/registration.js"></script>
     <sec:csrfMetaTags />
     <meta http-equiv="refresh" content="${pageContext.session.maxInactiveInterval}">
     <title>WunderWaffel</title>
@@ -66,6 +67,65 @@
     </form>
 
 </div>
+
+
+
+<div id="registrationModal" class="modal">
+    <div class="modal-content">
+        <span id="closeSpan" class="close">×</span><br>
+        <p style="font-size: 130%; text-align: center">Registration form</p>
+        <div class="input-group">
+            <span class="input-group-addon">E</span>
+            <input id="regEmailInput" onblur="emailCheck()" type="email" class="form-control" placeholder="Email" aria-describedby="basic-addon1" required>
+        </div>
+        <div hidden id="regEmailError" class="alert alert-danger" role="alert">
+            <p id="regEmailErrorText"></p>
+        </div>
+        <br>
+        <div class="input-group">
+            <span class="input-group-addon">F</span>
+            <input id="regFNameInput" type="text" class="form-control" placeholder="First name" aria-describedby="basic-addon1 required">
+        </div>
+        <div hidden id="regFNameError" class="alert alert-danger" role="alert">
+            <p>You must enter your first name!</p>
+        </div>
+        <br>
+        <div class="input-group" style="border-color: red">
+            <span class="input-group-addon">L</span>
+            <input id="regLNameInput" type="text" class="form-control" placeholder="Last name" aria-describedby="basic-addon1 required">
+        </div>
+        <div hidden id="regLNameError" class="alert alert-danger" role="alert">
+            <p>You must enter your last name!</p>
+        </div>
+        <br>
+        <div class="input-group">
+            <span class="input-group-addon">P</span>
+            <input id="regPassInput" type="password" class="form-control" placeholder="Password" aria-describedby="basic-addon1 required">
+        </div>
+        <div hidden id="regPassError" class="alert alert-danger" role="alert">
+            <p>Your password must be 6-20 characters!</p>
+        </div>
+        <br>
+        <div class="input-group">
+            <span class="input-group-addon">P</span>
+            <input id="regRepeatPassInput" type="password" class="form-control" placeholder="Repeat password" aria-describedby="basic-addon1" required>
+        </div>
+        <div hidden id="regRepeatPassError" class="alert alert-danger" role="alert">
+            <p>Your passwords doesn't match!</p>
+        </div>
+        <br>
+        <br><br>
+        <button type="button" onclick="showP()" class="btn btn-primary" style="width: 100%">Sign up!</button>
+        <br><br>
+        <div hidden id="regSuccess" class="alert alert-success" role="alert">
+            <p>Your form is accepted!<br>
+                Please, check your email to complete registration.<br>
+                Note that the letter may be sent in a couple of minutes</p>
+        </div>
+    </div>
+</div>
+
+
 
 
 
