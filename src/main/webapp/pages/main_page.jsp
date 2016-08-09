@@ -14,7 +14,7 @@
     <meta http-equiv="refresh" content="${pageContext.session.maxInactiveInterval}">
     <title>WunderWaffel</title>
 </head>
-<body style="background-image: url('/wunderwaffel/src/main/webapp/resources/images/background2.jpg'); background-attachment: fixed">
+<body style="background-image: url('/resources/images/background2.jpg'); background-attachment: fixed">
 
 <nav class="navbar navbar-inverse navbar-fixed-top" style="color: #3e8f3e">
     <div class="container-fluid">
@@ -42,7 +42,7 @@
             Email or password is incorrect!
         </div>
     </c:if>
-    <form method="post" action="/auth/login">
+    <form method="post" action="/">
         <div class="input-group">
             <span class="input-group-addon">E</span>
             <input id="emailInput" name="email" type="text" class="form-control" placeholder="Email" aria-describedby="basic-addon1" required>
