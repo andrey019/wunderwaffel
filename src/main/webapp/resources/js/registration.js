@@ -1,19 +1,19 @@
 
 $(document).ready(function () {
-    $("#registrationButton").onclick = function(event) {
+    document.getElementById("registrationButton").onclick = function(event) {
         event.preventDefault();
-        $("#registrationModal").style.display = "block";
+        document.getElementById("registrationModal").style.display = "block";
         $("#signInDiv").hide();
     };
 
-    $("#closeSpan").onclick = function() {
-        $("#registrationModal").style.display = "none";
+    document.getElementById("closeSpan").onclick = function() {
+        document.getElementById("registrationModal").style.display = "none";
         $("#signInDiv").show();
     };
 
     window.onclick = function(event) {
-        if (event.target == $("#registrationModal")) {
-            $("#registrationModal").style.display = "none";
+        if (event.target == document.getElementById("registrationModal")) {
+            document.getElementById("registrationModal").style.display = "none";
             $("#signInDiv").show();
         }
     };
@@ -22,7 +22,7 @@ $(document).ready(function () {
 
 function emailCheck() {
     var jsonEmailCheck = {
-        "email": $("#regEmailInput").value,
+        "email": document.getElementById("regEmailInput").value,
         "password": null,
         "fName": null,
         "lName": null
@@ -36,7 +36,7 @@ function emailCheck() {
         headers: getCSRFHeader(),
         success: function (data) {
             if (data != "ok") {
-                $("#regEmailErrorText").innerHTML = data;
+                document.getElementById("regEmailErrorText").innerHTML = data;
                 $("#regEmailError").show();
             } else {
                 $("#regEmailError").hide();
