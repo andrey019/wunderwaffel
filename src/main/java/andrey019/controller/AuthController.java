@@ -1,5 +1,6 @@
 package andrey019.controller;
 
+import andrey019.model.JsonRegistration;
 import andrey019.service.maintenance.LogService;
 import andrey019.service.dao.RegistrationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,8 @@ import javax.servlet.http.HttpServletResponse;
 @Controller
 @RequestMapping("/auth/")
 public class AuthController {
+
+    private final static String RESPONSE_OK = "ok";
 
     @Autowired
     private LogService logService;
@@ -58,6 +61,16 @@ public class AuthController {
         logService.accessToPage("registration get");
         ModelAndView modelAndView = new ModelAndView("registration", "teststr", "ололошка");
         return modelAndView;
+    }
+
+    @RequestMapping(value = "/emailCheck", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
+    @ResponseBody
+    public String emailCheck(@RequestBody JsonRegistration jsonRegistration) {
+        String check = registrationService.preRegistrationCheck(jsonRegistration.getEmail());
+        if (check != null) {
+            return check;
+        }
+        return RESPONSE_OK;
     }
 
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
