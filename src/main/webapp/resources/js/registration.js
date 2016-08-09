@@ -6,19 +6,29 @@ $(document).ready(function () {
         $("#signInDiv").hide();
     };
 
-    document.getElementById("closeSpan").onclick = function() {
-        document.getElementById("registrationModal").style.display = "none";
-        $("#signInDiv").show();
-    };
+    document.getElementById("closeSpan").onclick = onRegFormClose();
 
     window.onclick = function(event) {
         if (event.target == document.getElementById("registrationModal")) {
-            document.getElementById("registrationModal").style.display = "none";
-            $("#signInDiv").show();
+            onRegFormClose();
         }
     };
 });
 
+function onRegFormClose() {
+    document.getElementById("registrationModal").style.display = "none";
+    $("#signInDiv").show();
+    document.getElementById("regEmailInput").value = "";
+    document.getElementById("regFNameInput").value = "";
+    document.getElementById("regLNameInput").value = "";
+    document.getElementById("regPassInput").value = "";
+    document.getElementById("regRepeatPassInput").value = "";
+    $("#regEmailError").hide();
+    $("#regFNameError").hide();
+    $("#regLNameError").hide();
+    $("#regPassError").hide();
+    $("#regRepeatPassError").hide();
+}
 
 function emailCheck() {
     var jsonEmailCheck = {
