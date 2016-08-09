@@ -1,5 +1,6 @@
 
 $(document).ready(function () {
+    window.emailValidity = "no";
     document.getElementById("registrationButton").onclick = function(event) {
         event.preventDefault();
         document.getElementById("registrationModal").style.display = "block";
@@ -58,9 +59,11 @@ function emailCheck() {
         headers: getCSRFHeader(),
         success: function (data) {
             if (data != "ok") {
+                window.emailValidity = "no";
                 document.getElementById("regEmailErrorText").innerHTML = data;
                 $("#regEmailError").show();
             } else {
+                window.emailValidity = "ok";
                 $("#regEmailError").hide();
             }
         },
@@ -111,7 +114,7 @@ function registration() {
         (document.getElementById("regFNameInput").value == "") ||
         (document.getElementById("regLNameInput").value == "") ||
         (document.getElementById("regPassInput").value == "") ||
-        (document.getElementById("regRepeatPassInput").value == "") ) {
+        (document.getElementById("regRepeatPassInput").value == "") || (window.emailValidity != "ok") ) {
         alert("fuck you!");
         return;
     } else {
