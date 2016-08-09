@@ -10,6 +10,6 @@ public class ExceptionController {
 
     @ExceptionHandler(CookieTheftException.class)
     public String handleAllException(Exception ex) {
-        return "forward:/auth/login";
+        return "forward:/";
     }
 }

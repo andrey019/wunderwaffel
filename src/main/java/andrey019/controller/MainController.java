@@ -59,6 +59,12 @@ public class MainController {
         return "ololo";
     }
 
+    @RequestMapping("/authTest")
+    @ResponseBody
+    public String authTest() {
+        return getPrincipal();
+    }
+
     private String getPrincipal(){
         String userName = null;
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
