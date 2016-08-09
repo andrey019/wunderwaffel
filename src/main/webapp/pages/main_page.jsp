@@ -46,7 +46,7 @@
             <p>Registration is complete, you can sign in now!</p>
         </div>
     </c:if>
-    <c:if test="${param.confirm != 'ok'}">
+    <c:if test="${param.confirm == 'error'}">
         <div class="alert alert-danger" role="alert">
             <p>Registration error!</p>
         </div>
