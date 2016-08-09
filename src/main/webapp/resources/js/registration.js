@@ -35,6 +35,7 @@ function onRegFormClose() {
 }
 
 function emailCheck() {
+    window.emailValidity = "no";
     var email = document.getElementById("regEmailInput").value;
     if (email == "") {
         document.getElementById("regEmailErrorText").innerHTML = "Enter your email!";
