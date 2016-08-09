@@ -6,7 +6,9 @@ $(document).ready(function () {
         $("#signInDiv").hide();
     };
 
-    document.getElementById("closeSpan").onclick = onRegFormClose();
+    document.getElementById("closeSpan").onclick = function() {
+        onRegFormClose();
+    };
 
     window.onclick = function(event) {
         if (event.target == document.getElementById("registrationModal")) {
