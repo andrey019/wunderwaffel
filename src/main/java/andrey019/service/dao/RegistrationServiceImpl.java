@@ -2,6 +2,7 @@ package andrey019.service.dao;
 
 
 import andrey019.dao.RegistrationDao;
+import andrey019.dao.TodoListDao;
 import andrey019.dao.UserDao;
 import andrey019.model.dao.TodoList;
 import andrey019.model.dao.User;
@@ -32,6 +33,9 @@ public class RegistrationServiceImpl implements RegistrationService {
 
     @Autowired
     private UserDao userDao;
+
+    @Autowired
+    private TodoListDao todoListDao;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -91,7 +95,7 @@ public class RegistrationServiceImpl implements RegistrationService {
         TodoList todoList = new TodoList();
         todoList.setName(FIRST_LIST);
         user.addTodoList(todoList);
-        if (userDao.save(user)) {
+        if (todoListDao.save(todoList)) {
             registrationDao.delete(userConfirmation);
             return true;
         }
