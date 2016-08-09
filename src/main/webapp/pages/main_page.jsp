@@ -27,8 +27,8 @@
         </div>
 
         <p id="navbarText" class="navbar-text" style="font-size: 115%; padding-left: 145px; width: 60%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis"></p>
-        <form class="navbar-form navbar-right" method="get" style="padding-right: 30px" action="/auth/registration">
-            <button type="submit" class="btn btn-default">Create free account</button>
+        <form class="navbar-form navbar-right" style="padding-right: 30px">
+            <button id="registrationButton" type="submit" class="btn btn-default">Create free account</button>
         </form>
     </div>
     </div>
