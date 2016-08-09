@@ -45,12 +45,12 @@
     <form method="post" action="/">
         <div class="input-group">
             <span class="input-group-addon">E</span>
-            <input id="emailInput" name="email" type="text" class="form-control" placeholder="Email" aria-describedby="basic-addon1" required>
+            <input id="emailInput" name="email" type="email" class="form-control" placeholder="Email" aria-describedby="basic-addon1" required>
         </div>
         <p></p>
         <div class="input-group">
             <span class="input-group-addon">P</span>
-            <input id="passwordInput" name="password" type="text" class="form-control" placeholder="Password" aria-describedby="basic-addon1" required>
+            <input id="passwordInput" name="password" type="password" class="form-control" placeholder="Password" aria-describedby="basic-addon1" required>
         </div>
         <p></p>
         <div hidden class="input-group input-sm">
