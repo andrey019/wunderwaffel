@@ -28,7 +28,7 @@ public class MainController {
         if (checkAuthentication() != null) {
             return "redirect:/user";
         }
-		return "test_page";
+		return "main_page";
 	}
 
     @RequestMapping(value = "/admin", method = RequestMethod.GET)

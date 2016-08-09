@@ -63,8 +63,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/", "favicon.ico").permitAll()
                 .antMatchers("/admin/**").access("hasRole('ADMIN')")
                 .antMatchers("/user/**").access("hasRole('ADMIN') or hasRole('USER')")
-                .and().formLogin().loginPage("/auth/login").loginProcessingUrl("/auth/login").successHandler(customSuccessHandler)
-                .usernameParameter("ssoId").passwordParameter("password")
+                .and().formLogin().loginPage("/").successHandler(customSuccessHandler)
+                .usernameParameter("email").passwordParameter("password")
                 .and().rememberMe().rememberMeParameter("remember-me").tokenRepository(persistentTokenRepository()).tokenValiditySeconds(86400)
                 .and().csrf()
                 .and().exceptionHandling().accessDeniedPage("/auth/access_denied");

@@ -46,7 +46,7 @@ public class AuthController {
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login() {
         logService.accessToPage("login");
-        return "login";
+        return "redirect:/";
     }
 
     @RequestMapping(value = "/access_denied", method = RequestMethod.GET)
