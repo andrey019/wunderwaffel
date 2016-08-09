@@ -41,12 +41,12 @@
             Email or password is incorrect!
         </div>
     </c:if>
-    <c:if test="${param.confirm == 'ok'}">
+    <c:if test="${requestScope['confirm'] == 'ok'}">
         <div class="alert alert-success" role="alert">
             <p>Registration is complete, you can sign in now!</p>
         </div>
     </c:if>
-    <c:if test="${param.confirm == 'error'}">
+    <c:if test="${requestScope['confirm'] == 'error'}">
         <div class="alert alert-danger" role="alert">
             <p>Registration error!</p>
         </div>
