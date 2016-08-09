@@ -116,10 +116,6 @@ function registration() {
         (document.getElementById("regLNameInput").value == "") ||
         (document.getElementById("regPassInput").value == "") ||
         (document.getElementById("regRepeatPassInput").value == "") || (window.emailValidity != "ok") ) {
-        alert("fuck you!");
-        return;
-    } else {
-        alert("ok!");
         return;
     }
 

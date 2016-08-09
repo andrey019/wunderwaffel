@@ -161,6 +161,8 @@ function doneTodo(event) {
         return;
     }
 
+    var todo = event.currentTarget;
+
     var jsonDoneTodo = {
         "listId": window.currentList,
         "todoId": event.currentTarget.id.split("=")[1],
@@ -179,6 +181,7 @@ function doneTodo(event) {
         headers: getCSRFHeader(),
         success: function (data) {
             if (data == "ok") {
+                $(todo).hide();
                 loadLists();
             }
         },
@@ -193,6 +196,8 @@ function unDoneTodo(event) {
     if (typeof window.currentList === 'undefined' || window.currentList == null) {
         return;
     }
+
+    var doneTodo = event.currentTarget;
 
     var jsonUnDoneTodo = {
         "listId": window.currentList,
@@ -212,6 +217,7 @@ function unDoneTodo(event) {
         headers: getCSRFHeader(),
         success: function (data) {
             if (data == "ok") {
+                $(doneTodo).hide();
                 loadLists();
             }
         },
