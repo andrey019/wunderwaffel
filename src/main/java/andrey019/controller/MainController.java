@@ -25,6 +25,9 @@ public class MainController {
 	@RequestMapping("/")
 	public String listAdvs() {
 		logService.accessToPage("main");
+        if (checkAuthentication() != null) {
+            return "redirect:/user";
+        }
 		return "test_page";
 	}
 
@@ -62,18 +65,15 @@ public class MainController {
     @RequestMapping("/authTest")
     @ResponseBody
     public String authTest() {
-        return getPrincipal();
+        return checkAuthentication();
     }
 
-    private String getPrincipal(){
-        String userName = null;
+    private String checkAuthentication(){
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if (principal instanceof UserDetails) {
-            userName = ((UserDetails)principal).getUsername();
-        } else {
-            userName = principal.toString();
+            return ((UserDetails)principal).getUsername();
         }
-        return userName;
+        return null;
     }
 
     /*
