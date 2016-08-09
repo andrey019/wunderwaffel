@@ -1,19 +1,19 @@
 
 $(document).ready(function () {
-    document.getElementById("registrationButton").onclick = function(event) {
+    $("#registrationButton").onclick = function(event) {
         event.preventDefault();
-        document.getElementById("registrationModal").style.display = "block";
+        $("#registrationModal").style.display = "block";
         $("#signInDiv").hide();
     };
 
-    document.getElementById("closeSpan").onclick = function() {
-        document.getElementById("registrationModal").style.display = "none";
+    $("#closeSpan").onclick = function() {
+        $("#registrationModal").style.display = "none";
         $("#signInDiv").show();
     };
 
     window.onclick = function(event) {
-        if (event.target == document.getElementById("registrationModal")) {
-            document.getElementById("registrationModal").style.display = "none";
+        if (event.target == $("#registrationModal")) {
+            $("#registrationModal").style.display = "none";
             $("#signInDiv").show();
         }
     };
@@ -22,7 +22,7 @@ $(document).ready(function () {
 
 function emailCheck() {
     var jsonEmailCheck = {
-        "email": document.getElementById("regEmailInput").value,
+        "email": $("#regEmailInput").value,
         "password": null,
         "fName": null,
         "lName": null
@@ -35,12 +35,9 @@ function emailCheck() {
         contentType: 'application/json',
         headers: getCSRFHeader(),
         success: function (data) {
-            alert(data);
             if (data != "ok") {
-                alert("in err");
-                document.getElementById("regEmailErrorText").innerHTML = data;
+                $("#regEmailErrorText").innerHTML = data;
                 $("#regEmailError").show();
-                alert("out err")
             } else {
                 $("#regEmailError").hide();
             }
