@@ -3,9 +3,9 @@ $(document).ready(function () {
     loadLists();
     document.getElementById("profileButton").onclick = function(event) {
         event.preventDefault();
+        $("#addTodoDiv").hide();
         document.getElementById("profileModal").style.display = "block";
         getProfile();
-        //$("#signInDiv").hide();
     };
 
     document.getElementById("closeSpan").onclick = function() {
@@ -18,6 +18,19 @@ $(document).ready(function () {
         }
     };
 });
+
+function onProfileClose() {
+    document.getElementById("profileModal").style.display = "none";
+    $("#addTodoDiv").show();
+    document.getElementById("proFNameInput").value = "";
+    document.getElementById("proLNameInput").value = "";
+    document.getElementById("proPassInput").value = "";
+    document.getElementById("proRepeatPassInput").value = "";
+    $("#proPassError").hide();
+    $("#proRepeatPassError").hide();
+    $("#proSuccess").hide();
+    $("#proError").hide();
+}
 
 function loadLists() {
     var jsonLoadLists = {
@@ -350,18 +363,6 @@ function repeatPassCheck() {
     } else {
         $("#proRepeatPassError").hide();
     }
-}
-
-function onProfileClose() {
-    document.getElementById("profileModal").style.display = "none";
-    document.getElementById("proFNameInput").value = "";
-    document.getElementById("proLNameInput").value = "";
-    document.getElementById("proPassInput").value = "";
-    document.getElementById("proRepeatPassInput").value = "";
-    $("#proPassError").hide();
-    $("#proRepeatPassError").hide();
-    $("#proSuccess").hide();
-    $("#proError").hide();
 }
 
 function getProfile() {

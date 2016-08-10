@@ -15,7 +15,7 @@
         <title>WunderWaffel ${username}</title>
     </sec:authorize>
 </head>
-<body style="background-image: url('/resources/images/background2.jpg'); background-attachment: fixed">
+<body style="background: url('/resources/images/background2.jpg'); background-attachment: fixed; background-size: cover">
 
 <nav class="navbar navbar-inverse navbar-fixed-top" style="color: #3e8f3e">
     <div class="container-fluid">
@@ -46,7 +46,7 @@
     </div>
 
     <div style="margin-left: 340px; width: auto">
-        <div class="row" style="width: 100%">
+        <div id="addTodoDiv" class="row" style="width: 100%">
             <div class="col-lg-6" style="width: 100%">
                 <div class="input-group" style="width: 100%">
                     <input id="addTodoInput" type="text" onkeyup="addTodoInputEnter(event)" class="form-control" placeholder="Add new TODO...">
