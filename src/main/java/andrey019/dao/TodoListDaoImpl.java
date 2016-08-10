@@ -30,6 +30,12 @@ public class TodoListDaoImpl implements TodoListDao {
 
     @Transactional
     @Override
+    public TodoList merge(TodoList todoList) {
+        return entityManager.merge(todoList);
+    }
+
+    @Transactional
+    @Override
     public boolean delete(TodoList todoList) {
         try {
             todoList = entityManager.merge(todoList);
