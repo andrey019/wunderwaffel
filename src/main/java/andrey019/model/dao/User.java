@@ -124,13 +124,13 @@ public class User {
     }
 
     public void setFromJsonProfile(JsonProfile jsonProfile) {
-        if (jsonProfile.getfName() != null) {
+        if (!jsonProfile.getfName().isEmpty()) {
             fName = jsonProfile.getfName();
         }
-        if (jsonProfile.getlName() != null) {
+        if (!jsonProfile.getlName().isEmpty()) {
             lName = jsonProfile.getlName();
         }
-        if (jsonProfile.getPassword() != null) {
+        if (!jsonProfile.getPassword().isEmpty()) {
             password = jsonProfile.getPassword();
         }
     }

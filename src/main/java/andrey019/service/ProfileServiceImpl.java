@@ -2,6 +2,7 @@ package andrey019.service;
 
 
 import andrey019.dao.UserDao;
+import andrey019.model.CustomMessage;
 import andrey019.model.JsonProfile;
 import andrey019.model.dao.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +16,20 @@ public class ProfileServiceImpl implements ProfileService {
     private final static String NO_CHANGES = "Nothing to update!";
     private final static String ERROR = "Update error!";
 
+    private final static String MAIL_SUBJECT = "WunderWaffel profile update";
+    private final static String MAIL_TEXT_0 = "<html><body>You updated your profile info on WunderWaffel, " +
+            "here is you new credentials:<br>";
+    private final static String MAIL_TEXT_1 = "</body></html>";
+    private final static String NEW_LINE = "<br>";
+    private final static String FIRST_NAME = "First name: ";
+    private final static String LAST_NAME = "Last name: ";
+    private final static String PASSWORD = "Password: ";
+
     @Autowired
     private UserDao userDao;
+
+    @Autowired
+    private MailService mailService;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -36,24 +49,48 @@ public class ProfileServiceImpl implements ProfileService {
         }
         User user = userDao.getByEmail(email);
         String encodedPassword = passCheckAndEncoding(jsonProfile.getPassword());
+        String mailText;
         if (encodedPassword != null) {
-            // mail all (raw pass)
+            mailText = getMailText(jsonProfile);
             jsonProfile.setPassword(encodedPassword);
+        } else {
+            mailText = getMailText(jsonProfile);
         }
-        // mail all
-
         user.setFromJsonProfile(jsonProfile);
         if (userDao.save(user)) {
+            mailService.sendMail(email, MAIL_SUBJECT, mailText);
             return OK;
         }
         return ERROR;
     }
 
     private String passCheckAndEncoding(String password) {
-        if ( (!password.equals("")) && ( (password.length() > 6) && (password.length() < 20) ) ) {
+        if ( (!password.isEmpty()) && ( (password.length() > 6) && (password.length() < 20) ) ) {
             password = passwordEncoder.encode(password);
             return password;
         }
         return null;
+    }
+
+    private String getMailText(JsonProfile jsonProfile) {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(MAIL_TEXT_0);
+        if (!jsonProfile.getfName().isEmpty()) {
+            stringBuilder.append(FIRST_NAME);
+            stringBuilder.append(jsonProfile.getfName());
+            stringBuilder.append(NEW_LINE);
+        }
+        if (!jsonProfile.getlName().isEmpty()) {
+            stringBuilder.append(LAST_NAME);
+            stringBuilder.append(jsonProfile.getlName());
+            stringBuilder.append(NEW_LINE);
+        }
+        if (!jsonProfile.getPassword().isEmpty()) {
+            stringBuilder.append(PASSWORD);
+            stringBuilder.append(jsonProfile.getPassword());
+            stringBuilder.append(NEW_LINE);
+        }
+        stringBuilder.append(MAIL_TEXT_1);
+        return stringBuilder.toString();
     }
 }

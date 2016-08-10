@@ -22,6 +22,7 @@ public class RegistrationServiceImpl implements RegistrationService {
             "<a href=\"http://wunderwaffel-andrey019.rhcloud.com/auth/confirm?code=%s\">" +
             "Click here to confirm registration</a><br><br>" +
             "If you don't know what's happening, just ignore this message.</body></html>";
+
     private final static String EMAIL_INCORRECT = "Email is incorrect!";
     private final static String EMAIL_IN_USE = "Email is already in use!";
     private final static String REG_OK = "ok";
