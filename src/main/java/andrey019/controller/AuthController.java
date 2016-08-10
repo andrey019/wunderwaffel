@@ -1,8 +1,10 @@
 package andrey019.controller;
 
-import andrey019.model.JsonRegistration;
+import andrey019.model.json.JsonEmail;
+import andrey019.model.json.JsonRegistration;
+import andrey019.service.auth.PasswordRecovery;
 import andrey019.service.maintenance.LogService;
-import andrey019.service.dao.RegistrationService;
+import andrey019.service.auth.RegistrationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -11,7 +13,6 @@ import org.springframework.security.web.authentication.rememberme.PersistentToke
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -31,6 +32,9 @@ public class AuthController {
 
     @Autowired
     private RegistrationService registrationService;
+
+    @Autowired
+    private PasswordRecovery passwordRecovery;
 
 
     @RequestMapping(value="/logout", method = RequestMethod.GET)
@@ -66,9 +70,9 @@ public class AuthController {
 
     @RequestMapping(value = "/emailCheck", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
     @ResponseBody
-    public String emailCheck(@RequestBody JsonRegistration jsonRegistration) {
-        logService.ajaxJson("emailCheck " + jsonRegistration.getEmail());
-        String check = registrationService.preRegistrationCheck(jsonRegistration.getEmail());
+    public String emailCheck(@RequestBody JsonEmail jsonEmail) {
+        logService.ajaxJson("emailCheck " + jsonEmail.getEmail());
+        String check = registrationService.preRegistrationCheck(jsonEmail.getEmail());
         if (check != null) {
             return check;
         }
@@ -99,6 +103,24 @@ public class AuthController {
             request.setAttribute("confirm", RESPONSE_ERROR);
             return "main_page";
         }
+    }
+
+    @RequestMapping(value = "/passwordRecovery", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
+    @ResponseBody
+    public String passwordRecovery(@RequestBody JsonEmail jsonEmail) {
+        logService.ajaxJson("passwordRecovery " + jsonEmail.getEmail());
+        return passwordRecovery.generateNewPassword(jsonEmail.getEmail());
+    }
+
+    private String getPrincipal(){
+        String userName = null;
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (principal instanceof UserDetails) {
+            userName = ((UserDetails)principal).getUsername();
+        } else {
+            userName = principal.toString();
+        }
+        return userName;
     }
 
 //    @RequestMapping(value = "/registration", method = RequestMethod.POST)
@@ -133,14 +155,5 @@ public class AuthController {
 //        }
 //    }
 
-    private String getPrincipal(){
-        String userName = null;
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if (principal instanceof UserDetails) {
-            userName = ((UserDetails)principal).getUsername();
-        } else {
-            userName = principal.toString();
-        }
-        return userName;
-    }
+
 }

@@ -46,10 +46,7 @@ function emailCheck() {
     }
 
     var jsonEmailCheck = {
-        "email": email,
-        "password": null,
-        "fName": null,
-        "lName": null
+        "email": email
     };
 
     $.ajax({

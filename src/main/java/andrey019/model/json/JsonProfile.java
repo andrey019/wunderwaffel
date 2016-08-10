@@ -1,4 +1,4 @@
-package andrey019.model;
+package andrey019.model.json;
 
 
 import andrey019.model.dao.User;

@@ -1,10 +1,10 @@
-package andrey019.service;
+package andrey019.service.auth;
 
 
 import andrey019.dao.UserDao;
-import andrey019.model.CustomMessage;
-import andrey019.model.JsonProfile;
+import andrey019.model.json.JsonProfile;
 import andrey019.model.dao.User;
+import andrey019.service.MailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;

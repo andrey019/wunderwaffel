@@ -1,6 +1,6 @@
 package andrey019.model.dao;
 
-import andrey019.model.JsonProfile;
+import andrey019.model.json.JsonProfile;
 
 import javax.persistence.*;
 import java.util.HashSet;

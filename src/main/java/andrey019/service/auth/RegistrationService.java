@@ -1,4 +1,4 @@
-package andrey019.service.dao;
+package andrey019.service.auth;
 
 
 import andrey019.model.dao.UserConfirmation;

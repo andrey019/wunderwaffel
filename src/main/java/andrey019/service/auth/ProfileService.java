@@ -1,7 +1,7 @@
-package andrey019.service;
+package andrey019.service.auth;
 
 
-import andrey019.model.JsonProfile;
+import andrey019.model.json.JsonProfile;
 
 public interface ProfileService {
 

@@ -1,6 +1,7 @@
 package andrey019.util;
 
 
+import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.validator.routines.EmailValidator;
 
 
@@ -54,5 +55,7 @@ public class TestsUtil {
 
         StringBuilder stringBuilder = new StringBuilder();
         System.out.println(stringBuilder.toString());
+
+        System.out.println(RandomStringUtils.random(10, true, true));
     }
 }

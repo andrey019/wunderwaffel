@@ -1,14 +1,9 @@
 package andrey019.controller;
 
-import andrey019.dao.TodoListDao;
-import andrey019.dao.UserDao;
-import andrey019.model.JsonMessage;
-import andrey019.model.JsonProfile;
-import andrey019.model.dao.TodoList;
-import andrey019.model.dao.User;
-import andrey019.model.dao.UserConfirmation;
+import andrey019.model.json.JsonMessage;
+import andrey019.model.json.JsonProfile;
 import andrey019.service.HtmlGenerator;
-import andrey019.service.ProfileService;
+import andrey019.service.auth.ProfileService;
 import andrey019.service.dao.TodoService;
 import andrey019.service.maintenance.LogService;
 import org.springframework.beans.factory.annotation.Autowired;

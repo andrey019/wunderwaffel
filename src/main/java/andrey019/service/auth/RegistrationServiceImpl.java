@@ -1,4 +1,4 @@
-package andrey019.service.dao;
+package andrey019.service.auth;
 
 
 import andrey019.dao.RegistrationDao;
@@ -16,17 +16,24 @@ import org.springframework.stereotype.Service;
 @Service("registrationService")
 public class RegistrationServiceImpl implements RegistrationService {
 
-    private final static String SUBJECT_TEMPLATE = "WunderWaffel registration confirmation";
-    private final static String TEXT_TEMPLATE = "<html><body>You were trying to register an account on WunderWaffel, " +
+
+//    private final static String TEXT_TEMPLATE = "<html><body>You were trying to register an account on WunderWaffel, " +
+//            "to confirm please click on the link below...<br>" +
+//            "<a href=\"http://wunderwaffel-andrey019.rhcloud.com/auth/confirm?code=%s\">" +
+//            "Click here to confirm registration</a><br><br>" +
+//            "If you don't know what's happening, just ignore this message.</body></html>";
+
+    private final static String MAIL_SUBJECT = "WunderWaffel registration confirmation";
+    private final static String MAIL_TEXT_0 = "<html><body>You were trying to register an account on WunderWaffel, " +
             "to confirm please click on the link below...<br>" +
-            "<a href=\"http://wunderwaffel-andrey019.rhcloud.com/auth/confirm?code=%s\">" +
-            "Click here to confirm registration</a><br><br>" +
+            "<a href=\"http://wunderwaffel-andrey019.rhcloud.com/auth/confirm?code=";
+    private final static String MAIL_TEXT_1 = "\">Click here to confirm registration</a><br><br>" +
             "If you don't know what's happening, just ignore this message.</body></html>";
 
     private final static String EMAIL_INCORRECT = "Email is incorrect!";
     private final static String EMAIL_IN_USE = "Email is already in use!";
-    private final static String REG_OK = "ok";
-    private final static String REG_ERROR = "Registration error!";
+    private final static String OK = "ok";
+    private final static String ERROR = "Registration error!";
     private final static String FIRST_LIST = "my first todo list";
 
     @Autowired
@@ -78,11 +85,10 @@ public class RegistrationServiceImpl implements RegistrationService {
         userConfirmation.setCode(passwordEncoder.encode(email + System.currentTimeMillis()));
         userConfirmation.setDate(System.currentTimeMillis());
         if (registrationDao.save(userConfirmation)) {
-            mailService.sendMail(userConfirmation.getEmail(), SUBJECT_TEMPLATE,
-                    String.format(TEXT_TEMPLATE, userConfirmation.getCode()));
-            return REG_OK;
+            mailService.sendMail(email, MAIL_SUBJECT, getMailText(userConfirmation.getCode()));
+            return OK;
         }
-        return REG_ERROR;
+        return ERROR;
     }
 
     @Override
@@ -122,5 +128,13 @@ public class RegistrationServiceImpl implements RegistrationService {
             return false;
         }
         return true;
+    }
+
+    private String getMailText(String code) {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(MAIL_TEXT_0);
+        stringBuilder.append(code);
+        stringBuilder.append(MAIL_TEXT_1);
+        return stringBuilder.toString();
     }
 }
