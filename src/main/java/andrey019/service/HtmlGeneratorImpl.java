@@ -33,10 +33,14 @@ public class HtmlGeneratorImpl implements HtmlGenerator {
 
     private final static String NEW_LINE = "<br>";
     private final static int MAX_SYMBOLS_IN_LINE = 17;
+    private final static String EMPTY = "";
 
 
     @Override
     public String generateTodoListsHtml(Set<TodoList> todoLists) {
+        if (todoLists.isEmpty()) {
+            return EMPTY;
+        }
         StringBuilder stringBuilder = new StringBuilder();
         for (TodoList todoList : todoLists) {
             stringBuilder.append(LIST_BUTTON_0);
@@ -48,7 +52,7 @@ public class HtmlGeneratorImpl implements HtmlGenerator {
             stringBuilder.append(LIST_BUTTON_3);
             stringBuilder.append(todoList.getTodoAmount());
             stringBuilder.append(LIST_BUTTON_4);
-            stringBuilder.append(addBreaks(todoList.getName()));
+            stringBuilder.append(todoList.getName());
             stringBuilder.append(LIST_BUTTON_5);
         }
         return stringBuilder.toString();
@@ -57,7 +61,7 @@ public class HtmlGeneratorImpl implements HtmlGenerator {
     @Override
     public String generateTodosHtml(Set<Todo> todos) {
         if (todos.isEmpty()) {
-            return "";
+            return EMPTY;
         }
         StringBuilder stringBuilder = new StringBuilder();
         for (Todo todo : todos) {
@@ -75,7 +79,7 @@ public class HtmlGeneratorImpl implements HtmlGenerator {
     @Override
     public String generateDoneTodosHtml(Set<DoneTodo> doneTodos) {
         if (doneTodos.isEmpty()) {
-            return "";
+            return EMPTY;
         }
         StringBuilder stringBuilder = new StringBuilder();
         for (DoneTodo doneTodo : doneTodos) {
@@ -92,12 +96,12 @@ public class HtmlGeneratorImpl implements HtmlGenerator {
         return stringBuilder.toString();
     }
 
-    private String addBreaks(String text) {
-        if (text.length() <= MAX_SYMBOLS_IN_LINE) {
-            return text;
-        }
-        StringBuilder stringBuilder = new StringBuilder(text);
-        stringBuilder.insert(MAX_SYMBOLS_IN_LINE, NEW_LINE);
-        return stringBuilder.toString();
-    }
+//    private String addBreaks(String text) {
+//        if (text.length() <= MAX_SYMBOLS_IN_LINE) {
+//            return text;
+//        }
+//        StringBuilder stringBuilder = new StringBuilder(text);
+//        stringBuilder.insert(MAX_SYMBOLS_IN_LINE, NEW_LINE);
+//        return stringBuilder.toString();
+//    }
 }
