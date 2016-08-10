@@ -113,7 +113,9 @@ public class UserController {
     @RequestMapping(value = "/getProfile", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public @ResponseBody JsonProfile getProfile() {
         logService.ajaxJson("getProfile " + getUserEmail());
-        return profileService.getProfile(getUserEmail());
+        JsonProfile jsonProfile = profileService.getProfile(getUserEmail());
+        System.out.println(jsonProfile);
+        return jsonProfile;
     }
 
     private String getUserEmail(){

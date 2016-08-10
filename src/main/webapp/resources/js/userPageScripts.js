@@ -376,7 +376,9 @@ function getProfile() {
         contentType: 'application/json',
         headers: getCSRFHeader(),
         success: function (data) {
+            alert(data);
             var jsonObj = JSON.parse(data);
+            alert(jsonObj + " / " + jsonObj.fName);
             document.getElementById("proEmailInput").placeholder = jsonObj.email;
             document.getElementById("proFNameInput").placeholder = jsonObj.fName;
             document.getElementById("proLNameInput").placeholder = jsonObj.lName;
