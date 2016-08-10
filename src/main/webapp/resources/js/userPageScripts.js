@@ -377,8 +377,10 @@ function getProfile() {
         headers: getCSRFHeader(),
         success: function (data) {
             alert(data);
-            var jsonObj = JSON.parse(data);
-            alert(jsonObj + " / " + jsonObj.fName);
+            //var jsonObj = JSON.parse(data);
+            var jsonJq = jQuery.parseJSON(data);
+            //alert(jsonObj + " / " + jsonObj.fName);
+            alert(jsonJq + " / " + jsonJq.fName);
             document.getElementById("proEmailInput").placeholder = jsonObj.email;
             document.getElementById("proFNameInput").placeholder = jsonObj.fName;
             document.getElementById("proLNameInput").placeholder = jsonObj.lName;
