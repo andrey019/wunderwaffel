@@ -92,10 +92,11 @@ public class RegistrationServiceImpl implements RegistrationService {
         }
         User user = new User();
         user.setUserFromConfirmation(userConfirmation);
+        user = userDao.merge(user);
         TodoList todoList = new TodoList();
         todoList.setName(FIRST_LIST);
         user.addTodoList(todoList);
-        if (userDao.save(user) && todoListDao.save(todoList)) {
+        if (todoListDao.save(todoList)) {
             registrationDao.delete(userConfirmation);
             return true;
         }
