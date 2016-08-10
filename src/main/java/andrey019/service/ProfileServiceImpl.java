@@ -62,7 +62,7 @@ public class ProfileServiceImpl implements ProfileService {
     }
 
     private String passCheckAndEncoding(String password) {
-        if ( (!password.isEmpty()) && ( (password.length() > 6) && (password.length() < 20) ) ) {
+        if ( (!password.isEmpty()) && ( (password.length() >= 6) && (password.length() <= 20) ) ) {
             password = passwordEncoder.encode(password);
             return password;
         }
