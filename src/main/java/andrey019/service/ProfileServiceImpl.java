@@ -11,6 +11,10 @@ import org.springframework.stereotype.Service;
 @Service("profileService")
 public class ProfileServiceImpl implements ProfileService {
 
+    private final static String OK = "ok";
+    private final static String NO_CHANGES = "Nothing to update!";
+    private final static String ERROR = "Update error!";
+
     @Autowired
     private UserDao userDao;
 
@@ -25,10 +29,10 @@ public class ProfileServiceImpl implements ProfileService {
     }
 
     @Override
-    public boolean updateProfile(String email, JsonProfile jsonProfile) {
+    public String updateProfile(String email, JsonProfile jsonProfile) {
         if ( (jsonProfile.getfName() == null) && (jsonProfile.getlName() == null) &&
                 (jsonProfile.getPassword() == null) ) {
-            return false;
+            return NO_CHANGES;
         }
         User user = userDao.getByEmail(email);
         String encodedPassword = passCheckAndEncoding(jsonProfile.getPassword());
@@ -39,11 +43,14 @@ public class ProfileServiceImpl implements ProfileService {
         // mail all
 
         user.setFromJsonProfile(jsonProfile);
-        return userDao.save(user);
+        if (userDao.save(user)) {
+            return OK;
+        }
+        return ERROR;
     }
 
     private String passCheckAndEncoding(String password) {
-        if ( (password != null) && ( (password.length() > 6) && (password.length() < 20) ) ) {
+        if ( (!password.equals("")) && ( (password.length() > 6) && (password.length() < 20) ) ) {
             password = passwordEncoder.encode(password);
             return password;
         }

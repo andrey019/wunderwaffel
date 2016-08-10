@@ -354,18 +354,14 @@ function repeatPassCheck() {
 
 function onProfileClose() {
     document.getElementById("profileModal").style.display = "none";
-    //$("#signInDiv").show();
-    //document.getElementById("proEmailInput").value = "";
     document.getElementById("proFNameInput").value = "";
     document.getElementById("proLNameInput").value = "";
     document.getElementById("proPassInput").value = "";
     document.getElementById("proRepeatPassInput").value = "";
-    //$("#regEmailError").hide();
-    //$("#regFNameError").hide();
-    //$("#regLNameError").hide();
     $("#proPassError").hide();
     $("#proRepeatPassError").hide();
     $("#proSuccess").hide();
+    $("#proError").hide();
 }
 
 function getProfile() {
@@ -376,14 +372,46 @@ function getProfile() {
         contentType: 'application/json',
         headers: getCSRFHeader(),
         success: function (data) {
-            //alert(data);
-            //var jsonObj = JSON.parse(data);
-            //var jsonJq = jQuery.parseJSON(data);
-            //alert(jsonObj + " / " + jsonObj.fName);
-            alert(data.email + " / " + data.fName);
             document.getElementById("proEmailInput").placeholder = data.email;
             document.getElementById("proFNameInput").placeholder = data.fName;
             document.getElementById("proLNameInput").placeholder = data.lName;
+        },
+        error: function (jqXHR, exception) {
+            jsonErrorHandler(jqXHR, exception);
+        }
+    });
+}
+
+function updateProfile() {
+    if ( ( (document.getElementById("proFNameInput").value == "") &&
+        (document.getElementById("proLNameInput").value == "") &&
+        (document.getElementById("proPassInput").value == "") ) ||
+         ($("#proPassError").is(':visible')) || ($("#proRepeatPassError").is(':visible')) ) {
+        return;
+    }
+
+    var profile = {
+        "email": null,
+        "fName": document.getElementById("proFNameInput").value,
+        "lName": document.getElementById("proLNameInput").value,
+        "password": document.getElementById("proPassInput").value
+    };
+
+    $.ajax({
+        type: "POST",
+        url: "/user/updateProfile",
+        data: JSON.stringify(profile),
+        contentType: 'application/json',
+        headers: getCSRFHeader(),
+        success: function (data) {
+            if (data != "ok") {
+                $("#proSuccess").hide();
+                document.getElementById("proErrorText").innerHTML = data;
+                $("#proError").show();
+            } else {
+                $("#proError").hide();
+                $("#proSuccess").show();
+            }
         },
         error: function (jqXHR, exception) {
             jsonErrorHandler(jqXHR, exception);

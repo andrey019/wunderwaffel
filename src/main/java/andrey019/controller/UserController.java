@@ -118,6 +118,14 @@ public class UserController {
         return jsonProfile;
     }
 
+    @RequestMapping(value = "/updateProfile", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
+    @ResponseBody
+    public String updateProfile(@RequestBody JsonProfile jsonProfile) {
+        logService.ajaxJson("updateProfile " + getUserEmail());
+        System.out.println(jsonProfile);
+        return "dfs";//profileService.updateProfile(getUserEmail(), jsonProfile);
+    }
+
     private String getUserEmail(){
         String userName = null;
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
