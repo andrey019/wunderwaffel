@@ -124,7 +124,6 @@ public class User {
     public void addTodoList(TodoList todoList) {
         todoList.setOwner(this);
         todoLists.add(todoList);
-        sharedTodoLists.add(todoList);
     }
 
     public void removeTodoList(TodoList todoList) {
