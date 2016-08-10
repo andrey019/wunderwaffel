@@ -123,7 +123,7 @@ public class UserController {
     public String updateProfile(@RequestBody JsonProfile jsonProfile) {
         logService.ajaxJson("updateProfile " + getUserEmail());
         System.out.println(jsonProfile);
-        return "dfs";//profileService.updateProfile(getUserEmail(), jsonProfile);
+        return profileService.updateProfile(getUserEmail(), jsonProfile);
     }
 
     private String getUserEmail(){

@@ -49,12 +49,9 @@ public class ProfileServiceImpl implements ProfileService {
         }
         User user = userDao.getByEmail(email);
         String encodedPassword = passCheckAndEncoding(jsonProfile.getPassword());
-        String mailText;
+        String mailText = getMailText(jsonProfile);
         if (encodedPassword != null) {
-            mailText = getMailText(jsonProfile);
             jsonProfile.setPassword(encodedPassword);
-        } else {
-            mailText = getMailText(jsonProfile);
         }
         user.setFromJsonProfile(jsonProfile);
         if (userDao.save(user)) {
