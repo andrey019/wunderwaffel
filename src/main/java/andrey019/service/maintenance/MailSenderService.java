@@ -24,6 +24,7 @@ public class MailSenderService extends Thread {
     private final static ConcurrentLinkedQueue<CustomMessage> QUEUE = new ConcurrentLinkedQueue<>();
     private final static long INITIAL_DELAY = 10000;
     private final static long SEND_INTERVAL = 70000;
+    private final static String CONTENT_TYPE = "text/html;charset=UTF-8";
 
     private MailSenderService() {}
 
@@ -60,7 +61,7 @@ public class MailSenderService extends Thread {
                 mimeMessage.setFrom(message.getFrom());
                 mimeMessage.setRecipient(Message.RecipientType.TO, new InternetAddress(message.getTo()));
                 mimeMessage.setSubject(message.getSubject());
-                mimeMessage.setContent(message.getText(), "text/html");
+                mimeMessage.setContent(message.getText(), CONTENT_TYPE);
             }
         };
         return preparator;
