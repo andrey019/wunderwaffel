@@ -32,6 +32,7 @@ public class UserDaoImpl implements UserDao {
         }
     }
 
+    @Transactional
     @Override
     public User merge(User user) {
         return entityManager.merge(user);
