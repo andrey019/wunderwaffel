@@ -1,5 +1,7 @@
 package andrey019.model.dao;
 
+import andrey019.model.JsonProfile;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -119,6 +121,18 @@ public class User {
         this.password = userConfirmation.getPassword();
         this.fName = userConfirmation.getfName();
         this.lName = userConfirmation.getlName();
+    }
+
+    public void setFromJsonProfile(JsonProfile jsonProfile) {
+        if (jsonProfile.getfName() != null) {
+            fName = jsonProfile.getfName();
+        }
+        if (jsonProfile.getlName() != null) {
+            lName = jsonProfile.getlName();
+        }
+        if (jsonProfile.getPassword() != null) {
+            password = jsonProfile.getPassword();
+        }
     }
 
     public void addTodoList(TodoList todoList) {

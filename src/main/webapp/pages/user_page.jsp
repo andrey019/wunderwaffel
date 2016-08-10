@@ -5,8 +5,9 @@
     <link rel="shortcut icon" href="/resources/images/favicon.ico" type="image\x-icon" />
     <link rel="icon" href="/resources/images/favicon.ico" type="image\x-icon" />
     <link href="/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/resources/css/modal.css" rel="stylesheet">
     <script type="text/javascript" src="/resources/js/jquery-3.1.0.min.js"></script>
-    <script type="text/javascript" src="/resources/js/todoScripts.js"></script>
+    <script type="text/javascript" src="/resources/js/userPageScripts.js"></script>
     <meta http-equiv="refresh" content="${pageContext.session.maxInactiveInterval}">
     <sec:csrfMetaTags />
     <sec:authorize access="isAuthenticated()">
@@ -28,7 +29,7 @@
         <p id="navbarText" class="navbar-text" style="font-size: 115%; padding-left: 145px; width: 50%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis"></p>
         <form class="navbar-form navbar-right" style="padding-right: 30px" action="/auth/logout">
             <button onclick="refresh(event)" type="submit" class="btn btn-default">Refresh</button>
-            <button id="profileButton" onclick="showProfile(event)" type="submit" class="btn btn-default">Profile</button>
+            <button id="profileButton" type="submit" class="btn btn-default">Profile</button>
             <button type="submit" class="btn btn-default">Sign Out</button>
         </form>
     </div>
@@ -92,11 +93,61 @@
 
 </div>
 
-<script type="text/javascript">
-    $(document).ready(function () {
-        loadLists();
-    });
-</script>
+<%--<script type="text/javascript">--%>
+    <%--$(document).ready(function () {--%>
+        <%--loadLists();--%>
+    <%--});--%>
+<%--</script>--%>
+
+<div id="profileModal" class="modal">
+    <div class="modal-content">
+        <span id="closeSpan" class="close">×</span><br>
+        <p style="font-size: 130%; text-align: center">User info</p>
+        <p>Leave fields that you don't want to change empty</p>
+        <div class="input-group">
+            <span class="input-group-addon">E</span>
+            <input id="proEmailInput" type="email" class="form-control" aria-describedby="basic-addon1" disabled>
+        </div>
+        <br>
+        <div class="input-group">
+            <span class="input-group-addon">F</span>
+            <input id="proFNameInput" type="text" class="form-control" aria-describedby="basic-addon1 required">
+        </div>
+        <br>
+        <div class="input-group" style="border-color: red">
+            <span class="input-group-addon">L</span>
+            <input id="proLNameInput" type="text" class="form-control" aria-describedby="basic-addon1 required">
+        </div>
+        <br>
+        <div class="input-group">
+            <span class="input-group-addon">P</span>
+            <input id="proPassInput" onblur="passCheck()" type="password" class="form-control" placeholder="New password" aria-describedby="basic-addon1 required">
+        </div>
+        <div hidden id="proPassError" class="alert alert-danger" role="alert">
+            <p>Your password must be 6-20 characters!</p>
+        </div>
+        <br>
+        <div class="input-group">
+            <span class="input-group-addon">P</span>
+            <input id="proRepeatPassInput" onblur="repeatPassCheck()" type="password" class="form-control" placeholder="Repeat new password" aria-describedby="basic-addon1" required>
+        </div>
+        <div hidden id="proRepeatPassError" class="alert alert-danger" role="alert">
+            <p>Your passwords doesn't match!</p>
+        </div>
+        <br>
+        <br><br>
+        <button type="button" onclick="updateProfile()" class="btn btn-primary" style="width: 100%">Update!</button>
+        <br><br>
+        <div hidden id="proSuccess" class="alert alert-success" role="alert">
+            <p>Your info is updated!<br>
+                New credentials would be sent to your email.<br>
+                Note that the letter may be sent in a couple of minutes</p>
+        </div>
+        <div hidden id="proError" class="alert alert-success" role="alert">
+            <p id="proErrorText"></p>
+        </div>
+    </div>
+</div>
 
 </body>
 </html>

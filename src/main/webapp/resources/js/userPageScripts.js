@@ -1,4 +1,24 @@
 
+$(document).ready(function () {
+    loadLists();
+    document.getElementById("profileButton").onclick = function(event) {
+        event.preventDefault();
+        document.getElementById("profileModal").style.display = "block";
+        getProfile();
+        //$("#signInDiv").hide();
+    };
+
+    document.getElementById("closeSpan").onclick = function() {
+        onProfileClose();
+    };
+
+    window.onclick = function(event) {
+        if (event.target == document.getElementById("profileModal")) {
+            onProfileClose();
+        }
+    };
+});
+
 function loadLists() {
     var jsonLoadLists = {
         "listId": 0,
@@ -310,11 +330,59 @@ function showDoneTodosClick() {
     loadDoneTodos();
 }
 
-function showProfile(event) {
-    event.preventDefault();
-}
-
 function refresh(event) {
     event.preventDefault();
     loadLists();
+}
+
+function passCheck() {
+    var passLength = document.getElementById("proPassInput").value.length;
+    if ( (passLength < 6) || (passLength > 20) ) {
+        $("#proPassError").show();
+    } else {
+        $("#proPassError").hide();
+    }
+}
+
+function repeatPassCheck() {
+    if (document.getElementById("proPassInput").value != document.getElementById("proRepeatPassInput").value) {
+        $("#proRepeatPassError").show();
+    } else {
+        $("#proRepeatPassError").hide();
+    }
+}
+
+function onProfileClose() {
+    document.getElementById("profileModal").style.display = "none";
+    //$("#signInDiv").show();
+    //document.getElementById("proEmailInput").value = "";
+    document.getElementById("proFNameInput").value = "";
+    document.getElementById("proLNameInput").value = "";
+    document.getElementById("proPassInput").value = "";
+    document.getElementById("proRepeatPassInput").value = "";
+    //$("#regEmailError").hide();
+    //$("#regFNameError").hide();
+    //$("#regLNameError").hide();
+    $("#proPassError").hide();
+    $("#proRepeatPassError").hide();
+    $("#proSuccess").hide();
+}
+
+function getProfile() {
+    $.ajax({
+        type: "POST",
+        url: "/user/getProfile",
+        data: null,
+        contentType: 'application/json',
+        headers: getCSRFHeader(),
+        success: function (data) {
+            var jsonObj = JSON.parse(data);
+            document.getElementById("proEmailInput").placeholder = jsonObj.email;
+            document.getElementById("proFNameInput").placeholder = jsonObj.fName;
+            document.getElementById("proLNameInput").placeholder = jsonObj.lName;
+        },
+        error: function (jqXHR, exception) {
+            jsonErrorHandler(jqXHR, exception);
+        }
+    });
 }
