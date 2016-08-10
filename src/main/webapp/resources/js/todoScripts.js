@@ -313,3 +313,8 @@ function showDoneTodosClick() {
 function showProfile(event) {
     event.preventDefault();
 }
+
+function refresh(event) {
+    event.preventDefault();
+    loadLists();
+}

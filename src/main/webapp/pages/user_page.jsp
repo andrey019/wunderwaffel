@@ -25,8 +25,9 @@
             <a class="navbar-brand" href="#" style="font-size: 160%; padding-left: 30px">WunderWaffel</a>
         </div>
 
-        <p id="navbarText" class="navbar-text" style="font-size: 115%; padding-left: 145px; width: 60%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis"></p>
+        <p id="navbarText" class="navbar-text" style="font-size: 115%; padding-left: 145px; width: 50%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis"></p>
         <form class="navbar-form navbar-right" style="padding-right: 30px" action="/auth/logout">
+            <button onclick="refresh(event)" type="submit" class="btn btn-default">Refresh</button>
             <button id="profileButton" onclick="showProfile(event)" type="submit" class="btn btn-default">Profile</button>
             <button type="submit" class="btn btn-default">Sign Out</button>
         </form>
