@@ -376,14 +376,14 @@ function getProfile() {
         contentType: 'application/json',
         headers: getCSRFHeader(),
         success: function (data) {
-            alert(data);
+            //alert(data);
             //var jsonObj = JSON.parse(data);
-            var jsonJq = jQuery.parseJSON(data);
+            //var jsonJq = jQuery.parseJSON(data);
             //alert(jsonObj + " / " + jsonObj.fName);
-            alert(jsonJq + " / " + jsonJq.fName);
-            document.getElementById("proEmailInput").placeholder = jsonObj.email;
-            document.getElementById("proFNameInput").placeholder = jsonObj.fName;
-            document.getElementById("proLNameInput").placeholder = jsonObj.lName;
+            alert(data.email + " / " + data.fName);
+            document.getElementById("proEmailInput").placeholder = data.email;
+            document.getElementById("proFNameInput").placeholder = data.fName;
+            document.getElementById("proLNameInput").placeholder = data.lName;
         },
         error: function (jqXHR, exception) {
             jsonErrorHandler(jqXHR, exception);
