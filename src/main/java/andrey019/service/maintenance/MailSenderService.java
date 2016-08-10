@@ -24,7 +24,7 @@ public class MailSenderService extends Thread {
     private final static ConcurrentLinkedQueue<CustomMessage> QUEUE = new ConcurrentLinkedQueue<>();
     private final static long INITIAL_DELAY = 10000;
     private final static long SEND_INTERVAL = 70000;
-    private final static String CONTENT_TYPE = "text/html;charset=UTF-8";
+    private final static String CONTENT_TYPE = "text/html; charset=UTF-8";
 
     private MailSenderService() {}
 
