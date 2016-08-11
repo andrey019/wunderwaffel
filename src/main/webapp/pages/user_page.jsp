@@ -86,7 +86,7 @@
         </div>
         <br>
         <div class="btn-group btn-group-justified" role="group" aria-label="..." style="padding-right: 30px">
-            <a id="deleteButton" type="button" class="btn btn-danger">Delete</a>
+            <a id="deleteModalButton" type="button" class="btn btn-danger">Delete</a>
             <a type="button" class="btn btn-success">Share</a>
         </div>
     </div>
@@ -162,7 +162,7 @@
             </div>
         </div>
         <br><br>
-        <button type="button" onclick="deleteTodoList()" class="btn btn-danger" style="width: 100%">Delete!</button>
+        <button id="deleteButton" type="button" onclick="deleteTodoList()" class="btn btn-danger" style="width: 100%">Delete!</button>
         <br><br>
         <div hidden id="delSuccess" class="alert alert-success" role="alert">
             <p>Your list is deleted!</p>

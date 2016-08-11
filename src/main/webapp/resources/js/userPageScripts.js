@@ -13,7 +13,7 @@ $(document).ready(function () {
         onProfileClose();
     };
 
-    document.getElementById("deleteButton").onclick = function(event) {
+    document.getElementById("deleteModalButton").onclick = function(event) {
         event.preventDefault();
         if (typeof window.currentList === 'undefined' || window.currentList == null) {
             return;
@@ -53,6 +53,7 @@ function onProfileClose() {
 function onDeleteClose() {
     document.getElementById("deleteModal").style.display = "none";
     $("#addTodoDiv").show();
+    document.getElementById("deleteButton").disabled = false;
     $("#delSuccess").hide();
     $("#delError").hide();
     document.getElementById("delInfo").innerHTML = "";
@@ -359,12 +360,18 @@ function deleteTodoList() {
         contentType: 'application/json',
         headers: getCSRFHeader(),
         success: function (data) {
-            if (data == "error") {
-                document.getElementById("delInfo").innerHTML = "Error! Can't retrieve data.";
-            } else if (data == "") {
-                document.getElementById("delInfo").innerHTML = "This list isn't shared with anybody";
+            if (data == "ok") {
+                $("#delError").hide();
+                $("#delSuccess").show();
+                document.getElementById("deleteButton").disabled = true;
+            } else if (data == "error") {
+                $("#delSuccess").hide();
+                document.getElementById("delErrorText").innerHTML = "Server internal error!";
+                $("#delError").show();
             } else {
-                document.getElementById("delInfo").innerHTML = data;
+                $("#delSuccess").hide();
+                document.getElementById("delErrorText").innerHTML = data;
+                $("#delError").show();
             }
         },
         error: function (jqXHR, exception) {

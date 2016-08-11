@@ -19,6 +19,8 @@ import java.util.Set;
 public class TodoServiceImpl implements TodoService {
 
     private final static String ERROR = "error";
+    private final static String OK = "ok";
+    private final static String NOT_OWNER = "This list was not created by you. You can not delete it!";
 
     @Autowired
     private UserDao userDao;
@@ -151,14 +153,25 @@ public class TodoServiceImpl implements TodoService {
     }
 
     @Override
-    public boolean deleteTodoList(String email, long todoListId) {
+    public String deleteTodoList(String email, long todoListId) {
         User user = userDao.getByEmail(email);
-        TodoList todoList = getListIfOwner(user, todoListId);
-        if (todoList == null) {
-            return false;
+        if (user == null) {
+            return ERROR;
         }
-        user.removeTodoList(todoList);
-        return userDao.save(user);
+        TodoList todoList = todoListDao.getByIdWithUsersAndSharedLists(todoListId);
+        if (todoList == null) {
+            return ERROR;
+        }
+        if (!todoList.getOwner().equals(user)) {
+            return NOT_OWNER;
+        }
+        for (User innerUser : todoList.getUsers()) {
+            innerUser.getSharedTodoLists().remove(todoList);
+        }
+        if (!todoListDao.delete(todoList)) {
+            return ERROR;
+        }
+        return OK;
     }
 
     @Override

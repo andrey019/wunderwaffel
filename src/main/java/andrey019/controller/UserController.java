@@ -109,17 +109,17 @@ public class UserController {
         return todoService.getTodoListInfo(getUserEmail(), jsonTodoList.getTodoListId());
     }
 
-    @Autowired
-    private TodoListDao todoListDao;
+//    @Autowired
+//    private TodoListDao todoListDao;
 
     @RequestMapping(value = "/deleteTodoList", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
     @ResponseBody
     public String deleteTodoList(@RequestBody JsonTodoList jsonTodoList) {
         logService.ajaxJson("getTodoListDeleteInfo " + getUserEmail());
-        TodoList todoList = todoListDao.getByIdWithUsersAndSharedLists(jsonTodoList.getTodoListId());
-        System.out.println(todoList.getUsers().size());
-        System.out.println(todoList.getUsers().iterator().next().getSharedTodoLists().size());
-        return "sdfsd";
+//        TodoList todoList = todoListDao.getByIdWithUsersAndSharedLists(jsonTodoList.getTodoListId());
+//        System.out.println(todoList.getUsers().size());
+//        System.out.println(todoList.getUsers().iterator().next().getSharedTodoLists().size());
+        return todoService.deleteTodoList(getUserEmail(), jsonTodoList.getTodoListId());
     }
 
     @RequestMapping(value = "/getProfile", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
