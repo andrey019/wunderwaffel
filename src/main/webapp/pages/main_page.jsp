@@ -130,7 +130,7 @@
                 Please, check your email to complete registration.<br>
                 Note that the letter may be sent in a couple of minutes</p>
         </div>
-        <div hidden id="regError" class="alert alert-success" role="alert">
+        <div hidden id="regError" class="alert alert-danger" role="alert">
             <p id="regErrorText"></p>
         </div>
     </div>
@@ -155,7 +155,7 @@
                 Please, check your email to get new password.<br>
                 Note that the letter may be sent in a couple of minutes</p>
         </div>
-        <div hidden id="recError" class="alert alert-success" role="alert">
+        <div hidden id="recError" class="alert alert-danger" role="alert">
             <p id="recErrorText"></p>
         </div>
     </div>

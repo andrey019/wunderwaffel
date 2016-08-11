@@ -13,7 +13,7 @@ $(document).ready(function () {
     };
 
     window.onclick = function(event) {
-        if (event.target == document.getElementById("registrationModal")) {
+        if (event.currentTarget != document.getElementById("registrationModal")) {
             onRegFormClose();
         }
     };
@@ -178,7 +178,7 @@ function passwordRecovery() {
     }
 
     var email = {
-        "email": document.getElementById("regEmailInput").value
+        "email": document.getElementById("recEmailInput").value
     };
 
     $.ajax({
