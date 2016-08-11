@@ -364,6 +364,8 @@ function deleteTodoList() {
                 $("#delError").hide();
                 $("#delSuccess").show();
                 document.getElementById("deleteButton").disabled = true;
+                window.currentList = null;
+                loadLists();
             } else if (data == "error") {
                 $("#delSuccess").hide();
                 document.getElementById("delErrorText").innerHTML = "Server internal error!";
