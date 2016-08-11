@@ -136,7 +136,7 @@
         </div>
         <br>
         <br><br>
-        <button type="button" onclick="updateProfile()" class="btn btn-primary" style="width: 100%">Update!</button>
+        <button type="button" onclick="updateProfile()" class="btn btn-primary" style="width: 100%">Update</button>
         <br><br>
         <div hidden id="proSuccess" class="alert alert-success" role="alert">
             <p>Your info is updated!<br>
@@ -162,7 +162,7 @@
             </div>
         </div>
         <br>
-        <button id="deleteButton" type="button" onclick="deleteTodoList()" class="btn btn-danger" style="width: 100%">Delete!</button>
+        <button id="deleteButton" type="button" onclick="deleteTodoList()" class="btn btn-danger" style="width: 100%">Delete</button>
         <br><br>
         <div hidden id="delSuccess" class="alert alert-success" role="alert">
             <p>Your list is deleted!</p>
@@ -183,7 +183,8 @@
             <span class="input-group-addon">E</span>
             <input id="shareEmailInput" placeholder="User email" type="email" class="form-control" aria-describedby="basic-addon1">
         </div>
-        <button id="shareButton" type="button" onclick="deleteTodoList()" class="btn btn-danger" style="width: 100%">Delete!</button>
+        <br>
+        <button id="shareButton" type="button" onclick="shareTodoList()" class="btn btn-success" style="width: 100%">Share</button>
         <br>
         <div hidden id="shareSuccess" class="alert alert-success" role="alert">
             <p>Your list is deleted!</p>
