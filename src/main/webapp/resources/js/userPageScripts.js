@@ -54,6 +54,7 @@ function onDeleteClose() {
     document.getElementById("deleteModal").style.display = "none";
     $("#addTodoDiv").show();
     document.getElementById("deleteButton").disabled = false;
+    document.getElementById("delTodoListHeader").innerHTML = "";
     $("#delSuccess").hide();
     $("#delError").hide();
     document.getElementById("delInfo").innerHTML = "";
@@ -124,7 +125,7 @@ function loadTodos(event) {
     event.preventDefault();
     window.currentList = event.currentTarget.id.split("=")[1];
     window.showDoneTodos = null;
-    var navbarText = event.currentTarget.getAttribute("name");
+    window.navbarText = event.currentTarget.getAttribute("name");
 
     var jsonTodos = {
         "listId": window.currentList,
@@ -143,7 +144,7 @@ function loadTodos(event) {
         contentType: 'application/json',
         headers: getCSRFHeader(),
         success: function (data) {
-            document.getElementById("navbarText").innerHTML = navbarText;
+            document.getElementById("navbarText").innerHTML = window.navbarText;
             document.getElementById("todoResult").innerHTML = data;
             document.getElementById("doneTodoResult").innerHTML = "";
         },
@@ -319,6 +320,7 @@ function addTodoList() {
 }
 
 function getDeleteInfo() {
+    document.getElementById("delTodoListHeader").innerHTML = window.navbarText;
     var jsonTodoList = {
         "todoListId": window.currentList
     };
@@ -364,6 +366,7 @@ function deleteTodoList() {
                 $("#delError").hide();
                 $("#delSuccess").show();
                 document.getElementById("deleteButton").disabled = true;
+                document.getElementById("navbarText").innerHTML = "";
                 window.currentList = null;
                 loadLists();
             } else if (data == "error") {

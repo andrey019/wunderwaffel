@@ -23,7 +23,7 @@
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
 
             </button>
-            <a class="navbar-brand" href="#" style="font-size: 160%; padding-left: 30px">WunderWaffel</a>
+            <a class="navbar-brand" style="font-size: 160%; padding-left: 30px">WunderWaffel</a>
         </div>
 
         <p id="navbarText" class="navbar-text" style="font-size: 115%; padding-left: 145px; width: 50%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis"></p>
@@ -154,14 +154,14 @@
 <div id="deleteModal" class="modal">
     <div class="modal-content">
         <span id="delCloseSpan" class="close">×</span><br>
-        <p style="font-size: 130%; text-align: center">User info</p>
+        <p id="delTodoListHeader" style="font-size: 130%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">User info</p>
         <p>Users with which you share this list:</p>
         <div style="width: 100%">
             <div id="delInfo" class="list-group">
 
             </div>
         </div>
-        <br><br>
+        <br>
         <button id="deleteButton" type="button" onclick="deleteTodoList()" class="btn btn-danger" style="width: 100%">Delete!</button>
         <br><br>
         <div hidden id="delSuccess" class="alert alert-success" role="alert">
