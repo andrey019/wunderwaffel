@@ -37,6 +37,13 @@ public class HtmlGeneratorImpl implements HtmlGenerator {
     private final static String LIST_INFO_0 = "<button type=\"button\" class=\"list-group-item\">";
     private final static String LIST_INFO_1 = "</button>";
 
+    private final static String SHARE_INFO_0 = "<button id=\"unShare=";
+    private final static String SHARE_INFO_1 = "\" type=\"button\" class=\"list-group-item\" " +
+            "onclick=\"unShareUser(event)\" style=\"word-wrap: break-word\"";
+    private final static String SHARE_INFO_2 = " disabled";
+    private final static String SHARE_INFO_3 = ">";
+    private final static String SHARE_INFO_4 = "</button>";
+
     private final static String NEW_LINE = "<br>";
     private final static int MAX_SYMBOLS_IN_LINE = 17;
     private final static String EMPTY = "";
@@ -114,6 +121,31 @@ public class HtmlGeneratorImpl implements HtmlGenerator {
             stringBuilder.append(NEW_LINE);
             stringBuilder.append(user.getFullName());
             stringBuilder.append(LIST_INFO_1);
+        }
+        return stringBuilder.toString();
+    }
+
+    @Override
+    public String generateSharedInfoHtml(List<User> users, User owner) {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(SHARE_INFO_0);
+        stringBuilder.append(owner.getId());
+        stringBuilder.append(SHARE_INFO_1);
+        stringBuilder.append(SHARE_INFO_2);
+        stringBuilder.append(SHARE_INFO_3);
+        stringBuilder.append(owner.getEmail());
+        stringBuilder.append(NEW_LINE);
+        stringBuilder.append(owner.getFullName());
+        stringBuilder.append(SHARE_INFO_4);
+        for(User user : users) {
+            stringBuilder.append(SHARE_INFO_0);
+            stringBuilder.append(user.getId());
+            stringBuilder.append(SHARE_INFO_1);
+            stringBuilder.append(SHARE_INFO_3);
+            stringBuilder.append(user.getEmail());
+            stringBuilder.append(NEW_LINE);
+            stringBuilder.append(user.getFullName());
+            stringBuilder.append(SHARE_INFO_4);
         }
         return stringBuilder.toString();
     }

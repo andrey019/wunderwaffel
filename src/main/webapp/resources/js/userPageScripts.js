@@ -27,12 +27,29 @@ $(document).ready(function () {
         onDeleteClose();
     };
 
+    document.getElementById("shareModalButton").onclick = function(event) {
+        event.preventDefault();
+        if (typeof window.currentList === 'undefined' || window.currentList == null) {
+            return;
+        }
+        $("#addTodoDiv").hide();
+        document.getElementById("shareModal").style.display = "block";
+        getShareInfo();
+    };
+
+    document.getElementById("shareCloseSpan").onclick = function() {
+        onShareClose();
+    };
+
     window.onclick = function(event) {
         if (event.target == document.getElementById("profileModal")) {
             onProfileClose();
         }
         if (event.target == document.getElementById("deleteModal")) {
             onDeleteClose();
+        }
+        if (event.target == document.getElementById("shareModal")) {
+            onShareClose();
         }
     };
 });
@@ -58,6 +75,17 @@ function onDeleteClose() {
     $("#delSuccess").hide();
     $("#delError").hide();
     document.getElementById("delInfo").innerHTML = "";
+}
+
+function onShareClose() {
+    document.getElementById("shareModal").style.display = "none";
+    $("#addTodoDiv").show();
+    document.getElementById("shareTodoListHeader").innerHTML = "";
+    $("#shareSuccess").hide();
+    $("#shareError").hide();
+    $("#unShareSuccess").hide();
+    $("#unShareError").hide();
+    document.getElementById("sharedUsers").innerHTML = "";
 }
 
 function loadLists() {
@@ -377,6 +405,33 @@ function deleteTodoList() {
                 $("#delSuccess").hide();
                 document.getElementById("delErrorText").innerHTML = data;
                 $("#delError").show();
+            }
+        },
+        error: function (jqXHR, exception) {
+            jsonErrorHandler(jqXHR, exception);
+        }
+    });
+}
+
+function getShareInfo() {
+    document.getElementById("shareTodoListHeader").innerHTML = window.navbarText;
+    var jsonTodoList = {
+        "todoListId": window.currentList
+    };
+
+    $.ajax({
+        type: "POST",
+        url: "/user/todoListShareInfo",
+        data: JSON.stringify(jsonTodoList),
+        contentType: 'application/json',
+        headers: getCSRFHeader(),
+        success: function (data) {
+            if (data == "error") {
+                document.getElementById("sharedUsers").innerHTML = "Error! Can't retrieve data.";
+            } else if (data == "") {
+                document.getElementById("sharedUsers").innerHTML = "This list isn't shared with anybody";
+            } else {
+                document.getElementById("sharedUsers").innerHTML = data;
             }
         },
         error: function (jqXHR, exception) {

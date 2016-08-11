@@ -15,4 +15,5 @@ public interface HtmlGenerator {
     String generateTodosHtml(Set<Todo> todos);
     String generateDoneTodosHtml(Set<DoneTodo> doneTodos);
     String generateTodoListsInfoHtml(List<User> users);
+    String generateSharedInfoHtml(List<User> users, User owner);
 }

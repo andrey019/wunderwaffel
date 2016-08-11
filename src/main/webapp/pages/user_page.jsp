@@ -87,7 +87,7 @@
         <br>
         <div class="btn-group btn-group-justified" role="group" aria-label="..." style="padding-right: 30px">
             <a id="deleteModalButton" type="button" class="btn btn-danger">Delete</a>
-            <a type="button" class="btn btn-success">Share</a>
+            <a id="shareModalButton" type="button" class="btn btn-success">Share</a>
         </div>
     </div>
 
@@ -154,7 +154,7 @@
 <div id="deleteModal" class="modal">
     <div class="modal-content">
         <span id="delCloseSpan" class="close">×</span><br>
-        <p id="delTodoListHeader" style="font-size: 130%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">User info</p>
+        <p id="delTodoListHeader" style="font-size: 130%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis"></p>
         <p>Users with which you share this list:</p>
         <div style="width: 100%">
             <div id="delInfo" class="list-group">
@@ -169,6 +169,42 @@
         </div>
         <div hidden id="delError" class="alert alert-danger" role="alert">
             <p id="delErrorText"></p>
+        </div>
+    </div>
+</div>
+
+
+
+<div id="shareModal" class="modal">
+    <div class="modal-content">
+        <span id="shareCloseSpan" class="close">×</span><br>
+        <p id="shareTodoListHeader" style="font-size: 130%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis"></p>
+        <div class="input-group">
+            <span class="input-group-addon">E</span>
+            <input id="shareEmailInput" placeholder="User email" type="email" class="form-control" aria-describedby="basic-addon1">
+        </div>
+        <button id="shareButton" type="button" onclick="deleteTodoList()" class="btn btn-danger" style="width: 100%">Delete!</button>
+        <br>
+        <div hidden id="shareSuccess" class="alert alert-success" role="alert">
+            <p>Your list is deleted!</p>
+        </div>
+        <div hidden id="shareError" class="alert alert-danger" role="alert">
+            <p id="shareErrorText"></p>
+        </div>
+        <br>
+
+        <p style="word-wrap: normal"><b>Users with which you share this list (click to delete):</b></p>
+        <div style="width: 100%">
+            <div id="sharedUsers" class="list-group">
+
+            </div>
+        </div>
+        <br>
+        <div hidden id="unShareSuccess" class="alert alert-success" role="alert">
+            <p>Your list is deleted!</p>
+        </div>
+        <div hidden id="unShareError" class="alert alert-danger" role="alert">
+            <p id="unShareErrorText"></p>
         </div>
     </div>
 </div>
