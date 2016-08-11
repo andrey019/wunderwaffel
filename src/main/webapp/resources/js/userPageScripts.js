@@ -55,6 +55,7 @@ function onDeleteClose() {
     $("#addTodoDiv").show();
     $("#delSuccess").hide();
     $("#delError").hide();
+    document.getElementById("delInfo").innerHTML = "";
 }
 
 function loadLists() {
@@ -324,6 +325,36 @@ function getDeleteInfo() {
     $.ajax({
         type: "POST",
         url: "/user/todoListDeleteInfo",
+        data: JSON.stringify(jsonTodoList),
+        contentType: 'application/json',
+        headers: getCSRFHeader(),
+        success: function (data) {
+            if (data == "error") {
+                document.getElementById("delInfo").innerHTML = "Error! Can't retrieve data.";
+            } else if (data == "") {
+                document.getElementById("delInfo").innerHTML = "This list isn't shared with anybody";
+            } else {
+                document.getElementById("delInfo").innerHTML = data;
+            }
+        },
+        error: function (jqXHR, exception) {
+            jsonErrorHandler(jqXHR, exception);
+        }
+    });
+}
+
+function deleteTodoList() {
+    if (typeof window.currentList === 'undefined' || window.currentList == null) {
+        return;
+    }
+
+    var jsonTodoList = {
+        "todoListId": window.currentList
+    };
+
+    $.ajax({
+        type: "POST",
+        url: "/user/deleteTodoList",
         data: JSON.stringify(jsonTodoList),
         contentType: 'application/json',
         headers: getCSRFHeader(),

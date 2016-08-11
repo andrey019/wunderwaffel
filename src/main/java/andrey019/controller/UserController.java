@@ -1,5 +1,7 @@
 package andrey019.controller;
 
+import andrey019.dao.TodoListDao;
+import andrey019.model.dao.TodoList;
 import andrey019.model.json.JsonMessage;
 import andrey019.model.json.JsonProfile;
 import andrey019.model.json.JsonTodoList;
@@ -105,6 +107,19 @@ public class UserController {
     public String getTodoListDeleteInfo(@RequestBody JsonTodoList jsonTodoList) {
         logService.ajaxJson("getTodoListDeleteInfo " + getUserEmail());
         return todoService.getTodoListInfo(getUserEmail(), jsonTodoList.getTodoListId());
+    }
+
+    @Autowired
+    private TodoListDao todoListDao;
+
+    @RequestMapping(value = "/deleteTodoList", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
+    @ResponseBody
+    public String deleteTodoList(@RequestBody JsonTodoList jsonTodoList) {
+        logService.ajaxJson("getTodoListDeleteInfo " + getUserEmail());
+        TodoList todoList = todoListDao.getByIdWithUsersAndSharedLists(jsonTodoList.getTodoListId());
+        System.out.println(todoList.getUsers().size());
+        System.out.println(todoList.getUsers().iterator().next().getSharedTodoLists().size());
+        return "sdfsd";
     }
 
     @RequestMapping(value = "/getProfile", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")

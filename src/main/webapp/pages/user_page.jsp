@@ -155,7 +155,7 @@
     <div class="modal-content">
         <span id="delCloseSpan" class="close">×</span><br>
         <p style="font-size: 130%; text-align: center">User info</p>
-        <p>Users who share this list:</p>
+        <p>Users with which you share this list:</p>
         <div style="width: 100%">
             <div id="delInfo" class="list-group">
 
