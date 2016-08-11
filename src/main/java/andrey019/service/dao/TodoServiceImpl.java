@@ -208,6 +208,7 @@ public class TodoServiceImpl implements TodoService {
         if (todoList.getOwner().equals(user)) {
             return htmlGenerator.generateSharedInfoHtml(todoList.getUsers(), null);
         } else {
+            todoList.getUsers().remove(todoList.getOwner());
             return htmlGenerator.generateSharedInfoHtml(todoList.getUsers(), todoList.getOwner());
         }
     }
