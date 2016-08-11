@@ -2,6 +2,7 @@ package andrey019.controller;
 
 import andrey019.model.json.JsonMessage;
 import andrey019.model.json.JsonProfile;
+import andrey019.model.json.JsonTodoList;
 import andrey019.service.HtmlGenerator;
 import andrey019.service.auth.ProfileService;
 import andrey019.service.dao.TodoService;
@@ -99,10 +100,11 @@ public class UserController {
         return RESPONSE_ERROR;
     }
 
-    @RequestMapping("/ololo")
-    public String userololo() {
-        logService.accessToPage("user/ololo");
-        return "ololo";
+    @RequestMapping(value = "/todoListDeleteInfo", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
+    @ResponseBody
+    public String getTodoListDeleteInfo(@RequestBody JsonTodoList jsonTodoList) {
+        logService.ajaxJson("getTodoListDeleteInfo " + getUserEmail());
+        return todoService.getTodoListInfo(getUserEmail(), jsonTodoList.getTodoListId());
     }
 
     @RequestMapping(value = "/getProfile", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
@@ -131,6 +133,12 @@ public class UserController {
         }
         return userName;
     }
+
+//    @RequestMapping("/ololo")
+//    public String userololo() {
+//        logService.accessToPage("user/ololo");
+//        return "ololo";
+//    }
 
 //    @RequestMapping("/json")
 //    public String tesingJson() {
