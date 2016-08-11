@@ -1,6 +1,7 @@
 
 $(document).ready(function () {
     window.emailValidity = "no";
+
     document.getElementById("registrationButton").onclick = function(event) {
         event.preventDefault();
         document.getElementById("registrationModal").style.display = "block";
@@ -14,6 +15,23 @@ $(document).ready(function () {
     window.onclick = function(event) {
         if (event.target == document.getElementById("registrationModal")) {
             onRegFormClose();
+        }
+    };
+
+
+    document.getElementById("recoveryButton").onclick = function(event) {
+        event.preventDefault();
+        document.getElementById("recoveryModal").style.display = "block";
+        $("#signInDiv").hide();
+    };
+
+    document.getElementById("recCloseSpan").onclick = function() {
+        onRecoveryClose();
+    };
+
+    window.onclick = function(event) {
+        if (event.target == document.getElementById("recoveryModal")) {
+            onRecoveryClose();
         }
     };
 });
@@ -32,6 +50,15 @@ function onRegFormClose() {
     $("#regPassError").hide();
     $("#regRepeatPassError").hide();
     $("#regSuccess").hide();
+    $("#regError").hide();
+}
+
+function onRecoveryClose() {
+    document.getElementById("recoveryModal").style.display = "none";
+    $("#signInDiv").show();
+    document.getElementById("recEmailInput").value = "";
+    $("#recSuccess").hide();
+    $("#recError").hide();
 }
 
 function emailCheck() {
@@ -137,6 +164,37 @@ function registration() {
             } else {
                 $("#regError").hide();
                 $("#regSuccess").show();
+            }
+        },
+        error: function (jqXHR, exception) {
+            jsonErrorHandler(jqXHR, exception);
+        }
+    });
+}
+
+function passwordRecovery() {
+    if (document.getElementById("recEmailInput").value == "") {
+        return;
+    }
+
+    var email = {
+        "email": document.getElementById("regEmailInput").value
+    };
+
+    $.ajax({
+        type: "POST",
+        url: "/auth/passwordRecovery",
+        data: JSON.stringify(email),
+        contentType: 'application/json',
+        headers: getCSRFHeader(),
+        success: function (data) {
+            if (data != "ok") {
+                $("#recSuccess").hide();
+                document.getElementById("recErrorText").innerHTML = data;
+                $("#recError").show();
+            } else {
+                $("#recError").hide();
+                $("#recSuccess").show();
             }
         },
         error: function (jqXHR, exception) {

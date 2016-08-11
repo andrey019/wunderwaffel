@@ -10,7 +10,7 @@
     <link href="/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="/resources/css/modal.css" rel="stylesheet">
     <script type="text/javascript" src="/resources/js/jquery-3.1.0.min.js"></script>
-    <script type="text/javascript" src="/resources/js/registration.js"></script>
+    <script type="text/javascript" src="/resources/js/mainPageScripts.js"></script>
     <sec:csrfMetaTags />
     <meta http-equiv="refresh" content="${pageContext.session.maxInactiveInterval}">
     <title>WunderWaffel</title>
@@ -71,7 +71,7 @@
         <div class="form-actions">
             <input type="submit" class="btn btn-block btn-primary btn-default" value="Sign in">
         </div><br>
-        <button type="button" class="btn btn-danger" style="width: 100%">Can't remember my password...</button>
+        <button id="recoveryButton" type="button" class="btn btn-danger" style="width: 100%">Can't remember my password...</button>
     </form>
 
 </div>
@@ -138,6 +138,28 @@
 
 
 
+<div id="recoveryModal" class="modal">
+    <div class="modal-content">
+        <span id="recCloseSpan" class="close">×</span><br>
+        <p style="font-size: 130%; text-align: center">Registration form</p>
+        <div class="input-group">
+            <span class="input-group-addon">E</span>
+            <input id="recEmailInput" type="email" class="form-control" placeholder="Email" aria-describedby="basic-addon1" required>
+        </div>
+        <br>
+        <br><br>
+        <button type="button" onclick="passwordRecovery()" class="btn btn-primary" style="width: 100%">Recover!</button>
+        <br><br>
+        <div hidden id="recSuccess" class="alert alert-success" role="alert">
+            <p>Recovery successful!<br>
+                Please, check your email to get new password.<br>
+                Note that the letter may be sent in a couple of minutes</p>
+        </div>
+        <div hidden id="recError" class="alert alert-success" role="alert">
+            <p id="recErrorText"></p>
+        </div>
+    </div>
+</div>
 
 
 
