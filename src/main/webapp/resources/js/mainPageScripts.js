@@ -12,13 +12,6 @@ $(document).ready(function () {
         onRegFormClose();
     };
 
-    window.onclick = function(event) {
-        if (event.currentTarget == document.getElementById("registrationModal")) {
-            onRegFormClose();
-        }
-    };
-
-
     document.getElementById("recoveryButton").onclick = function(event) {
         event.preventDefault();
         document.getElementById("recoveryModal").style.display = "block";
@@ -32,6 +25,9 @@ $(document).ready(function () {
     window.onclick = function(event) {
         if (event.target == document.getElementById("recoveryModal")) {
             onRecoveryClose();
+        }
+        if (event.target == document.getElementById("registrationModal")) {
+            onRegFormClose();
         }
     };
 });
