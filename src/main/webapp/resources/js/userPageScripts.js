@@ -396,6 +396,8 @@ function deleteTodoList() {
                 document.getElementById("deleteButton").disabled = true;
                 document.getElementById("navbarText").innerHTML = "";
                 window.currentList = null;
+                document.getElementById("todoResult").innerHTML = "";
+                document.getElementById("doneTodoResult").innerHTML = "";
                 loadLists();
             } else if (data == "error") {
                 $("#delSuccess").hide();
