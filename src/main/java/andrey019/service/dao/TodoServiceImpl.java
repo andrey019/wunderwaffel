@@ -192,6 +192,27 @@ public class TodoServiceImpl implements TodoService {
     }
 
     @Override
+    public String getSharedWithInfo(String email, long todoListId) {
+        User user = userDao.getByEmail(email);
+        if (user == null) {
+            return ERROR;
+        }
+        TodoList todoList = todoListDao.getByIdWithUsers(todoListId);
+        if (todoList == null) {
+            return ERROR;
+        }
+        if (!todoList.getUsers().contains(user)) {
+            return ERROR;
+        }
+        todoList.getUsers().remove(user);
+        if (todoList.getOwner().equals(user)) {
+            return htmlGenerator.generateSharedInfoHtml(todoList.getUsers(), null);
+        } else {
+            return htmlGenerator.generateSharedInfoHtml(todoList.getUsers(), todoList.getOwner());
+        }
+    }
+
+    @Override
     public Set<Todo> getTodosByListId(String email, long todoListId) {
         User user = userDao.getByEmailWithSharedLists(email);
         if (user == null) {

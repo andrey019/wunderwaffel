@@ -126,17 +126,22 @@ public class HtmlGeneratorImpl implements HtmlGenerator {
     }
 
     @Override
-    public String generateSharedInfoHtml(List<User> users, User owner) {
+    public String generateSharedInfoHtml(Set<User> users, User owner) {
+        if ( (owner == null) && (users.isEmpty()) ) {
+            return EMPTY;
+        }
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(SHARE_INFO_0);
-        stringBuilder.append(owner.getId());
-        stringBuilder.append(SHARE_INFO_1);
-        stringBuilder.append(SHARE_INFO_2);
-        stringBuilder.append(SHARE_INFO_3);
-        stringBuilder.append(owner.getEmail());
-        stringBuilder.append(NEW_LINE);
-        stringBuilder.append(owner.getFullName());
-        stringBuilder.append(SHARE_INFO_4);
+        if (owner != null) {
+            stringBuilder.append(SHARE_INFO_0);
+            stringBuilder.append(owner.getId());
+            stringBuilder.append(SHARE_INFO_1);
+            stringBuilder.append(SHARE_INFO_2);
+            stringBuilder.append(SHARE_INFO_3);
+            stringBuilder.append(owner.getEmail());
+            stringBuilder.append(NEW_LINE);
+            stringBuilder.append(owner.getFullName());
+            stringBuilder.append(SHARE_INFO_4);
+        }
         for(User user : users) {
             stringBuilder.append(SHARE_INFO_0);
             stringBuilder.append(user.getId());

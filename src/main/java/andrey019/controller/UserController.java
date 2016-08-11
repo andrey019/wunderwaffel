@@ -122,6 +122,13 @@ public class UserController {
         return todoService.deleteTodoList(getUserEmail(), jsonTodoList.getTodoListId());
     }
 
+    @RequestMapping(value = "/todoListShareInfo", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
+    @ResponseBody
+    public String todoListShareInfo(@RequestBody JsonTodoList jsonTodoList) {
+        logService.ajaxJson("todoListShareInfo " + getUserEmail());
+        return todoService.getSharedWithInfo(getUserEmail(), jsonTodoList.getTodoListId());
+    }
+
     @RequestMapping(value = "/getProfile", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public @ResponseBody JsonProfile getProfile() {
         logService.ajaxJson("getProfile " + getUserEmail());
