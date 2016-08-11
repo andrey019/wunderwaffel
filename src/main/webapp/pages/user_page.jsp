@@ -116,12 +116,12 @@
         <br>
         <div class="input-group" style="border-color: red">
             <span class="input-group-addon">L</span>
-            <input id="proLNameInput" type="text" class="form-control" aria-describedby="basic-addon1 required">
+            <input id="proLNameInput" type="text" name="lName" class="form-control" aria-describedby="basic-addon1 required">
         </div>
         <br>
         <div class="input-group">
             <span class="input-group-addon">P</span>
-            <input id="proPassInput" onblur="passCheck()" type="password" class="form-control" placeholder="New password" aria-describedby="basic-addon1 required">
+            <input id="proPassInput" onblur="passCheck()" type="password" name="pass" class="form-control" placeholder="New password" aria-describedby="basic-addon1 required">
         </div>
         <div hidden id="proPassError" class="alert alert-danger" role="alert">
             <p>Your password must be 6-20 characters!</p>

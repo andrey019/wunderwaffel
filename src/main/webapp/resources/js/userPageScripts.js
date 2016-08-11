@@ -81,6 +81,7 @@ function onShareClose() {
     document.getElementById("shareModal").style.display = "none";
     $("#addTodoDiv").show();
     document.getElementById("shareTodoListHeader").innerHTML = "";
+    document.getElementById("shareEmailInput").innerHTML = "";
     $("#shareSuccess").hide();
     $("#shareError").hide();
     $("#unShareSuccess").hide();
