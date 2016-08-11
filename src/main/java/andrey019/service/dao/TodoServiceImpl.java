@@ -134,22 +134,27 @@ public class TodoServiceImpl implements TodoService {
     }
 
     @Override
-    public boolean unShareWith(String email, long todoListId, String emailToUnShareWith) {
-        User userToUnShare = userDao.getByEmail(emailToUnShareWith);
-        TodoList todoList = getListIfOwner(userToUnShare, todoListId);
-        if (todoList != null) {
-            return false;
-        }
+    public String unShareWith(String email, long todoListId, String emailToUnShareWith) {
         User user = userDao.getByEmail(email);
         if (user == null) {
-            return false;
+            return ERROR;
         }
-        todoList = getListIfAllowed(user, todoListId);
+        User userToUnShare = userDao.getByEmailWithSharedLists(emailToUnShareWith);
+        if (userToUnShare == null) {
+            return ERROR;
+        }
+        TodoList todoList = todoListDao.getByIdWithUsers(todoListId);
         if (todoList == null) {
-            return false;
+            return ERROR;
+        }
+        if ( (!todoList.getUsers().contains(user)) || (todoList.getOwner().equals(userToUnShare))) {
+            return ERROR;
         }
         todoList.removeUsers(userToUnShare);
-        return todoListDao.save(todoList);
+        if (!todoListDao.save(todoList)) {
+            return ERROR;
+        }
+        return OK;
     }
 
     @Override

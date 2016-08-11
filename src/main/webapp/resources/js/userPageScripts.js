@@ -142,7 +142,6 @@ function loadCurrentListTodos() {
             if (typeof window.showDoneTodos !== 'undefined' && window.showDoneTodos != null) {
                 loadDoneTodos();
             }
-            //document.getElementById("doneTodoResult").innerHTML = "";
         },
         error: function (jqXHR, exception) {
             jsonErrorHandler(jqXHR, exception);
