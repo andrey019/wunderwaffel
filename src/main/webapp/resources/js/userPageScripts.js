@@ -1,6 +1,7 @@
 
 $(document).ready(function () {
     loadLists();
+
     document.getElementById("profileButton").onclick = function(event) {
         event.preventDefault();
         $("#addTodoDiv").hide();
@@ -12,9 +13,26 @@ $(document).ready(function () {
         onProfileClose();
     };
 
+    document.getElementById("deleteButton").onclick = function(event) {
+        event.preventDefault();
+        if (typeof window.currentList === 'undefined' || window.currentList == null) {
+            return;
+        }
+        $("#addTodoDiv").hide();
+        document.getElementById("deleteModal").style.display = "block";
+        getDeleteInfo();
+    };
+
+    document.getElementById("delCloseSpan").onclick = function() {
+        onDeleteClose();
+    };
+
     window.onclick = function(event) {
         if (event.target == document.getElementById("profileModal")) {
             onProfileClose();
+        }
+        if (event.target == document.getElementById("deleteModal")) {
+            onDeleteClose();
         }
     };
 });
@@ -30,6 +48,13 @@ function onProfileClose() {
     $("#proRepeatPassError").hide();
     $("#proSuccess").hide();
     $("#proError").hide();
+}
+
+function onDeleteClose() {
+    document.getElementById("deleteModal").style.display = "none";
+    $("#addTodoDiv").show();
+    $("#delSuccess").hide();
+    $("#delError").hide();
 }
 
 function loadLists() {
@@ -291,6 +316,32 @@ function addTodoList() {
     });
 }
 
+function getDeleteInfo() {
+    var jsonTodoList = {
+        "todoListId": window.currentList
+    };
+
+    $.ajax({
+        type: "POST",
+        url: "/user/todoListDeleteInfo",
+        data: JSON.stringify(jsonTodoList),
+        contentType: 'application/json',
+        headers: getCSRFHeader(),
+        success: function (data) {
+            if (data == "error") {
+                document.getElementById("delInfo").innerHTML = "Error! Can't retrieve data.";
+            } else if (data == "") {
+                document.getElementById("delInfo").innerHTML = "This list isn't shared with anybody";
+            } else {
+                document.getElementById("delInfo").innerHTML = data;
+            }
+        },
+        error: function (jqXHR, exception) {
+            jsonErrorHandler(jqXHR, exception);
+        }
+    });
+}
+
 function getCSRFHeader() {
     var csrfHeader = $("meta[name='_csrf_header']").attr("content");
     var csrfToken = $("meta[name='_csrf']").attr("content");
@@ -419,3 +470,4 @@ function updateProfile() {
         }
     });
 }
+

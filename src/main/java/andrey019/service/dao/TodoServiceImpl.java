@@ -8,13 +8,17 @@ import andrey019.model.dao.DoneTodo;
 import andrey019.model.dao.Todo;
 import andrey019.model.dao.TodoList;
 import andrey019.model.dao.User;
+import andrey019.service.HtmlGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Set;
 
 @Service("todoService")
 public class TodoServiceImpl implements TodoService {
+
+    private final static String ERROR = "error";
 
     @Autowired
     private UserDao userDao;
@@ -27,6 +31,9 @@ public class TodoServiceImpl implements TodoService {
 
     @Autowired
     private DoneTodoDao doneTodoDao;
+
+    @Autowired
+    private HtmlGenerator htmlGenerator;
 
     @Override
     public boolean addTodoList(String email, String todoListName) {
@@ -152,6 +159,23 @@ public class TodoServiceImpl implements TodoService {
         }
         user.removeTodoList(todoList);
         return userDao.save(user);
+    }
+
+    @Override
+    public String getTodoListInfo(String email, long todoListId) {
+        User user = userDao.getByEmail(email);
+        if (user == null) {
+            return ERROR;
+        }
+        List<User> users = userDao.getUsersByTodoListId(todoListId);
+        if ( (users == null) || (users.isEmpty()) ) {
+            return ERROR;
+        }
+        if (!users.contains(user)) {
+            return ERROR;
+        }
+        users.remove(user);
+        return htmlGenerator.generateTodoListsInfoHtml(users);
     }
 
     @Override

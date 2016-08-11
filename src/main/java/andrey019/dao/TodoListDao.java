@@ -17,5 +17,4 @@ public interface TodoListDao {
     TodoList getByIdWithTodosAndDoneTodos(long id);
     List<TodoList> getByUserId(long id);
     List<TodoList> getByUsers(long id);
-    List<User> getUsersByTodoListId(long id);
 }

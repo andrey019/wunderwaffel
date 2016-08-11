@@ -28,9 +28,9 @@
 
         <p id="navbarText" class="navbar-text" style="font-size: 115%; padding-left: 145px; width: 50%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis"></p>
         <form class="navbar-form navbar-right" style="padding-right: 30px" action="/auth/logout">
-            <button onclick="refresh(event)" type="submit" class="btn btn-default">Refresh</button>
-            <button id="profileButton" type="submit" class="btn btn-default">Profile</button>
-            <button type="submit" class="btn btn-default">Sign Out</button>
+            <button onclick="refresh(event)" type="submit" class="btn btn-info">Refresh</button>
+            <button id="profileButton" type="submit" class="btn btn-info">Profile</button>
+            <button type="submit" class="btn btn-info">Sign Out</button>
         </form>
     </div>
     </div>
@@ -86,8 +86,8 @@
         </div>
         <br>
         <div class="btn-group btn-group-justified" role="group" aria-label="..." style="padding-right: 30px">
-            <a type="button" class="btn btn-default" onclick="loadLists()">Delete</a>
-            <a type="button" class="btn btn-default">Share</a>
+            <a id="deleteButton" type="button" class="btn btn-danger">Delete</a>
+            <a type="button" class="btn btn-success">Share</a>
         </div>
     </div>
 
@@ -143,8 +143,32 @@
                 New credentials would be sent to your email.<br>
                 Note that the letter may be sent in a couple of minutes</p>
         </div>
-        <div hidden id="proError" class="alert alert-success" role="alert">
+        <div hidden id="proError" class="alert alert-danger" role="alert">
             <p id="proErrorText"></p>
+        </div>
+    </div>
+</div>
+
+
+
+<div id="deleteModal" class="modal">
+    <div class="modal-content">
+        <span id="delCloseSpan" class="close">×</span><br>
+        <p style="font-size: 130%; text-align: center">User info</p>
+        <p>Users who share this list:</p>
+        <div style="width: 100%">
+            <div id="delInfo" class="list-group">
+
+            </div>
+        </div>
+        <br><br>
+        <button type="button" onclick="deleteTodoList()" class="btn btn-danger" style="width: 100%">Delete!</button>
+        <br><br>
+        <div hidden id="delSuccess" class="alert alert-success" role="alert">
+            <p>Your list is deleted!</p>
+        </div>
+        <div hidden id="delError" class="alert alert-danger" role="alert">
+            <p id="delErrorText"></p>
         </div>
     </div>
 </div>

@@ -2,6 +2,8 @@ package andrey019.dao;
 
 import andrey019.model.dao.User;
 
+import java.util.List;
+
 public interface UserDao {
 
     boolean save(User user);
@@ -10,4 +12,5 @@ public interface UserDao {
     User getByEmail(String email);
     User getByEmailWithSharedLists(String email);
     User getByEmailWitnListsAndSharedLists(String email);
+    List<User> getUsersByTodoListId(long id);
 }
