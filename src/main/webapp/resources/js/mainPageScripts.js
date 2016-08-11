@@ -13,7 +13,7 @@ $(document).ready(function () {
     };
 
     window.onclick = function(event) {
-        if (event.currentTarget != document.getElementById("registrationModal")) {
+        if (event.currentTarget == document.getElementById("registrationModal")) {
             onRegFormClose();
         }
     };
