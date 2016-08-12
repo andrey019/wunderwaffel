@@ -42,7 +42,7 @@
             <div class="row" style="width: 320px">
                 <div class="col-lg-6" style="width: 100%">
                     <div class="input-group" style="width: 100%">
-                        <input id="findTodoInput" type="text" class="form-control" onchange="findTodo()" placeholder="Search TODO...">
+                        <input id="findTodoInput" type="text" class="form-control" onkeyup="findTodoEnter(event)" placeholder="Search TODO...">
                     <span class="input-group-btn">
                         <button class="btn btn-default" type="button" onclick="findTodo()" style="font-size: 20px"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
                     </span>
@@ -68,6 +68,12 @@
             </div>
         </div>
         <br><br>
+        <div id="searchResult" style="width: 100%; padding-right: 30px">
+            <%--<div id="searchResult" class="list-group" style="padding-right: 30px">--%>
+
+            <%--</div>--%>
+
+        </div>
         <div style="width: 100%">
             <div id="todoResult" class="list-group" style="padding-right: 30px">
 
@@ -77,12 +83,6 @@
         <br><br>
         <div style="width: 100%">
             <div id="doneTodoResult" class="list-group" style="padding-right: 30px">
-
-            </div>
-        </div>
-        <br><br>
-        <div style="width: 100%">
-            <div id="searchResult" class="list-group" style="padding-right: 30px">
 
             </div>
         </div>
@@ -198,7 +198,7 @@
         <p id="shareTodoListHeader" style="font-size: 130%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis"></p>
         <div class="input-group">
             <span class="input-group-addon"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span></span>
-            <input id="shareEmailInput" placeholder="User email" type="email" class="form-control" aria-describedby="basic-addon1">
+            <input id="shareEmailInput" onkeyup="shareUserEnter(event)" placeholder="User email" type="email" class="form-control" aria-describedby="basic-addon1">
         </div>
         <br>
         <button id="shareButton" type="button" onclick="shareUser()" class="btn btn-success" style="width: 100%">Share</button>

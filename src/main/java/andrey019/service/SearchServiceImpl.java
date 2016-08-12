@@ -11,10 +11,13 @@ import org.springframework.stereotype.Service;
 @Service("searchService")
 public class SearchServiceImpl implements SearchService {
 
+    private final static String TODO_GROUP_START = "<div class=\"list-group\">";
+    private final static String TODO_GROUP_END = "</div>";
+
     private final static String TODO_BUTTON_0 = "<button id=\"todo=";
     private final static String TODO_BUTTON_1 = "\" name=\"list=";
     private final static String TODO_BUTTON_2 = "\" type=\"button\" class=\"list-group-item\" " +
-            "onclick=\"doneTodo(event)\" style=\"word-wrap: break-word\">";
+            "onclick=\"doneTodoFromSearch(event)\" style=\"word-wrap: break-word\">";
     private final static String TODO_BUTTON_3 = "<div style=\"font-size:11px; text-align: right\">Created by: ";
     private final static String TODO_BUTTON_4 = ".</div></button>";
 
@@ -46,11 +49,15 @@ public class SearchServiceImpl implements SearchService {
         for (TodoList todoList : user.getSharedTodoLists()) {
             for (Todo todo : todoList.getTodos()) {
                 if (todo.getTodoText().contains(request)) {
+                    if (!isFound) {
+                        stringBuilder.append(TODO_GROUP_START);
+                        isFound = true;
+                    }
                     addTodo(stringBuilder, todo);
-                    isFound = true;
                 }
             }
             if (isFound) {
+                stringBuilder.append(TODO_GROUP_END);
                 addListButton(stringBuilder, todoList);
                 isFound = false;
             }

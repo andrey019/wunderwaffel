@@ -103,6 +103,20 @@ function addTodoListInputEnter(event) {
     }
 }
 
+function findTodoEnter(event) {
+    event.preventDefault();
+    if (event.keyCode == 13) {
+        findTodo();
+    }
+}
+
+function shareUserEnter(event) {
+    event.preventDefault();
+    if (event.keyCode == 13) {
+        shareUser();
+    }
+}
+
 function showDoneTodosClick() {
     if (typeof window.showDoneTodos !== 'undefined' && window.showDoneTodos != null) {
         window.showDoneTodos = null;
@@ -164,6 +178,8 @@ function jsonErrorHandler(jqXHR, exception) {
 }
 
 function loadLists() {
+    $("#showDoneTodosButton").show();
+
     $.ajax({
         type: "POST",
         url: "/user/loadLists",
@@ -183,12 +199,26 @@ function loadLists() {
     });
 }
 
+function loadListsFromSearch() {
+    $.ajax({
+        type: "POST",
+        url: "/user/loadLists",
+        data: null,
+        contentType: 'application/json',
+        headers: getCSRFHeader(),
+        success: function (data) {
+            document.getElementById("listResult").innerHTML = data;
+        },
+        error: function (jqXHR, exception) {
+            jsonErrorHandler(jqXHR, exception);
+        }
+    });
+}
+
 function loadCurrentListTodos() {
     if (typeof window.currentList === 'undefined' || window.currentList == null) {
         return;
     }
-
-    $("#showDoneTodosButton").show();
 
     var jsonCurrentListTodos = {
         "listId": window.currentList.id.split("=")[1],
@@ -226,6 +256,7 @@ function loadTodos(event) {
     window.currentList = event.currentTarget;
     window.showDoneTodos = null;
     window.navbarText = event.currentTarget.getAttribute("name");
+    document.getElementById("searchResult").innerHTML = "";
     loadLists();
 }
 
@@ -325,6 +356,40 @@ function doneTodo(event) {
             } else {        // not found error
                 $(todo).hide();
                 loadLists();
+            }
+        },
+        error: function (jqXHR, exception) {
+            jsonErrorHandler(jqXHR, exception);
+        }
+    });
+}
+
+function doneTodoFromSearch(event) {
+    event.preventDefault();
+
+    var todo = event.currentTarget;
+
+    var jsonDoneTodo = {
+        "listId": todo.getAttribute("name").split("=")[1],
+        "todoId": todo.id.split("=")[1],
+        "doneTodoId": 0,
+        "shareWith": null,
+        "unShareWith": 0,
+        "todoText": null,
+        "listName": null
+    };
+
+    $.ajax({
+        type: "POST",
+        url: "/user/doneTodo",
+        data: JSON.stringify(jsonDoneTodo),
+        contentType: 'application/json',
+        headers: getCSRFHeader(),
+        success: function (data) {
+            if (data == "ok") {
+                $(todo).hide();
+                loadListsFromSearch();
+                findTodo();
             }
         },
         error: function (jqXHR, exception) {
@@ -663,6 +728,7 @@ function findTodo() {
             document.getElementById("doneTodoResult").innerHTML = "";
             $("#showDoneTodosButton").hide();
             document.getElementById("searchResult").innerHTML = data;
+
             //if (data != "") {
             //    document.getElementById("searchResult").innerHTML = data;
             //} else {
