@@ -122,7 +122,7 @@ function loadCurrentListTodos() {
     }
 
     var jsonCurrentListTodos = {
-        "listId": window.currentList,
+        "listId": window.currentList.id.split("=")[1],
         "todoId": 0,
         "doneTodoId": 0,
         "shareWith": null,
@@ -154,7 +154,7 @@ function loadCurrentListTodos() {
 
 function loadTodos(event) {
     event.preventDefault();
-    window.currentList = event.currentTarget.id.split("=")[1];
+    window.currentList = event.currentTarget;
     window.showDoneTodos = null;
     window.navbarText = event.currentTarget.getAttribute("name");
     loadLists();
@@ -193,7 +193,7 @@ function loadDoneTodos() {
     }
 
     var jsonDoneTodos = {
-        "listId": window.currentList,
+        "listId": window.currentList.id.split("=")[1],
         "todoId": 0,
         "doneTodoId": 0,
         "shareWith": null,
@@ -224,7 +224,7 @@ function addTodo() {
     }
 
     var jsonAddTodo = {
-        "listId": window.currentList,
+        "listId": window.currentList.id.split("=")[1],
         "todoId": 0,
         "doneTodoId": 0,
         "shareWith": null,
@@ -258,7 +258,7 @@ function doneTodo(event) {
     var todo = event.currentTarget;
 
     var jsonDoneTodo = {
-        "listId": window.currentList,
+        "listId": window.currentList.id.split("=")[1],
         "todoId": todo.id.split("=")[1],
         "doneTodoId": 0,
         "shareWith": null,
@@ -297,7 +297,7 @@ function unDoneTodo(event) {
     var doneTodo = event.currentTarget;
 
     var jsonUnDoneTodo = {
-        "listId": window.currentList,
+        "listId": window.currentList.id.split("=")[1],
         "todoId": 0,
         "doneTodoId": doneTodo.id.split("=")[1],
         "shareWith": null,
@@ -361,7 +361,7 @@ function addTodoList() {
 function getDeleteInfo() {
     document.getElementById("delTodoListHeader").innerHTML = window.navbarText;
     var jsonTodoList = {
-        "todoListId": window.currentList
+        "todoListId": window.currentList.id.split("=")[1]
     };
 
     $.ajax({
@@ -391,7 +391,7 @@ function deleteTodoList() {
     }
 
     var jsonTodoList = {
-        "todoListId": window.currentList
+        "todoListId": window.currentList.id.split("=")[1]
     };
 
     $.ajax({
@@ -435,7 +435,7 @@ function unShareUser(event) {
     var unShareUser = event.currentTarget;
 
     var jsonUnShare = {
-        "listId": window.currentList,
+        "listId": window.currentList.id.split("=")[1],
         "todoId": 0,
         "doneTodoId": 0,
         "shareWith": null,
@@ -471,7 +471,7 @@ function unShareUser(event) {
 function getShareInfo() {
     document.getElementById("shareTodoListHeader").innerHTML = window.navbarText;
     var jsonTodoList = {
-        "todoListId": window.currentList
+        "todoListId": window.currentList.id.split("=")[1]
     };
 
     $.ajax({

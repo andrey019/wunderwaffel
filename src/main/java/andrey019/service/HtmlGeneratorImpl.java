@@ -34,11 +34,12 @@ public class HtmlGeneratorImpl implements HtmlGenerator {
     private final static String DONE_TODO_BUTTON_3 = ". Done by: ";
     private final static String DONE_TODO_BUTTON_4 = ".</div></button>";
 
-    private final static String LIST_INFO_0 = "<button type=\"button\" class=\"list-group-item\">";
+    private final static String LIST_INFO_0 = "<button type=\"button\" class=\"list-group-item " +
+            "list-group-item-warning\">";
     private final static String LIST_INFO_1 = "</button>";
 
     private final static String SHARE_INFO_0 = "<button id=\"unShare=";
-    private final static String SHARE_INFO_1 = "\" type=\"button\" class=\"list-group-item\" " +
+    private final static String SHARE_INFO_1 = "\" type=\"button\" class=\"list-group-item list-group-item-danger\" " +
             "onclick=\"unShareUser(event)\" style=\"word-wrap: break-word\"";
     private final static String SHARE_INFO_2 = " disabled";
     private final static String SHARE_INFO_3 = ">";
