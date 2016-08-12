@@ -729,7 +729,7 @@ function findTodo() {
             $("#showDoneTodosButton").hide();
             document.getElementById("navbarText").innerHTML = "Serch results...";
             document.getElementById("searchResult").innerHTML = data;
-            window.currentList.className = "list-group-item";
+            document.getElementById(window.currentList.id).className = "list-group-item";
             window.currentList = null;
 
             //if (data != "") {
