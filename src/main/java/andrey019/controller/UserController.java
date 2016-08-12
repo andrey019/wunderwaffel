@@ -157,6 +157,7 @@ public class UserController {
     @ResponseBody
     public String findTodo(@RequestBody JsonFindTodo jsonFindTodo) {
         logService.ajaxJson("findTodo " + getUserEmail());
+        System.out.println(jsonFindTodo.getRequest());
         return searchService.findTodos(getUserEmail(), jsonFindTodo.getRequest());
     }
 

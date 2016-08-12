@@ -33,7 +33,7 @@ public class SearchServiceImpl implements SearchService {
 
     @Override
     public String findTodos(String email, String request) {
-        User user = userDao.getByEmailWithSharedLists(email);
+        User user = userDao.getByEmailWithSharedListsAndTodos(email);
         if (user == null) {
             return EMPTY;
         }
