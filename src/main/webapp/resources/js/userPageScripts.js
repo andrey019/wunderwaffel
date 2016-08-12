@@ -467,6 +467,7 @@ function deleteTodoList() {
 }
 
 function shareUser() {
+    event.preventDefault();
     if (typeof window.currentList === 'undefined' || window.currentList == null ||
         (document.getElementById("shareEmailInput").value == "")) {
         return;

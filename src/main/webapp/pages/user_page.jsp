@@ -179,14 +179,12 @@
     <div class="modal-content">
         <span id="shareCloseSpan" class="close">×</span><br>
         <p id="shareTodoListHeader" style="font-size: 130%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis"></p>
-        <form>
-            <div class="input-group">
-                <span class="input-group-addon">E</span>
-                <input id="shareEmailInput" placeholder="User email" type="email" class="form-control" aria-describedby="basic-addon1">
-            </div>
-            <br>
-            <button id="shareButton" type="button" onclick="shareUser()" class="btn btn-success" style="width: 100%">Share</button>
-        </form>
+        <div class="input-group">
+            <span class="input-group-addon">E</span>
+            <input id="shareEmailInput" placeholder="User email" type="email" class="form-control" aria-describedby="basic-addon1">
+        </div>
+        <br>
+        <button id="shareButton" type="button" onclick="shareUser()" class="btn btn-success" style="width: 100%">Share</button>
         <br>
         <div hidden id="shareSuccess" class="alert alert-success" role="alert">
             <p>Your list is shared!</p>
