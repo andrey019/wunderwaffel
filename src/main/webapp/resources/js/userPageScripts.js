@@ -89,21 +89,85 @@ function onShareClose() {
     document.getElementById("sharedUsers").innerHTML = "";
 }
 
-function loadLists() {
-    //var jsonLoadLists = {
-    //    "listId": 0,
-    //    "todoId": 0,
-    //    "doneTodoId": 0,
-    //    "shareWith": null,
-    //    "unShareWith": 0,
-    //    "todoText": null,
-    //    "listName": null
-    //};
+function addTodoInputEnter(event) {
+    event.preventDefault();
+    if (event.keyCode == 13) {
+        addTodo();
+    }
+}
 
+function addTodoListInputEnter(event) {
+    event.preventDefault();
+    if (event.keyCode == 13) {
+        addTodoList();
+    }
+}
+
+function showDoneTodosClick() {
+    if (typeof window.showDoneTodos !== 'undefined' && window.showDoneTodos != null) {
+        window.showDoneTodos = null;
+        document.getElementById("doneTodoResult").innerHTML = "";
+        return;
+    }
+    window.showDoneTodos = "ok";
+    loadDoneTodos();
+}
+
+function refresh(event) {
+    event.preventDefault();
+    loadLists();
+}
+
+function getCSRFHeader() {
+    var csrfHeader = $("meta[name='_csrf_header']").attr("content");
+    var csrfToken = $("meta[name='_csrf']").attr("content");
+    var headers = {};
+    headers[csrfHeader] = csrfToken;
+    return headers;
+}
+
+function passCheck() {
+    var passLength = document.getElementById("proPassInput").value.length;
+    if ( (passLength < 6) || (passLength > 20) ) {
+        $("#proPassError").show();
+    } else {
+        $("#proPassError").hide();
+    }
+}
+
+function repeatPassCheck() {
+    if (document.getElementById("proPassInput").value != document.getElementById("proRepeatPassInput").value) {
+        $("#proRepeatPassError").show();
+    } else {
+        $("#proRepeatPassError").hide();
+    }
+}
+
+function jsonErrorHandler(jqXHR, exception) {
+    var msg = '';
+    if (jqXHR.status === 0) {
+        msg = 'Not connect.\n Verify Network.';
+    } else if (jqXHR.status == 404) {
+        msg = 'Requested page not found. [404]';
+    } else if (jqXHR.status == 500) {
+        msg = 'Internal Server Error [500].';
+    } else if (exception === 'parsererror') {
+        msg = 'Requested JSON parse failed.';
+    } else if (exception === 'timeout') {
+        msg = 'Time out error.';
+    } else if (exception === 'abort') {
+        msg = 'Ajax request aborted.';
+    } else {
+        msg = 'Uncaught Error.\n' + jqXHR.responseText;
+    }
+    alert(msg + "/ status: " + jqXHR.status + "/ exception: " + exception);
+}
+
+function loadLists() {
     $.ajax({
         type: "POST",
         url: "/user/loadLists",
-        data: null, //JSON.stringify(jsonLoadLists),
+        data: null,
         contentType: 'application/json',
         headers: getCSRFHeader(),
         success: function (data) {
@@ -161,33 +225,6 @@ function loadTodos(event) {
     window.showDoneTodos = null;
     window.navbarText = event.currentTarget.getAttribute("name");
     loadLists();
-
-
-    //var jsonTodos = {
-    //        "listId": window.currentList,
-    //        "todoId": 0,
-    //        "doneTodoId": 0,
-    //        "shareWith": null,
-    //        "unShareWith": 0,
-    //        "todoText": null,
-    //        "listName": null
-    //    };
-    //
-    //$.ajax({
-    //    type: "POST",
-    //    url: "/user/loadTodos",
-    //    data: JSON.stringify(jsonTodos),
-    //    contentType: 'application/json',
-    //    headers: getCSRFHeader(),
-    //    success: function (data) {
-    //        document.getElementById("navbarText").innerHTML = window.navbarText;
-    //        document.getElementById("todoResult").innerHTML = data;
-    //        document.getElementById("doneTodoResult").innerHTML = "";
-    //    },
-    //    error: function (jqXHR, exception) {
-    //        jsonErrorHandler(jqXHR, exception);
-    //    }
-    //});
 }
 
 function loadDoneTodos() {
@@ -429,6 +466,49 @@ function deleteTodoList() {
     });
 }
 
+function shareUser() {
+    if (typeof window.currentList === 'undefined' || window.currentList == null ||
+        (document.getElementById("shareEmailInput").value == "")) {
+        return;
+    }
+
+    var jsonAddTodoList = {
+        "listId": window.currentList.id.split("=")[1],
+        "todoId": 0,
+        "doneTodoId": 0,
+        "shareWith": document.getElementById("shareEmailInput").value,
+        "unShareWith": 0,
+        "todoText": null,
+        "listName": null
+    };
+
+    $.ajax({
+        type: "POST",
+        url: "/user/shareUser",
+        data: JSON.stringify(jsonAddTodoList),
+        contentType: 'application/json',
+        headers: getCSRFHeader(),
+        success: function (data) {
+            if (data == "ok") {
+                $("#shareError").hide();
+                $("#shareSuccess").show();
+                getShareInfo();
+            } else if (data == "error") {
+                $("#shareSuccess").hide();
+                document.getElementById("shareErrorText").innerHTML = "Server internal error!";
+                $("#shareError").show();
+            } else {
+                $("#shareSuccess").hide();
+                document.getElementById("shareErrorText").innerHTML = data;
+                $("#shareError").show();
+            }
+        },
+        error: function (jqXHR, exception) {
+            jsonErrorHandler(jqXHR, exception);
+        }
+    });
+}
+
 function unShareUser(event) {
     event.preventDefault();
     if (typeof window.currentList === 'undefined' || window.currentList == null) {
@@ -496,80 +576,6 @@ function getShareInfo() {
             jsonErrorHandler(jqXHR, exception);
         }
     });
-}
-
-function getCSRFHeader() {
-    var csrfHeader = $("meta[name='_csrf_header']").attr("content");
-    var csrfToken = $("meta[name='_csrf']").attr("content");
-    var headers = {};
-    headers[csrfHeader] = csrfToken;
-    return headers;
-}
-
-function jsonErrorHandler(jqXHR, exception) {
-    var msg = '';
-    if (jqXHR.status === 0) {
-        msg = 'Not connect.\n Verify Network.';
-    } else if (jqXHR.status == 404) {
-        msg = 'Requested page not found. [404]';
-    } else if (jqXHR.status == 500) {
-        msg = 'Internal Server Error [500].';
-    } else if (exception === 'parsererror') {
-        msg = 'Requested JSON parse failed.';
-    } else if (exception === 'timeout') {
-        msg = 'Time out error.';
-    } else if (exception === 'abort') {
-        msg = 'Ajax request aborted.';
-    } else {
-        msg = 'Uncaught Error.\n' + jqXHR.responseText;
-    }
-    alert(msg + "/ status: " + jqXHR.status + "/ exception: " + exception);
-}
-
-function addTodoInputEnter(event) {
-    event.preventDefault();
-    if (event.keyCode == 13) {
-        addTodo();
-    }
-}
-
-function addTodoListInputEnter(event) {
-    event.preventDefault();
-    if (event.keyCode == 13) {
-        addTodoList();
-    }
-}
-
-function showDoneTodosClick() {
-    if (typeof window.showDoneTodos !== 'undefined' && window.showDoneTodos != null) {
-        window.showDoneTodos = null;
-        document.getElementById("doneTodoResult").innerHTML = "";
-        return;
-    }
-    window.showDoneTodos = "ok";
-    loadDoneTodos();
-}
-
-function refresh(event) {
-    event.preventDefault();
-    loadLists();
-}
-
-function passCheck() {
-    var passLength = document.getElementById("proPassInput").value.length;
-    if ( (passLength < 6) || (passLength > 20) ) {
-        $("#proPassError").show();
-    } else {
-        $("#proPassError").hide();
-    }
-}
-
-function repeatPassCheck() {
-    if (document.getElementById("proPassInput").value != document.getElementById("proRepeatPassInput").value) {
-        $("#proRepeatPassError").show();
-    } else {
-        $("#proRepeatPassError").hide();
-    }
 }
 
 function getProfile() {

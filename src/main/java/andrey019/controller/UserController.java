@@ -129,6 +129,13 @@ public class UserController {
         return todoService.getSharedWithInfo(getUserEmail(), jsonTodoList.getTodoListId());
     }
 
+    @RequestMapping(value = "/shareUser", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
+    @ResponseBody
+    public String shareUser(@RequestBody JsonMessage jsonMessage) {
+        logService.ajaxJson("shareUser " + getUserEmail());
+        return todoService.shareWith(getUserEmail(), jsonMessage.getListId(), jsonMessage.getShareWith());
+    }
+
     @RequestMapping(value = "/unShareUser", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
     @ResponseBody
     public String unShareUser(@RequestBody JsonMessage jsonMessage) {

@@ -9,6 +9,7 @@ import andrey019.model.dao.Todo;
 import andrey019.model.dao.TodoList;
 import andrey019.model.dao.User;
 import andrey019.service.HtmlGenerator;
+import org.apache.commons.validator.routines.EmailValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +22,8 @@ public class TodoServiceImpl implements TodoService {
     private final static String ERROR = "error";
     private final static String OK = "ok";
     private final static String NOT_OWNER = "This list was not created by you. You can not delete it!";
+    private final static String USER_NOT_FOUND = "There is no such user!";
+    private final static String EMAIL_NOT_VALID = "Email is not valid!";
 
     @Autowired
     private UserDao userDao;
@@ -36,6 +39,9 @@ public class TodoServiceImpl implements TodoService {
 
     @Autowired
     private HtmlGenerator htmlGenerator;
+
+    @Autowired
+    private EmailValidator emailValidator;
 
     @Override
     public boolean addTodoList(String email, String todoListName) {
@@ -116,21 +122,30 @@ public class TodoServiceImpl implements TodoService {
     }
 
     @Override
-    public boolean shareTodoList(String email, long todoListId, String emailToShareWith) {
-        User user = userDao.getByEmail(email);
-        if (user == null) {
-            return false;
+    public String shareWith(String email, long todoListId, String emailToShareWith) {
+        if (!emailValidator.isValid(emailToShareWith)) {
+            return EMAIL_NOT_VALID;
         }
-        TodoList todoList = getListIfAllowed(user, todoListId);
-        if (todoList == null) {
-            return false;
-        }
-        User userToShare = userDao.getByEmail(emailToShareWith);
+        User userToShare = userDao.getByEmailWithSharedLists(emailToShareWith);
         if (userToShare == null) {
-            return false;
+            return USER_NOT_FOUND;
+        }
+        User user = userDao.getByEmailWithSharedLists(email);
+        if (user == null) {
+            return ERROR;
+        }
+        TodoList todoList = todoListDao.getByIdWithUsers(todoListId);
+        if (todoList == null) {
+            return ERROR;
+        }
+        if (!todoList.getUsers().contains(user)) {
+            return ERROR;
         }
         todoList.addUsers(userToShare);
-        return todoListDao.save(todoList);
+        if (!todoListDao.save(todoList)) {
+            return ERROR;
+        }
+        return OK;
     }
 
     @Override

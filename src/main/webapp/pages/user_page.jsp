@@ -184,7 +184,7 @@
             <input id="shareEmailInput" placeholder="User email" type="email" class="form-control" aria-describedby="basic-addon1">
         </div>
         <br>
-        <button id="shareButton" type="button" onclick="shareTodoList()" class="btn btn-success" style="width: 100%">Share</button>
+        <button id="shareButton" type="button" onclick="shareUser()" class="btn btn-success" style="width: 100%">Share</button>
         <br>
         <div hidden id="shareSuccess" class="alert alert-success" role="alert">
             <p>Your list is shared!</p>
