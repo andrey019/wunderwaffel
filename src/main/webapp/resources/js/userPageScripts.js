@@ -109,7 +109,7 @@ function loadLists() {
         success: function (data) {
             document.getElementById("listResult").innerHTML = data;
             if (typeof window.currentList !== 'undefined' && window.currentList != null) {
-                window.currentList.className = "list-group-item active";
+                document.getElementById(window.currentList.id).className = "list-group-item active";
             }
             loadCurrentListTodos();
         },
