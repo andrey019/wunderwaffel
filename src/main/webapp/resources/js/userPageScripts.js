@@ -356,6 +356,7 @@ function doneTodo(event) {
             } else {
                 document.getElementById("todoResult").innerHTML = "";
                 document.getElementById("doneTodoResult").innerHTML = "";
+                document.getElementById("navbarText").innerHTML = "";
                 window.currentList = null;
                 loadLists();
             }
@@ -429,6 +430,7 @@ function unDoneTodo(event) {
             } else {
                 document.getElementById("todoResult").innerHTML = "";
                 document.getElementById("doneTodoResult").innerHTML = "";
+                document.getElementById("navbarText").innerHTML = "";
                 window.currentList = null;
                 loadLists();
             }
