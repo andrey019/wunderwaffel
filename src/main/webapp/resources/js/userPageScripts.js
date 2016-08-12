@@ -108,6 +108,9 @@ function loadLists() {
         headers: getCSRFHeader(),
         success: function (data) {
             document.getElementById("listResult").innerHTML = data;
+            if (typeof window.currentList !== 'undefined' && window.currentList != null) {
+                window.currentList.className = "list-group-item active";
+            }
             loadCurrentListTodos();
         },
         error: function (jqXHR, exception) {
