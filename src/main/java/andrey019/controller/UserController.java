@@ -42,7 +42,7 @@ public class UserController {
 
     @RequestMapping(value = "/loadLists", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
     @ResponseBody
-    public String loadLists(@RequestBody JsonMessage jsonMessage) {
+    public String loadLists() {
         logService.ajaxJson("loadLists " + getUserEmail());
         return htmlGenerator.generateTodoListsHtml(todoService.getAllTodoLists(getUserEmail()));
     }

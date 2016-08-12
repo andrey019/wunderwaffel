@@ -90,20 +90,20 @@ function onShareClose() {
 }
 
 function loadLists() {
-    var jsonLoadLists = {
-        "listId": 0,
-        "todoId": 0,
-        "doneTodoId": 0,
-        "shareWith": null,
-        "unShareWith": 0,
-        "todoText": null,
-        "listName": null
-    };
+    //var jsonLoadLists = {
+    //    "listId": 0,
+    //    "todoId": 0,
+    //    "doneTodoId": 0,
+    //    "shareWith": null,
+    //    "unShareWith": 0,
+    //    "todoText": null,
+    //    "listName": null
+    //};
 
     $.ajax({
         type: "POST",
         url: "/user/loadLists",
-        data: JSON.stringify(jsonLoadLists),
+        data: null, //JSON.stringify(jsonLoadLists),
         contentType: 'application/json',
         headers: getCSRFHeader(),
         success: function (data) {
