@@ -187,7 +187,7 @@
         <button id="shareButton" type="button" onclick="shareTodoList()" class="btn btn-success" style="width: 100%">Share</button>
         <br>
         <div hidden id="shareSuccess" class="alert alert-success" role="alert">
-            <p>Your list is deleted!</p>
+            <p>Your list is shared!</p>
         </div>
         <div hidden id="shareError" class="alert alert-danger" role="alert">
             <p id="shareErrorText"></p>
@@ -202,7 +202,7 @@
         </div>
         <br>
         <div hidden id="unShareSuccess" class="alert alert-success" role="alert">
-            <p>Your list is deleted!</p>
+            <p>User is deleted from your list!</p>
         </div>
         <div hidden id="unShareError" class="alert alert-danger" role="alert">
             <p id="unShareErrorText"></p>

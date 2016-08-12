@@ -95,7 +95,7 @@ function loadLists() {
         "todoId": 0,
         "doneTodoId": 0,
         "shareWith": null,
-        "unShareWith": null,
+        "unShareWith": 0,
         "todoText": null,
         "listName": null
     };
@@ -126,7 +126,7 @@ function loadCurrentListTodos() {
         "todoId": 0,
         "doneTodoId": 0,
         "shareWith": null,
-        "unShareWith": null,
+        "unShareWith": 0,
         "todoText": null,
         "listName": null
     };
@@ -160,7 +160,7 @@ function loadTodos(event) {
         "todoId": 0,
         "doneTodoId": 0,
         "shareWith": null,
-        "unShareWith": null,
+        "unShareWith": 0,
         "todoText": null,
         "listName": null
     };
@@ -192,7 +192,7 @@ function loadDoneTodos() {
         "todoId": 0,
         "doneTodoId": 0,
         "shareWith": null,
-        "unShareWith": null,
+        "unShareWith": 0,
         "todoText": null,
         "listName": null
     };
@@ -223,7 +223,7 @@ function addTodo() {
         "todoId": 0,
         "doneTodoId": 0,
         "shareWith": null,
-        "unShareWith": null,
+        "unShareWith": 0,
         "todoText": document.getElementById("addTodoInput").value,
         "listName": null
     };
@@ -257,7 +257,7 @@ function doneTodo(event) {
         "todoId": event.currentTarget.id.split("=")[1],
         "doneTodoId": 0,
         "shareWith": null,
-        "unShareWith": null,
+        "unShareWith": 0,
         "todoText": null,
         "listName": null
     };
@@ -293,7 +293,7 @@ function unDoneTodo(event) {
         "todoId": 0,
         "doneTodoId": event.currentTarget.id.split("=")[1],
         "shareWith": null,
-        "unShareWith": null,
+        "unShareWith": 0,
         "todoText": null,
         "listName": null
     };
@@ -326,7 +326,7 @@ function addTodoList() {
         "todoId": 0,
         "doneTodoId": 0,
         "shareWith": null,
-        "unShareWith": null,
+        "unShareWith": 0,
         "todoText": null,
         "listName": document.getElementById("addTodoListInput").value
     };
@@ -407,6 +407,48 @@ function deleteTodoList() {
                 $("#delSuccess").hide();
                 document.getElementById("delErrorText").innerHTML = data;
                 $("#delError").show();
+            }
+        },
+        error: function (jqXHR, exception) {
+            jsonErrorHandler(jqXHR, exception);
+        }
+    });
+}
+
+function unShareUser(event) {
+    event.preventDefault();
+    if (typeof window.currentList === 'undefined' || window.currentList == null) {
+        return;
+    }
+
+    var unShareUser = event.currentTarget;
+
+    var jsonUnShare = {
+        "listId": window.currentList,
+        "todoId": 0,
+        "doneTodoId": 0,
+        "shareWith": null,
+        "unShareWith": unShareUser.id.split("=")[1],
+        "todoText": null,
+        "listName": null
+    };
+
+    $.ajax({
+        type: "POST",
+        url: "/user/unShareUser",
+        data: JSON.stringify(jsonUnShare),
+        contentType: 'application/json',
+        headers: getCSRFHeader(),
+        success: function (data) {
+            if (data == "ok") {
+                $("#unShareError").hide();
+                $("#unShareSuccess").show();
+                $(unShareUser).hide();
+                getShareInfo();
+            } else {
+                $("#unShareSuccess").hide();
+                document.getElementById("unShareErrorText").innerHTML = "Server internal error!";
+                $("#unShareError").show();
             }
         },
         error: function (jqXHR, exception) {
