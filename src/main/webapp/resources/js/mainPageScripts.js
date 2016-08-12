@@ -35,7 +35,7 @@ $(document).ready(function () {
 function onRegFormClose() {
     document.getElementById("registrationModal").style.display = "none";
     $("#signInDiv").show();
-    document.getElementById("registrationButton").disabled = false;
+    document.getElementById("regButton").disabled = false;
     document.getElementById("regEmailInput").value = "";
     document.getElementById("regFNameInput").value = "";
     document.getElementById("regLNameInput").value = "";
@@ -53,7 +53,7 @@ function onRegFormClose() {
 function onRecoveryClose() {
     document.getElementById("recoveryModal").style.display = "none";
     $("#signInDiv").show();
-    document.getElementById("recoveryButton").disabled = false;
+    document.getElementById("recButton").disabled = false;
     document.getElementById("recEmailInput").value = "";
     $("#recSuccess").hide();
     $("#recError").hide();
@@ -194,7 +194,7 @@ function passwordRecovery() {
             } else {
                 $("#recError").hide();
                 $("#recSuccess").show();
-                document.getElementById("recoveryButton").disabled = true;
+                document.getElementById("recButton").disabled = true;
             }
         },
         error: function (jqXHR, exception) {

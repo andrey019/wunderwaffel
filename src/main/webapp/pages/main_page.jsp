@@ -147,7 +147,7 @@
             <input id="recEmailInput" type="email" class="form-control" placeholder="Email" aria-describedby="basic-addon1" required>
         </div>
         <br><br>
-        <button type="button" onclick="passwordRecovery()" class="btn btn-primary" style="width: 100%">Recover</button>
+        <button id="recButton" type="button" onclick="passwordRecovery()" class="btn btn-primary" style="width: 100%">Recover</button>
         <br><br>
         <div hidden id="recSuccess" class="alert alert-success" role="alert">
             <p>Recovery successful!<br>
