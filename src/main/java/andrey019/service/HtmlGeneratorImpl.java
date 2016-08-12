@@ -35,7 +35,7 @@ public class HtmlGeneratorImpl implements HtmlGenerator {
     private final static String DONE_TODO_BUTTON_4 = ".</div></button>";
 
     private final static String LIST_INFO_0 = "<button type=\"button\" class=\"list-group-item " +
-            "list-group-item-warning\">";
+            "list-group-item-warning\" disabled>";
     private final static String LIST_INFO_1 = "</button>";
 
     private final static String SHARE_INFO_0 = "<button id=\"unShare=";
