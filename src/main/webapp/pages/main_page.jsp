@@ -69,7 +69,7 @@
         </div>
         <input type="hidden" name="${_csrf.parameterName}"   value="${_csrf.token}" />
         <div class="form-actions">
-            <input type="submit" class="btn btn-block btn-primary btn-default" value="Sign in">
+            <input type="submit" class="btn btn-block btn-primary" value="Sign in">
         </div><br>
         <button id="recoveryButton" type="button" class="btn btn-danger" style="width: 100%">Can't remember my password...</button>
     </form>

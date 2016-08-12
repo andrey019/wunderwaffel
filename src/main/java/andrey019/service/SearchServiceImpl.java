@@ -22,11 +22,11 @@ public class SearchServiceImpl implements SearchService {
     private final static String TODO_BUTTON_4 = ".</div></button>";
 
     private final static String LIST_BUTTON_0 = "<button id=\"list=";
-    private final static String LIST_BUTTON_1 = "\" type=\"button\" class=\"list-group-item\" " +
+    private final static String LIST_BUTTON_1 = "\" type=\"button\" class=\"btn btn-primary\" " +
             "onclick=\"loadTodos(event)\" name=\"";
-    private final static String LIST_BUTTON_2 = "\" style=\"word-wrap: break-word; width: auto\"><span class=\"badge\">";
+    private final static String LIST_BUTTON_2 = "\" style=\"word-wrap: break-word\"><span class=\"badge\">";
     private final static String LIST_BUTTON_3 = "</span>";
-    private final static String LIST_BUTTON_4 = "</button>";
+    private final static String LIST_BUTTON_4 = "  </button>";
 
     private final static String NEW_LINE = "<br>";
     private final static String EMPTY = "";
