@@ -9,6 +9,11 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 public class ExceptionController {
 
     @ExceptionHandler(CookieTheftException.class)
+    public String CookieTheftException(Exception ex) {
+        return "forward:/";
+    }
+
+    @ExceptionHandler(Exception.class)
     public String handleAllException(Exception ex) {
         return "forward:/";
     }
