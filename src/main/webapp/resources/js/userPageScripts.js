@@ -353,8 +353,10 @@ function doneTodo(event) {
             if (data == "ok") {
                 $(todo).hide();
                 loadLists();
-            } else {        // not found error
-                $(todo).hide();
+            } else {
+                document.getElementById("todoResult").innerHTML = "";
+                document.getElementById("doneTodoResult").innerHTML = "";
+                window.currentList = null;
                 loadLists();
             }
         },
@@ -386,11 +388,9 @@ function doneTodoFromSearch(event) {
         contentType: 'application/json',
         headers: getCSRFHeader(),
         success: function (data) {
-            if (data == "ok") {
-                $(todo).hide();
-                loadListsFromSearch();
-                findTodo();
-            }
+            $(todo).hide();
+            loadListsFromSearch();
+            findTodo();
         },
         error: function (jqXHR, exception) {
             jsonErrorHandler(jqXHR, exception);
@@ -426,8 +426,10 @@ function unDoneTodo(event) {
             if (data == "ok") {
                 $(doneTodo).hide();
                 loadLists();
-            } else {        // not found error
-                $(doneTodo).hide();
+            } else {
+                document.getElementById("todoResult").innerHTML = "";
+                document.getElementById("doneTodoResult").innerHTML = "";
+                window.currentList = null;
                 loadLists();
             }
         },
