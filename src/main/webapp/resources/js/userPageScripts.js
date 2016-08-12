@@ -254,7 +254,7 @@ function doneTodo(event) {
 
     var jsonDoneTodo = {
         "listId": window.currentList,
-        "todoId": event.currentTarget.id.split("=")[1],
+        "todoId": todo.id.split("=")[1],
         "doneTodoId": 0,
         "shareWith": null,
         "unShareWith": 0,
@@ -270,6 +270,9 @@ function doneTodo(event) {
         headers: getCSRFHeader(),
         success: function (data) {
             if (data == "ok") {
+                $(todo).hide();
+                loadLists();
+            } else {        // not found error
                 $(todo).hide();
                 loadLists();
             }
@@ -291,7 +294,7 @@ function unDoneTodo(event) {
     var jsonUnDoneTodo = {
         "listId": window.currentList,
         "todoId": 0,
-        "doneTodoId": event.currentTarget.id.split("=")[1],
+        "doneTodoId": doneTodo.id.split("=")[1],
         "shareWith": null,
         "unShareWith": 0,
         "todoText": null,
@@ -306,6 +309,9 @@ function unDoneTodo(event) {
         headers: getCSRFHeader(),
         success: function (data) {
             if (data == "ok") {
+                $(doneTodo).hide();
+                loadLists();
+            } else {        // not found error
                 $(doneTodo).hide();
                 loadLists();
             }
