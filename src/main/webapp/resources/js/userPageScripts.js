@@ -249,6 +249,9 @@ function loadDoneTodos() {
         contentType: 'application/json',
         headers: getCSRFHeader(),
         success: function (data) {
+            if (data == "") {
+                window.showDoneTodos = null;
+            }
             document.getElementById("doneTodoResult").innerHTML = data;
         },
         error: function (jqXHR, exception) {

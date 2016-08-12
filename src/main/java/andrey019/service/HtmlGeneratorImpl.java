@@ -133,17 +133,9 @@ public class HtmlGeneratorImpl implements HtmlGenerator {
         }
         StringBuilder stringBuilder = new StringBuilder();
         if (owner != null) {
-            stringBuilder.append(SHARE_INFO_0);
-            stringBuilder.append(owner.getId());
-            stringBuilder.append(SHARE_INFO_1);
-            stringBuilder.append(SHARE_INFO_2);
-            stringBuilder.append(SHARE_INFO_3);
-            stringBuilder.append(owner.getEmail());
-            stringBuilder.append(NEW_LINE);
-            stringBuilder.append(owner.getFullName());
-            stringBuilder.append(SHARE_INFO_4);
+            generateOwnerHtml(stringBuilder, owner);
         }
-        for(User user : users) {
+        for (User user : users) {
             stringBuilder.append(SHARE_INFO_0);
             stringBuilder.append(user.getId());
             stringBuilder.append(SHARE_INFO_1);
@@ -154,6 +146,18 @@ public class HtmlGeneratorImpl implements HtmlGenerator {
             stringBuilder.append(SHARE_INFO_4);
         }
         return stringBuilder.toString();
+    }
+
+    private void generateOwnerHtml(StringBuilder stringBuilder, User owner) {
+        stringBuilder.append(SHARE_INFO_0);
+        stringBuilder.append(owner.getId());
+        stringBuilder.append(SHARE_INFO_1);
+        stringBuilder.append(SHARE_INFO_2);
+        stringBuilder.append(SHARE_INFO_3);
+        stringBuilder.append(owner.getEmail());
+        stringBuilder.append(NEW_LINE);
+        stringBuilder.append(owner.getFullName());
+        stringBuilder.append(SHARE_INFO_4);
     }
 
     //    private String addBreaks(String text) {

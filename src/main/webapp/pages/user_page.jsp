@@ -81,6 +81,12 @@
             </div>
         </div>
         <br><br>
+        <div style="width: 100%">
+            <div id="searchResult" class="list-group" style="padding-right: 30px">
+
+            </div>
+        </div>
+        <br><br>
     </div>
 
 
