@@ -77,6 +77,9 @@ public class RegistrationServiceImpl implements RegistrationService {
         if (check != null) {
             return check;
         }
+        if ( fName.isEmpty() || lName.isEmpty() || (password.length() < 6) || (password.length() > 20) ) {
+            return ERROR;
+        }
         UserConfirmation userConfirmation = new UserConfirmation();
         userConfirmation.setEmail(email);
         userConfirmation.setfName(fName);
