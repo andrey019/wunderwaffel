@@ -39,6 +39,17 @@
 <div style="width: 100%; overflow: hidden; padding-top: 70px">
     <div style="width: 325px; float: left; position: fixed; bottom: 150px; height: auto; top: 70px; overflow-y: auto;">
         <div style="width: 290px; float: left; margin-left: 15px">
+            <div class="row" style="width: 320px">
+                <div class="col-lg-6" style="width: 100%">
+                    <div class="input-group" style="width: 100%">
+                        <input type="text" class="form-control" placeholder="Search TODO...">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+                    </span>
+                    </div>
+                </div>
+            </div>
+            <br>
             <div id="listResult" class="list-group">
 
             </div>
@@ -51,7 +62,7 @@
                 <div class="input-group" style="width: 100%">
                     <input id="addTodoInput" type="text" onkeyup="addTodoInputEnter(event)" class="form-control" placeholder="Add new TODO...">
                     <span class="input-group-btn">
-                        <button onclick="addTodo()" class="btn btn-default" type="button">+</button>
+                        <button onclick="addTodo()" class="btn btn-default" type="button"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
                     </span>
                 </div>
             </div>
@@ -79,7 +90,7 @@
                 <div class="input-group" style="width: 100%">
                     <input id="addTodoListInput" type="text" onkeyup="addTodoListInputEnter(event)" class="form-control" placeholder="Add new LIST...">
                     <span class="input-group-btn">
-                        <button onclick="addTodoList()" class="btn btn-default" type="button">+</button>
+                        <button onclick="addTodoList()" class="btn btn-default" type="button"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
                     </span>
                 </div>
             </div>
