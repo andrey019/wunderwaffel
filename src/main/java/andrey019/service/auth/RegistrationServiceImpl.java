@@ -99,13 +99,17 @@ public class RegistrationServiceImpl implements RegistrationService {
         }
         User user = new User();
         user.setUserFromConfirmation(userConfirmation);
+        if (!userDao.save(user)) {
+            return false;
+        }
+        user = userDao.getByEmailWitnListsAndSharedLists(user.getEmail());
+        if (user == null) {
+            return false;
+        }
         TodoList todoList = new TodoList();
         todoList.setName(FIRST_LIST);
-        user = userDao.merge(user);
         user.addTodoList(todoList);
-        userDao.save(user);
-        user = userDao.getByEmailWitnListsAndSharedListsAndUsers(user.getEmail());
-        user.addSharedTodoList(user.getTodoLists().iterator().next());
+        user.addSharedTodoList(todoList);
         if (userDao.save(user)) {
             registrationDao.delete(userConfirmation);
             return true;
