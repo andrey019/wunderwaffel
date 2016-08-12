@@ -116,22 +116,22 @@
         <p style="font-size: 130%; text-align: center">User info</p>
         <p>Leave fields that you don't want to change empty</p>
         <div class="input-group">
-            <span class="input-group-addon"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></span>
+            <span class="input-group-addon"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span></span>
             <input id="proEmailInput" type="email" class="form-control" aria-describedby="basic-addon1" disabled>
         </div>
         <br>
         <div class="input-group">
-            <span class="input-group-addon">F</span>
+            <span class="input-group-addon"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></span>
             <input id="proFNameInput" type="text" class="form-control" aria-describedby="basic-addon1 required">
         </div>
         <br>
         <div class="input-group" style="border-color: red">
-            <span class="input-group-addon">L</span>
+            <span class="input-group-addon"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></span>
             <input id="proLNameInput" type="text" name="lName" class="form-control" aria-describedby="basic-addon1 required">
         </div>
         <br>
         <div class="input-group">
-            <span class="input-group-addon">P</span>
+            <span class="input-group-addon"><span class="glyphicon glyphicon-lock" aria-hidden="true"></span></span>
             <input id="proPassInput" onblur="passCheck()" type="password" name="pass" class="form-control" placeholder="New password" aria-describedby="basic-addon1 required">
         </div>
         <div hidden id="proPassError" class="alert alert-danger" role="alert">
@@ -139,7 +139,7 @@
         </div>
         <br>
         <div class="input-group">
-            <span class="input-group-addon">P</span>
+            <span class="input-group-addon"><span class="glyphicon glyphicon-lock" aria-hidden="true"></span></span>
             <input id="proRepeatPassInput" onblur="repeatPassCheck()" type="password" class="form-control" placeholder="Repeat new password" aria-describedby="basic-addon1" required>
         </div>
         <div hidden id="proRepeatPassError" class="alert alert-danger" role="alert">
@@ -191,7 +191,7 @@
         <span id="shareCloseSpan" class="close">×</span><br>
         <p id="shareTodoListHeader" style="font-size: 130%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis"></p>
         <div class="input-group">
-            <span class="input-group-addon">E</span>
+            <span class="input-group-addon"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span></span>
             <input id="shareEmailInput" placeholder="User email" type="email" class="form-control" aria-describedby="basic-addon1">
         </div>
         <br>

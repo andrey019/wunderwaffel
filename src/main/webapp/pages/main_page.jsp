@@ -53,12 +53,12 @@
     </c:if>
     <form method="post" action="/">
         <div class="input-group">
-            <span class="input-group-addon">E</span>
+            <span class="input-group-addon"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span></span>
             <input id="emailInput" name="email" type="email" class="form-control" placeholder="Email" aria-describedby="basic-addon1" required>
         </div>
         <p></p>
         <div class="input-group">
-            <span class="input-group-addon">P</span>
+            <span class="input-group-addon"><span class="glyphicon glyphicon-lock" aria-hidden="true"></span></span>
             <input id="passwordInput" name="password" type="password" class="form-control" placeholder="Password" aria-describedby="basic-addon1" required>
         </div>
         <p></p>
@@ -83,7 +83,7 @@
         <span id="closeSpan" class="close">×</span><br>
         <p style="font-size: 130%; text-align: center">Registration form</p>
         <div class="input-group">
-            <span class="input-group-addon">E</span>
+            <span class="input-group-addon"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span></span>
             <input id="regEmailInput" onblur="emailCheck()" type="email" class="form-control" placeholder="Email" aria-describedby="basic-addon1" required>
         </div>
         <div hidden id="regEmailError" class="alert alert-danger" role="alert">
@@ -91,7 +91,7 @@
         </div>
         <br>
         <div class="input-group">
-            <span class="input-group-addon">F</span>
+            <span class="input-group-addon"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></span>
             <input id="regFNameInput" onblur="fNameCheck()" type="text" class="form-control" placeholder="First name" aria-describedby="basic-addon1 required">
         </div>
         <div hidden id="regFNameError" class="alert alert-danger" role="alert">
@@ -99,7 +99,7 @@
         </div>
         <br>
         <div class="input-group" style="border-color: red">
-            <span class="input-group-addon">L</span>
+            <span class="input-group-addon"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></span>
             <input id="regLNameInput" onblur="lNameCheck()" type="text" class="form-control" placeholder="Last name" aria-describedby="basic-addon1 required">
         </div>
         <div hidden id="regLNameError" class="alert alert-danger" role="alert">
@@ -107,7 +107,7 @@
         </div>
         <br>
         <div class="input-group">
-            <span class="input-group-addon">P</span>
+            <span class="input-group-addon"><span class="glyphicon glyphicon-lock" aria-hidden="true"></span></span>
             <input id="regPassInput" onblur="passCheck()" type="password" class="form-control" placeholder="Password" aria-describedby="basic-addon1 required">
         </div>
         <div hidden id="regPassError" class="alert alert-danger" role="alert">
@@ -115,7 +115,7 @@
         </div>
         <br>
         <div class="input-group">
-            <span class="input-group-addon">P</span>
+            <span class="input-group-addon"><span class="glyphicon glyphicon-lock" aria-hidden="true"></span></span>
             <input id="regRepeatPassInput" onblur="repeatPassCheck()" type="password" class="form-control" placeholder="Repeat password" aria-describedby="basic-addon1" required>
         </div>
         <div hidden id="regRepeatPassError" class="alert alert-danger" role="alert">
@@ -143,7 +143,7 @@
         <span id="recCloseSpan" class="close">×</span><br>
         <p style="font-size: 130%; text-align: center">Registration form</p>
         <div class="input-group">
-            <span class="input-group-addon">E</span>
+            <span class="input-group-addon"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span></span>
             <input id="recEmailInput" type="email" class="form-control" placeholder="Email" aria-describedby="basic-addon1" required>
         </div>
         <br>
