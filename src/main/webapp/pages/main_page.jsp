@@ -141,14 +141,14 @@
 <div id="recoveryModal" class="modal">
     <div class="modal-content">
         <span id="recCloseSpan" class="close">×</span><br>
-        <p style="font-size: 130%; text-align: center">Registration form</p>
+        <p style="font-size: 130%; text-align: center">Password recovery</p>
         <div class="input-group">
             <span class="input-group-addon"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span></span>
             <input id="recEmailInput" type="email" class="form-control" placeholder="Email" aria-describedby="basic-addon1" required>
         </div>
         <br>
         <br><br>
-        <button type="button" onclick="passwordRecovery()" class="btn btn-primary" style="width: 100%">Recover!</button>
+        <button type="button" onclick="passwordRecovery()" class="btn btn-primary" style="width: 100%">Recover</button>
         <br><br>
         <div hidden id="recSuccess" class="alert alert-success" role="alert">
             <p>Recovery successful!<br>
