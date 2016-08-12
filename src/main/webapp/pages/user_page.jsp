@@ -90,7 +90,7 @@
                 <div class="input-group" style="width: 100%">
                     <input id="addTodoListInput" type="text" onkeyup="addTodoListInputEnter(event)" class="form-control" placeholder="Add new LIST...">
                     <span class="input-group-btn">
-                        <button onclick="addTodoList()" class="btn btn-default" type="button" style="font-size: 14px"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
+                        <button onclick="addTodoList()" class="btn btn-default" type="button" style="font-size: 18px"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
                     </span>
                 </div>
             </div>
