@@ -24,9 +24,9 @@ public class SearchServiceImpl implements SearchService {
     private final static String LIST_BUTTON_0 = "<button id=\"list=";
     private final static String LIST_BUTTON_1 = "\" type=\"button\" class=\"btn btn-primary\" " +
             "onclick=\"loadTodos(event)\" name=\"";
-    private final static String LIST_BUTTON_2 = "\" style=\"word-wrap: break-word\"><span class=\"badge\">";
-    private final static String LIST_BUTTON_3 = "</span>";
-    private final static String LIST_BUTTON_4 = "  </button>";
+    private final static String LIST_BUTTON_2 = "\" style=\"word-wrap: break-word\">";
+    private final static String LIST_BUTTON_3 = "  <span class=\"badge\">";
+    private final static String LIST_BUTTON_4 = "</span></button>";
 
     private final static String NEW_LINE = "<br>";
     private final static String EMPTY = "";
@@ -84,10 +84,11 @@ public class SearchServiceImpl implements SearchService {
         stringBuilder.append(LIST_BUTTON_1);
         stringBuilder.append(todoList.getName());
         stringBuilder.append(LIST_BUTTON_2);
-        stringBuilder.append(todoList.getTodoAmount());
-        stringBuilder.append(LIST_BUTTON_3);
         stringBuilder.append(todoList.getName());
+        stringBuilder.append(LIST_BUTTON_3);
+        stringBuilder.append(todoList.getTodoAmount());
         stringBuilder.append(LIST_BUTTON_4);
+        stringBuilder.append(NEW_LINE);
         stringBuilder.append(NEW_LINE);
         stringBuilder.append(NEW_LINE);
     }
