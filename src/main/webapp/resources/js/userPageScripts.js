@@ -157,7 +157,7 @@ function loadTodos(event) {
     window.currentList = event.currentTarget.id.split("=")[1];
     window.showDoneTodos = null;
     window.navbarText = event.currentTarget.getAttribute("name");
-    loadCurrentListTodos();
+    loadLists();
 
 
     //var jsonTodos = {
