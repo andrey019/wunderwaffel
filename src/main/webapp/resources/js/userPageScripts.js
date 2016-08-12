@@ -728,6 +728,7 @@ function findTodo() {
             document.getElementById("doneTodoResult").innerHTML = "";
             $("#showDoneTodosButton").hide();
             document.getElementById("searchResult").innerHTML = data;
+            window.currentList.className = "list-group-item";
 
             //if (data != "") {
             //    document.getElementById("searchResult").innerHTML = data;
