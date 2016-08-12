@@ -44,7 +44,7 @@
                     <div class="input-group" style="width: 100%">
                         <input type="text" class="form-control" placeholder="Search TODO...">
                     <span class="input-group-btn">
-                        <button class="btn btn-default" type="button" style="font-size: 14px"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+                        <button class="btn btn-default" type="button" style="font-size: 20px"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
                     </span>
                     </div>
                 </div>
@@ -62,7 +62,7 @@
                 <div class="input-group" style="width: 100%">
                     <input id="addTodoInput" type="text" onkeyup="addTodoInputEnter(event)" class="form-control" placeholder="Add new TODO...">
                     <span class="input-group-btn">
-                        <button onclick="addTodo()" class="btn btn-default" type="button" style="font-size: 14px"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
+                        <button onclick="addTodo()" class="btn btn-default" type="button" style="font-size: 20px"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
                     </span>
                 </div>
             </div>
@@ -90,7 +90,7 @@
                 <div class="input-group" style="width: 100%">
                     <input id="addTodoListInput" type="text" onkeyup="addTodoListInputEnter(event)" class="form-control" placeholder="Add new LIST...">
                     <span class="input-group-btn">
-                        <button onclick="addTodoList()" class="btn btn-default" type="button" style="font-size: 18px"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
+                        <button onclick="addTodoList()" class="btn btn-default" type="button" style="font-size: 20px"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
                     </span>
                 </div>
             </div>
@@ -116,7 +116,7 @@
         <p style="font-size: 130%; text-align: center">User info</p>
         <p>Leave fields that you don't want to change empty</p>
         <div class="input-group">
-            <span class="input-group-addon">E</span>
+            <span class="input-group-addon"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></span>
             <input id="proEmailInput" type="email" class="form-control" aria-describedby="basic-addon1" disabled>
         </div>
         <br>
