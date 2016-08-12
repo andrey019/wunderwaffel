@@ -460,6 +460,8 @@ function addTodoList() {
         headers: getCSRFHeader(),
         success: function (data) {
             document.getElementById("addTodoListInput").value = "";
+            document.getElementById("searchResult").innerHTML = "";
+            document.getElementById("navbarText").innerHTML = "";
             loadLists();
         },
         error: function (jqXHR, exception) {
