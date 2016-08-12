@@ -14,5 +14,6 @@ public interface UserDao {
     User getByEmailWithSharedListsAndTodos(String email);
     User getByIdWithSharedLists(long id);
     User getByEmailWitnListsAndSharedLists(String email);
+    User getByEmailWitnListsAndSharedListsAndUsers(String email);
     List<User> getUsersByTodoListId(long id);
 }
