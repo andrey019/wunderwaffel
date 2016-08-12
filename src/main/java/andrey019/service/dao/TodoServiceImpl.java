@@ -134,12 +134,12 @@ public class TodoServiceImpl implements TodoService {
     }
 
     @Override
-    public String unShareWith(String email, long todoListId, String emailToUnShareWith) {
+    public String unShareWith(String email, long todoListId, long idToUnShareWith) {
         User user = userDao.getByEmail(email);
         if (user == null) {
             return ERROR;
         }
-        User userToUnShare = userDao.getByEmailWithSharedLists(emailToUnShareWith);
+        User userToUnShare = userDao.getByIdWithSharedLists(idToUnShareWith);
         if (userToUnShare == null) {
             return ERROR;
         }

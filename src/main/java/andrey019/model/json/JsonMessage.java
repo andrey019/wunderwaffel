@@ -7,7 +7,7 @@ public class JsonMessage {
     private long todoId;
     private long doneTodoId;
     private String shareWith;
-    private String unShareWith;
+    private long unShareWith;
     private String todoText;
     private String listName;
 
@@ -43,11 +43,11 @@ public class JsonMessage {
         this.shareWith = shareWith;
     }
 
-    public String getUnShareWith() {
+    public long getUnShareWith() {
         return unShareWith;
     }
 
-    public void setUnShareWith(String unShareWith) {
+    public void setUnShareWith(long unShareWith) {
         this.unShareWith = unShareWith;
     }
 
