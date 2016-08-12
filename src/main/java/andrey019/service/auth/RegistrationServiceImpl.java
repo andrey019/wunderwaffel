@@ -103,8 +103,9 @@ public class RegistrationServiceImpl implements RegistrationService {
         todoList.setName(FIRST_LIST);
         user = userDao.merge(user);
         user.addTodoList(todoList);
-        todoList = todoListDao.merge(todoList);
-        user.addSharedTodoList(todoList);
+        userDao.save(user);
+        user = userDao.getByEmailWitnListsAndSharedLists(user.getEmail());
+        user.addSharedTodoList(user.getTodoLists().iterator().next());
         if (userDao.save(user)) {
             registrationDao.delete(userConfirmation);
             return true;
