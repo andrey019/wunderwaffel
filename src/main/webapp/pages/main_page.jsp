@@ -123,7 +123,7 @@
         </div>
         <br>
         <br><br>
-        <button type="button" onclick="registration()" class="btn btn-primary" style="width: 100%">Sign up!</button>
+        <button id="regButton" type="button" onclick="registration()" class="btn btn-primary" style="width: 100%">Sign up!</button>
         <br><br>
         <div hidden id="regSuccess" class="alert alert-success" role="alert">
             <p>Your form is accepted!<br>

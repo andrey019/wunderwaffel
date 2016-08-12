@@ -132,7 +132,7 @@ function repeatPassCheck() {
 function registration() {
     if ($("#regEmailError").is(':visible') || $("#regFNameError").is(':visible') ||
         $("#regLNameError").is(':visible') || $("#regPassError").is(':visible') ||
-        $("#regRepeatPassError").is(':visible') || $("#regSuccess").is(':visible') ||
+        $("#regRepeatPassError").is(':visible') ||
         (document.getElementById("regEmailInput").value == "") ||
         (document.getElementById("regFNameInput").value == "") ||
         (document.getElementById("regLNameInput").value == "") ||
@@ -162,7 +162,7 @@ function registration() {
             } else {
                 $("#regError").hide();
                 $("#regSuccess").show();
-                document.getElementById("registrationButton").disabled = true;
+                document.getElementById("regButton").disabled = true;
             }
         },
         error: function (jqXHR, exception) {
