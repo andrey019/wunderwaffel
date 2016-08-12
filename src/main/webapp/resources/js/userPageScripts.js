@@ -139,8 +139,11 @@ function loadCurrentListTodos() {
         headers: getCSRFHeader(),
         success: function (data) {
             document.getElementById("todoResult").innerHTML = data;
+            document.getElementById("navbarText").innerHTML = window.navbarText;
             if (typeof window.showDoneTodos !== 'undefined' && window.showDoneTodos != null) {
                 loadDoneTodos();
+            } else {
+                document.getElementById("doneTodoResult").innerHTML = "";
             }
         },
         error: function (jqXHR, exception) {
@@ -154,32 +157,34 @@ function loadTodos(event) {
     window.currentList = event.currentTarget.id.split("=")[1];
     window.showDoneTodos = null;
     window.navbarText = event.currentTarget.getAttribute("name");
+    loadCurrentListTodos();
 
-    var jsonTodos = {
-        "listId": window.currentList,
-        "todoId": 0,
-        "doneTodoId": 0,
-        "shareWith": null,
-        "unShareWith": 0,
-        "todoText": null,
-        "listName": null
-    };
 
-    $.ajax({
-        type: "POST",
-        url: "/user/loadTodos",
-        data: JSON.stringify(jsonTodos),
-        contentType: 'application/json',
-        headers: getCSRFHeader(),
-        success: function (data) {
-            document.getElementById("navbarText").innerHTML = window.navbarText;
-            document.getElementById("todoResult").innerHTML = data;
-            document.getElementById("doneTodoResult").innerHTML = "";
-        },
-        error: function (jqXHR, exception) {
-            jsonErrorHandler(jqXHR, exception);
-        }
-    });
+    //var jsonTodos = {
+    //        "listId": window.currentList,
+    //        "todoId": 0,
+    //        "doneTodoId": 0,
+    //        "shareWith": null,
+    //        "unShareWith": 0,
+    //        "todoText": null,
+    //        "listName": null
+    //    };
+    //
+    //$.ajax({
+    //    type: "POST",
+    //    url: "/user/loadTodos",
+    //    data: JSON.stringify(jsonTodos),
+    //    contentType: 'application/json',
+    //    headers: getCSRFHeader(),
+    //    success: function (data) {
+    //        document.getElementById("navbarText").innerHTML = window.navbarText;
+    //        document.getElementById("todoResult").innerHTML = data;
+    //        document.getElementById("doneTodoResult").innerHTML = "";
+    //    },
+    //    error: function (jqXHR, exception) {
+    //        jsonErrorHandler(jqXHR, exception);
+    //    }
+    //});
 }
 
 function loadDoneTodos() {
