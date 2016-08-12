@@ -42,9 +42,9 @@
             <div class="row" style="width: 320px">
                 <div class="col-lg-6" style="width: 100%">
                     <div class="input-group" style="width: 100%">
-                        <input type="text" class="form-control" placeholder="Search TODO...">
+                        <input id="findTodoInput" type="text" class="form-control" onchange="findTodo()" placeholder="Search TODO...">
                     <span class="input-group-btn">
-                        <button class="btn btn-default" type="button" style="font-size: 20px"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+                        <button class="btn btn-default" type="button" onclick="findTodo()" style="font-size: 20px"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
                     </span>
                     </div>
                 </div>

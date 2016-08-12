@@ -1,11 +1,11 @@
 package andrey019.controller;
 
-import andrey019.dao.TodoListDao;
-import andrey019.model.dao.TodoList;
+import andrey019.model.json.JsonFindTodo;
 import andrey019.model.json.JsonMessage;
 import andrey019.model.json.JsonProfile;
 import andrey019.model.json.JsonTodoList;
 import andrey019.service.HtmlGenerator;
+import andrey019.service.SearchService;
 import andrey019.service.auth.ProfileService;
 import andrey019.service.dao.TodoService;
 import andrey019.service.maintenance.LogService;
@@ -30,6 +30,9 @@ public class UserController {
 
     @Autowired
     private ProfileService profileService;
+
+    @Autowired
+    private SearchService searchService;
 
     @Autowired
     private HtmlGenerator htmlGenerator;
@@ -109,16 +112,10 @@ public class UserController {
         return todoService.getTodoListInfo(getUserEmail(), jsonTodoList.getTodoListId());
     }
 
-//    @Autowired
-//    private TodoListDao todoListDao;
-
     @RequestMapping(value = "/deleteTodoList", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
     @ResponseBody
     public String deleteTodoList(@RequestBody JsonTodoList jsonTodoList) {
         logService.ajaxJson("getTodoListDeleteInfo " + getUserEmail());
-//        TodoList todoList = todoListDao.getByIdWithUsersAndSharedLists(jsonTodoList.getTodoListId());
-//        System.out.println(todoList.getUsers().size());
-//        System.out.println(todoList.getUsers().iterator().next().getSharedTodoLists().size());
         return todoService.deleteTodoList(getUserEmail(), jsonTodoList.getTodoListId());
     }
 
@@ -146,17 +143,21 @@ public class UserController {
     @RequestMapping(value = "/getProfile", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public @ResponseBody JsonProfile getProfile() {
         logService.ajaxJson("getProfile " + getUserEmail());
-        JsonProfile jsonProfile = profileService.getProfile(getUserEmail());
-        System.out.println(jsonProfile);
-        return jsonProfile;
+        return profileService.getProfile(getUserEmail());
     }
 
     @RequestMapping(value = "/updateProfile", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
     @ResponseBody
     public String updateProfile(@RequestBody JsonProfile jsonProfile) {
         logService.ajaxJson("updateProfile " + getUserEmail());
-        System.out.println(jsonProfile);
         return profileService.updateProfile(getUserEmail(), jsonProfile);
+    }
+
+    @RequestMapping(value = "/findTodo", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
+    @ResponseBody
+    public String findTodo(@RequestBody JsonFindTodo jsonFindTodo) {
+        logService.ajaxJson("findTodo " + getUserEmail());
+        return searchService.findTodos(getUserEmail(), jsonFindTodo.getRequest());
     }
 
     private String getUserEmail(){

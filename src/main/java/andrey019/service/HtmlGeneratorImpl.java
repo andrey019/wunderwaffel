@@ -15,10 +15,9 @@ public class HtmlGeneratorImpl implements HtmlGenerator {
     private final static String LIST_BUTTON_0 = "<button id=\"list=";
     private final static String LIST_BUTTON_1 = "\" type=\"button\" class=\"list-group-item\" " +
             "onclick=\"loadTodos(event)\" name=\"";
-    private final static String LIST_BUTTON_2 = "\" style=\"word-wrap: break-word\"><span id=\"badge=";
-    private final static String LIST_BUTTON_3 = "\" class=\"badge\">";
-    private final static String LIST_BUTTON_4 = "</span>";
-    private final static String LIST_BUTTON_5 = "</button>";
+    private final static String LIST_BUTTON_2 = "\" style=\"word-wrap: break-word\"><span class=\"badge\">";
+    private final static String LIST_BUTTON_3 = "</span>";
+    private final static String LIST_BUTTON_4 = "</button>";
 
     private final static String TODO_BUTTON_0 = "<button id=\"todo=";
     private final static String TODO_BUTTON_1 = "\" type=\"button\" class=\"list-group-item\" " +
@@ -62,12 +61,10 @@ public class HtmlGeneratorImpl implements HtmlGenerator {
             stringBuilder.append(LIST_BUTTON_1);
             stringBuilder.append(todoList.getName());
             stringBuilder.append(LIST_BUTTON_2);
-            stringBuilder.append(todoList.getId());
-            stringBuilder.append(LIST_BUTTON_3);
             stringBuilder.append(todoList.getTodoAmount());
-            stringBuilder.append(LIST_BUTTON_4);
+            stringBuilder.append(LIST_BUTTON_3);
             stringBuilder.append(todoList.getName());
-            stringBuilder.append(LIST_BUTTON_5);
+            stringBuilder.append(LIST_BUTTON_4);
         }
         return stringBuilder.toString();
     }

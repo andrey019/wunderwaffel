@@ -188,6 +188,8 @@ function loadCurrentListTodos() {
         return;
     }
 
+    $("#showDoneTodosButton").show();
+
     var jsonCurrentListTodos = {
         "listId": window.currentList.id.split("=")[1],
         "todoId": 0,
@@ -470,7 +472,6 @@ function deleteTodoList() {
 }
 
 function shareUser() {
-    event.preventDefault();
     if (typeof window.currentList === 'undefined' || window.currentList == null ||
         (document.getElementById("shareEmailInput").value == "")) {
         return;
@@ -590,9 +591,14 @@ function getProfile() {
         contentType: 'application/json',
         headers: getCSRFHeader(),
         success: function (data) {
-            document.getElementById("proEmailInput").placeholder = data.email;
-            document.getElementById("proFNameInput").placeholder = data.fName;
-            document.getElementById("proLNameInput").placeholder = data.lName;
+            if (data != null) {
+                document.getElementById("proEmailInput").placeholder = data.email;
+                document.getElementById("proFNameInput").placeholder = data.fName;
+                document.getElementById("proLNameInput").placeholder = data.lName;
+            } else {
+                document.getElementById("proErrorText").innerHTML = "Error, can't load profile info!";
+                $("#proError").show();
+            }
         },
         error: function (jqXHR, exception) {
             jsonErrorHandler(jqXHR, exception);
@@ -637,3 +643,34 @@ function updateProfile() {
     });
 }
 
+function findTodo() {
+    if (document.getElementById("findTodoInput").value == "") {
+        return;
+    }
+
+    var jsonFindTodo = {
+        "request": document.getElementById("findTodoInput").value
+    };
+
+    $.ajax({
+        type: "POST",
+        url: "/user/findTodo",
+        data: JSON.stringify(jsonFindTodo),
+        contentType: 'application/json',
+        headers: getCSRFHeader(),
+        success: function (data) {
+            document.getElementById("todoResult").innerHTML = "";
+            document.getElementById("doneTodoResult").innerHTML = "";
+            $("#showDoneTodosButton").hide();
+            document.getElementById("searchResult").innerHTML = data;
+            //if (data != "") {
+            //    document.getElementById("searchResult").innerHTML = data;
+            //} else {
+            //    document.getElementById("searchResult").innerHTML = "";
+            //}
+        },
+        error: function (jqXHR, exception) {
+            jsonErrorHandler(jqXHR, exception);
+        }
+    });
+}
