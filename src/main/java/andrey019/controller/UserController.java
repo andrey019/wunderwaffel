@@ -156,8 +156,7 @@ public class UserController {
     @RequestMapping(value = "/findTodo", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
     @ResponseBody
     public String findTodo(@RequestBody JsonFindTodo jsonFindTodo) {
-        logService.ajaxJson("findTodo " + getUserEmail());
-        System.out.println(jsonFindTodo.getRequest());
+        logService.ajaxJson("findTodo " + getUserEmail() + " / " + jsonFindTodo.getRequest());
         return searchService.findTodos(getUserEmail(), jsonFindTodo.getRequest());
     }
 
@@ -171,46 +170,4 @@ public class UserController {
         }
         return userName;
     }
-
-//    @RequestMapping("/ololo")
-//    public String userololo() {
-//        logService.accessToPage("user/ololo");
-//        return "ololo";
-//    }
-
-//    @RequestMapping("/json")
-//    public String tesingJson() {
-//        UserConfirmation userConfirmation = new UserConfirmation();
-//        userConfirmation.setDate(564354);
-//        userConfirmation.setCode("codeset");
-//        userConfirmation.setPassword("passset");
-//        userConfirmation.setEmail("emailset");
-//        return "json_test";//h
-//    }
-
-//    @RequestMapping(value = "/test", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
-//    @ResponseBody
-//    public String test(@RequestBody JsonMessage jsonMessage) {
-//        System.out.println("!!!  !!!");
-//        System.out.println(jsonMessage);
-//        return jsonMessage.getListId() + " = " + getUserEmail() + "<button id=\"99999\" class=\"btn btn-default\" type=\"button\" onclick=\"oneMore(event)\">json button</button>";//sdf
-//    }
-
-//    @RequestMapping("testdao")
-//    @ResponseBody
-//    public String testDao() {
-//        innerDao();
-//        return "done";
-//    }
-
-//    private void innerDao() {
-//        User user = userDao.getById(1);
-//        TodoList todoList = new TodoList();
-//        todoList.setOwner(user);
-//        todoList.addUsers(user);
-//        todoList.setName("spring name ололо");
-//        todoListDao.save(todoList);
-//        System.out.println(todoListDao.getByUsers(1).size());
-//        System.out.println(todoListDao.getUsersByTodoListId(1).size());
-//    }
 }

@@ -156,13 +156,4 @@ public class HtmlGeneratorImpl implements HtmlGenerator {
         stringBuilder.append(owner.getFullName());
         stringBuilder.append(SHARE_INFO_4);
     }
-
-    //    private String addBreaks(String text) {
-//        if (text.length() <= MAX_SYMBOLS_IN_LINE) {
-//            return text;
-//        }
-//        StringBuilder stringBuilder = new StringBuilder(text);
-//        stringBuilder.insert(MAX_SYMBOLS_IN_LINE, NEW_LINE);
-//        return stringBuilder.toString();
-//    }
 }

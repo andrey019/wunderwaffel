@@ -16,11 +16,6 @@ public class MailServiceImpl implements MailService {
 
 
     @Override
-    public void sendMail(final CustomMessage message) {
-        mailSenderService.addMessage(message);
-    }
-
-    @Override
     public void sendMail(String toEmail, String subject, String text) {
         final CustomMessage message = new CustomMessage();
         message.setFrom(FROM_EMAIL);

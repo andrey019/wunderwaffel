@@ -13,7 +13,7 @@
         what are you doing here?.. O_o
     </c:when>
     <c:otherwise>
-        ${user}, fuck off!
+        ${user}, that's not meant for you!
     </c:otherwise>
 </c:choose>
 

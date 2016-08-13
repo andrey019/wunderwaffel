@@ -17,8 +17,7 @@ public class PersistentLogins {
     private String token;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "last_used", nullable = false)//, updatable = false,
-            //columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
+    @Column(name = "last_used", nullable = false)
     private Date lastUsed;
 
     public String getSeries() {

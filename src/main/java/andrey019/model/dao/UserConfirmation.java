@@ -1,11 +1,10 @@
 package andrey019.model.dao;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
 @Entity
 @Table(name = "user_confirmation")
-public class UserConfirmation implements Serializable {
+public class UserConfirmation {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

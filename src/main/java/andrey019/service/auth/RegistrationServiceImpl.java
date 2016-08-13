@@ -16,13 +16,6 @@ import org.springframework.stereotype.Service;
 @Service("registrationService")
 public class RegistrationServiceImpl implements RegistrationService {
 
-
-//    private final static String TEXT_TEMPLATE = "<html><body>You were trying to register an account on WunderWaffel, " +
-//            "to confirm please click on the link below...<br>" +
-//            "<a href=\"http://wunderwaffel-andrey019.rhcloud.com/auth/confirm?code=%s\">" +
-//            "Click here to confirm registration</a><br><br>" +
-//            "If you don't know what's happening, just ignore this message.</body></html>";
-
     private final static String MAIL_SUBJECT = "WunderWaffel registration confirmation";
     private final static String MAIL_TEXT_0 = "<html><body>You were trying to register an account on WunderWaffel, " +
             "to confirm please click on the link below...<br>" +
@@ -43,9 +36,6 @@ public class RegistrationServiceImpl implements RegistrationService {
     private UserDao userDao;
 
     @Autowired
-    private TodoListDao todoListDao;
-
-    @Autowired
     private PasswordEncoder passwordEncoder;
 
     @Autowired
@@ -54,11 +44,6 @@ public class RegistrationServiceImpl implements RegistrationService {
     @Autowired
     private EmailValidator emailValidator;
 
-
-    @Override
-    public UserConfirmation getByEmail(String email) {
-        return registrationDao.getByEmail(email);
-    }
 
     @Override
     public String preRegistrationCheck(String email) {

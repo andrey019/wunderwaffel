@@ -275,41 +275,6 @@ public class TodoServiceImpl implements TodoService {
     }
 
     @Override
-    public Set<DoneTodo> getAllDoneTodos(String email, long todoListId) {
-        User user = userDao.getByEmail(email);
-        TodoList todoList = getListIfAllowed(user, todoListId);
-        if (todoList == null) {
-            return null;
-        }
-        return todoList.getDoneTodos();
-    }
-
-    @Override
-    public Set<Todo> getAllTodos(String email, long todoListId) {
-        User user = userDao.getByEmail(email);
-        TodoList todoList = getListIfAllowed(user, todoListId);
-        if (todoList == null) {
-            return null;
-        }
-        return todoList.getTodos();
-    }
-
-    @Override
-    public TodoList getListIfOwner(User user, long todoListId) {
-        if (user == null) {
-            return null;
-        }
-        TodoList todoList = todoListDao.getById(todoListId);
-        if (todoList == null) {
-            return null;
-        }
-        if (user.equals(todoList.getOwner())) {
-            return todoList;
-        }
-        return null;
-    }
-
-    @Override
     public TodoList getListIfAllowed(User user, long todoListId) {
         if (user == null) {
             return null;

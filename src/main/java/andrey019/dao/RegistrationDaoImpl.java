@@ -30,27 +30,37 @@ public class RegistrationDaoImpl implements RegistrationDao {
     @Transactional
     @Override
     public UserConfirmation getByEmail(String email) {
-        @SuppressWarnings("unchecked")
-        List<UserConfirmation> resultList = entityManager
-                .createQuery("select confirm from UserConfirmation confirm where confirm.email = :email")
-                .setParameter("email", email).setMaxResults(1).getResultList();
-        if (resultList.isEmpty()) {
+        try {
+            @SuppressWarnings("unchecked")
+            List<UserConfirmation> resultList = entityManager
+                    .createQuery("select confirm from UserConfirmation confirm where confirm.email = :email")
+                    .setParameter("email", email).setMaxResults(1).getResultList();
+            if (resultList.isEmpty()) {
+                return null;
+            }
+            return resultList.get(0);
+        } catch (Exception ex) {
+            ex.printStackTrace();
             return null;
         }
-        return resultList.get(0);
     }
 
     @Transactional
     @Override
     public UserConfirmation getByCode(String code) {
-        @SuppressWarnings("unchecked")
-        List<UserConfirmation> resultList = entityManager
-                .createQuery("select confirm from UserConfirmation confirm where confirm.code = :code")
-                .setParameter("code", code).setMaxResults(1).getResultList();
-        if (resultList.isEmpty()) {
+        try {
+            @SuppressWarnings("unchecked")
+            List<UserConfirmation> resultList = entityManager
+                    .createQuery("select confirm from UserConfirmation confirm where confirm.code = :code")
+                    .setParameter("code", code).setMaxResults(1).getResultList();
+            if (resultList.isEmpty()) {
+                return null;
+            }
+            return resultList.get(0);
+        } catch (Exception ex) {
+            ex.printStackTrace();
             return null;
         }
-        return resultList.get(0);
     }
 
     @Transactional
@@ -73,17 +83,6 @@ public class RegistrationDaoImpl implements RegistrationDao {
 
     @Transactional
     @Override
-    public UserConfirmation getById(int id) {
-        try {
-            return entityManager.find(UserConfirmation.class, id);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            return null;
-        }
-    }
-
-    @Transactional
-    @Override
     public boolean delete(UserConfirmation userConfirmation) {
         try {
             userConfirmation = entityManager.merge(userConfirmation);
@@ -92,18 +91,6 @@ public class RegistrationDaoImpl implements RegistrationDao {
         } catch (Exception ex) {
             ex.printStackTrace();
             return false;
-        }
-    }
-
-    @Transactional
-    @Override
-    public void deleteList(List<UserConfirmation> list) {
-        try {
-            for (UserConfirmation user : list) {
-                entityManager.remove(user);
-            }
-        } catch (Exception ex) {
-            ex.printStackTrace();
         }
     }
 }

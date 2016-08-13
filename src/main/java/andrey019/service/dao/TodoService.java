@@ -22,8 +22,5 @@ public interface TodoService {
     Set<Todo> getTodosByListId(String email, long todoListId);
     Set<DoneTodo> getDoneTodosByListId(String email, long todoListId);
     Set<TodoList> getAllTodoLists(String email);
-    Set<Todo> getAllTodos(String email, long todoListId);
-    Set<DoneTodo> getAllDoneTodos(String email, long todoListId);
-    TodoList getListIfOwner(User user, long todoListId);
     TodoList getListIfAllowed(User user, long todoListId);
 }

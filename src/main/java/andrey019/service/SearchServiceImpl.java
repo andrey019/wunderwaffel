@@ -78,7 +78,6 @@ public class SearchServiceImpl implements SearchService {
     }
 
     private void addListButton(StringBuilder stringBuilder, TodoList todoList) {
-        //stringBuilder.append(NEW_LINE);
         stringBuilder.append(LIST_BUTTON_0);
         stringBuilder.append(todoList.getId());
         stringBuilder.append(LIST_BUTTON_1);
