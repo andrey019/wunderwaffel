@@ -24,6 +24,7 @@ public class TodoServiceImpl implements TodoService {
     private final static String NOT_OWNER = "This list was not created by you. You can not delete it!";
     private final static String USER_NOT_FOUND = "There is no such user!";
     private final static String EMAIL_NOT_VALID = "Email is not valid!";
+    private final static String ALREDY_HAVE = "You already have this list!";
 
     @Autowired
     private UserDao userDao;
@@ -125,6 +126,9 @@ public class TodoServiceImpl implements TodoService {
     public String shareWith(String email, long todoListId, String emailToShareWith) {
         if (!emailValidator.isValid(emailToShareWith)) {
             return EMAIL_NOT_VALID;
+        }
+        if (email.equals(emailToShareWith)) {
+            return ALREDY_HAVE;
         }
         User userToShare = userDao.getByEmailWithSharedLists(emailToShareWith);
         if (userToShare == null) {
