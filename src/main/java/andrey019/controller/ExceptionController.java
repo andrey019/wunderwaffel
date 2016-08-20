@@ -3,6 +3,7 @@ package andrey019.controller;
 import org.springframework.security.web.authentication.rememberme.CookieTheftException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.servlet.NoHandlerFoundException;
 
 
 @ControllerAdvice
@@ -13,7 +14,7 @@ public class ExceptionController {
         return "forward:/";
     }
 
-    @ExceptionHandler(Exception.class)
+    @ExceptionHandler(NoHandlerFoundException.class)
     public String handleAllException(Exception ex) {
         return "forward:/";
     }
