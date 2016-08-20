@@ -15,7 +15,12 @@ public class ExceptionController {
     }
 
     @ExceptionHandler(NoHandlerFoundException.class)
-    public String handleAllException(Exception ex) {
-        return "forward:/";
+    public String handlePageNotFoundException(Exception ex) {
+        return "404";
+    }
+
+    @ExceptionHandler(Exception.class)
+    public String handleAllExceptions(Exception ex) {
+        return "internal_error";
     }
 }
