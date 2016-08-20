@@ -33,6 +33,7 @@ public class SpringMvcInitializer extends AbstractAnnotationConfigDispatcherServ
 		return dispatcherServlet;
 	}
 
+	// gets overriden by tomcat settings
 	@Override
 	public void onStartup(ServletContext servletContext) throws ServletException {
 		super.onStartup(servletContext);
