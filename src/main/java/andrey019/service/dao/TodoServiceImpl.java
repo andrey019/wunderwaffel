@@ -238,12 +238,13 @@ public class TodoServiceImpl implements TodoService {
         if (!todoList.getUsers().contains(user)) {
             return ERROR;
         }
-        todoList.getUsers().remove(user);
+        Set<User> users = todoList.getUsers();
+        users.remove(user);
         if (todoList.getOwner().equals(user)) {
-            return htmlGenerator.generateSharedInfoHtml(todoList.getUsers(), null);
+            return htmlGenerator.generateSharedInfoHtml(users, null);
         } else {
-            todoList.getUsers().remove(todoList.getOwner());
-            return htmlGenerator.generateSharedInfoHtml(todoList.getUsers(), todoList.getOwner());
+            users.remove(todoList.getOwner());
+            return htmlGenerator.generateSharedInfoHtml(users, todoList.getOwner());
         }
     }
 
