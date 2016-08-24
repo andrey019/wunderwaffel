@@ -287,6 +287,7 @@ public class TodoServiceImpl implements TodoService {
         if (user == null) {
             return null;
         }
+        user.getSharedTodoLists().size();
         return user.getSharedTodoLists();
     }
 
