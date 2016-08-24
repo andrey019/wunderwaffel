@@ -35,6 +35,7 @@ public class SearchServiceImpl implements SearchService {
     @Autowired
     private UserDao userDao;
 
+    @Transactional
     @Override
     public String findTodos(String email, String request) {
         User user = userDao.getByEmail(email);
@@ -44,7 +45,6 @@ public class SearchServiceImpl implements SearchService {
         return searchAndBuild(user, request);
     }
 
-    @Transactional
     private String searchAndBuild(User user, String request) {
         StringBuilder stringBuilder = new StringBuilder();
         boolean isFound = false;
