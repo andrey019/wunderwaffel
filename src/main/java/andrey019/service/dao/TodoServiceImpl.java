@@ -14,6 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.util.List;
 import java.util.Set;
 
@@ -44,6 +46,9 @@ public class TodoServiceImpl implements TodoService {
 
     @Autowired
     private EmailValidator emailValidator;
+
+    @PersistenceContext
+    private EntityManager entityManager;
 
     @Transactional
     @Override
@@ -238,13 +243,13 @@ public class TodoServiceImpl implements TodoService {
         if (!todoList.getUsers().contains(user)) {
             return ERROR;
         }
-        Set<User> users = todoList.getUsers();
-        users.remove(user);
+        entityManager.detach(todoList);
+        todoList.getUsers().remove(user);
         if (todoList.getOwner().equals(user)) {
-            return htmlGenerator.generateSharedInfoHtml(users, null);
+            return htmlGenerator.generateSharedInfoHtml(todoList.getUsers(), null);
         } else {
-            users.remove(todoList.getOwner());
-            return htmlGenerator.generateSharedInfoHtml(users, todoList.getOwner());
+            todoList.getUsers().remove(todoList.getOwner());
+            return htmlGenerator.generateSharedInfoHtml(todoList.getUsers(), todoList.getOwner());
         }
     }
 
