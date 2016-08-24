@@ -12,6 +12,7 @@ import andrey019.service.HtmlGenerator;
 import org.apache.commons.validator.routines.EmailValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Set;
@@ -44,11 +45,12 @@ public class TodoServiceImpl implements TodoService {
     @Autowired
     private EmailValidator emailValidator;
 
+    @Transactional
     @Override
     public boolean addTodoList(String email, String todoListName) {
         TodoList todoList = new TodoList();
         todoList.setName(todoListName);
-        User user = userDao.getByEmailWitnListsAndSharedLists(email);
+        User user = userDao.getByEmail(email);
         if (user == null) {
             return false;
         }
@@ -57,13 +59,14 @@ public class TodoServiceImpl implements TodoService {
         return userDao.save(user);
     }
 
+    @Transactional
     @Override
     public boolean addTodo(String email, long todoListId, String todoText) {
-        User user = userDao.getByEmailWithSharedLists(email);
+        User user = userDao.getByEmail(email);
         if (user == null) {
             return false;
         }
-        TodoList todoList = todoListDao.getByIdWithTodos(todoListId);
+        TodoList todoList = todoListDao.getById(todoListId);
         if (todoList == null) {
             return false;
         }
@@ -78,17 +81,18 @@ public class TodoServiceImpl implements TodoService {
         return todoListDao.save(todoList);
     }
 
+    @Transactional
     @Override
     public boolean doneTodo(String email, long todoListId, long todoId) {
         Todo todo = todoDao.getById(todoId);
         if ( (todo == null) || (todo.getTodoList().getId() != todoListId) ) {
             return false;
         }
-        User user = userDao.getByEmailWithSharedLists(email);
+        User user = userDao.getByEmail(email);
         if ( (user == null) || (!user.getSharedTodoLists().contains(todo.getTodoList())) ) {
             return false;
         }
-        TodoList todoList = todoListDao.getByIdWithTodosAndDoneTodos(todoListId);
+        TodoList todoList = todoListDao.getById(todoListId);
         if (todoList == null) {
             return false;
         }
@@ -101,17 +105,18 @@ public class TodoServiceImpl implements TodoService {
         return todoListDao.save(todoList);
     }
 
+    @Transactional
     @Override
     public boolean unDoneTodo(String email, long todoListId, long doneTodoId) {
         DoneTodo doneTodo = doneTodoDao.getById(doneTodoId);
         if ( (doneTodo == null) || (doneTodo.getTodoList().getId() != todoListId) ) {
             return false;
         }
-        User user = userDao.getByEmailWithSharedLists(email);
+        User user = userDao.getByEmail(email);
         if ( (user == null) || (!user.getSharedTodoLists().contains(doneTodo.getTodoList())) ) {
             return false;
         }
-        TodoList todoList = todoListDao.getByIdWithTodosAndDoneTodos(todoListId);
+        TodoList todoList = todoListDao.getById(todoListId);
         if (todoList == null) {
             return false;
         }
@@ -122,6 +127,7 @@ public class TodoServiceImpl implements TodoService {
         return todoListDao.save(todoList);
     }
 
+    @Transactional
     @Override
     public String shareWith(String email, long todoListId, String emailToShareWith) {
         if (!emailValidator.isValid(emailToShareWith)) {
@@ -130,15 +136,15 @@ public class TodoServiceImpl implements TodoService {
         if (email.equals(emailToShareWith)) {
             return ALREDY_HAVE;
         }
-        User userToShare = userDao.getByEmailWithSharedLists(emailToShareWith);
+        User userToShare = userDao.getByEmail(emailToShareWith);
         if (userToShare == null) {
             return USER_NOT_FOUND;
         }
-        User user = userDao.getByEmailWithSharedLists(email);
+        User user = userDao.getByEmail(email);
         if (user == null) {
             return ERROR;
         }
-        TodoList todoList = todoListDao.getByIdWithUsers(todoListId);
+        TodoList todoList = todoListDao.getById(todoListId);
         if (todoList == null) {
             return ERROR;
         }
@@ -152,17 +158,18 @@ public class TodoServiceImpl implements TodoService {
         return OK;
     }
 
+    @Transactional
     @Override
     public String unShareWith(String email, long todoListId, long idToUnShareWith) {
         User user = userDao.getByEmail(email);
         if (user == null) {
             return ERROR;
         }
-        User userToUnShare = userDao.getByIdWithSharedLists(idToUnShareWith);
+        User userToUnShare = userDao.getById(idToUnShareWith);
         if (userToUnShare == null) {
             return ERROR;
         }
-        TodoList todoList = todoListDao.getByIdWithUsers(todoListId);
+        TodoList todoList = todoListDao.getById(todoListId);
         if (todoList == null) {
             return ERROR;
         }
@@ -176,13 +183,14 @@ public class TodoServiceImpl implements TodoService {
         return OK;
     }
 
+    @Transactional
     @Override
     public String deleteTodoList(String email, long todoListId) {
         User user = userDao.getByEmail(email);
         if (user == null) {
             return ERROR;
         }
-        TodoList todoList = todoListDao.getByIdWithUsersAndSharedLists(todoListId);
+        TodoList todoList = todoListDao.getById(todoListId);
         if (todoList == null) {
             return ERROR;
         }
@@ -215,13 +223,14 @@ public class TodoServiceImpl implements TodoService {
         return htmlGenerator.generateTodoListsInfoHtml(users);
     }
 
+    @Transactional
     @Override
     public String getSharedWithInfo(String email, long todoListId) {
         User user = userDao.getByEmail(email);
         if (user == null) {
             return ERROR;
         }
-        TodoList todoList = todoListDao.getByIdWithUsers(todoListId);
+        TodoList todoList = todoListDao.getById(todoListId);
         if (todoList == null) {
             return ERROR;
         }
@@ -237,13 +246,14 @@ public class TodoServiceImpl implements TodoService {
         }
     }
 
+    @Transactional
     @Override
     public Set<Todo> getTodosByListId(String email, long todoListId) {
-        User user = userDao.getByEmailWithSharedLists(email);
+        User user = userDao.getByEmail(email);
         if (user == null) {
             return null;
         }
-        TodoList todoList = todoListDao.getByIdWithTodos(todoListId);
+        TodoList todoList = todoListDao.getById(todoListId);
         if (todoList == null) {
             return null;
         }
@@ -253,13 +263,14 @@ public class TodoServiceImpl implements TodoService {
         return todoList.getTodos();
     }
 
+    @Transactional
     @Override
     public Set<DoneTodo> getDoneTodosByListId(String email, long todoListId) {
-        User user = userDao.getByEmailWithSharedLists(email);
+        User user = userDao.getByEmail(email);
         if (user == null) {
             return null;
         }
-        TodoList todoList = todoListDao.getByIdWithDoneTodos(todoListId);
+        TodoList todoList = todoListDao.getById(todoListId);
         if (todoList == null) {
             return null;
         }
@@ -269,9 +280,10 @@ public class TodoServiceImpl implements TodoService {
         return todoList.getDoneTodos();
     }
 
+    @Transactional
     @Override
     public Set<TodoList> getAllTodoLists(String email) {
-        User user = userDao.getByEmailWithSharedLists(email);
+        User user = userDao.getByEmail(email);
         if (user == null) {
             return null;
         }

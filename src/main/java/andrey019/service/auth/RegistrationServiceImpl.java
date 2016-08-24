@@ -12,6 +12,7 @@ import org.apache.commons.validator.routines.EmailValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service("registrationService")
 public class RegistrationServiceImpl implements RegistrationService {
@@ -79,6 +80,7 @@ public class RegistrationServiceImpl implements RegistrationService {
         return ERROR;
     }
 
+    @Transactional
     @Override
     public boolean confirmRegistration(String code) {
         UserConfirmation userConfirmation = registrationDao.getByCode(code);
@@ -90,7 +92,7 @@ public class RegistrationServiceImpl implements RegistrationService {
         if (!userDao.save(user)) {
             return false;
         }
-        user = userDao.getByEmailWitnListsAndSharedLists(user.getEmail());
+        user = userDao.getByEmail(user.getEmail());
         if (user == null) {
             return false;
         }

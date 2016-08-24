@@ -7,6 +7,7 @@ import andrey019.model.dao.TodoList;
 import andrey019.model.dao.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service("searchService")
 public class SearchServiceImpl implements SearchService {
@@ -36,13 +37,14 @@ public class SearchServiceImpl implements SearchService {
 
     @Override
     public String findTodos(String email, String request) {
-        User user = userDao.getByEmailWithSharedListsAndTodos(email);
+        User user = userDao.getByEmail(email);
         if (user == null) {
             return EMPTY;
         }
         return searchAndBuild(user, request);
     }
 
+    @Transactional
     private String searchAndBuild(User user, String request) {
         StringBuilder stringBuilder = new StringBuilder();
         boolean isFound = false;
