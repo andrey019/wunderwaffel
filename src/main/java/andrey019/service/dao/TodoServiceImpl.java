@@ -197,6 +197,7 @@ public class TodoServiceImpl implements TodoService {
         if (!todoList.getOwner().equals(user)) {
             return NOT_OWNER;
         }
+        todoList.getUsers().size();
         for (User innerUser : todoList.getUsers()) {
             innerUser.getSharedTodoLists().remove(todoList);
         }
@@ -260,6 +261,7 @@ public class TodoServiceImpl implements TodoService {
         if (!user.getSharedTodoLists().contains(todoList)) {
             return null;
         }
+        todoList.getTodos().size();
         return todoList.getTodos();
     }
 
@@ -277,6 +279,7 @@ public class TodoServiceImpl implements TodoService {
         if (!user.getSharedTodoLists().contains(todoList)) {
             return null;
         }
+        todoList.getDoneTodos().size();
         return todoList.getDoneTodos();
     }
 

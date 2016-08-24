@@ -48,7 +48,9 @@ public class SearchServiceImpl implements SearchService {
     private String searchAndBuild(User user, String request) {
         StringBuilder stringBuilder = new StringBuilder();
         boolean isFound = false;
+        user.getSharedTodoLists().size();
         for (TodoList todoList : user.getSharedTodoLists()) {
+            todoList.getTodos().size();
             for (Todo todo : todoList.getTodos()) {
                 if (todo.getTodoText().contains(request)) {
                     if (!isFound) {
